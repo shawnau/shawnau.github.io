@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Archive on Hugo Zzo Theme</title>
+    <link>chobits1123.github.io/ko/archive/</link>
+    <description>Recent content in Archive on Hugo Zzo Theme</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ko</language>
+    <managingEditor>zzossig@gmail.com (zzossig)</managingEditor>
+    <webMaster>zzossig@gmail.com (zzossig)</webMaster>
+    <copyright>&amp;copy;{year}, All Rights Reserved</copyright>
+    <lastBuildDate>Sat, 19 Oct 2019 11:44:14 +0900</lastBuildDate>
+    
+        <atom:link href="chobits1123.github.io/ko/archive/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    
+      
+    
+  </channel>
+</rss>
