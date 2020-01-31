@@ -144,7 +144,7 @@
 	"content": ""
 },
 {
-	"uri": "/en/tags/themes/",
+	"uri": "/en/categories/themes/",
 	"title": "themes",
 	"tags": [],
 	"categories": [],
@@ -153,7 +153,7 @@
 	"content": ""
 },
 {
-	"uri": "/en/categories/themes/",
+	"uri": "/en/tags/themes/",
 	"title": "themes",
 	"tags": [],
 	"categories": [],
@@ -198,7 +198,7 @@
 	"content": ""
 },
 {
-	"uri": "/en/categories/hugo/",
+	"uri": "/en/tags/hugo/",
 	"title": "hugo",
 	"tags": [],
 	"categories": [],
@@ -207,7 +207,7 @@
 	"content": ""
 },
 {
-	"uri": "/en/tags/hugo/",
+	"uri": "/en/categories/hugo/",
 	"title": "hugo",
 	"tags": [],
 	"categories": [],
