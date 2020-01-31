@@ -3,367 +3,367 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>chobits1123.github.io/en/showcase/hugo/hugo-theme-zzo/</loc>
+    <loc>/en/showcase/hugo/hugo-theme-zzo/</loc>
     <lastmod>2020-01-19T21:13:42+09:00</lastmod>
   </url>
   
   <url>
-    <loc>chobits1123.github.io/en/showcase/hugo/hugo-theme-zdoc/</loc>
+    <loc>/en/showcase/hugo/hugo-theme-zdoc/</loc>
     <lastmod>2020-01-19T21:13:42+09:00</lastmod>
   </url>
   
   <url>
-    <loc>chobits1123.github.io/en/</loc>
+    <loc>/en/</loc>
     <lastmod>2020-01-25T06:40:51+09:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="ko"
-                href="chobits1123.github.io/ko/"
+                href="/ko/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="chobits1123.github.io/en/"
+                href="/en/"
                 />
   </url>
   
   <url>
-    <loc>chobits1123.github.io/en/categories/</loc>
+    <loc>/en/categories/</loc>
     <lastmod>2020-01-25T06:40:51+09:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="ko"
-                href="chobits1123.github.io/ko/categories/"
+                href="/ko/categories/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="chobits1123.github.io/en/categories/"
+                href="/en/categories/"
                 />
   </url>
   
   <url>
-    <loc>chobits1123.github.io/en/posts/</loc>
+    <loc>/en/posts/</loc>
     <lastmod>2020-01-25T06:40:51+09:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="ko"
-                href="chobits1123.github.io/ko/posts/"
+                href="/ko/posts/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="chobits1123.github.io/en/posts/"
+                href="/en/posts/"
                 />
   </url>
   
   <url>
-    <loc>chobits1123.github.io/en/series/</loc>
+    <loc>/en/series/</loc>
     <lastmod>2020-01-25T06:40:51+09:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="ko"
-                href="chobits1123.github.io/ko/series/"
+                href="/ko/series/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="chobits1123.github.io/en/series/"
+                href="/en/series/"
                 />
   </url>
   
   <url>
-    <loc>chobits1123.github.io/en/tags/shortcode/</loc>
+    <loc>/en/tags/shortcode/</loc>
     <lastmod>2020-01-25T06:40:51+09:00</lastmod>
   </url>
   
   <url>
-    <loc>chobits1123.github.io/en/posts/shortcodes/</loc>
+    <loc>/en/posts/shortcodes/</loc>
     <lastmod>2020-01-25T06:40:51+09:00</lastmod>
   </url>
   
   <url>
-    <loc>chobits1123.github.io/en/tags/</loc>
+    <loc>/en/tags/</loc>
     <lastmod>2020-01-25T06:40:51+09:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="ko"
-                href="chobits1123.github.io/ko/tags/"
+                href="/ko/tags/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="chobits1123.github.io/en/tags/"
+                href="/en/tags/"
                 />
   </url>
   
   <url>
-    <loc>chobits1123.github.io/en/showcase/hugo/</loc>
+    <loc>/en/showcase/hugo/</loc>
     <lastmod>2020-01-19T21:04:11+09:00</lastmod>
   </url>
   
   <url>
-    <loc>chobits1123.github.io/en/showcase/</loc>
+    <loc>/en/showcase/</loc>
     <lastmod>2020-01-19T15:43:38+09:00</lastmod>
   </url>
   
   <url>
-    <loc>chobits1123.github.io/en/tags/css/</loc>
+    <loc>/en/tags/css/</loc>
     <lastmod>2019-12-20T12:00:06+09:00</lastmod>
   </url>
   
   <url>
-    <loc>chobits1123.github.io/en/tags/html/</loc>
+    <loc>/en/tags/html/</loc>
     <lastmod>2019-12-20T12:00:06+09:00</lastmod>
   </url>
   
   <url>
-    <loc>chobits1123.github.io/en/tags/markdown/</loc>
+    <loc>/en/tags/markdown/</loc>
     <lastmod>2019-12-20T12:00:06+09:00</lastmod>
   </url>
   
   <url>
-    <loc>chobits1123.github.io/en/posts/markdown-syntax/</loc>
+    <loc>/en/posts/markdown-syntax/</loc>
     <lastmod>2019-12-20T12:00:06+09:00</lastmod>
   </url>
   
   <url>
-    <loc>chobits1123.github.io/en/categories/syntax/</loc>
+    <loc>/en/categories/syntax/</loc>
     <lastmod>2019-12-20T12:00:06+09:00</lastmod>
   </url>
   
   <url>
-    <loc>chobits1123.github.io/en/categories/themes/</loc>
+    <loc>/en/tags/themes/</loc>
     <lastmod>2019-12-20T12:00:06+09:00</lastmod>
   </url>
   
   <url>
-    <loc>chobits1123.github.io/en/tags/themes/</loc>
+    <loc>/en/categories/themes/</loc>
     <lastmod>2019-12-20T12:00:06+09:00</lastmod>
   </url>
   
   <url>
-    <loc>chobits1123.github.io/en/series/themes-guide/</loc>
+    <loc>/en/series/themes-guide/</loc>
     <lastmod>2019-12-20T12:00:06+09:00</lastmod>
   </url>
   
   <url>
-    <loc>chobits1123.github.io/en/tags/privacy/</loc>
+    <loc>/en/tags/privacy/</loc>
     <lastmod>2019-12-19T12:00:06+09:00</lastmod>
   </url>
   
   <url>
-    <loc>chobits1123.github.io/en/posts/rich-content/</loc>
+    <loc>/en/posts/rich-content/</loc>
     <lastmod>2019-12-19T12:00:06+09:00</lastmod>
   </url>
   
   <url>
-    <loc>chobits1123.github.io/en/tags/shortcodes/</loc>
+    <loc>/en/tags/shortcodes/</loc>
     <lastmod>2019-12-19T12:00:06+09:00</lastmod>
   </url>
   
   <url>
-    <loc>chobits1123.github.io/en/tags/hugo/</loc>
+    <loc>/en/tags/hugo/</loc>
     <lastmod>2019-12-18T10:33:41+09:00</lastmod>
   </url>
   
   <url>
-    <loc>chobits1123.github.io/en/categories/hugo/</loc>
+    <loc>/en/categories/hugo/</loc>
     <lastmod>2019-12-18T10:33:41+09:00</lastmod>
   </url>
   
   <url>
-    <loc>chobits1123.github.io/en/posts/syntax-highlight/</loc>
+    <loc>/en/posts/syntax-highlight/</loc>
     <lastmod>2019-12-18T10:33:41+09:00</lastmod>
   </url>
   
   <url>
-    <loc>chobits1123.github.io/en/posts/math-typesetting/</loc>
+    <loc>/en/posts/math-typesetting/</loc>
     <lastmod>2019-12-17T12:00:06+09:00</lastmod>
   </url>
   
   <url>
-    <loc>chobits1123.github.io/en/tags/amoji/</loc>
+    <loc>/en/tags/amoji/</loc>
     <lastmod>2019-12-16T12:00:06+09:00</lastmod>
   </url>
   
   <url>
-    <loc>chobits1123.github.io/en/tags/bamoji/</loc>
+    <loc>/en/tags/bamoji/</loc>
     <lastmod>2019-12-16T12:00:06+09:00</lastmod>
   </url>
   
   <url>
-    <loc>chobits1123.github.io/en/tags/emoji/</loc>
+    <loc>/en/tags/emoji/</loc>
     <lastmod>2019-12-16T12:00:06+09:00</lastmod>
   </url>
   
   <url>
-    <loc>chobits1123.github.io/en/posts/emoji-support/</loc>
+    <loc>/en/posts/emoji-support/</loc>
     <lastmod>2019-12-16T12:00:06+09:00</lastmod>
   </url>
   
   <url>
-    <loc>chobits1123.github.io/en/tags/gamoji/</loc>
+    <loc>/en/tags/gamoji/</loc>
     <lastmod>2019-12-16T12:00:06+09:00</lastmod>
   </url>
   
   <url>
-    <loc>chobits1123.github.io/en/tags/namoji/</loc>
+    <loc>/en/tags/namoji/</loc>
     <lastmod>2019-12-16T12:00:06+09:00</lastmod>
   </url>
   
   <url>
-    <loc>chobits1123.github.io/en/categories/diagram/</loc>
+    <loc>/en/categories/diagram/</loc>
     <lastmod>2019-11-18T21:00:06+09:00</lastmod>
   </url>
   
   <url>
-    <loc>chobits1123.github.io/en/posts/test-viz/</loc>
+    <loc>/en/posts/test-viz/</loc>
     <lastmod>2019-11-18T21:00:06+09:00</lastmod>
   </url>
   
   <url>
-    <loc>chobits1123.github.io/en/posts/test-wavedrom/</loc>
+    <loc>/en/posts/test-wavedrom/</loc>
     <lastmod>2019-11-18T18:00:06+09:00</lastmod>
   </url>
   
   <url>
-    <loc>chobits1123.github.io/en/posts/test-chartjs/</loc>
+    <loc>/en/posts/test-chartjs/</loc>
     <lastmod>2019-11-18T12:00:06+09:00</lastmod>
   </url>
   
   <url>
-    <loc>chobits1123.github.io/en/posts/test-js-sequence-diagrams/</loc>
+    <loc>/en/posts/test-js-sequence-diagrams/</loc>
     <lastmod>2019-11-18T12:00:06+09:00</lastmod>
   </url>
   
   <url>
-    <loc>chobits1123.github.io/en/tags/diagram/</loc>
+    <loc>/en/tags/diagram/</loc>
     <lastmod>2019-11-17T12:00:06+09:00</lastmod>
   </url>
   
   <url>
-    <loc>chobits1123.github.io/en/posts/test-mermaid/</loc>
+    <loc>/en/posts/test-mermaid/</loc>
     <lastmod>2019-11-17T12:00:06+09:00</lastmod>
   </url>
   
   <url>
-    <loc>chobits1123.github.io/en/categories/math/</loc>
+    <loc>/en/categories/math/</loc>
     <lastmod>2019-11-16T12:00:06+09:00</lastmod>
   </url>
   
   <url>
-    <loc>chobits1123.github.io/en/posts/test-mathjax/</loc>
+    <loc>/en/posts/test-mathjax/</loc>
     <lastmod>2019-11-16T12:00:06+09:00</lastmod>
   </url>
   
   <url>
-    <loc>chobits1123.github.io/en/posts/test-katex/</loc>
+    <loc>/en/posts/test-katex/</loc>
     <lastmod>2019-11-15T12:00:06+09:00</lastmod>
   </url>
   
   <url>
-    <loc>chobits1123.github.io/en/posts/test-flowchart/</loc>
+    <loc>/en/posts/test-flowchart/</loc>
     <lastmod>2019-11-14T12:00:06+09:00</lastmod>
   </url>
   
   <url>
-    <loc>chobits1123.github.io/en/gallery/cartoon/</loc>
+    <loc>/en/gallery/cartoon/</loc>
     <lastmod>2019-10-31T10:20:16+09:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="ko"
-                href="chobits1123.github.io/ko/gallery/cartoon/"
+                href="/ko/gallery/cartoon/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="chobits1123.github.io/en/gallery/cartoon/"
+                href="/en/gallery/cartoon/"
                 />
   </url>
   
   <url>
-    <loc>chobits1123.github.io/en/gallery/</loc>
+    <loc>/en/gallery/</loc>
     <lastmod>2019-10-31T10:20:16+09:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="ko"
-                href="chobits1123.github.io/ko/gallery/"
+                href="/ko/gallery/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="chobits1123.github.io/en/gallery/"
+                href="/en/gallery/"
                 />
   </url>
   
   <url>
-    <loc>chobits1123.github.io/en/gallery/photo/</loc>
+    <loc>/en/gallery/photo/</loc>
     <lastmod>2019-10-31T10:20:16+09:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="ko"
-                href="chobits1123.github.io/ko/gallery/photo/"
+                href="/ko/gallery/photo/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="chobits1123.github.io/en/gallery/photo/"
+                href="/en/gallery/photo/"
                 />
   </url>
   
   <url>
-    <loc>chobits1123.github.io/en/pt/dir/fourth/</loc>
+    <loc>/en/pt/dir/fourth/</loc>
     <lastmod>2019-10-30T20:48:10+09:00</lastmod>
   </url>
   
   <url>
-    <loc>chobits1123.github.io/en/pt/</loc>
+    <loc>/en/pt/</loc>
     <lastmod>2019-10-30T20:48:10+09:00</lastmod>
   </url>
   
   <url>
-    <loc>chobits1123.github.io/en/pt/third/</loc>
+    <loc>/en/pt/third/</loc>
     <lastmod>2019-10-30T20:46:30+09:00</lastmod>
   </url>
   
   <url>
-    <loc>chobits1123.github.io/en/pt/second/</loc>
+    <loc>/en/pt/second/</loc>
     <lastmod>2019-10-30T20:45:24+09:00</lastmod>
   </url>
   
   <url>
-    <loc>chobits1123.github.io/en/pt/first/</loc>
+    <loc>/en/pt/first/</loc>
     <lastmod>2019-10-30T19:45:20+09:00</lastmod>
   </url>
   
   <url>
-    <loc>chobits1123.github.io/en/archive/</loc>
+    <loc>/en/archive/</loc>
     <lastmod>2019-10-19T11:44:14+09:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="ko"
-                href="chobits1123.github.io/ko/archive/"
+                href="/ko/archive/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="chobits1123.github.io/en/archive/"
+                href="/en/archive/"
                 />
   </url>
   
   <url>
-    <loc>chobits1123.github.io/en/about/</loc>
+    <loc>/en/about/</loc>
     <lastmod>2019-02-28T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="ko"
-                href="chobits1123.github.io/ko/about/"
+                href="/ko/about/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="chobits1123.github.io/en/about/"
+                href="/en/about/"
                 />
   </url>
   

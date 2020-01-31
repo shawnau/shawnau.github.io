@@ -2,7 +2,7 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Galleries on Hugo Zzo Theme</title>
-    <link>chobits1123.github.io/ko/gallery/</link>
+    <link>/ko/gallery/</link>
     <description>Recent content in Galleries on Hugo Zzo Theme</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ko</language>
@@ -11,26 +11,26 @@
     <copyright>&amp;copy;{year}, All Rights Reserved</copyright>
     <lastBuildDate>Fri, 12 Oct 2018 10:20:16 +0900</lastBuildDate>
     
-        <atom:link href="chobits1123.github.io/ko/gallery/index.xml" rel="self" type="application/rss+xml" />
+        <atom:link href="/ko/gallery/index.xml" rel="self" type="application/rss+xml" />
     
     
     
       
       <item>
         <title>Photo</title>
-        <link>chobits1123.github.io/ko/gallery/photo/</link>
+        <link>/ko/gallery/photo/</link>
         <pubDate>Fri, 12 Oct 2018 10:20:16 +0900</pubDate>
         <author>zzossig@gmail.com (zzossig)</author>
-        <guid>chobits1123.github.io/ko/gallery/photo/</guid>
+        <guid>/ko/gallery/photo/</guid>
         <description></description>
       </item>
       
       <item>
         <title>Cartoon</title>
-        <link>chobits1123.github.io/ko/gallery/cartoon/</link>
+        <link>/ko/gallery/cartoon/</link>
         <pubDate>Thu, 11 Oct 2018 10:20:16 +0900</pubDate>
         <author>zzossig@gmail.com (zzossig)</author>
-        <guid>chobits1123.github.io/ko/gallery/cartoon/</guid>
+        <guid>/ko/gallery/cartoon/</guid>
         <description></description>
       </item>
       

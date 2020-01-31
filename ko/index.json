@@ -1,6 +1,6 @@
 [
 {
-	"uri": "chobits1123.github.io/ko/archive/",
+	"uri": "/ko/archive/",
 	"title": "Archive",
 	"tags": [],
 	"categories": [],
@@ -9,7 +9,7 @@
 	"content": "archive page\n"
 },
 {
-	"uri": "chobits1123.github.io/ko/about/",
+	"uri": "/ko/about/",
 	"title": "About",
 	"tags": [],
 	"categories": [],
@@ -18,7 +18,7 @@
 	"content": ""
 },
 {
-	"uri": "chobits1123.github.io/ko/",
+	"uri": "/ko/",
 	"title": "Hugo Zzo Theme",
 	"tags": [],
 	"categories": [],
@@ -27,7 +27,7 @@
 	"content": ""
 },
 {
-	"uri": "chobits1123.github.io/ko/gallery/",
+	"uri": "/ko/gallery/",
 	"title": "Galleries",
 	"tags": [],
 	"categories": [],
@@ -36,7 +36,7 @@
 	"content": ""
 },
 {
-	"uri": "chobits1123.github.io/ko/gallery/photo/",
+	"uri": "/ko/gallery/photo/",
 	"title": "Photo",
 	"tags": [],
 	"categories": [],
@@ -45,7 +45,7 @@
 	"content": ""
 },
 {
-	"uri": "chobits1123.github.io/ko/gallery/cartoon/",
+	"uri": "/ko/gallery/cartoon/",
 	"title": "Cartoon",
 	"tags": [],
 	"categories": [],
@@ -54,7 +54,7 @@
 	"content": ""
 },
 {
-	"uri": "chobits1123.github.io/ko/categories/",
+	"uri": "/ko/categories/",
 	"title": "Categories",
 	"tags": [],
 	"categories": [],
@@ -63,7 +63,7 @@
 	"content": ""
 },
 {
-	"uri": "chobits1123.github.io/ko/posts/",
+	"uri": "/ko/posts/",
 	"title": "Posts",
 	"tags": ["index"],
 	"categories": [],
@@ -72,7 +72,7 @@
 	"content": ""
 },
 {
-	"uri": "chobits1123.github.io/ko/series/",
+	"uri": "/ko/series/",
 	"title": "Series",
 	"tags": [],
 	"categories": [],
@@ -81,7 +81,7 @@
 	"content": ""
 },
 {
-	"uri": "chobits1123.github.io/ko/tags/",
+	"uri": "/ko/tags/",
 	"title": "Tags",
 	"tags": [],
 	"categories": [],
