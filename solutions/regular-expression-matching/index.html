@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Library Support Guidance – Laniakea</title>
+    <title>Regular Expression Matching – Laniakea</title>
     
 
 
@@ -903,23 +903,23 @@
 
 
     
-<meta name="description" content="Sample article showcasing test features like charts and latex equations." />
+<meta name="description" content="warp drive active~" />
 <meta name="keywords" content="">
-<meta name="created" content="2020-02-06T15:44:39&#43;0800">
-<meta name="modified" content="2020-02-06T15:44:39&#43;0800">
-<meta name="author" content="Choi">
+<meta name="created" content="2020-02-10T21:46:18&#43;0800">
+<meta name="modified" content="2020-02-10T21:46:18&#43;0800">
+
 
 <meta property="og:site_name" content="Laniakea">
-<meta property="og:title" content="Library Support Guidance">
-<meta property="og:url" content="/blogs/lib-guidance/">
+<meta property="og:title" content="Regular Expression Matching">
+<meta property="og:url" content="/solutions/regular-expression-matching/">
 <meta property="og:type" content="article">
-<meta property="og:description" content="Sample article showcasing test features like charts and latex equations.">
+<meta property="og:description" content="warp drive active~">
 
 
 <meta name="generator" content="Hugo 0.63.2" />
 <meta name="msapplication-TileColor" content="#ffffff">
 <meta name="theme-color" content="#ffffff">
-<link rel="canonical" href="/blogs/lib-guidance/">
+<link rel="canonical" href="/solutions/regular-expression-matching/">
 <link rel="manifest" href="/manifest.json">
 
   <link rel="apple-touch-icon" sizes="57x57" href="/favicon/apple-icon-57x57.png">
@@ -943,16 +943,12 @@
   {
     "@context": "https://schema.org",
     "@type": "WebPage",
-    "headline": "Library Support Guidance",
-    "datePublished": "2020-02-06T15:44:39+08:00",
-    "dateModified": "2020-02-06T15:44:39+08:00",
-    "url" : "/blogs/lib-guidance/",
-    "description": "Sample article showcasing test features like charts and latex equations.",
-    "keywords": ["markdown"],
-    "author": {
-      "@type": "Person",
-      "name": "Choi"
-    },
+    "headline": "Regular Expression Matching",
+    "datePublished": "2020-02-10T21:46:18+08:00",
+    "dateModified": "2020-02-10T21:46:18+08:00",
+    "url" : "/solutions/regular-expression-matching/",
+    "description": ,
+    "keywords": ["dynamic programming","backtracking"],
     "mainEntityOfPage": {
       "@type": "WebPage",
       "@id": ""
@@ -984,7 +980,7 @@
     
     <div id="container">
         
-        <div class="wrapper" data-type="blogs" data-kind="page">
+        <div class="wrapper" data-type="solutions" data-kind="page">
             <nav class="navbar" role="navigation" aria-label="main navigation" data-dir="ltr">
   <div class="navbar__brand">
     
@@ -1097,7 +1093,7 @@
       
       
       
-        <a href="/blogs" class="navbar__menu-item navbar__slide-down active" dir="ltr">Blogs</a>
+        <a href="/blogs" class="navbar__menu-item navbar__slide-down " dir="ltr">Blogs</a>
       
     
       
@@ -1105,7 +1101,7 @@
       
       
       
-        <a href="/solutions" class="navbar__menu-item navbar__slide-down " dir="ltr">Solutions</a>
+        <a href="/solutions" class="navbar__menu-item navbar__slide-down active" dir="ltr">Solutions</a>
       
     
       
@@ -1129,7 +1125,7 @@
             
             
 
-<main class="single__main main-main">
+<main class="single__main main">
   
     <nav class="breadcrumb" aria-label="breadcrumbs">
   <ol>
@@ -1148,14 +1144,14 @@
   
   <li >
     
-      <a href="/blogs/" class="capitalize">Blogs</a>
+      <a href="/solutions/" class="capitalize">Solution</a>
     
   </li>
   
   
   <li  class="is-active" >
     
-      <span>Library Support Guidance</span>
+      <span>Regular Expression Matching</span>
     
   </li>
   
@@ -1164,11 +1160,11 @@
 </nav>
   
   <div class="single">
-    <h2 class="single__title">Library Support Guidance</h2>
+    <h2 class="single__title">Regular Expression Matching</h2>
     <div class="single__meta">
       
 <div class="single__infos">
-  <time class="single__info" title="Written At">📅&nbsp;Feb 6, 2020 </time>  &middot; <span class="single__info" title="Reading Time"> ☕ 3 min read </span>&middot; <span class="single__info" title="WRITTEN BY">🤖&nbsp;Choi</span>
+  <time class="single__info" title="Written At">📅&nbsp;Feb 10, 2020 </time>  &middot; <span class="single__info" title="Reading Time"> ☕ 4 min read </span>
   <span class="single__info">
     
   </span>
@@ -1180,8 +1176,17 @@
   
   
   <li>
-    <a href="/tags/markdown" class="single__tag" title="markdown">
-      #markdown
+    <a href="/tags/dynamic-programming" class="single__tag" title="dynamic programming">
+      #dynamic programming
+    </a>
+  </li>
+    
+
+  
+  
+  <li>
+    <a href="/tags/backtracking" class="single__tag" title="backtracking">
+      #backtracking
     </a>
   </li>
     
@@ -1200,179 +1205,316 @@
   <div class="expand__content expand__content--toc">
     <nav id="TableOfContents">
   <ul>
-    <li><a href="#mathjax">MathJax</a></li>
-    <li><a href="#chartjs">ChartJS</a></li>
-    <li><a href="#flowchart">FLowChart</a></li>
-    <li><a href="#js-sequence-diagram-support">JS Sequence Diagram support</a></li>
-    <li><a href="#katex">KaTex</a></li>
-    <li><a href="#mermaid">Mermaid</a></li>
-    <li><a href="#wavedrom-support">Wavedrom support</a></li>
+    <li><a href="#description">Description</a></li>
+    <li><a href="#backtracking-solution">Backtracking Solution</a></li>
+    <li><a href="#dyamic-programming">Dyamic Programming</a></li>
   </ul>
 </nav>
   </div>
 </div>
 
-      <h2 id="mathjax">MathJax</h2>
-<blockquote>
-<p>A JavaScript display engine for mathematics that works in all browsers.No more setup for readers. It just works.</p>
-</blockquote>
-<p>When \(a \ne 0\), there are two solutions to \((ax^2 + bx + c = 0)\) and they are \[x = {-b \pm \sqrt{b^2-4ac} \over 2a}.\]</p>
-<h2 id="chartjs">ChartJS</h2>
-<blockquote>
-<p>Simple yet flexible JavaScript charting for designers &amp; developers</p>
-</blockquote>
-<pre><code class="language-chart" data-lang="chart">{
-    &quot;type&quot;: &quot;bar&quot;,
-    &quot;data&quot;: 
-       {
-        &quot;labels&quot;: [&quot;One&quot;, &quot;Two&quot;, &quot;Three&quot;, &quot;Four&quot;, &quot;Five&quot;, &quot;Six&quot;],
-        &quot;datasets&quot;: [{
-            &quot;label&quot;: &quot;# of Votes&quot;,
-            &quot;data&quot;: [12, 19, 3, 5, 3, 8]
-        }]
-    }
-}
-</code></pre><pre><code class="language-chart" data-lang="chart">    {
-    &quot;type&quot;: &quot;line&quot;,
-        &quot;data&quot;: {
-            &quot;labels&quot;: [&quot;One&quot;, &quot;Two&quot;, &quot;Three&quot;, &quot;Four&quot;, &quot;Five&quot;, &quot;Six&quot;],
-            &quot;datasets&quot;: [
-            {
-                &quot;label&quot;: &quot;# of Votes&quot;,
-                &quot;data&quot;: [12, 19, 3, 5, 2, 3],
-                &quot;backgroundColor&quot;:&quot;transparent&quot;,
-                &quot;borderColor&quot;:&quot;orange&quot;
-            },
-            {
-                &quot;label&quot;: &quot;Some other set&quot;,
-                &quot;data&quot;: [15, 8, 13, 5, 5, 9],
-                &quot;backgroundColor&quot;:&quot;transparent&quot;,
-                &quot;borderColor&quot;:&quot;#44ccff&quot;
-            }
-            ]
-        }
-    }
-</code></pre><h2 id="flowchart">FLowChart</h2>
-<blockquote>
-<p>flowchart.js is a flowchart DSL and SVG render that runs in the browser and terminal. Nodes and connections are defined in separately so that nodes can be reused and connections can be quickly changed.</p>
-</blockquote>
-<pre><code class="language-flowchart" data-lang="flowchart">st=&gt;start: Start|past:&gt;http://www.google.com[blank]
-e=&gt;end: End|future:&gt;http://www.google.com
-op1=&gt;operation: My Operation|past
-op2=&gt;operation: Stuff|current
-sub1=&gt;subroutine: My Subroutine|invalid
-cond=&gt;condition: Yes
-or No?|approved:&gt;http://www.google.com
-c2=&gt;condition: Good idea|rejected
-io=&gt;inputoutput: catch something...|future
+      <h2 id="description">Description</h2>
+<p>Given an input string (s) and a pattern (p), implement regular expression matching with support for &lsquo;.&rsquo; and &lsquo;*'.</p>
+<pre><code>'.' Matches any single character.
+'*' Matches zero or more of the preceding element.
+The matching should cover the entire input string (not partial).
+</code></pre><p>Note:</p>
+<ul>
+<li>s could be empty and contains only lowercase letters a-z.</li>
+<li>p could be empty and contains only lowercase letters a-z, and characters like . or *.</li>
+</ul>
+<p>Example :</p>
+<pre><code>Input:
+s = &quot;aab&quot;
+p = &quot;a*b&quot;
+Output: true
+Explanation: &quot;a*&quot; does not match the entire string &quot;aa&quot;.
+</code></pre><h2 id="backtracking-solution">Backtracking Solution</h2>
+<p>We define <code>search(si, pi)</code> as the search function, which means if <code>s[si:]</code> is matched by <code>p[pi:]</code>.</p>
+<p>First we need to check if <code>p[pi]</code> is a <strong>wildcard</strong>: <code>p[pi+1] == &quot;*&quot;</code>, and don&rsquo;t forget the corner case: <code>pi+1 &lt; len(p)</code></p>
+<ol>
+<li>Not wildcard: Just check if <code>s[si]</code> and <code>p[pi]</code> is <strong>same character</strong>: <code>si &lt; len(s) and s[si] == p[pi]</code>
+<ul>
+<li>If it is, search next level: <code>search(si+1, pi+1)</code></li>
+<li>If not, just return <code>False</code>, search ends here.</li>
+</ul>
+</li>
+<li>Wildcard: Same as step 1, check if it&rsquo;s the same character:
+<ul>
+<li>If it is, that&rsquo;s a valid wildcard match. But we could still choose to match or skip this wildcard: <code>search(si+1, pi) or search(si, pi+2)</code></li>
+<li>If not, the only choice is to skip this wildcard: <code>search(si, pi+2)</code></li>
+</ul>
+</li>
+</ol>
 
-st-&gt;op1(right)-&gt;cond
-cond(yes, right)-&gt;c2
-cond(no)-&gt;sub1(left)-&gt;op1
-c2(yes)-&gt;io-&gt;e
-c2(no)-&gt;op2-&gt;e
-</code></pre><h2 id="js-sequence-diagram-support">JS Sequence Diagram support</h2>
-<blockquote>
-<p>Generates UML sequence diagrams from simple text</p>
-</blockquote>
-<pre><code class="language-msc" data-lang="msc">Alice-&gt;Bob: Hello Bob, how are you?
-Note right of Bob: Bob thinks
-Bob--&gt;Alice: I am good thanks!
-</code></pre><pre><code class="language-msc" data-lang="msc">Title: Here is a title
-A-&gt;B: Normal line
-B--&gt;C: Dashed line
-C-&gt;&gt;D: Open arrow
-D--&gt;&gt;A: Dashed open arrow
-</code></pre><h2 id="katex">KaTex</h2>
-<blockquote>
-<p>KaTeX is a fast, easy-to-use JavaScript library for TeX math rendering on the web.</p>
-</blockquote>
-<p>The following</p>
-<p>$$ \int_{a}^{b} x^2 dx $$</p>
-<p>Is an integral</p>
-<p>$$ \varphi = 1+\frac{1} {1+\frac{1} {1+\frac{1} {1+\cdots} } } $$</p>
-<p>Enable Katex in the config file by setting the <code>katex</code> param to <code>true</code>. This will import the necessary Katex CSS/JS.</p>
-<p>See the online reference of <a href="https://katex.org/docs/supported.html">supported TeX functions</a>.</p>
-<p><strong>Note:</strong> For inline math to render correctly, your content file extension must be <code>.mmark</code>. See the <a href="https://mmark.nl/">official mmark site</a>.</p>
-<pre><code>Inline math: $ \varphi = \dfrac{1+\sqrt5}{2}= 1.6180339887… $
-</code></pre><p>Inline math: $ \varphi = \dfrac{1+\sqrt5}{2}= 1.6180339887… $</p>
-<pre><code>Block math:
+<div id="7a87f0e26b3ee08c" class="tab">
+  <div class="tab__links">
+    
+    <button class="tab__link" aria-label="Tab link">straight</button>
+    
+    <button class="tab__link" aria-label="Tab link">concise</button>
+    
+  </div>
+  
+  
+<div id="c83b2f78916b941e" class="tab__content">
+  <div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">isMatch</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">s</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">p</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-</span><span class="o">&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+        <span class="k">def</span> <span class="nf">search</span><span class="p">(</span><span class="n">si</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">pi</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-</span><span class="o">&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">pi</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">p</span><span class="p">)</span><span class="p">:</span> 
+                <span class="k">return</span> <span class="n">si</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+            <span class="n">wildcard</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="n">pi</span><span class="o">+</span><span class="mi">1</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">p</span><span class="p">)</span> <span class="ow">and</span> <span class="n">p</span><span class="p">[</span><span class="n">pi</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="sa"></span><span class="s2">&#34;</span><span class="s2">*</span><span class="s2">&#34;</span>
+            <span class="n">match</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="n">si</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="ow">and</span> <span class="n">p</span><span class="p">[</span><span class="n">pi</span><span class="p">]</span> <span class="ow">in</span> <span class="p">{</span><span class="n">s</span><span class="p">[</span><span class="n">si</span><span class="p">]</span><span class="p">,</span> <span class="sa"></span><span class="s2">&#34;</span><span class="s2">.</span><span class="s2">&#34;</span><span class="p">}</span>
+            <span class="k">if</span> <span class="n">wildcard</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">match</span><span class="p">:</span>
+                    <span class="k">return</span> <span class="n">search</span><span class="p">(</span><span class="n">si</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">pi</span><span class="p">)</span> <span class="ow">or</span> <span class="n">search</span><span class="p">(</span><span class="n">si</span><span class="p">,</span> <span class="n">pi</span><span class="o">+</span><span class="mi">2</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="k">return</span> <span class="n">search</span><span class="p">(</span><span class="n">si</span><span class="p">,</span> <span class="n">pi</span><span class="o">+</span><span class="mi">2</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">march</span><span class="p">:</span>
+                    <span class="n">search</span><span class="p">(</span><span class="n">si</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">pi</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="k">return</span> <span class="bp">False</span>
+        <span class="k">return</span> <span class="n">search</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div>
+</div>
 
-$$ \varphi = 1+\frac{1} {1+\frac{1} {1+\frac{1} {1+\cdots} } } $$
-</code></pre><p>Block math:</p>
-<p>$$ \varphi = 1+\frac{1} {1+\frac{1} {1+\frac{1} {1+\cdots} } } $$</p>
-<h2 id="mermaid">Mermaid</h2>
-<blockquote>
-<p>Generate diagrams, charts, graphs or flows from markdown-like text via javascript.</p>
-</blockquote>
+  
+<div id="f2865da692f2f224" class="tab__content">
+  <p>Some conditional branches could be merged by <code>and</code> operator.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">isMatch</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">s</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">p</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-</span><span class="o">&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+        <span class="k">def</span> <span class="nf">search</span><span class="p">(</span><span class="n">si</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">pi</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-</span><span class="o">&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">pi</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">p</span><span class="p">)</span><span class="p">:</span> 
+                <span class="k">return</span> <span class="n">si</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+            <span class="n">wildcard</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="n">pi</span><span class="o">+</span><span class="mi">1</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">p</span><span class="p">)</span> <span class="ow">and</span> <span class="n">p</span><span class="p">[</span><span class="n">pi</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="sa"></span><span class="s2">&#34;</span><span class="s2">*</span><span class="s2">&#34;</span>
+            <span class="n">match</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="n">si</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="ow">and</span> <span class="n">p</span><span class="p">[</span><span class="n">pi</span><span class="p">]</span> <span class="ow">in</span> <span class="p">{</span><span class="n">s</span><span class="p">[</span><span class="n">si</span><span class="p">]</span><span class="p">,</span> <span class="sa"></span><span class="s2">&#34;</span><span class="s2">.</span><span class="s2">&#34;</span><span class="p">}</span>
+            <span class="k">if</span> <span class="n">wildcard</span><span class="p">:</span>
+                <span class="k">return</span> <span class="p">(</span><span class="n">match</span> <span class="ow">and</span> <span class="n">search</span><span class="p">(</span><span class="n">si</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">pi</span><span class="p">)</span><span class="p">)</span> <span class="ow">or</span> <span class="n">search</span><span class="p">(</span><span class="n">si</span><span class="p">,</span> <span class="n">pi</span><span class="o">+</span><span class="mi">2</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">match</span> <span class="ow">and</span> <span class="n">search</span><span class="p">(</span><span class="n">si</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">pi</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">search</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div>
+</div>
+
+</div>
+
+<script>
+  'use strict';
+
+  var containerId = JSON.parse("\"7a87f0e26b3ee08c\"");
+  var containerElem = document.getElementById(containerId);
+  var tabLinks = null;
+  var tabContents = null;
+  var ids = [];
+
+  if (containerElem) {
+    tabLinks = containerElem.querySelectorAll('.tab__link');
+    tabContents = containerElem.querySelectorAll('.tab__content');
+  }
+
+  for (var i = 0; i < tabContents.length; i++) {
+    ids = ids.concat(tabContents[i].getAttribute('id'));
+    tabContents[i].style.display = 'none';
+
+    if (0 === parseInt(i, 10) && !tabContents[i].classList.contains('active')) {
+      tabContents[i].classList.add('active');
+    }
+  }
+
+  for (var i = 0; i < tabLinks.length; i++) {
+    tabLinks[i].setAttribute('id', ids[i]);
+
+    if (0 === parseInt(i, 10) && !tabLinks[i].classList.contains('active')) {
+      tabLinks[i].classList.add('active');
+    } else {
+      tabLinks[i].classList.remove('active');
+    }
+  }
+
+  if (tabContents.length > 0) {
+    tabContents[0].style.display = 'block';
+  }
+</script>
+<ul>
+<li>The code could be easily optimized using a cache to avoid duplicate calculation. See <code>Optimize Recursion</code> in my blog.</li>
+<li>Always pay attention to corner cases in recursion.</li>
+<li>Below is an example for matching <code>aab</code> and <code>c*a*ab</code>, with the dicision tree of the backtracking search path.</li>
+</ul>
 <pre><code class="language-mermaid" data-lang="mermaid">graph TD;
-  A--&gt;B;
-  A--&gt;C;
-  B--&gt;D;
-  C--&gt;D;
-</code></pre><pre><code class="language-mermaid" data-lang="mermaid">sequenceDiagram
-  participant Alice
-  participant Bob
-  Alice-&gt;John: Hello John, how are you?
-  loop Healthcheck
-      John-&gt;John: Fight against hypochondria
+  subgraph DecisionTree
+  DROOT(Wildcard?)--&gt;|Y|DL(char?);
+  DL--&gt;|Y|DLL(match?);
+  DLL--&gt;|Y|DLLL(si+1, pi);
+  DLL--&gt;|N|DLLR(si, pi+2);
+  DL--&gt;|N|DLR(si, pi+2);
+  DROOT--&gt;|N|DR(char?);
+  DR--&gt;|Y|DRL(si+1, pi+1);
+  DR--&gt;|N|DRR(False);
   end
-  Note right of John: Rational thoughts &lt;br/&gt;prevail...
-  John--&gt;Alice: Great!
-  John-&gt;Bob: How about you?
-  Bob--&gt;John: Jolly good!
-</code></pre><pre><code class="language-mermaid" data-lang="mermaid">graph TD
-A[Hard] --&gt;|Text| B(Round)
-B --&gt; C{Decision}
-C --&gt;|One| D[Result 1]
-C --&gt;|Two| E[Result 2]
-</code></pre><pre><code class="language-mermaid" data-lang="mermaid">gantt
-section Section
-Completed :done,    des1, 2014-01-06,2014-01-08
-Active        :active,  des2, 2014-01-07, 3d
-Parallel 1   :         des3, after des1, 1d
-Parallel 2   :         des4, after des1, 1d
-Parallel 3   :         des5, after des3, 1d
-Parallel 4   :         des6, after des4, 1d
-</code></pre><pre><code class="language-mermaid" data-lang="mermaid">classDiagram
-Class01 &lt;|-- AveryLongClass : Cool
-&lt;&lt;interface&gt;&gt; Class01
-Class09 --&gt; C2 : Where am i?
-Class09 --* C3
-Class09 --|&gt; Class07
-Class07 : equals()
-Class07 : Object[] elementData
-Class01 : size()
-Class01 : int chimp
-Class01 : int gorilla
-class Class10 {
-  &lt;&lt;service&gt;&gt;
-  int id
-  size()
-}
-</code></pre><pre><code class="language-mermaid" data-lang="mermaid">stateDiagram
-[*] --&gt; Still
-Still --&gt; [*]
-Still --&gt; Moving
-Moving --&gt; Still
-Moving --&gt; Crash
-Crash --&gt; [*]
-</code></pre><pre><code class="language-mermaid" data-lang="mermaid">pie
-&quot;Dogs&quot; : 386
-&quot;Cats&quot; : 85
-&quot;Rats&quot; : 15 
-</code></pre><h2 id="wavedrom-support">Wavedrom support</h2>
-<blockquote>
-<p>WaveDrom is a Free and Open Source online digital timing diagram (waveform) rendering engine that uses javascript, HTML5 and SVG to convert a WaveJSON input text description into SVG vector graphics.</p>
-</blockquote>
-<pre><code class="language-wave" data-lang="wave">{ 
-  &quot;signal&quot;: [ {&quot;name&quot;: &quot;CLK&quot;, &quot;wave&quot;: &quot;p.....|...&quot;},
-            {&quot;name&quot;:&quot;DAT&quot;, &quot;wave&quot;:&quot;x.345x|=.x&quot;, &quot;data&quot;:[&quot;A&quot;,&quot;B&quot;,&quot;C&quot;,&quot;D&quot;]},
-            {&quot;name&quot;: &quot;REQ&quot;, &quot;wave&quot;: &quot;0.1..0|1.0&quot;},
-            {},
-            {&quot;name&quot;: &quot;ACK&quot;, &quot;wave&quot;: &quot;1.....|01.&quot;}
-]}
-</code></pre>
+  subgraph MatchExample
+  ROOT(aab,c*a*ab)--&gt;|skip c*|L(aab, a*ab);
+  L--&gt;|match a*|LL(ab,a*ab)
+  L--&gt;|skip a*|LR(aab,ab);
+  LL--&gt;|match a*|LLL(b,a*ab);
+  LL--&gt;|skip a*|LLR(ab,ab);
+  LR--&gt;|match a|LRL(ab,b);
+  LLR--&gt;|match a|LLRL(b,b);
+  LLRL--&gt;|match b|LLRLL([END]);
+  end
+</code></pre><h2 id="dyamic-programming">Dyamic Programming</h2>
+<p>First we can construct state transision from the backtracking method. Jut let <code>search(si, pi)</code> to be <code>dp[si][pi]</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-text" data-lang="text">dp[si][pi] &lt;--------------- dp[si][pi+2]
+    ^      \
+    |       \  
+dp[si+1][pi] dp[si+1][pi+1]
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>We have a <code>(len(s) + 1, len(p) +1)</code> matrix, the iteration order is described below.</li>
+<li>Starting from <code>dp[len(s)][len(p)-1]</code>, we need to get <code>dp[0][0]</code></li>
+<li>Set <code>dp[len(s)][len(p)] = True</code>, which indicates our backtracking terminal condition(find a match).</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th align="center">s\p</th>
+<th align="center">c</th>
+<th align="center">*</th>
+<th align="center">a</th>
+<th align="center">*</th>
+<th align="center">a</th>
+<th align="center">b</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">a</td>
+<td align="center">end</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center">F</td>
+</tr>
+<tr>
+<td align="center">a</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center">F</td>
+</tr>
+<tr>
+<td align="center">b</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center">F</td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center">start</td>
+<td align="center">T</td>
+</tr>
+</tbody>
+</table>
+<p>The core logic is pretty straightforward like backtracking solution:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">isMatch</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">s</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">p</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-</span><span class="o">&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+        <span class="n">dp</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">bool</span><span class="p">]</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="p">[</span><span class="bp">False</span><span class="p">]</span><span class="o">*</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">p</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">s</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="p">]</span>
+        <span class="n">dp</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">s</span><span class="p">)</span><span class="p">]</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">p</span><span class="p">)</span><span class="p">]</span> <span class="o">=</span> <span class="bp">True</span>
+        <span class="k">for</span> <span class="n">si</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">s</span><span class="p">)</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">pi</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">p</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="p">:</span>
+                <span class="n">wildcard</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="n">pi</span><span class="o">+</span><span class="mi">1</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">p</span><span class="p">)</span> <span class="ow">and</span> <span class="n">p</span><span class="p">[</span><span class="n">pi</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="sa"></span><span class="s2">&#34;</span><span class="s2">*</span><span class="s2">&#34;</span>
+                <span class="n">match</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="n">si</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="ow">and</span> <span class="n">p</span><span class="p">[</span><span class="n">pi</span><span class="p">]</span> <span class="ow">in</span> <span class="p">{</span><span class="n">s</span><span class="p">[</span><span class="n">si</span><span class="p">]</span><span class="p">,</span> <span class="sa"></span><span class="s2">&#34;</span><span class="s2">.</span><span class="s2">&#34;</span><span class="p">}</span>
+                <span class="k">if</span> <span class="n">wildcard</span><span class="p">:</span>
+                    <span class="n">dp</span><span class="p">[</span><span class="n">si</span><span class="p">]</span><span class="p">[</span><span class="n">pi</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">match</span> <span class="ow">and</span> <span class="n">dp</span><span class="p">[</span><span class="n">si</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span><span class="p">[</span><span class="n">pi</span><span class="p">]</span><span class="p">)</span> <span class="ow">or</span> <span class="n">dp</span><span class="p">[</span><span class="n">si</span><span class="p">]</span><span class="p">[</span><span class="n">pi</span><span class="o">+</span><span class="mi">2</span><span class="p">]</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">dp</span><span class="p">[</span><span class="n">si</span><span class="p">]</span><span class="p">[</span><span class="n">pi</span><span class="p">]</span> <span class="o">=</span> <span class="n">match</span> <span class="ow">and</span> <span class="n">dp</span><span class="p">[</span><span class="n">si</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span><span class="p">[</span><span class="n">pi</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">dp</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</code></pre></td></tr></table>
+</div>
+</div>
     </article>
     
     
@@ -1381,37 +1523,22 @@ Crash --&gt; [*]
     <section class="related">
     
     
-    <h1 class="related__title">
-      <hr class="hr-dots"/>
-      <div>
-        See Also
-      </div>
-      <hr class="hr-dots"/>
-    </h1>
-    <ul class="related-ul">
-        
-        <li>
-          <a href="/blogs/basic/" class="related__link">Markdown Basic Syntax</a>
-        </li>
-        
-    </ul>
-    
   </section>
     <div class="grow"></div>
 <nav class="pagination-single">
   
     
-      <a href="/blogs/basic/" class="pagination-single__left">
+      <a href="/blogs/lib-guidance/" class="pagination-single__left">
         <div class="pagination-single__icon">
           <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24"><path fill="none" d="M0 0h24v24H0V0z"/><path fill="currentColor" d="M19 11H7.83l4.88-4.88c.39-.39.39-1.03 0-1.42-.39-.39-1.02-.39-1.41 0l-6.59 6.59c-.39.39-.39 1.02 0 1.41l6.59 6.59c.39.39 1.02.39 1.41 0 .39-.39.39-1.02 0-1.41L7.83 13H19c.55 0 1-.45 1-1s-.45-1-1-1z"/></svg>
         </div>
-        <div class="pagination-single__left-title">Markdown Basic Syntax</div>      
+        <div class="pagination-single__left-title">Library Support Guidance</div>      
       </a>
     
     <div class="grow"></div>
     
-      <a href="/solutions/regular-expression-matching/" class="pagination-single__right">      
-        <div class="pagination-single__right-title">Regular Expression Matching</div>
+      <a href="/solutions/optimize-recursion/" class="pagination-single__right">      
+        <div class="pagination-single__right-title">Optimize Recursion</div>
         <div class="pagination-single__icon">
           <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24"><path fill="none" d="M0 0h24v24H0V0z"/><path fill="currentColor" d="M5 13h11.17l-4.88 4.88c-.39.39-.39 1.03 0 1.42.39.39 1.02.39 1.41 0l6.59-6.59c.39-.39.39-1.02 0-1.41l-6.58-6.6c-.39-.39-1.02-.39-1.41 0-.39.39-.39 1.02 0 1.41L16.17 11H5c-.55 0-1 .45-1 1s.45 1 1 1z"/></svg>
         </div>
@@ -1779,25 +1906,21 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 <section class="sidebar">
-  <div class="toc__flexbox" data-position="fixed">
+  <div class="toc__flexbox" data-position="absolute">
     <h6 class="toc__title">What&#39;s on this Page</h6>
     
       <label class="switch">
-        <input id="toggle-toc" aria-label="Toggle TOC" type="checkbox" checked>
+        <input id="toggle-toc" aria-label="Toggle TOC" type="checkbox" >
         <span class="slider round"></span>
       </label>
     
   </div>
-  <div class="toc " data-dir="ltr" data-folding="true">
+  <div class="toc hide" data-dir="ltr" data-folding="true">
     <nav id="TableOfContents">
   <ul>
-    <li><a href="#mathjax">MathJax</a></li>
-    <li><a href="#chartjs">ChartJS</a></li>
-    <li><a href="#flowchart">FLowChart</a></li>
-    <li><a href="#js-sequence-diagram-support">JS Sequence Diagram support</a></li>
-    <li><a href="#katex">KaTex</a></li>
-    <li><a href="#mermaid">Mermaid</a></li>
-    <li><a href="#wavedrom-support">Wavedrom support</a></li>
+    <li><a href="#description">Description</a></li>
+    <li><a href="#backtracking-solution">Backtracking Solution</a></li>
+    <li><a href="#dyamic-programming">Dyamic Programming</a></li>
   </ul>
 </nav>
   </div>
@@ -1890,62 +2013,15 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 
-  <script defer src="https://cdn.jsdelivr.net/npm/raphael@2.3.0/raphael.min.js" integrity="sha256-TabprKdeNXbSesCWLMrcbWSDzUhpAdcNPe5Q53rn9Yg=" crossorigin="anonymous"></script>
-  <script defer src="https://cdn.jsdelivr.net/npm/flowchart.js@1.12.0/release/flowchart.min.js" integrity="sha256-xghRsaOFJXNxT9sgANknngHh3FjUQWrJUae7GP&#43;2Atc=" crossorigin="anonymous"></script>
 
 
 
-  <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-    MathJax.Hub.Config({
-      tex2jax: {
-        inlineMath: [['$', '$'], ['\\(', '\\)']],
-        displayMath: [['$$', '$$']],
-        processEscapes: true,
-        processEnvironments: true,
-        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
-        TeX: {
-          equationNumbers: { autoNumber: "AMS" },
-          extensions: ["AMSmath.js", "AMSsymbols.js"]
-        }
-      }
-    });
-    MathJax.Hub.Queue(function () {
-      
-      
-      
-      var all = MathJax.Hub.getAllJax(), i;
-      for (i = 0; i < all.length; i += 1) {
-        all[i].SourceElement().parentNode.className += ' has-jax';
-      }
-    });
-
-    MathJax.Hub.Config({
-      
-      TeX: { equationNumbers: { autoNumber: "AMS" } }
-    });
-  </script>
 
 
 
-  <script defer src="https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.min.js"></script>
-  <script defer src="https://cdn.jsdelivr.net/npm/snapsvg@0.5.1/dist/snap.svg.min.js"></script>
-  <script defer src="https://cdn.jsdelivr.net/npm/lodash@4.17.15/lodash.min.js" integrity="sha256-VeNaFBVDhoX3H&#43;gJ37DpT/nTuZTdjYro9yBruHjVmoQ=" crossorigin="anonymous"></script>
-  <script defer src="https://cdn.jsdelivr.net/npm/@rokt33r/js-sequence-diagrams@2.0.6-2/dist/sequence-diagram-min.js" integrity="sha256-eadHf9g1REH9Wvp2FLV/D9vKNvQUFKuVPgWFvmMQxBE=" crossorigin="anonymous"></script>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@rokt33r/js-sequence-diagrams@2.0.6-2/dist/sequence-diagram-min.css" integrity="sha256-On01v36B8LRDuL2tqhqs7Gb3Cm/NIpsLFy4OarOodUA=" crossorigin="anonymous">
 
 
 
-  <script defer src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js" integrity="sha256-R4pqcOYV8lt7snxMQO/HSbVCFRPMdrhAFMH&#43;vr9giYI=" crossorigin="anonymous"></script>
-
-
-
-<script defer src="https://cdn.jsdelivr.net/npm/wavedrom@2.3.0/wavedrom.min.js" integrity="sha256-Gvxb3h9f9p1eiyr59LuWSLX/tWVncuDrHgLF9&#43;rwkw8=" crossorigin="anonymous"></script>
-<script defer src="https://cdn.jsdelivr.net/npm/wavedrom@2.3.0/skins/default.js" integrity="sha256-AcH/tECvCrfgPUHK98GALAPyAE7XpAYyEsbpmQrniFo=" crossorigin="anonymous"></script>
-
-
-
-  <script defer src="https://cdn.jsdelivr.net/npm/viz.js@2.1.2/viz.min.js" crossorigin="anonymous"></script>
-  <script defer src="https://cdn.jsdelivr.net/npm/viz.js@2.1.2/full.render.js" integrity="sha256-Ogqs510LFnekr9o7OLdpelaaAmNss9egQRTyzCqV2NQ=" crossorigin="anonymous"></script>
 
 
 <script>
@@ -2004,7 +2080,7 @@ document.addEventListener('DOMContentLoaded', function () {
     
     var enableToc = JSON.parse("true");
     var toc = JSON.parse("null");
-    var hideToc = JSON.parse("false");
+    var hideToc = JSON.parse("true");
     var tocFlexbox = document.querySelector('.toc__flexbox');
     var tocFlexboxOuter = document.querySelector('.toc__flexbox--outer');
     var tocFolding = JSON.parse("true");
@@ -2273,7 +2349,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     
     
-    var lib = JSON.parse("[\"chart\",\"flowchartjs\",\"katex\",\"mathjax\",\"mermaid\",\"msc\",\"viz\",\"wavedrom\"]");
+    var lib = JSON.parse("[\"katex\",\"mermaid\"]");
 
     if (lib && lib.includes('mermaid')) {
       

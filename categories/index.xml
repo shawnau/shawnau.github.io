@@ -9,12 +9,30 @@
     <managingEditor>xxuan@mail.ustc.edu.cn (Xuan)</managingEditor>
     <webMaster>xxuan@mail.ustc.edu.cn (Xuan)</webMaster>
     <copyright>&amp;copy;{year}, All Rights Reserved</copyright>
-    <lastBuildDate>Thu, 06 Feb 2020 15:44:39 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 11 Feb 2020 15:33:49 +0800</lastBuildDate>
     
         <atom:link href="/categories/index.xml" rel="self" type="application/rss+xml" />
     
     
     
+      
+      <item>
+        <title>python</title>
+        <link>/categories/python/</link>
+        <pubDate>Tue, 11 Feb 2020 15:33:49 +0800</pubDate>
+        <author>xxuan@mail.ustc.edu.cn (Xuan)</author>
+        <guid>/categories/python/</guid>
+        <description></description>
+      </item>
+      
+      <item>
+        <title>string</title>
+        <link>/categories/string/</link>
+        <pubDate>Mon, 10 Feb 2020 21:46:18 +0800</pubDate>
+        <author>xxuan@mail.ustc.edu.cn (Xuan)</author>
+        <guid>/categories/string/</guid>
+        <description></description>
+      </item>
       
       <item>
         <title>syntax</title>

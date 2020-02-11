@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Solution on Laniakea</title>
-    <link>/solutions/</link>
-    <description>Recent content in Solution on Laniakea</description>
+    <title>tools on Laniakea</title>
+    <link>/series/tools/</link>
+    <description>Recent content in tools on Laniakea</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <managingEditor>xxuan@mail.ustc.edu.cn (Xuan)</managingEditor>
@@ -11,7 +11,7 @@
     <copyright>&amp;copy;{year}, All Rights Reserved</copyright>
     <lastBuildDate>Tue, 11 Feb 2020 15:33:49 +0800</lastBuildDate>
     
-        <atom:link href="/solutions/index.xml" rel="self" type="application/rss+xml" />
+        <atom:link href="/series/tools/index.xml" rel="self" type="application/rss+xml" />
     
     
     
@@ -22,15 +22,6 @@
         <pubDate>Tue, 11 Feb 2020 15:33:49 +0800</pubDate>
         <author>xxuan@mail.ustc.edu.cn (Xuan)</author>
         <guid>/solutions/optimize-recursion/</guid>
-        <description></description>
-      </item>
-      
-      <item>
-        <title>Regular Expression Matching</title>
-        <link>/solutions/regular-expression-matching/</link>
-        <pubDate>Mon, 10 Feb 2020 21:46:18 +0800</pubDate>
-        <author>xxuan@mail.ustc.edu.cn (Xuan)</author>
-        <guid>/solutions/regular-expression-matching/</guid>
         <description></description>
       </item>
       
