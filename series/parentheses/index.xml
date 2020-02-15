@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>parentheses on Laniakea</title>
+    <link>/series/parentheses/</link>
+    <description>Recent content in parentheses on Laniakea</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <managingEditor>xxuan@mail.ustc.edu.cn (Xuan)</managingEditor>
+    <webMaster>xxuan@mail.ustc.edu.cn (Xuan)</webMaster>
+    <copyright>&amp;copy;{year}, All Rights Reserved</copyright>
+    <lastBuildDate>Fri, 14 Feb 2020 17:29:25 +0800</lastBuildDate>
+    
+        <atom:link href="/series/parentheses/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    
+      
+      <item>
+        <title>Valid Parentheses</title>
+        <link>/solutions/valid-parentheses/</link>
+        <pubDate>Fri, 14 Feb 2020 17:29:25 +0800</pubDate>
+        <author>xxuan@mail.ustc.edu.cn (Xuan)</author>
+        <guid>/solutions/valid-parentheses/</guid>
+        <description></description>
+      </item>
+      
+      <item>
+        <title>Longest Valid Parentheses</title>
+        <link>/solutions/longest-valid-parentheses/</link>
+        <pubDate>Fri, 14 Feb 2020 12:12:45 +0800</pubDate>
+        <author>xxuan@mail.ustc.edu.cn (Xuan)</author>
+        <guid>/solutions/longest-valid-parentheses/</guid>
+        <description></description>
+      </item>
+      
+    
+  </channel>
+</rss>

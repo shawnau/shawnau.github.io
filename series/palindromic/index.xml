@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>palindromic on Laniakea</title>
+    <link>/series/palindromic/</link>
+    <description>Recent content in palindromic on Laniakea</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <managingEditor>xxuan@mail.ustc.edu.cn (Xuan)</managingEditor>
+    <webMaster>xxuan@mail.ustc.edu.cn (Xuan)</webMaster>
+    <copyright>&amp;copy;{year}, All Rights Reserved</copyright>
+    <lastBuildDate>Tue, 11 Feb 2020 17:18:35 +0800</lastBuildDate>
+    
+        <atom:link href="/series/palindromic/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    
+      
+      <item>
+        <title>Longest Palindromic Substring</title>
+        <link>/solutions/longest-palindromic-substring/</link>
+        <pubDate>Tue, 11 Feb 2020 17:18:35 +0800</pubDate>
+        <author>xxuan@mail.ustc.edu.cn (Xuan)</author>
+        <guid>/solutions/longest-palindromic-substring/</guid>
+        <description></description>
+      </item>
+      
+    
+  </channel>
+</rss>

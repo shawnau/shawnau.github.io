@@ -9,12 +9,57 @@
     <managingEditor>xxuan@mail.ustc.edu.cn (Xuan)</managingEditor>
     <webMaster>xxuan@mail.ustc.edu.cn (Xuan)</webMaster>
     <copyright>&amp;copy;{year}, All Rights Reserved</copyright>
-    <lastBuildDate>Tue, 11 Feb 2020 15:33:49 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 15 Feb 2020 16:33:34 +0800</lastBuildDate>
     
         <atom:link href="/solutions/index.xml" rel="self" type="application/rss+xml" />
     
     
     
+      
+      <item>
+        <title>Maximum Subarray</title>
+        <link>/solutions/maximum-subarray/</link>
+        <pubDate>Sat, 15 Feb 2020 16:33:34 +0800</pubDate>
+        <author>xxuan@mail.ustc.edu.cn (Xuan)</author>
+        <guid>/solutions/maximum-subarray/</guid>
+        <description></description>
+      </item>
+      
+      <item>
+        <title>Valid Parentheses</title>
+        <link>/solutions/valid-parentheses/</link>
+        <pubDate>Fri, 14 Feb 2020 17:29:25 +0800</pubDate>
+        <author>xxuan@mail.ustc.edu.cn (Xuan)</author>
+        <guid>/solutions/valid-parentheses/</guid>
+        <description></description>
+      </item>
+      
+      <item>
+        <title>Longest Valid Parentheses</title>
+        <link>/solutions/longest-valid-parentheses/</link>
+        <pubDate>Fri, 14 Feb 2020 12:12:45 +0800</pubDate>
+        <author>xxuan@mail.ustc.edu.cn (Xuan)</author>
+        <guid>/solutions/longest-valid-parentheses/</guid>
+        <description></description>
+      </item>
+      
+      <item>
+        <title>Longest Palindromic Substring</title>
+        <link>/solutions/longest-palindromic-substring/</link>
+        <pubDate>Tue, 11 Feb 2020 17:18:35 +0800</pubDate>
+        <author>xxuan@mail.ustc.edu.cn (Xuan)</author>
+        <guid>/solutions/longest-palindromic-substring/</guid>
+        <description></description>
+      </item>
+      
+      <item>
+        <title>Wildcard Matching</title>
+        <link>/solutions/wildcard-matching/</link>
+        <pubDate>Tue, 11 Feb 2020 16:12:15 +0800</pubDate>
+        <author>xxuan@mail.ustc.edu.cn (Xuan)</author>
+        <guid>/solutions/wildcard-matching/</guid>
+        <description></description>
+      </item>
       
       <item>
         <title>Optimize Recursion</title>

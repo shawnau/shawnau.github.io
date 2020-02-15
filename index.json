@@ -9,6 +9,15 @@
 	"content": ""
 },
 {
+	"uri": "/categories/array/",
+	"title": "array",
+	"tags": [],
+	"categories": [],
+	"series": [],
+	"description": "",
+	"content": ""
+},
+{
 	"uri": "/categories/",
 	"title": "Categories",
 	"tags": [],
@@ -16,6 +25,159 @@
 	"series": [],
 	"description": "",
 	"content": ""
+},
+{
+	"uri": "/tags/dynamic-programming/",
+	"title": "dynamic programming",
+	"tags": [],
+	"categories": [],
+	"series": [],
+	"description": "",
+	"content": ""
+},
+{
+	"uri": "/solutions/maximum-subarray/",
+	"title": "Maximum Subarray",
+	"tags": ["dynamic programming"],
+	"categories": [],
+	"series": [],
+	"description": "",
+	"content": "Description Given an integer array nums, find the contiguous subarray (containing at least one number) which has the largest sum and return its sum.\nExample:\nInput: [-2,1,-3,4,-1,2,1,-5,4], Output: 6 Explanation: [4,-1,2,1] has the largest sum = 6.\nFollow up:\nIf you have figured out the O(n) solution, try coding another solution using the divide and conquer approach, which is more subtle.\nDynamic Programming Solution Let $dp[i]$ to be the maximum subarray value that ends at $nums[i]$, which is all the possible subarray sum which ends at $i$, i.e.\n$$ \\begin{aligned} dp[i] \u0026amp;= \\max_{j \\in [0, i] } \\left\\lbrace \\sum\\limits_{k=j}^{i} nums[k] \\right\\rbrace \\\\ \u0026amp;= \\max_{j \\in [0, i] } \\left\\lbrace \\sum\\limits_{k=j}^{i-1} nums[k],0 \\right\\rbrace + nums[i] \\\\ \u0026amp;= \\max \\left\\lbrace dp[i-1], 0 \\right\\rbrace + nums[i] \\end{aligned} $$\n1 2 3 4 5 6 7  class Solution: def maxSubArray(self, nums: List[int]) -\u0026gt; int: dp, max_sum = [0]*len(nums), -float(\u0026#34;inf\u0026#34;) for i in range(len(nums)): dp[i] = (max(dp[i-1], 0) if i-1\u0026gt;=0 else 0) + nums[i] max_sum = max(max_sum, dp[i]) return max_sum   Notes\n When calculating dp[i-1], watch out for the corner case. Generate max_sum in each iter on the fly. "
+},
+{
+	"uri": "/solutions/",
+	"title": "Solution",
+	"tags": ["index"],
+	"categories": [],
+	"series": [],
+	"description": "Solution page",
+	"content": ""
+},
+{
+	"uri": "/categories/sum/",
+	"title": "sum",
+	"tags": [],
+	"categories": [],
+	"series": [],
+	"description": "",
+	"content": ""
+},
+{
+	"uri": "/tags/",
+	"title": "Tags",
+	"tags": [],
+	"categories": [],
+	"series": [],
+	"description": "",
+	"content": ""
+},
+{
+	"uri": "/series/parentheses/",
+	"title": "parentheses",
+	"tags": [],
+	"categories": [],
+	"series": [],
+	"description": "",
+	"content": ""
+},
+{
+	"uri": "/series/",
+	"title": "Series",
+	"tags": [],
+	"categories": [],
+	"series": [],
+	"description": "",
+	"content": ""
+},
+{
+	"uri": "/tags/stack/",
+	"title": "stack",
+	"tags": [],
+	"categories": [],
+	"series": [],
+	"description": "",
+	"content": ""
+},
+{
+	"uri": "/categories/string/",
+	"title": "string",
+	"tags": [],
+	"categories": [],
+	"series": [],
+	"description": "",
+	"content": ""
+},
+{
+	"uri": "/solutions/valid-parentheses/",
+	"title": "Valid Parentheses",
+	"tags": ["stack"],
+	"categories": [],
+	"series": ["parentheses"],
+	"description": "",
+	"content": "Description Given a string containing just the characters \u0026lsquo;(', \u0026lsquo;)', \u0026lsquo;{', \u0026lsquo;}', \u0026lsquo;[\u0026rsquo; and \u0026lsquo;]', determine if the input string is valid.\nAn input string is valid if:\n Open brackets must be closed by the same type of brackets. Open brackets must be closed in the correct order.  Note that an empty string is also considered valid.\nStack Solution Keep a stack\n When a ( arrives, push it into the stack When a ) arrives, compare it with the top of stack, if it forms a pair, pop it, else push it.  1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19  class Solution: def isValid(self, s: str) -\u0026gt; bool: left_set = {\u0026#39;(\u0026#39;, \u0026#39;{\u0026#39;, \u0026#39;[\u0026#39;} right_set = {\u0026#39;)\u0026#39;, \u0026#39;}\u0026#39;, \u0026#39;]\u0026#39;} get_pair = { \u0026#39;)\u0026#39;: \u0026#39;(\u0026#39;, \u0026#39;}\u0026#39;: \u0026#39;{\u0026#39;, \u0026#39;]\u0026#39;: \u0026#39;[\u0026#39; } stack = [] for p in s: if p in left_set: stack.append(p) else: if stack and stack[-1] == get_pair[p]: stack.pop() else: stack.append(p) return len(stack) == 0   Notes\n We use a dict to check if the pair is valid. Watch out for corner case before indexig. Follow up "
+},
+{
+	"uri": "/solutions/longest-valid-parentheses/",
+	"title": "Longest Valid Parentheses",
+	"tags": ["dynamic programming", "stack"],
+	"categories": [],
+	"series": ["parentheses"],
+	"description": "",
+	"content": "Description Given a string containing just the characters \u0026lsquo;(\u0026rsquo; and \u0026lsquo;)', find the length of the longest valid (well-formed) parentheses substring.\nExample 1:\nInput: \u0026quot;(()\u0026quot; Output: 2 Explanation: The longest valid parentheses substring is \u0026quot;()\u0026quot; Example 2:\nInput: \u0026quot;)()())\u0026quot; Output: 4 Explanation: The longest valid parentheses substring is \u0026quot;()()\u0026quot; Dynamic Programming Solution Let $dp[i]$ to be the length of the longest valid parentheses which ends at $i$'th position.\n $s[i]$ must be ) to have a valid parentheses, else $dp[i] = 0$\n Depends on s[i-1], we have 2 situations:\n $s[i-1] = ($     \u0026hellip; i-2 i-1 i     \u0026hellip; . ( )    dp[i-2] 0 dp[i]    dp[i] = dp[i-2] + 2 $s[i-1] = )$\nwe have 2 situations, only needs to consider $s[i-dp[i-1]-1] = ($     i-dp[i-1]-2 i-dp[i-1]-1 i-dp[i-1] \u0026hellip; i-1 i     ? ( ( \u0026hellip; ) )   dp[i-dp[i-1]-2] 0 0 \u0026hellip; dp[i-1] dp[i]    dp[i] = dp[i-dp[i-1]-2] + dp[i-1] + 2 Combining all the situations above, we have:\n1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16  class Solution: def longestValidParentheses(self, s: str) -\u0026gt; int: n = len(s) dp = [0]*n _max = 0 for i in range(n): if s[i] == \u0026#39;)\u0026#39; and (i-1\u0026gt;=0): if s[i-1] == \u0026#39;(\u0026#39;: dp[i] = (dp[i-2] if (i-2\u0026gt;=0) else 0) + 2 _max = max(_max, dp[i]) else: if (i-dp[i-1]-1\u0026gt;=0) and s[i-dp[i-1]-1] == \u0026#39;(\u0026#39;: dp[i] = dp[i-1] + 2 + (dp[i-dp[i-1]-2] if (i-dp[i-1]-2\u0026gt;=0) else 0) _max = max(_max, dp[i]) return _max   Though the DP solution is not quite intuitive for me.\nStack Solution Maintain a stack, which borrows the idea from Valid Parentheses\n When a ( arrives, push it into the stack When a ) arrives, compare it with the top of stack, if it forms a pair, pop it, else push it. After the whole process, the items left in the stack are those not having valid pairs. On the other side, other elements are valid pairs. We just need to find longest space between those elements in the stack. So we push index of the elements, instead of the element itself.  1 2 3 4 5 6 7 8 9 10 11 12 13 14 15  class Solution: def longestValidParentheses(self, s: str) -\u0026gt; int: stack: List[int] = [] max_len: int = 0 for i in range(len(s)): if s[i] == \u0026#39;(\u0026#39;: stack.append(i) elif s[i] == \u0026#39;)\u0026#39;: if stack and s[stack[-1]] == \u0026#39;(\u0026#39;: stack.pop() last_not_paired = stack[-1] if stack else -1 max_len = max(max_len, i-last_not_paired) else: stack.append(i) return max_len   Notes\n We generate the max length on the fly. Each time a pair generated, we calculate space between current element and last element remains in the stack, which is the last index that has not been paired yet, which is the current length of the generated valid substring. Watch out for corner case: if the stack is empty, we cannot find last element that has not been pairs, just put -1 to it shoud be fine. "
+},
+{
+	"uri": "/categories/pattern-matching/",
+	"title": "pattern matching",
+	"tags": [],
+	"categories": [],
+	"series": [],
+	"description": "",
+	"content": ""
+},
+{
+	"uri": "/solutions/longest-palindromic-substring/",
+	"title": "Longest Palindromic Substring",
+	"tags": ["dynamic programming"],
+	"categories": [],
+	"series": ["palindromic"],
+	"description": "",
+	"content": "Description Given a string s, find the longest palindromic substring in s. You may assume that the maximum length of s is 1000.\nExample 1:\nInput: \u0026quot;babad\u0026quot; Output: \u0026quot;bab\u0026quot; Note: \u0026quot;aba\u0026quot; is also a valid answer. Example 2:\nInput: \u0026quot;cbbd\u0026quot; Output: \u0026quot;bb\u0026quot; Dynamic Programming Solution Let dp[i][j] indicates that s[i:j+1] is a palindromic sequence, we have\n$$ dp[i][j] = \\begin{cases} True, \u0026amp; \\text{$i$ = $j$} \\\\ s[i] = s[j], \u0026amp; \\text{$j$ - $i$ = 1} \\\\ (s[i] = s[j]) \\ \\text{and} \\ dp[i+1][j-1], \u0026amp; \\text{$j$ - $i$ \u0026gt; 1} \\end{cases} $$\n dp[i][j] / dp[i+1][j-1] Filling order is as described below:\n   i\\j b a b a d     b 0 1 3 6 10   a  2 4 7 11   b   5 8 12   a    9 13   d     14    1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16  class Solution: def longestPalindrome(self, s: str) -\u0026gt; str: max_substr = \u0026#34;\u0026#34; dp = [[False]*len(s) for _ in range(len(s))] for j in range(len(s)): for i in range(j+1): if i == j: dp[i][j] = True elif j-i == 1: dp[i][j] = s[i] == s[j] else: dp[i][j] = (s[i] == s[j]) and dp[i+1][j-1] if dp[i][j] and j-i+1 \u0026gt; len(max_substr): max_substr = s[i:j+1] return max_substr   "
+},
+{
+	"uri": "/series/palindromic/",
+	"title": "palindromic",
+	"tags": [],
+	"categories": [],
+	"series": [],
+	"description": "",
+	"content": ""
+},
+{
+	"uri": "/tags/backtracking/",
+	"title": "backtracking",
+	"tags": [],
+	"categories": [],
+	"series": [],
+	"description": "",
+	"content": ""
+},
+{
+	"uri": "/series/regular-expression/",
+	"title": "regular expression",
+	"tags": [],
+	"categories": [],
+	"series": [],
+	"description": "",
+	"content": ""
+},
+{
+	"uri": "/solutions/wildcard-matching/",
+	"title": "Wildcard Matching",
+	"tags": ["dynamic programming", "backtracking"],
+	"categories": [],
+	"series": ["regular expression"],
+	"description": "",
+	"content": "Description Given an input string (s) and a pattern (p), implement wildcard pattern matching with support for \u0026lsquo;?\u0026rsquo; and \u0026lsquo;*'.\n \u0026lsquo;?\u0026rsquo; Matches any single character. \u0026lsquo;*\u0026rsquo; Matches any sequence of characters (including the empty sequence).\nThe matching should cover the entire input string (not partial).  Note:\n s could be empty and contains only lowercase letters a-z. p could be empty and contains only lowercase letters a-z, and characters like ? or *.  Example 1:\nInput: s = \u0026quot;aa\u0026quot; p = \u0026quot;a\u0026quot; Output: false Explanation: \u0026quot;a\u0026quot; does not match the entire string \u0026quot;aa\u0026quot;. Example 2: Input: s = \u0026quot;aa\u0026quot; p = \u0026quot;*\u0026quot; Output: true Explanation: '*' matches any sequence. Backtracking Solution This is an easier version of Regular Expression Matching, since we don\u0026rsquo;t need to check character matching when we get a wildcard. The logic is:\nWe define search(si, pi) as the search function, which means if s[si:] is matched by p[pi:].\nFirst check if it is a wildcard: pi \u0026lt; len(p) and p[pi] == \u0026quot;*\u0026quot;\n If it is, match this or not: search(si+1, pi) or search(si, pi+1) If not, just match current character: si \u0026lt; len(s) and p[pi] in {s[si], \u0026quot;?\u0026quot;}  Search next level: search(si+1, pi+1)    1 2 3 4 5 6 7 8 9 10 11 12  class Solution: def isMatch(self, s: str, p: str) -\u0026gt; bool: def search(si: int, pi: int) -\u0026gt; bool: if pi == len(p): return si == len(s) wildcard: bool = pi \u0026lt; len(p) and p[pi] == \u0026#34;*\u0026#34; if wildcard: return (si \u0026lt; len(s) and search(si+1, pi)) or search(si, pi+1) else: match: bool = si \u0026lt; len(s) and p[pi] in {s[si], \u0026#34;?\u0026#34;} return match and search(si+1, pi+1) return search(0, 0)   Again, it could be optimized through cache.\nDynamic Programming First we can construct state transision from the backtracking method. Jut let search(si, pi) to be dp[si][pi]\n1 2 3 4  dp[si][pi] \u0026lt;--dp[si][pi+1] ^ \\ | \\ dp[si+1][pi] dp[si+1][pi+1]    We have a (len(s) + 1, len(p) +1) matrix, the iteration order is described below. Starting from dp[len(s)][len(p)-1], we need to get dp[0][0] Set dp[len(s)][len(p)] = True, which indicates our backtracking terminal condition(find a match).     s\\p * a * b      a end    F   b     F   c     F   e     F   b     F       start T    1 2 3 4 5 6 7 8 9 10 11 12 13 14  class Solution: def isMatch(self, s: str, p: str) -\u0026gt; bool: dp: List[List[bool]] = [[False]*(len(p)+1) for _ in range(len(s)+1)] dp[len(s)][len(p)] = True for si in range(len(s), -1, -1): for pi in range(len(p)-1, -1, -1): wildcard: bool = pi \u0026lt; len(p) and p[pi] == \u0026#34;*\u0026#34; if wildcard: dp[si][pi] = (si \u0026lt; len(s) and dp[si+1][pi]) or dp[si][pi+1] else: match: bool = si \u0026lt; len(s) and p[pi] in {s[si], \u0026#34;?\u0026#34;} dp[si][pi] = match and dp[si+1][pi+1] return dp[0][0]   "
 },
 {
 	"uri": "/solutions/optimize-recursion/",
@@ -36,53 +198,8 @@
 	"content": ""
 },
 {
-	"uri": "/series/",
-	"title": "Series",
-	"tags": [],
-	"categories": [],
-	"series": [],
-	"description": "",
-	"content": ""
-},
-{
-	"uri": "/solutions/",
-	"title": "Solution",
-	"tags": ["index"],
-	"categories": [],
-	"series": [],
-	"description": "Solution page",
-	"content": ""
-},
-{
 	"uri": "/series/tools/",
 	"title": "tools",
-	"tags": [],
-	"categories": [],
-	"series": [],
-	"description": "",
-	"content": ""
-},
-{
-	"uri": "/tags/backtracking/",
-	"title": "backtracking",
-	"tags": [],
-	"categories": [],
-	"series": [],
-	"description": "",
-	"content": ""
-},
-{
-	"uri": "/tags/dynamic-programming/",
-	"title": "dynamic programming",
-	"tags": [],
-	"categories": [],
-	"series": [],
-	"description": "",
-	"content": ""
-},
-{
-	"uri": "/series/pattern-matching/",
-	"title": "pattern matching",
 	"tags": [],
 	"categories": [],
 	"series": [],
@@ -94,27 +211,9 @@
 	"title": "Regular Expression Matching",
 	"tags": ["dynamic programming", "backtracking"],
 	"categories": [],
-	"series": ["pattern matching"],
+	"series": ["regular expression"],
 	"description": "",
-	"content": "Description Given an input string (s) and a pattern (p), implement regular expression matching with support for \u0026lsquo;.\u0026rsquo; and \u0026lsquo;*'.\n'.' Matches any single character. '*' Matches zero or more of the preceding element. The matching should cover the entire input string (not partial). Note:\n s could be empty and contains only lowercase letters a-z. p could be empty and contains only lowercase letters a-z, and characters like . or *.  Example :\nInput: s = \u0026quot;aab\u0026quot; p = \u0026quot;a*b\u0026quot; Output: true Explanation: \u0026quot;a*\u0026quot; does not match the entire string \u0026quot;aa\u0026quot;. Backtracking Solution We define search(si, pi) as the search function, which means if s[si:] is matched by p[pi:].\nFirst we need to check if p[pi] is a wildcard: p[pi+1] == \u0026quot;*\u0026quot;, and don\u0026rsquo;t forget the corner case: pi+1 \u0026lt; len(p)\n Not wildcard: Just check if s[si] and p[pi] is same character: si \u0026lt; len(s) and s[si] == p[pi]  If it is, search next level: search(si+1, pi+1) If not, just return False, search ends here.   Wildcard: Same as step 1, check if it\u0026rsquo;s the same character:  If it is, that\u0026rsquo;s a valid wildcard match. But we could still choose to match or skip this wildcard: search(si+1, pi) or search(si, pi+2) If not, the only choice is to skip this wildcard: search(si, pi+2)    straight\rconcise\r\r1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18  class Solution: def isMatch(self, s: str, p: str) -\u0026gt; bool: def search(si: int, pi: int) -\u0026gt; bool: if pi == len(p): return si == len(s) wildcard: bool = pi+1 \u0026lt; len(p) and p[pi+1] == \u0026#34;*\u0026#34; match: bool = si \u0026lt; len(s) and p[pi] in {s[si], \u0026#34;.\u0026#34;} if wildcard: if match: return search(si+1, pi) or search(si, pi+2) else: return search(si, pi+2) else: if march: search(si+1, pi+1) else: return False return search(0, 0)   \r Some conditional branches could be merged by and operator.\n1 2 3 4 5 6 7 8 9 10 11 12  class Solution: def isMatch(self, s: str, p: str) -\u0026gt; bool: def search(si: int, pi: int) -\u0026gt; bool: if pi == len(p): return si == len(s) wildcard: bool = pi+1 \u0026lt; len(p) and p[pi+1] == \u0026#34;*\u0026#34; match: bool = si \u0026lt; len(s) and p[pi] in {s[si], \u0026#34;.\u0026#34;} if wildcard: return (match and search(si+1, pi)) or search(si, pi+2) else: return match and search(si+1, pi+1) return search(0, 0)   \r \r\r'use strict';\rvar containerId = JSON.parse(\"\\\"7a87f0e26b3ee08c\\\"\");\rvar containerElem = document.getElementById(containerId);\rvar tabLinks = null;\rvar tabContents = null;\rvar ids = [];\rif (containerElem) {\rtabLinks = containerElem.querySelectorAll('.tab__link');\rtabContents = containerElem.querySelectorAll('.tab__content');\r}\rfor (var i = 0; i 0) {\rtabContents[0].style.display = 'block';\r}\r  The code could be easily optimized using a cache to avoid duplicate calculation. See Optimize Recursion in my blog. Always pay attention to corner cases in recursion. Below is an example for matching aab and c*a*ab, with the dicision tree of the backtracking search path.  graph TD; subgraph DecisionTree DROOT(Wildcard?)--\u0026gt;|Y|DL(char?); DL--\u0026gt;|Y|DLL(match?); DLL--\u0026gt;|Y|DLLL(si+1, pi); DLL--\u0026gt;|N|DLLR(si, pi+2); DL--\u0026gt;|N|DLR(si, pi+2); DROOT--\u0026gt;|N|DR(char?); DR--\u0026gt;|Y|DRL(si+1, pi+1); DR--\u0026gt;|N|DRR(False); end subgraph MatchExample ROOT(aab,c*a*ab)--\u0026gt;|skip c*|L(aab, a*ab); L--\u0026gt;|match a*|LL(ab,a*ab) L--\u0026gt;|skip a*|LR(aab,ab); LL--\u0026gt;|match a*|LLL(b,a*ab); LL--\u0026gt;|skip a*|LLR(ab,ab); LR--\u0026gt;|match a|LRL(ab,b); LLR--\u0026gt;|match a|LLRL(b,b); LLRL--\u0026gt;|match b|LLRLL([END]); end Dyamic Programming First we can construct state transision from the backtracking method. Jut let search(si, pi) to be dp[si][pi]\n1 2 3 4  dp[si][pi] \u0026lt;--------------- dp[si][pi+2] ^ \\ | \\ dp[si+1][pi] dp[si+1][pi+1]    We have a (len(s) + 1, len(p) +1) matrix, the iteration order is described below. Starting from dp[len(s)][len(p)-1], we need to get dp[0][0] Set dp[len(s)][len(p)] = True, which indicates our backtracking terminal condition(find a match).     s\\p c * a * a b      a end      F   a       F   b       F         start T    The core logic is pretty straightforward like backtracking solution:\n1 2 3 4 5 6 7 8 9 10 11 12 13  class Solution: def isMatch(self, s: str, p: str) -\u0026gt; bool: dp: List[List[bool]] = [[False]*(len(p)+1) for _ in range(len(s)+1)] dp[len(s)][len(p)] = True for si in range(len(s), -1, -1): for pi in range(len(p)-1, -1, -1): wildcard: bool = pi+1 \u0026lt; len(p) and p[pi+1] == \u0026#34;*\u0026#34; match: bool = si \u0026lt; len(s) and p[pi] in {s[si], \u0026#34;.\u0026#34;} if wildcard: dp[si][pi] = (match and dp[si+1][pi]) or dp[si][pi+2] else: dp[si][pi] = match and dp[si+1][pi+1] return dp[0][0]   "
-},
-{
-	"uri": "/categories/string/",
-	"title": "string",
-	"tags": [],
-	"categories": [],
-	"series": [],
-	"description": "",
-	"content": ""
-},
-{
-	"uri": "/tags/",
-	"title": "Tags",
-	"tags": [],
-	"categories": [],
-	"series": [],
-	"description": "",
-	"content": ""
+	"content": "Description Given an input string (s) and a pattern (p), implement regular expression matching with support for \u0026lsquo;.\u0026rsquo; and \u0026lsquo;*'.\n'.' Matches any single character. '*' Matches zero or more of the preceding element. The matching should cover the entire input string (not partial). Note:\n s could be empty and contains only lowercase letters a-z. p could be empty and contains only lowercase letters a-z, and characters like . or *.  Example :\nInput: s = \u0026quot;aab\u0026quot; p = \u0026quot;a*b\u0026quot; Output: true Explanation: \u0026quot;a*\u0026quot; does not match the entire string \u0026quot;aa\u0026quot;. Backtracking Solution We define search(si, pi) as the search function, which means if s[si:] is matched by p[pi:].\nFirst we need to check if p[pi] is a wildcard: p[pi+1] == \u0026quot;*\u0026quot;, and don\u0026rsquo;t forget the corner case: pi+1 \u0026lt; len(p)\n Not wildcard: Just check if s[si] and p[pi] is same character: si \u0026lt; len(s) and s[si] == p[pi]  If it is, search next level: search(si+1, pi+1) If not, just return False, search ends here.   Wildcard: Same as step 1, check if it\u0026rsquo;s the same character:  If it is, that\u0026rsquo;s a valid wildcard match. But we could still choose to match or skip this wildcard: search(si+1, pi) or search(si, pi+2) If not, the only choice is to skip this wildcard: search(si, pi+2)    straight\rconcise\r\r1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18  class Solution: def isMatch(self, s: str, p: str) -\u0026gt; bool: def search(si: int, pi: int) -\u0026gt; bool: if pi == len(p): return si == len(s) wildcard: bool = pi+1 \u0026lt; len(p) and p[pi+1] == \u0026#34;*\u0026#34; match: bool = si \u0026lt; len(s) and p[pi] in {s[si], \u0026#34;.\u0026#34;} if wildcard: if match: return search(si+1, pi) or search(si, pi+2) else: return search(si, pi+2) else: if march: search(si+1, pi+1) else: return False return search(0, 0)   \r Some conditional branches could be merged by and operator.\n1 2 3 4 5 6 7 8 9 10 11 12  class Solution: def isMatch(self, s: str, p: str) -\u0026gt; bool: def search(si: int, pi: int) -\u0026gt; bool: if pi == len(p): return si == len(s) wildcard: bool = pi+1 \u0026lt; len(p) and p[pi+1] == \u0026#34;*\u0026#34; match: bool = si \u0026lt; len(s) and p[pi] in {s[si], \u0026#34;.\u0026#34;} if wildcard: return (match and search(si+1, pi)) or search(si, pi+2) else: return match and search(si+1, pi+1) return search(0, 0)   \r \r\r'use strict';\rvar containerId = JSON.parse(\"\\\"7a87f0e26b3ee08c\\\"\");\rvar containerElem = document.getElementById(containerId);\rvar tabLinks = null;\rvar tabContents = null;\rvar ids = [];\rif (containerElem) {\rtabLinks = containerElem.querySelectorAll('.tab__link');\rtabContents = containerElem.querySelectorAll('.tab__content');\r}\rfor (var i = 0; i 0) {\rtabContents[0].style.display = 'block';\r}\r  The code could be easily optimized using a cache to avoid duplicate calculation. See Optimize Recursion in my blog. Always pay attention to corner cases in recursion. Below is an example for matching aab and c*a*ab, with the dicision tree of the backtracking search path.  graph TD; subgraph DecisionTree DROOT(Wildcard?)--\u0026gt;|Y|DL(char?); DL--\u0026gt;|Y|DLL(match?); DLL--\u0026gt;|Y|DLLL(si+1, pi); DLL--\u0026gt;|N|DLLR(si, pi+2); DL--\u0026gt;|N|DLR(si, pi+2); DROOT--\u0026gt;|N|DR(char?); DR--\u0026gt;|Y|DRL(si+1, pi+1); DR--\u0026gt;|N|DRR(False); end subgraph MatchExample ROOT(aab,c*a*ab)--\u0026gt;|skip c*|L(aab, a*ab); L--\u0026gt;|match a*|LL(ab,a*ab) L--\u0026gt;|skip a*|LR(aab,ab); LL--\u0026gt;|match a*|LLL(b,a*ab); LLL--\u0026gt;|skip a*|LLLL(b,ab); LL--\u0026gt;|skip a*|LLR(ab,ab); LR--\u0026gt;|match a|LRL(ab,b); LLR--\u0026gt;|match a|LLRL(b,b); LLRL--\u0026gt;|match b|LLRLL([END]); end Dyamic Programming First we can construct state transision from the backtracking method. Jut let search(si, pi) to be dp[si][pi]\n1 2 3 4  dp[si][pi] \u0026lt;--------------- dp[si][pi+2] ^ \\ | \\ dp[si+1][pi] dp[si+1][pi+1]    We have a (len(s) + 1, len(p) +1) matrix, the iteration order is described below. Starting from dp[len(s)][len(p)-1], we need to get dp[0][0] Set dp[len(s)][len(p)] = True, which indicates our backtracking terminal condition(find a match).     s\\p c * a * a b      a end      F   a       F   b       F         start T    The core logic is pretty straightforward like backtracking solution:\n1 2 3 4 5 6 7 8 9 10 11 12 13  class Solution: def isMatch(self, s: str, p: str) -\u0026gt; bool: dp: List[List[bool]] = [[False]*(len(p)+1) for _ in range(len(s)+1)] dp[len(s)][len(p)] = True for si in range(len(s), -1, -1): for pi in range(len(p)-1, -1, -1): wildcard: bool = pi+1 \u0026lt; len(p) and p[pi+1] == \u0026#34;*\u0026#34; match: bool = si \u0026lt; len(s) and p[pi] in {s[si], \u0026#34;.\u0026#34;} if wildcard: dp[si][pi] = (match and dp[si+1][pi]) or dp[si][pi+2] else: dp[si][pi] = match and dp[si+1][pi+1] return dp[0][0]   "
 },
 {
 	"uri": "/blogs/",

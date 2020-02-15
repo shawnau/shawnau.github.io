@@ -9,7 +9,7 @@
     <managingEditor>xxuan@mail.ustc.edu.cn (Xuan)</managingEditor>
     <webMaster>xxuan@mail.ustc.edu.cn (Xuan)</webMaster>
     <copyright>&amp;copy;{year}, All Rights Reserved</copyright>
-    <lastBuildDate>Tue, 11 Feb 2020 15:33:49 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 14 Feb 2020 17:29:25 +0800</lastBuildDate>
     
         <atom:link href="/series/index.xml" rel="self" type="application/rss+xml" />
     
@@ -17,20 +17,38 @@
     
       
       <item>
+        <title>parentheses</title>
+        <link>/series/parentheses/</link>
+        <pubDate>Fri, 14 Feb 2020 17:29:25 +0800</pubDate>
+        <author>xxuan@mail.ustc.edu.cn (Xuan)</author>
+        <guid>/series/parentheses/</guid>
+        <description></description>
+      </item>
+      
+      <item>
+        <title>palindromic</title>
+        <link>/series/palindromic/</link>
+        <pubDate>Tue, 11 Feb 2020 17:18:35 +0800</pubDate>
+        <author>xxuan@mail.ustc.edu.cn (Xuan)</author>
+        <guid>/series/palindromic/</guid>
+        <description></description>
+      </item>
+      
+      <item>
+        <title>regular expression</title>
+        <link>/series/regular-expression/</link>
+        <pubDate>Tue, 11 Feb 2020 16:12:15 +0800</pubDate>
+        <author>xxuan@mail.ustc.edu.cn (Xuan)</author>
+        <guid>/series/regular-expression/</guid>
+        <description></description>
+      </item>
+      
+      <item>
         <title>tools</title>
         <link>/series/tools/</link>
         <pubDate>Tue, 11 Feb 2020 15:33:49 +0800</pubDate>
         <author>xxuan@mail.ustc.edu.cn (Xuan)</author>
         <guid>/series/tools/</guid>
-        <description></description>
-      </item>
-      
-      <item>
-        <title>pattern matching</title>
-        <link>/series/pattern-matching/</link>
-        <pubDate>Mon, 10 Feb 2020 21:46:18 +0800</pubDate>
-        <author>xxuan@mail.ustc.edu.cn (Xuan)</author>
-        <guid>/series/pattern-matching/</guid>
         <description></description>
       </item>
       

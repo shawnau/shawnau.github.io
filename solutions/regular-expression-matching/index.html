@@ -1399,6 +1399,7 @@ Explanation: &quot;a*&quot; does not match the entire string &quot;aa&quot;.
   L--&gt;|match a*|LL(ab,a*ab)
   L--&gt;|skip a*|LR(aab,ab);
   LL--&gt;|match a*|LLL(b,a*ab);
+  LLL--&gt;|skip a*|LLLL(b,ab);
   LL--&gt;|skip a*|LLR(ab,ab);
   LR--&gt;|match a|LRL(ab,b);
   LLR--&gt;|match a|LLRL(b,b);

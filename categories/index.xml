@@ -9,7 +9,7 @@
     <managingEditor>xxuan@mail.ustc.edu.cn (Xuan)</managingEditor>
     <webMaster>xxuan@mail.ustc.edu.cn (Xuan)</webMaster>
     <copyright>&amp;copy;{year}, All Rights Reserved</copyright>
-    <lastBuildDate>Tue, 11 Feb 2020 15:33:49 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 15 Feb 2020 16:33:34 +0800</lastBuildDate>
     
         <atom:link href="/categories/index.xml" rel="self" type="application/rss+xml" />
     
@@ -17,20 +17,47 @@
     
       
       <item>
-        <title>python</title>
-        <link>/categories/python/</link>
-        <pubDate>Tue, 11 Feb 2020 15:33:49 +0800</pubDate>
+        <title>array</title>
+        <link>/categories/array/</link>
+        <pubDate>Sat, 15 Feb 2020 16:33:34 +0800</pubDate>
         <author>xxuan@mail.ustc.edu.cn (Xuan)</author>
-        <guid>/categories/python/</guid>
+        <guid>/categories/array/</guid>
+        <description></description>
+      </item>
+      
+      <item>
+        <title>sum</title>
+        <link>/categories/sum/</link>
+        <pubDate>Sat, 15 Feb 2020 16:33:34 +0800</pubDate>
+        <author>xxuan@mail.ustc.edu.cn (Xuan)</author>
+        <guid>/categories/sum/</guid>
         <description></description>
       </item>
       
       <item>
         <title>string</title>
         <link>/categories/string/</link>
-        <pubDate>Mon, 10 Feb 2020 21:46:18 +0800</pubDate>
+        <pubDate>Fri, 14 Feb 2020 17:29:25 +0800</pubDate>
         <author>xxuan@mail.ustc.edu.cn (Xuan)</author>
         <guid>/categories/string/</guid>
+        <description></description>
+      </item>
+      
+      <item>
+        <title>pattern matching</title>
+        <link>/categories/pattern-matching/</link>
+        <pubDate>Fri, 14 Feb 2020 12:12:45 +0800</pubDate>
+        <author>xxuan@mail.ustc.edu.cn (Xuan)</author>
+        <guid>/categories/pattern-matching/</guid>
+        <description></description>
+      </item>
+      
+      <item>
+        <title>python</title>
+        <link>/categories/python/</link>
+        <pubDate>Tue, 11 Feb 2020 15:33:49 +0800</pubDate>
+        <author>xxuan@mail.ustc.edu.cn (Xuan)</author>
+        <guid>/categories/python/</guid>
         <description></description>
       </item>
       
