@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Maximum Subarray – Laniakea</title>
+    <title>Unique Paths 3 – Laniakea</title>
     
 
 
@@ -905,13 +905,13 @@
     
 <meta name="description" content="warp drive active~" />
 <meta name="keywords" content="">
-<meta name="created" content="2020-02-15T16:33:34&#43;0800">
-<meta name="modified" content="2020-02-15T16:33:34&#43;0800">
+<meta name="created" content="2020-02-15T20:50:53&#43;0800">
+<meta name="modified" content="2020-02-15T20:50:53&#43;0800">
 
 
 <meta property="og:site_name" content="Laniakea">
-<meta property="og:title" content="Maximum Subarray">
-<meta property="og:url" content="/solutions/maximum-subarray/">
+<meta property="og:title" content="Unique Paths 3">
+<meta property="og:url" content="/solutions/unique-paths-3/">
 <meta property="og:type" content="article">
 <meta property="og:description" content="warp drive active~">
 
@@ -919,7 +919,7 @@
 <meta name="generator" content="Hugo 0.63.2" />
 <meta name="msapplication-TileColor" content="#ffffff">
 <meta name="theme-color" content="#ffffff">
-<link rel="canonical" href="/solutions/maximum-subarray/">
+<link rel="canonical" href="/solutions/unique-paths-3/">
 <link rel="manifest" href="/manifest.json">
 
   <link rel="apple-touch-icon" sizes="57x57" href="/favicon/apple-icon-57x57.png">
@@ -943,12 +943,12 @@
   {
     "@context": "https://schema.org",
     "@type": "WebPage",
-    "headline": "Maximum Subarray",
-    "datePublished": "2020-02-15T16:33:34+08:00",
-    "dateModified": "2020-02-15T16:33:34+08:00",
-    "url" : "/solutions/maximum-subarray/",
-    "description": ,
-    "keywords": ["dynamic programming"],
+    "headline": "Unique Paths 3",
+    "datePublished": "2020-02-15T20:50:53+08:00",
+    "dateModified": "2020-02-15T20:50:53+08:00",
+    "url" : "/solutions/unique-paths-3/",
+    "description": "\u003cp\u003eWalk over all grids without duplicate, with obstacles\u003c/p\u003e",
+    "keywords": ["backtracking","dfs"],
     "mainEntityOfPage": {
       "@type": "WebPage",
       "@id": ""
@@ -1151,7 +1151,7 @@
   
   <li  class="is-active" >
     
-      <span>Maximum Subarray</span>
+      <span>Unique Paths 3</span>
     
   </li>
   
@@ -1160,11 +1160,11 @@
 </nav>
   
   <div class="single">
-    <h2 class="single__title">Maximum Subarray</h2>
+    <h2 class="single__title">Unique Paths 3</h2>
     <div class="single__meta">
       
 <div class="single__infos">
-  <time class="single__info" title="Written At">📅&nbsp;Feb 15, 2020 </time>  &middot; <span class="single__info" title="Reading Time"> ☕ 1 min read </span>
+  <time class="single__info" title="Written At">📅&nbsp;Feb 15, 2020 </time>  &middot; <span class="single__info" title="Reading Time"> ☕ 2 min read </span>
   <span class="single__info">
     
   </span>
@@ -1176,8 +1176,17 @@
   
   
   <li>
-    <a href="/tags/dynamic-programming" class="single__tag" title="dynamic programming">
-      #dynamic programming
+    <a href="/tags/backtracking" class="single__tag" title="backtracking">
+      #backtracking
+    </a>
+  </li>
+    
+
+  
+  
+  <li>
+    <a href="/tags/dfs" class="single__tag" title="dfs">
+      #dfs
     </a>
   </li>
     
@@ -1197,47 +1206,86 @@
     <nav id="TableOfContents">
   <ul>
     <li><a href="#description">Description</a></li>
-    <li><a href="#dynamic-programming-solution">Dynamic Programming Solution</a></li>
+    <li><a href="#dfs-backtracking-solution">DFS Backtracking Solution</a></li>
   </ul>
 </nav>
   </div>
 </div>
 
-      <h2 id="description">Description</h2>
-<p>Given an integer array nums, find the contiguous subarray (containing at least one number) which has the largest sum and return its sum.</p>
-<p>Example:</p>
-<pre><code>Input: [-2,1,-3,4,-1,2,1,-5,4],
-Output: 6
-</code></pre><p>Explanation: [4,-1,2,1] has the largest sum = 6.<br />
-Follow up:</p>
-<p>If you have figured out the O(n) solution, try coding another solution using the divide and conquer approach, which is more subtle.</p>
-<h2 id="dynamic-programming-solution">Dynamic Programming Solution</h2>
-<p>Let $dp[i]$ to be the maximum subarray value that <strong>ends at</strong> $nums[i]$, which is all the possible subarray sum which ends at $i$, i.e.</p>
-<p>$$ \begin{aligned} dp[i] &amp;= \max_{j \in [0, i] } \left\lbrace \sum\limits_{k=j}^{i} nums[k] \right\rbrace \\ &amp;= \max_{j \in [0, i] } \left\lbrace \sum\limits_{k=j}^{i-1} nums[k],0 \right\rbrace + nums[i] \\ &amp;= \max \left\lbrace dp[i-1], 0 \right\rbrace + nums[i] \end{aligned} $$</p>
+      <p>Walk over all grids without duplicate, with obstacles</p>
+<h2 id="description">Description</h2>
+<p>See <a href="https://leetcode.com/problems/unique-paths-iii/">LeetCode 980</a></p>
+<h2 id="dfs-backtracking-solution">DFS Backtracking Solution</h2>
+<p>Unlike the DP solutions to Unique path 1 and 2, we cannot reuse calculated paths cuz we can walk forth and back into the same arange (i, j). And the start and end position varies. Using a DFS.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span><span class="lnt">7
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-python" data-lang="python"><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
-    <span class="k">def</span> <span class="nf">maxSubArray</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nums</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span><span class="p">)</span> <span class="o">-</span><span class="o">&gt;</span> <span class="nb">int</span><span class="p">:</span>
-        <span class="n">dp</span><span class="p">,</span> <span class="n">max_sum</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">nums</span><span class="p">)</span><span class="p">,</span> <span class="o">-</span><span class="nb">float</span><span class="p">(</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">inf</span><span class="s2">&#34;</span><span class="p">)</span>
-        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">nums</span><span class="p">)</span><span class="p">)</span><span class="p">:</span>
-            <span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="k">if</span> <span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="o">&gt;</span><span class="o">=</span><span class="mi">0</span> <span class="k">else</span> <span class="mi">0</span><span class="p">)</span> <span class="o">+</span> <span class="n">nums</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
-            <span class="n">max_sum</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">max_sum</span><span class="p">,</span> <span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">max_sum</span>
+    <span class="k">def</span> <span class="nf">uniquePathsIII</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">grid</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span><span class="p">]</span><span class="p">)</span> <span class="o">-</span><span class="o">&gt;</span> <span class="nb">int</span><span class="p">:</span>
+        <span class="n">n_row</span><span class="p">,</span> <span class="n">n_col</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">grid</span><span class="p">)</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">grid</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">count</span><span class="p">,</span> <span class="n">empty</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span>
+        <span class="c1"># find start and end, count empty grids</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_row</span><span class="p">)</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_col</span><span class="p">)</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">grid</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                    <span class="n">empty</span> <span class="o">+</span><span class="o">=</span> <span class="mi">1</span>
+                <span class="k">if</span> <span class="n">grid</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+                    <span class="n">start</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span>
+                <span class="k">if</span> <span class="n">grid</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+                    <span class="n">end</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span>
+        
+        <span class="k">def</span> <span class="nf">search</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">empty</span><span class="p">)</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_row</span><span class="p">)</span> <span class="ow">and</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_col</span><span class="p">)</span> <span class="ow">and</span> <span class="n">grid</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">&gt;</span><span class="o">=</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="k">if</span> <span class="p">(</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span> <span class="o">==</span> <span class="n">end</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">empty</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">count</span> <span class="o">+</span><span class="o">=</span> <span class="mi">1</span>
+                    <span class="k">return</span>
+                
+                <span class="n">grid</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="mi">2</span>
+                <span class="n">search</span><span class="p">(</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">empty</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+                <span class="n">search</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">empty</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+                <span class="n">search</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">empty</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+                <span class="n">search</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">empty</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+                <span class="n">grid</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+        
+        <span class="n">search</span><span class="p">(</span><span class="n">start</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="p">,</span> <span class="n">start</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="p">,</span> <span class="n">empty</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">count</span>
 </code></pre></td></tr></table>
 </div>
-</div><p>Notes</p>
+</div><p>Note</p>
 <ol>
-<li>When calculating <code>dp[i-1]</code>, watch out for the corner case.</li>
-<li>Generate <code>max_sum</code> in each iter on the fly.</li>
+<li>We initialize empty with 1, cuz the start of the search counts.</li>
+<li>Search in a grid is frequently used, we need to restore the element after search.</li>
+<li>The search function could be memorized to accelerate.</li>
 </ol>
     </article>
     
@@ -1257,14 +1305,6 @@ Follow up:</p>
     <ul class="related-ul">
         
         <li>
-          <a href="/solutions/longest-valid-parentheses/" class="related__link">Longest Valid Parentheses</a>
-        </li>
-        
-        <li>
-          <a href="/solutions/longest-palindromic-substring/" class="related__link">Longest Palindromic Substring</a>
-        </li>
-        
-        <li>
           <a href="/solutions/wildcard-matching/" class="related__link">Wildcard Matching</a>
         </li>
         
@@ -1279,21 +1319,14 @@ Follow up:</p>
 <nav class="pagination-single">
   
     
-      <a href="/solutions/valid-parentheses/" class="pagination-single__left">
+      <a href="/solutions/unique-paths-2/" class="pagination-single__left">
         <div class="pagination-single__icon">
           <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24"><path fill="none" d="M0 0h24v24H0V0z"/><path fill="currentColor" d="M19 11H7.83l4.88-4.88c.39-.39.39-1.03 0-1.42-.39-.39-1.02-.39-1.41 0l-6.59 6.59c-.39.39-.39 1.02 0 1.41l6.59 6.59c.39.39 1.02.39 1.41 0 .39-.39.39-1.02 0-1.41L7.83 13H19c.55 0 1-.45 1-1s-.45-1-1-1z"/></svg>
         </div>
-        <div class="pagination-single__left-title">Valid Parentheses</div>      
+        <div class="pagination-single__left-title">Unique Paths 2</div>      
       </a>
     
     <div class="grow"></div>
-    
-      <a href="/solutions/unique-paths/" class="pagination-single__right">      
-        <div class="pagination-single__right-title">Unique Paths</div>
-        <div class="pagination-single__icon">
-          <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24"><path fill="none" d="M0 0h24v24H0V0z"/><path fill="currentColor" d="M5 13h11.17l-4.88 4.88c-.39.39-.39 1.03 0 1.42.39.39 1.02.39 1.41 0l6.59-6.59c.39-.39.39-1.02 0-1.41l-6.58-6.6c-.39-.39-1.02-.39-1.41 0-.39.39-.39 1.02 0 1.41L16.17 11H5c-.55 0-1 .45-1 1s.45 1 1 1z"/></svg>
-        </div>
-      </a>
     
   
 </nav>
@@ -1670,7 +1703,7 @@ document.addEventListener('DOMContentLoaded', function () {
     <nav id="TableOfContents">
   <ul>
     <li><a href="#description">Description</a></li>
-    <li><a href="#dynamic-programming-solution">Dynamic Programming Solution</a></li>
+    <li><a href="#dfs-backtracking-solution">DFS Backtracking Solution</a></li>
   </ul>
 </nav>
   </div>

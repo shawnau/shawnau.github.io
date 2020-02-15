@@ -9,12 +9,30 @@
     <managingEditor>xxuan@mail.ustc.edu.cn (Xuan)</managingEditor>
     <webMaster>xxuan@mail.ustc.edu.cn (Xuan)</webMaster>
     <copyright>&amp;copy;{year}, All Rights Reserved</copyright>
-    <lastBuildDate>Sat, 15 Feb 2020 16:33:34 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 15 Feb 2020 20:13:37 +0800</lastBuildDate>
     
         <atom:link href="/tags/dynamic-programming/index.xml" rel="self" type="application/rss+xml" />
     
     
     
+      
+      <item>
+        <title>Unique Paths 2</title>
+        <link>/solutions/unique-paths-2/</link>
+        <pubDate>Sat, 15 Feb 2020 20:13:37 +0800</pubDate>
+        <author>xxuan@mail.ustc.edu.cn (Xuan)</author>
+        <guid>/solutions/unique-paths-2/</guid>
+        <description>&lt;p&gt;Count all paths from a to b, with obstacles.&lt;/p&gt;</description>
+      </item>
+      
+      <item>
+        <title>Unique Paths</title>
+        <link>/solutions/unique-paths/</link>
+        <pubDate>Sat, 15 Feb 2020 19:33:05 +0800</pubDate>
+        <author>xxuan@mail.ustc.edu.cn (Xuan)</author>
+        <guid>/solutions/unique-paths/</guid>
+        <description>&lt;p&gt;Count all paths from a to b&lt;/p&gt;</description>
+      </item>
       
       <item>
         <title>Maximum Subarray</title>

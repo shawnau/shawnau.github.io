@@ -4,21 +4,61 @@
   
   <url>
     <loc>/</loc>
-    <lastmod>2020-02-15T16:33:34+08:00</lastmod>
+    <lastmod>2020-02-15T20:50:53+08:00</lastmod>
   </url>
   
   <url>
-    <loc>/categories/array/</loc>
-    <lastmod>2020-02-15T16:33:34+08:00</lastmod>
+    <loc>/tags/backtracking/</loc>
+    <lastmod>2020-02-15T20:50:53+08:00</lastmod>
   </url>
   
   <url>
     <loc>/categories/</loc>
-    <lastmod>2020-02-15T16:33:34+08:00</lastmod>
+    <lastmod>2020-02-15T20:50:53+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/dfs/</loc>
+    <lastmod>2020-02-15T20:50:53+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/categories/path/</loc>
+    <lastmod>2020-02-15T20:50:53+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/solutions/</loc>
+    <lastmod>2020-02-15T20:50:53+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/</loc>
+    <lastmod>2020-02-15T20:50:53+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/solutions/unique-paths-3/</loc>
+    <lastmod>2020-02-15T20:50:53+08:00</lastmod>
   </url>
   
   <url>
     <loc>/tags/dynamic-programming/</loc>
+    <lastmod>2020-02-15T20:13:37+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/solutions/unique-paths-2/</loc>
+    <lastmod>2020-02-15T20:13:37+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/solutions/unique-paths/</loc>
+    <lastmod>2020-02-15T19:33:05+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/categories/array/</loc>
     <lastmod>2020-02-15T16:33:34+08:00</lastmod>
   </url>
   
@@ -28,17 +68,7 @@
   </url>
   
   <url>
-    <loc>/solutions/</loc>
-    <lastmod>2020-02-15T16:33:34+08:00</lastmod>
-  </url>
-  
-  <url>
     <loc>/categories/sum/</loc>
-    <lastmod>2020-02-15T16:33:34+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tags/</loc>
     <lastmod>2020-02-15T16:33:34+08:00</lastmod>
   </url>
   
@@ -85,11 +115,6 @@
   <url>
     <loc>/series/palindromic/</loc>
     <lastmod>2020-02-11T17:18:35+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tags/backtracking/</loc>
-    <lastmod>2020-02-11T16:12:15+08:00</lastmod>
   </url>
   
   <url>
