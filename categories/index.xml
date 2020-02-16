@@ -9,7 +9,7 @@
     <managingEditor>xxuan@mail.ustc.edu.cn (Xuan)</managingEditor>
     <webMaster>xxuan@mail.ustc.edu.cn (Xuan)</webMaster>
     <copyright>&amp;copy;{year}, All Rights Reserved</copyright>
-    <lastBuildDate>Sat, 15 Feb 2020 20:50:53 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 16 Feb 2020 19:11:20 +0800</lastBuildDate>
     
         <atom:link href="/categories/index.xml" rel="self" type="application/rss+xml" />
     
@@ -17,9 +17,45 @@
     
       
       <item>
+        <title>rectangle</title>
+        <link>/categories/rectangle/</link>
+        <pubDate>Sun, 16 Feb 2020 19:11:20 +0800</pubDate>
+        <author>xxuan@mail.ustc.edu.cn (Xuan)</author>
+        <guid>/categories/rectangle/</guid>
+        <description></description>
+      </item>
+      
+      <item>
+        <title>grid</title>
+        <link>/categories/grid/</link>
+        <pubDate>Sun, 16 Feb 2020 17:48:27 +0800</pubDate>
+        <author>xxuan@mail.ustc.edu.cn (Xuan)</author>
+        <guid>/categories/grid/</guid>
+        <description></description>
+      </item>
+      
+      <item>
+        <title>pattern matching</title>
+        <link>/categories/pattern-matching/</link>
+        <pubDate>Sun, 16 Feb 2020 13:02:42 +0800</pubDate>
+        <author>xxuan@mail.ustc.edu.cn (Xuan)</author>
+        <guid>/categories/pattern-matching/</guid>
+        <description></description>
+      </item>
+      
+      <item>
+        <title>string</title>
+        <link>/categories/string/</link>
+        <pubDate>Sun, 16 Feb 2020 13:02:42 +0800</pubDate>
+        <author>xxuan@mail.ustc.edu.cn (Xuan)</author>
+        <guid>/categories/string/</guid>
+        <description></description>
+      </item>
+      
+      <item>
         <title>path</title>
         <link>/categories/path/</link>
-        <pubDate>Sat, 15 Feb 2020 20:50:53 +0800</pubDate>
+        <pubDate>Sun, 16 Feb 2020 00:20:57 +0800</pubDate>
         <author>xxuan@mail.ustc.edu.cn (Xuan)</author>
         <guid>/categories/path/</guid>
         <description></description>
@@ -40,24 +76,6 @@
         <pubDate>Sat, 15 Feb 2020 16:33:34 +0800</pubDate>
         <author>xxuan@mail.ustc.edu.cn (Xuan)</author>
         <guid>/categories/sum/</guid>
-        <description></description>
-      </item>
-      
-      <item>
-        <title>string</title>
-        <link>/categories/string/</link>
-        <pubDate>Fri, 14 Feb 2020 17:29:25 +0800</pubDate>
-        <author>xxuan@mail.ustc.edu.cn (Xuan)</author>
-        <guid>/categories/string/</guid>
-        <description></description>
-      </item>
-      
-      <item>
-        <title>pattern matching</title>
-        <link>/categories/pattern-matching/</link>
-        <pubDate>Fri, 14 Feb 2020 12:12:45 +0800</pubDate>
-        <author>xxuan@mail.ustc.edu.cn (Xuan)</author>
-        <guid>/categories/pattern-matching/</guid>
         <description></description>
       </item>
       

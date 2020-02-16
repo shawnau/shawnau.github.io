@@ -9,12 +9,30 @@
     <managingEditor>xxuan@mail.ustc.edu.cn (Xuan)</managingEditor>
     <webMaster>xxuan@mail.ustc.edu.cn (Xuan)</webMaster>
     <copyright>&amp;copy;{year}, All Rights Reserved</copyright>
-    <lastBuildDate>Sat, 15 Feb 2020 20:50:53 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 16 Feb 2020 19:11:20 +0800</lastBuildDate>
     
         <atom:link href="/tags/index.xml" rel="self" type="application/rss+xml" />
     
     
     
+      
+      <item>
+        <title>stack</title>
+        <link>/tags/stack/</link>
+        <pubDate>Sun, 16 Feb 2020 19:11:20 +0800</pubDate>
+        <author>xxuan@mail.ustc.edu.cn (Xuan)</author>
+        <guid>/tags/stack/</guid>
+        <description></description>
+      </item>
+      
+      <item>
+        <title>dynamic programming</title>
+        <link>/tags/dynamic-programming/</link>
+        <pubDate>Sun, 16 Feb 2020 17:48:27 +0800</pubDate>
+        <author>xxuan@mail.ustc.edu.cn (Xuan)</author>
+        <guid>/tags/dynamic-programming/</guid>
+        <description></description>
+      </item>
       
       <item>
         <title>backtracking</title>
@@ -31,24 +49,6 @@
         <pubDate>Sat, 15 Feb 2020 20:50:53 +0800</pubDate>
         <author>xxuan@mail.ustc.edu.cn (Xuan)</author>
         <guid>/tags/dfs/</guid>
-        <description></description>
-      </item>
-      
-      <item>
-        <title>dynamic programming</title>
-        <link>/tags/dynamic-programming/</link>
-        <pubDate>Sat, 15 Feb 2020 20:13:37 +0800</pubDate>
-        <author>xxuan@mail.ustc.edu.cn (Xuan)</author>
-        <guid>/tags/dynamic-programming/</guid>
-        <description></description>
-      </item>
-      
-      <item>
-        <title>stack</title>
-        <link>/tags/stack/</link>
-        <pubDate>Fri, 14 Feb 2020 17:29:25 +0800</pubDate>
-        <author>xxuan@mail.ustc.edu.cn (Xuan)</author>
-        <guid>/tags/stack/</guid>
         <description></description>
       </item>
       

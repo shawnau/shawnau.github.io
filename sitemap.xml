@@ -4,16 +4,81 @@
   
   <url>
     <loc>/</loc>
-    <lastmod>2020-02-15T20:50:53+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tags/backtracking/</loc>
-    <lastmod>2020-02-15T20:50:53+08:00</lastmod>
+    <lastmod>2020-02-16T19:11:20+08:00</lastmod>
   </url>
   
   <url>
     <loc>/categories/</loc>
+    <lastmod>2020-02-16T19:11:20+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/solutions/largest-rectangle-in-histogram/</loc>
+    <lastmod>2020-02-16T19:11:20+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/categories/rectangle/</loc>
+    <lastmod>2020-02-16T19:11:20+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/solutions/</loc>
+    <lastmod>2020-02-16T19:11:20+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/stack/</loc>
+    <lastmod>2020-02-16T19:11:20+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/</loc>
+    <lastmod>2020-02-16T19:11:20+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/dynamic-programming/</loc>
+    <lastmod>2020-02-16T17:48:27+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/categories/grid/</loc>
+    <lastmod>2020-02-16T17:48:27+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/solutions/maximal-rectangle/</loc>
+    <lastmod>2020-02-16T17:48:27+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/solutions/edit-distance/</loc>
+    <lastmod>2020-02-16T13:02:42+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/categories/pattern-matching/</loc>
+    <lastmod>2020-02-16T13:02:42+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/categories/string/</loc>
+    <lastmod>2020-02-16T13:02:42+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/solutions/minimal-path-sum/</loc>
+    <lastmod>2020-02-16T00:20:57+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/categories/path/</loc>
+    <lastmod>2020-02-16T00:20:57+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/backtracking/</loc>
     <lastmod>2020-02-15T20:50:53+08:00</lastmod>
   </url>
   
@@ -23,28 +88,8 @@
   </url>
   
   <url>
-    <loc>/categories/path/</loc>
-    <lastmod>2020-02-15T20:50:53+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/solutions/</loc>
-    <lastmod>2020-02-15T20:50:53+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tags/</loc>
-    <lastmod>2020-02-15T20:50:53+08:00</lastmod>
-  </url>
-  
-  <url>
     <loc>/solutions/unique-paths-3/</loc>
     <lastmod>2020-02-15T20:50:53+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tags/dynamic-programming/</loc>
-    <lastmod>2020-02-15T20:13:37+08:00</lastmod>
   </url>
   
   <url>
@@ -83,27 +128,12 @@
   </url>
   
   <url>
-    <loc>/tags/stack/</loc>
-    <lastmod>2020-02-14T17:29:25+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/categories/string/</loc>
-    <lastmod>2020-02-14T17:29:25+08:00</lastmod>
-  </url>
-  
-  <url>
     <loc>/solutions/valid-parentheses/</loc>
     <lastmod>2020-02-14T17:29:25+08:00</lastmod>
   </url>
   
   <url>
     <loc>/solutions/longest-valid-parentheses/</loc>
-    <lastmod>2020-02-14T12:12:45+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/categories/pattern-matching/</loc>
     <lastmod>2020-02-14T12:12:45+08:00</lastmod>
   </url>
   

@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Unique Paths 3 – Laniakea</title>
+    <title>Edit Distance – Laniakea</title>
     
 
 
@@ -905,13 +905,13 @@
     
 <meta name="description" content="warp drive active~" />
 <meta name="keywords" content="">
-<meta name="created" content="2020-02-15T20:50:53&#43;0800">
-<meta name="modified" content="2020-02-15T20:50:53&#43;0800">
+<meta name="created" content="2020-02-16T13:02:42&#43;0800">
+<meta name="modified" content="2020-02-16T13:02:42&#43;0800">
 
 
 <meta property="og:site_name" content="Laniakea">
-<meta property="og:title" content="Unique Paths 3">
-<meta property="og:url" content="/solutions/unique-paths-3/">
+<meta property="og:title" content="Edit Distance">
+<meta property="og:url" content="/solutions/edit-distance/">
 <meta property="og:type" content="article">
 <meta property="og:description" content="warp drive active~">
 
@@ -919,7 +919,7 @@
 <meta name="generator" content="Hugo 0.63.2" />
 <meta name="msapplication-TileColor" content="#ffffff">
 <meta name="theme-color" content="#ffffff">
-<link rel="canonical" href="/solutions/unique-paths-3/">
+<link rel="canonical" href="/solutions/edit-distance/">
 <link rel="manifest" href="/manifest.json">
 
   <link rel="apple-touch-icon" sizes="57x57" href="/favicon/apple-icon-57x57.png">
@@ -943,12 +943,12 @@
   {
     "@context": "https://schema.org",
     "@type": "WebPage",
-    "headline": "Unique Paths 3",
-    "datePublished": "2020-02-15T20:50:53+08:00",
-    "dateModified": "2020-02-15T20:50:53+08:00",
-    "url" : "/solutions/unique-paths-3/",
-    "description": "\u003cp\u003eWalk over all grids without duplicate, with obstacles\u003c/p\u003e",
-    "keywords": ["backtracking","dfs"],
+    "headline": "Edit Distance",
+    "datePublished": "2020-02-16T13:02:42+08:00",
+    "dateModified": "2020-02-16T13:02:42+08:00",
+    "url" : "/solutions/edit-distance/",
+    "description": "\u003cp\u003eThis is about calculation Levenshtein Distance\u003c/p\u003e",
+    "keywords": ["dynamic programming"],
     "mainEntityOfPage": {
       "@type": "WebPage",
       "@id": ""
@@ -1151,7 +1151,7 @@
   
   <li  class="is-active" >
     
-      <span>Unique Paths 3</span>
+      <span>Edit Distance</span>
     
   </li>
   
@@ -1160,11 +1160,11 @@
 </nav>
   
   <div class="single">
-    <h2 class="single__title">Unique Paths 3</h2>
+    <h2 class="single__title">Edit Distance</h2>
     <div class="single__meta">
       
 <div class="single__infos">
-  <time class="single__info" title="Written At">📅&nbsp;Feb 15, 2020 </time>  &middot; <span class="single__info" title="Reading Time"> ☕ 2 min read </span>
+  <time class="single__info" title="Written At">📅&nbsp;Feb 16, 2020 </time>  &middot; <span class="single__info" title="Reading Time"> ☕ 3 min read </span>
   <span class="single__info">
     
   </span>
@@ -1176,17 +1176,8 @@
   
   
   <li>
-    <a href="/tags/backtracking" class="single__tag" title="backtracking">
-      #backtracking
-    </a>
-  </li>
-    
-
-  
-  
-  <li>
-    <a href="/tags/dfs" class="single__tag" title="dfs">
-      #dfs
+    <a href="/tags/dynamic-programming" class="single__tag" title="dynamic programming">
+      #dynamic programming
     </a>
   </li>
     
@@ -1195,28 +1186,46 @@
     </div>    
     <article class="single__contents" data-dir="ltr">
       
-<div class="expand">
-  <button type="button" class="expand__button" aria-label="Expand Button">
-    <span class="expand-icon expand-icon__right">
-      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M9.29 15.88L13.17 12 9.29 8.12c-.39-.39-.39-1.02 0-1.41.39-.39 1.02-.39 1.41 0l4.59 4.59c.39.39.39 1.02 0 1.41L10.7 17.3c-.39.39-1.02.39-1.41 0-.38-.39-.39-1.03 0-1.42z"/></svg>
-    </span>
-    What&#39;s on this Page
-  </button>
-  <div class="expand__content expand__content--toc">
-    <nav id="TableOfContents">
-  <ul>
-    <li><a href="#description">Description</a></li>
-    <li><a href="#dfs-backtracking-solution">DFS Backtracking Solution</a></li>
-  </ul>
-</nav>
-  </div>
-</div>
-
-      <p>Walk over all grids without duplicate, with obstacles</p>
-<h2 id="description">Description</h2>
-<p>See <a href="https://leetcode.com/problems/unique-paths-iii/">LeetCode 980</a></p>
-<h2 id="dfs-backtracking-solution">DFS Backtracking Solution</h2>
-<p>Unlike the DP solutions to Unique path 1 and 2, we cannot reuse calculated paths cuz we can walk forth and back into the same arange (i, j). And the start and end position varies. Using a DFS.</p>
+      <p>This is about calculation Levenshtein Distance</p>
+<p><a href="https://leetcode.com/problems/edit-distance/">LeetCode 72</a></p>
+<h2 id="levenshtein-distance">Levenshtein Distance</h2>
+<p>Check <a href="https://www.wikiwand.com/en/Levenshtein_distance">Levenshtein Distance</a> for information.</p>
+<p>Let $\operatorname{lev}_{a,b}(i,j)$ be the distance between the first $i$ characters of $a$ and the first $j$ characters of $b$. $i$ and $j$ are 1-based indices. We have:</p>
+<p>$$ \operatorname {lev}_{a,b}(i,j) = \begin{cases} \max(i,j) &amp; \text{ if $min(i,j)=0$}, \\ \min {\begin{cases} \operatorname {lev}_{a,b}(i-1,j)+1 \\ \operatorname {lev}_{a,b}(i,j-1)+1 \\ \operatorname {lev}_{a,b}(i-1,j-1)+1_{(a_{i} \neq b_{j})} \end{cases}} &amp;{\text{otherwise.}} \end{cases} $$</p>
+<h3 id="explanation">Explanation</h3>
+<p>For simplification, Let <code>dp[i][j]</code> represent $\operatorname{lev}_{a,b}(i,j)$.</p>
+<p>We have 3 ways to reach <code>dp[i][j]</code>. Take <code>a='abxy', b='abc'</code> as an example:</p>
+<ol>
+<li>From <code>dp[i-1][j]</code>: Having <code>abx</code> -&gt; <code>abc</code>, we need one extra <strong>del</strong> step:
+<ul>
+<li><code>abxy</code> -&gt; <code>abcy</code> (del <code>y</code>)-&gt; <code>abc</code></li>
+</ul>
+</li>
+<li>From <code>dp[i][j-1]</code>: Having <code>abxy</code> -&gt; <code>ab</code>, we need one extra <strong>add</strong> step:
+<ul>
+<li><code>abxy</code> -&gt; <code>ab</code> (add <code>c</code>)-&gt; <code>abc</code></li>
+</ul>
+</li>
+<li>From <code>dp[i-1][j-1]</code>: Having <code>abx</code> -&gt; <code>ab</code>, we need one extra <strong>replace</strong> step:
+<ul>
+<li><code>abxy</code> -&gt; <code>aby</code> (replace <code>y</code> to <code>c</code>)-&gt; <code>abc</code></li>
+<li>If <code>a[i] == b[j]</code>, We could skip the replace step.</li>
+</ul>
+</li>
+</ol>
+<h3 id="dp-solution">DP Solution</h3>
+<p>Then we consider the corner cases. We have 0-indexing system, in which situation we can achive <code>-1</code> indexing.</p>
+<ol>
+<li>If <code>i = -1</code> or <code>j = -1</code>, then we need to convert an empty string to another non-empty string, by inserting, the cost is the length of the non-empty string, in the above example, when <code>i=-1</code> and <code>j=1</code>, we convert <code>''</code> to <code>ab</code>, the cost is 2, <code>dp[i][j]</code> = <code>j+1</code> = <code>2</code></li>
+<li>If <code>i = -1</code> and <code>j = -1</code>, we convert an empty string to another empty string, <code>dp[-1][-1]</code> = <code>0</code></li>
+</ol>
+<p>There are two strategies to take care of these situations.</p>
+<ol>
+<li>Using a custom indexing system to take care of index overflow. We could use the dp as it was.</li>
+<li>Taking care of the indexing on the fly. This is less readable than method 1, personally not recommended.</li>
+<li>Add an extra row and column, start from (1,1) instead of (0,0), which has pros and cons compared to method 1.</li>
+</ol>
+<p>We use method 1:</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><code><span class="lnt"> 1
@@ -1241,51 +1250,75 @@
 </span><span class="lnt">20
 </span><span class="lnt">21
 </span><span class="lnt">22
-</span><span class="lnt">23
-</span><span class="lnt">24
-</span><span class="lnt">25
-</span><span class="lnt">26
-</span><span class="lnt">27
-</span><span class="lnt">28
-</span><span class="lnt">29
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-python" data-lang="python"><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
-    <span class="k">def</span> <span class="nf">uniquePathsIII</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">grid</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span><span class="p">]</span><span class="p">)</span> <span class="o">-</span><span class="o">&gt;</span> <span class="nb">int</span><span class="p">:</span>
-        <span class="n">n_row</span><span class="p">,</span> <span class="n">n_col</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">grid</span><span class="p">)</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">grid</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">count</span><span class="p">,</span> <span class="n">empty</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span>
-        <span class="c1"># find start and end, count empty grids</span>
-        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_row</span><span class="p">)</span><span class="p">:</span>
-            <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_col</span><span class="p">)</span><span class="p">:</span>
-                <span class="k">if</span> <span class="n">grid</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-                    <span class="n">empty</span> <span class="o">+</span><span class="o">=</span> <span class="mi">1</span>
-                <span class="k">if</span> <span class="n">grid</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
-                    <span class="n">start</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span>
-                <span class="k">if</span> <span class="n">grid</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
-                    <span class="n">end</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span>
+    <span class="k">def</span> <span class="nf">minDistance</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">word1</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">word2</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-</span><span class="o">&gt;</span> <span class="nb">int</span><span class="p">:</span>
+        <span class="n">m</span><span class="p">,</span> <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">word1</span><span class="p">)</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">word2</span><span class="p">)</span>
         
-        <span class="k">def</span> <span class="nf">search</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">empty</span><span class="p">)</span><span class="p">:</span>
-            <span class="k">if</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_row</span><span class="p">)</span> <span class="ow">and</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_col</span><span class="p">)</span> <span class="ow">and</span> <span class="n">grid</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">&gt;</span><span class="o">=</span> <span class="mi">0</span><span class="p">:</span>
-                <span class="k">if</span> <span class="p">(</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span> <span class="o">==</span> <span class="n">end</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">empty</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span><span class="p">:</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">count</span> <span class="o">+</span><span class="o">=</span> <span class="mi">1</span>
-                    <span class="k">return</span>
-                
-                <span class="n">grid</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="mi">2</span>
-                <span class="n">search</span><span class="p">(</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">empty</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
-                <span class="n">search</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">empty</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
-                <span class="n">search</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">empty</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
-                <span class="n">search</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">empty</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
-                <span class="n">grid</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">if</span> <span class="n">m</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span> <span class="k">return</span> <span class="mi">0</span>
+        <span class="k">elif</span> <span class="n">m</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span> <span class="k">return</span> <span class="n">n</span>
+        <span class="k">elif</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span> <span class="k">return</span> <span class="n">m</span>
+
+        <span class="n">dp</span> <span class="o">=</span> <span class="p">[</span><span class="p">[</span><span class="nb">float</span><span class="p">(</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">inf</span><span class="s2">&#34;</span><span class="p">)</span><span class="p">]</span><span class="o">*</span><span class="n">n</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">m</span><span class="p">)</span><span class="p">]</span>
         
-        <span class="n">search</span><span class="p">(</span><span class="n">start</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="p">,</span> <span class="n">start</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="p">,</span> <span class="n">empty</span><span class="p">)</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">count</span>
+        <span class="k">def</span> <span class="nf">index</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">)</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span> <span class="ow">and</span> <span class="n">j</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span> <span class="k">return</span> <span class="mi">0</span>
+            <span class="k">elif</span> <span class="n">i</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span> <span class="k">return</span> <span class="n">j</span><span class="o">+</span><span class="mi">1</span>
+            <span class="k">elif</span> <span class="n">j</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span> <span class="k">return</span> <span class="n">i</span><span class="o">+</span><span class="mi">1</span>
+            <span class="k">else</span><span class="p">:</span> <span class="k">return</span> <span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
+        
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">m</span><span class="p">)</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">)</span><span class="p">:</span>
+                <span class="n">cost</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">word1</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">!=</span><span class="n">word2</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="p">)</span>
+                <span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">index</span><span class="p">(</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">j</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">index</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">index</span><span class="p">(</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">+</span><span class="n">cost</span><span class="p">)</span>
+        
+        <span class="k">return</span> <span class="n">dp</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
 </code></pre></td></tr></table>
 </div>
-</div><p>Note</p>
+</div><p>This method has problem to deal with empty string, in which we generate the result in <code>index()</code> on the fly, which is out of the dp table itself. Try method 3:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">minDistance</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">word1</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">word2</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-</span><span class="o">&gt;</span> <span class="nb">int</span><span class="p">:</span>
+        <span class="n">m</span><span class="p">,</span> <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">word1</span><span class="p">)</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">word2</span><span class="p">)</span>
+        <span class="n">dp</span> <span class="o">=</span> <span class="p">[</span><span class="p">[</span><span class="nb">float</span><span class="p">(</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">inf</span><span class="s2">&#34;</span><span class="p">)</span><span class="p">]</span><span class="o">*</span><span class="p">(</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">m</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="p">]</span>
+        <span class="n">dp</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="p">:</span>
+            <span class="n">dp</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">i</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">m</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="p">:</span>
+            <span class="n">dp</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">j</span>
+        
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">m</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="p">:</span>
+                <span class="n">cost</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">word1</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">!=</span><span class="n">word2</span><span class="p">[</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="p">)</span>
+                <span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="p">[</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="p">[</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="n">cost</span><span class="p">)</span>
+        
+        <span class="k">return</span> <span class="n">dp</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Notes:</p>
 <ol>
-<li>We initialize empty with 1, cuz the start of the search counts.</li>
-<li>Search in a grid is frequently used, we need to restore the element after search.</li>
-<li>The search function could be memorized to accelerate.</li>
+<li>word index changes from <code>i</code>, <code>j</code> to <code>i-1</code>, <code>j-1</code> in method 3.</li>
+<li>We may optimize the space of the code to use only two vectors, or even one.</li>
 </ol>
     </article>
     
@@ -1305,11 +1338,23 @@
     <ul class="related-ul">
         
         <li>
-          <a href="/solutions/wildcard-matching/" class="related__link">Wildcard Matching</a>
+          <a href="/solutions/minimal-path-sum/" class="related__link">Minimal Path Sum</a>
         </li>
         
         <li>
-          <a href="/solutions/regular-expression-matching/" class="related__link">Regular Expression Matching</a>
+          <a href="/solutions/unique-paths-2/" class="related__link">Unique Paths 2</a>
+        </li>
+        
+        <li>
+          <a href="/solutions/unique-paths/" class="related__link">Unique Paths</a>
+        </li>
+        
+        <li>
+          <a href="/solutions/maximum-subarray/" class="related__link">Maximum Subarray</a>
+        </li>
+        
+        <li>
+          <a href="/solutions/longest-valid-parentheses/" class="related__link">Longest Valid Parentheses</a>
         </li>
         
     </ul>
@@ -1319,17 +1364,17 @@
 <nav class="pagination-single">
   
     
-      <a href="/solutions/unique-paths-2/" class="pagination-single__left">
+      <a href="/solutions/minimal-path-sum/" class="pagination-single__left">
         <div class="pagination-single__icon">
           <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24"><path fill="none" d="M0 0h24v24H0V0z"/><path fill="currentColor" d="M19 11H7.83l4.88-4.88c.39-.39.39-1.03 0-1.42-.39-.39-1.02-.39-1.41 0l-6.59 6.59c-.39.39-.39 1.02 0 1.41l6.59 6.59c.39.39 1.02.39 1.41 0 .39-.39.39-1.02 0-1.41L7.83 13H19c.55 0 1-.45 1-1s-.45-1-1-1z"/></svg>
         </div>
-        <div class="pagination-single__left-title">Unique Paths 2</div>      
+        <div class="pagination-single__left-title">Minimal Path Sum</div>      
       </a>
     
     <div class="grow"></div>
     
-      <a href="/solutions/minimal-path-sum/" class="pagination-single__right">      
-        <div class="pagination-single__right-title">Minimal Path Sum</div>
+      <a href="/solutions/maximal-rectangle/" class="pagination-single__right">      
+        <div class="pagination-single__right-title">Maximal Rectangle</div>
         <div class="pagination-single__icon">
           <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24"><path fill="none" d="M0 0h24v24H0V0z"/><path fill="currentColor" d="M5 13h11.17l-4.88 4.88c-.39.39-.39 1.03 0 1.42.39.39 1.02.39 1.41 0l6.59-6.59c.39-.39.39-1.02 0-1.41l-6.58-6.6c-.39-.39-1.02-.39-1.41 0-.39.39-.39 1.02 0 1.41L16.17 11H5c-.55 0-1 .45-1 1s.45 1 1 1z"/></svg>
         </div>
@@ -1692,40 +1737,12 @@ document.addEventListener('DOMContentLoaded', function () {
 </main>
 
 
-<aside class="single__side main-side">
-  
-
-
-<section class="sidebar">
-  <div class="toc__flexbox" data-position="absolute">
-    <h6 class="toc__title">What&#39;s on this Page</h6>
-    
-      <label class="switch">
-        <input id="toggle-toc" aria-label="Toggle TOC" type="checkbox" >
-        <span class="slider round"></span>
-      </label>
-    
-  </div>
-  <div class="toc hide" data-dir="ltr" data-folding="true">
-    <nav id="TableOfContents">
-  <ul>
-    <li><a href="#description">Description</a></li>
-    <li><a href="#dfs-backtracking-solution">DFS Backtracking Solution</a></li>
-  </ul>
-</nav>
-  </div>
-</section>
-
-
-
-</aside>
-
 <script>
   
   
   
 
-  var enableToc = JSON.parse("true");
+  var enableToc = JSON.parse("false");
   var toc = JSON.parse("null");
   var tocPosition = JSON.parse("\"inner\"");
   
@@ -1866,7 +1883,7 @@ document.addEventListener('DOMContentLoaded', function () {
     
     
     
-    var enableToc = JSON.parse("true");
+    var enableToc = JSON.parse("false");
     var toc = JSON.parse("null");
     var hideToc = JSON.parse("true");
     var tocFlexbox = document.querySelector('.toc__flexbox');

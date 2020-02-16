@@ -9,12 +9,21 @@
     <managingEditor>xxuan@mail.ustc.edu.cn (Xuan)</managingEditor>
     <webMaster>xxuan@mail.ustc.edu.cn (Xuan)</webMaster>
     <copyright>&amp;copy;{year}, All Rights Reserved</copyright>
-    <lastBuildDate>Fri, 14 Feb 2020 17:29:25 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 16 Feb 2020 13:02:42 +0800</lastBuildDate>
     
         <atom:link href="/categories/string/index.xml" rel="self" type="application/rss+xml" />
     
     
     
+      
+      <item>
+        <title>Edit Distance</title>
+        <link>/solutions/edit-distance/</link>
+        <pubDate>Sun, 16 Feb 2020 13:02:42 +0800</pubDate>
+        <author>xxuan@mail.ustc.edu.cn (Xuan)</author>
+        <guid>/solutions/edit-distance/</guid>
+        <description>&lt;p&gt;This is about calculation Levenshtein Distance&lt;/p&gt;</description>
+      </item>
       
       <item>
         <title>Valid Parentheses</title>
