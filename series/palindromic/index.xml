@@ -9,12 +9,48 @@
     <managingEditor>xxuan@mail.ustc.edu.cn (Xuan)</managingEditor>
     <webMaster>xxuan@mail.ustc.edu.cn (Xuan)</webMaster>
     <copyright>&amp;copy;{year}, All Rights Reserved</copyright>
-    <lastBuildDate>Tue, 11 Feb 2020 17:18:35 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 22 Feb 2020 19:15:06 +0800</lastBuildDate>
     
         <atom:link href="/series/palindromic/index.xml" rel="self" type="application/rss+xml" />
     
     
     
+      
+      <item>
+        <title>Count Different Palindromic Subsequences</title>
+        <link>/solutions/count-different-palindromic-subsequences/</link>
+        <pubDate>Sat, 22 Feb 2020 19:15:06 +0800</pubDate>
+        <author>xxuan@mail.ustc.edu.cn (Xuan)</author>
+        <guid>/solutions/count-different-palindromic-subsequences/</guid>
+        <description></description>
+      </item>
+      
+      <item>
+        <title>Longest Palindromic Subsequence</title>
+        <link>/solutions/longest-palindromic-subsequence/</link>
+        <pubDate>Sat, 22 Feb 2020 16:43:01 +0800</pubDate>
+        <author>xxuan@mail.ustc.edu.cn (Xuan)</author>
+        <guid>/solutions/longest-palindromic-subsequence/</guid>
+        <description></description>
+      </item>
+      
+      <item>
+        <title>Palindrome Partitioning 2</title>
+        <link>/solutions/palindrome-partitioning-2/</link>
+        <pubDate>Thu, 20 Feb 2020 20:29:24 +0800</pubDate>
+        <author>xxuan@mail.ustc.edu.cn (Xuan)</author>
+        <guid>/solutions/palindrome-partitioning-2/</guid>
+        <description></description>
+      </item>
+      
+      <item>
+        <title>Palindrome Partitioning</title>
+        <link>/solutions/palindrome-partitioning/</link>
+        <pubDate>Thu, 20 Feb 2020 16:06:21 +0800</pubDate>
+        <author>xxuan@mail.ustc.edu.cn (Xuan)</author>
+        <guid>/solutions/palindrome-partitioning/</guid>
+        <description></description>
+      </item>
       
       <item>
         <title>Longest Palindromic Substring</title>

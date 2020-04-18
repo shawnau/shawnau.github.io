@@ -9,12 +9,39 @@
     <managingEditor>xxuan@mail.ustc.edu.cn (Xuan)</managingEditor>
     <webMaster>xxuan@mail.ustc.edu.cn (Xuan)</webMaster>
     <copyright>&amp;copy;{year}, All Rights Reserved</copyright>
-    <lastBuildDate>Sun, 16 Feb 2020 13:02:42 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 18 Feb 2020 16:46:50 +0800</lastBuildDate>
     
         <atom:link href="/categories/pattern-matching/index.xml" rel="self" type="application/rss+xml" />
     
     
     
+      
+      <item>
+        <title>Distinct Subsequences</title>
+        <link>/solutions/distinct-subsequences/</link>
+        <pubDate>Tue, 18 Feb 2020 16:46:50 +0800</pubDate>
+        <author>xxuan@mail.ustc.edu.cn (Xuan)</author>
+        <guid>/solutions/distinct-subsequences/</guid>
+        <description></description>
+      </item>
+      
+      <item>
+        <title>Decode Ways 2</title>
+        <link>/solutions/decode-ways-2/</link>
+        <pubDate>Mon, 17 Feb 2020 16:52:56 +0800</pubDate>
+        <author>xxuan@mail.ustc.edu.cn (Xuan)</author>
+        <guid>/solutions/decode-ways-2/</guid>
+        <description></description>
+      </item>
+      
+      <item>
+        <title>Decode Ways</title>
+        <link>/solutions/decode-ways/</link>
+        <pubDate>Mon, 17 Feb 2020 15:54:48 +0800</pubDate>
+        <author>xxuan@mail.ustc.edu.cn (Xuan)</author>
+        <guid>/solutions/decode-ways/</guid>
+        <description></description>
+      </item>
       
       <item>
         <title>Edit Distance</title>
@@ -31,15 +58,6 @@
         <pubDate>Fri, 14 Feb 2020 12:12:45 +0800</pubDate>
         <author>xxuan@mail.ustc.edu.cn (Xuan)</author>
         <guid>/solutions/longest-valid-parentheses/</guid>
-        <description></description>
-      </item>
-      
-      <item>
-        <title>Longest Palindromic Substring</title>
-        <link>/solutions/longest-palindromic-substring/</link>
-        <pubDate>Tue, 11 Feb 2020 17:18:35 +0800</pubDate>
-        <author>xxuan@mail.ustc.edu.cn (Xuan)</author>
-        <guid>/solutions/longest-palindromic-substring/</guid>
         <description></description>
       </item>
       

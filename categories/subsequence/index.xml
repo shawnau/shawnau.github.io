@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>subsequence on Laniakea</title>
+    <link>/categories/subsequence/</link>
+    <description>Recent content in subsequence on Laniakea</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <managingEditor>xxuan@mail.ustc.edu.cn (Xuan)</managingEditor>
+    <webMaster>xxuan@mail.ustc.edu.cn (Xuan)</webMaster>
+    <copyright>&amp;copy;{year}, All Rights Reserved</copyright>
+    <lastBuildDate>Tue, 18 Feb 2020 16:46:50 +0800</lastBuildDate>
+    
+        <atom:link href="/categories/subsequence/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    
+      
+      <item>
+        <title>Distinct Subsequences</title>
+        <link>/solutions/distinct-subsequences/</link>
+        <pubDate>Tue, 18 Feb 2020 16:46:50 +0800</pubDate>
+        <author>xxuan@mail.ustc.edu.cn (Xuan)</author>
+        <guid>/solutions/distinct-subsequences/</guid>
+        <description></description>
+      </item>
+      
+      <item>
+        <title>Interleaving String</title>
+        <link>/solutions/interleaving-string/</link>
+        <pubDate>Mon, 17 Feb 2020 17:23:04 +0800</pubDate>
+        <author>xxuan@mail.ustc.edu.cn (Xuan)</author>
+        <guid>/solutions/interleaving-string/</guid>
+        <description></description>
+      </item>
+      
+    
+  </channel>
+</rss>

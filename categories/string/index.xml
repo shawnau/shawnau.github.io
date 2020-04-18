@@ -9,12 +9,102 @@
     <managingEditor>xxuan@mail.ustc.edu.cn (Xuan)</managingEditor>
     <webMaster>xxuan@mail.ustc.edu.cn (Xuan)</webMaster>
     <copyright>&amp;copy;{year}, All Rights Reserved</copyright>
-    <lastBuildDate>Sun, 16 Feb 2020 13:02:42 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 22 Feb 2020 19:15:06 +0800</lastBuildDate>
     
         <atom:link href="/categories/string/index.xml" rel="self" type="application/rss+xml" />
     
     
     
+      
+      <item>
+        <title>Count Different Palindromic Subsequences</title>
+        <link>/solutions/count-different-palindromic-subsequences/</link>
+        <pubDate>Sat, 22 Feb 2020 19:15:06 +0800</pubDate>
+        <author>xxuan@mail.ustc.edu.cn (Xuan)</author>
+        <guid>/solutions/count-different-palindromic-subsequences/</guid>
+        <description></description>
+      </item>
+      
+      <item>
+        <title>Longest Palindromic Subsequence</title>
+        <link>/solutions/longest-palindromic-subsequence/</link>
+        <pubDate>Sat, 22 Feb 2020 16:43:01 +0800</pubDate>
+        <author>xxuan@mail.ustc.edu.cn (Xuan)</author>
+        <guid>/solutions/longest-palindromic-subsequence/</guid>
+        <description></description>
+      </item>
+      
+      <item>
+        <title>Word Break 2</title>
+        <link>/solutions/word-break-2/</link>
+        <pubDate>Fri, 21 Feb 2020 22:13:35 +0800</pubDate>
+        <author>xxuan@mail.ustc.edu.cn (Xuan)</author>
+        <guid>/solutions/word-break-2/</guid>
+        <description></description>
+      </item>
+      
+      <item>
+        <title>Word Break</title>
+        <link>/solutions/word-break/</link>
+        <pubDate>Fri, 21 Feb 2020 20:59:19 +0800</pubDate>
+        <author>xxuan@mail.ustc.edu.cn (Xuan)</author>
+        <guid>/solutions/word-break/</guid>
+        <description></description>
+      </item>
+      
+      <item>
+        <title>Palindrome Partitioning 2</title>
+        <link>/solutions/palindrome-partitioning-2/</link>
+        <pubDate>Thu, 20 Feb 2020 20:29:24 +0800</pubDate>
+        <author>xxuan@mail.ustc.edu.cn (Xuan)</author>
+        <guid>/solutions/palindrome-partitioning-2/</guid>
+        <description></description>
+      </item>
+      
+      <item>
+        <title>Palindrome Partitioning</title>
+        <link>/solutions/palindrome-partitioning/</link>
+        <pubDate>Thu, 20 Feb 2020 16:06:21 +0800</pubDate>
+        <author>xxuan@mail.ustc.edu.cn (Xuan)</author>
+        <guid>/solutions/palindrome-partitioning/</guid>
+        <description></description>
+      </item>
+      
+      <item>
+        <title>Distinct Subsequences</title>
+        <link>/solutions/distinct-subsequences/</link>
+        <pubDate>Tue, 18 Feb 2020 16:46:50 +0800</pubDate>
+        <author>xxuan@mail.ustc.edu.cn (Xuan)</author>
+        <guid>/solutions/distinct-subsequences/</guid>
+        <description></description>
+      </item>
+      
+      <item>
+        <title>Interleaving String</title>
+        <link>/solutions/interleaving-string/</link>
+        <pubDate>Mon, 17 Feb 2020 17:23:04 +0800</pubDate>
+        <author>xxuan@mail.ustc.edu.cn (Xuan)</author>
+        <guid>/solutions/interleaving-string/</guid>
+        <description></description>
+      </item>
+      
+      <item>
+        <title>Decode Ways 2</title>
+        <link>/solutions/decode-ways-2/</link>
+        <pubDate>Mon, 17 Feb 2020 16:52:56 +0800</pubDate>
+        <author>xxuan@mail.ustc.edu.cn (Xuan)</author>
+        <guid>/solutions/decode-ways-2/</guid>
+        <description></description>
+      </item>
+      
+      <item>
+        <title>Decode Ways</title>
+        <link>/solutions/decode-ways/</link>
+        <pubDate>Mon, 17 Feb 2020 15:54:48 +0800</pubDate>
+        <author>xxuan@mail.ustc.edu.cn (Xuan)</author>
+        <guid>/solutions/decode-ways/</guid>
+        <description></description>
+      </item>
       
       <item>
         <title>Edit Distance</title>

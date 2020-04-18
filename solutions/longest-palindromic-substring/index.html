@@ -1164,7 +1164,7 @@
     <div class="single__meta">
       
 <div class="single__infos">
-  <time class="single__info" title="Written At">📅&nbsp;Feb 11, 2020 </time>  &middot; <span class="single__info" title="Reading Time"> ☕ 1 min read </span>
+  <time class="single__info" title="Written At">📅&nbsp;Feb 11, 2020 </time>  &middot; <span class="single__info" title="Reading Time"> ☕ 2 min read </span>
   <span class="single__info">
     
   </span>
@@ -1198,6 +1198,8 @@
   <ul>
     <li><a href="#description">Description</a></li>
     <li><a href="#dynamic-programming-solution">Dynamic Programming Solution</a></li>
+    <li><a href="#palindrome-ad-hoc-solution">Palindrome Ad-hoc Solution</a></li>
+    <li><a href="#manacher-algorithm">Manacher Algorithm</a></li>
   </ul>
 </nav>
   </div>
@@ -1311,7 +1313,128 @@ dp[i+1][j-1]
         <span class="k">return</span> <span class="n">max_substr</span>
 </code></pre></td></tr></table>
 </div>
+</div><h2 id="palindrome-ad-hoc-solution">Palindrome Ad-hoc Solution</h2>
+<p>Set $i$ to be the center of palindrome sunstring, $j$ to be the radius, we can expand from center to side to valid the substring:</p>
+<ol>
+<li>Odd length substring:
+<ul>
+<li>Expand from $(i, i)$, in which $j=0$, $L=i-j, R=i+j$, length of the substring is $2j+1$, $r_{max} = i$</li>
+</ul>
+</li>
+<li>Even length substring:
+<ul>
+<li>Expand from $(i-1, i)$, in which $j=0$, $L=i-1-j, R=i+j$, length of the substring is $2j+2$, $r_{max} = i$</li>
+</ul>
+</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th align="center">i-j</th>
+<th align="center"></th>
+<th align="center"></th>
+<th align="center">i-1</th>
+<th align="center">i</th>
+<th align="center">i+1</th>
+<th align="center"></th>
+<th align="center"></th>
+<th align="center">i+r</th>
+<th align="center"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">1</td>
+<td align="center">2</td>
+<td align="center">3</td>
+<td align="center">4</td>
+<td align="center">5</td>
+<td align="center">4</td>
+<td align="center">3</td>
+<td align="center">2</td>
+<td align="center">1</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center">i-1</td>
+<td align="center">i</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">1</td>
+<td align="center">2</td>
+<td align="center">3</td>
+<td align="center">4</td>
+<td align="center">5</td>
+<td align="center">5</td>
+<td align="center">4</td>
+<td align="center">3</td>
+<td align="center">2</td>
+<td align="center">1</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">longestPalindrome</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">s</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-</span><span class="o">&gt;</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="n">n</span><span class="p">,</span> <span class="n">max_len</span><span class="p">,</span> <span class="n">max_str</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">s</span><span class="p">)</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="sa"></span><span class="s2">&#34;</span><span class="s2">&#34;</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">)</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="p">:</span>
+                <span class="n">l</span><span class="p">,</span> <span class="n">r</span> <span class="o">=</span> <span class="n">i</span><span class="o">-</span><span class="n">j</span><span class="p">,</span> <span class="n">i</span><span class="o">+</span><span class="n">j</span>
+                <span class="k">if</span> <span class="n">l</span><span class="o">&gt;</span><span class="o">=</span><span class="mi">0</span> <span class="ow">and</span> <span class="n">r</span><span class="o">&lt;</span><span class="n">n</span> <span class="ow">and</span> <span class="n">s</span><span class="p">[</span><span class="n">l</span><span class="p">]</span><span class="o">==</span><span class="n">s</span><span class="p">[</span><span class="n">r</span><span class="p">]</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="n">max_len</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="o">*</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">:</span>
+                        <span class="n">max_len</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span>
+                        <span class="n">max_str</span> <span class="o">=</span> <span class="n">s</span><span class="p">[</span><span class="n">l</span><span class="p">:</span><span class="n">r</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="k">break</span>
+
+            <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="p">:</span>
+                <span class="n">l</span><span class="p">,</span> <span class="n">r</span> <span class="o">=</span> <span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="o">-</span><span class="n">j</span><span class="p">,</span> <span class="n">i</span><span class="o">+</span><span class="n">j</span>
+                <span class="k">if</span> <span class="n">l</span><span class="o">&gt;</span><span class="o">=</span><span class="mi">0</span> <span class="ow">and</span> <span class="n">r</span><span class="o">&lt;</span><span class="n">n</span> <span class="ow">and</span> <span class="n">s</span><span class="p">[</span><span class="n">l</span><span class="p">]</span><span class="o">==</span><span class="n">s</span><span class="p">[</span><span class="n">r</span><span class="p">]</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="n">max_len</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="o">*</span><span class="n">j</span><span class="o">+</span><span class="mi">2</span><span class="p">:</span>
+                        <span class="n">max_len</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">j</span><span class="o">+</span><span class="mi">2</span>
+                        <span class="n">max_str</span> <span class="o">=</span> <span class="n">s</span><span class="p">[</span><span class="n">l</span><span class="p">:</span><span class="n">r</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="k">break</span>
+        
+        <span class="k">return</span> <span class="n">max_str</span>
+</code></pre></td></tr></table>
 </div>
+</div><h2 id="manacher-algorithm">Manacher Algorithm</h2>
+<p>Check wiki~ it is O(n)</p>
     </article>
     
     
@@ -1736,6 +1859,8 @@ document.addEventListener('DOMContentLoaded', function () {
   <ul>
     <li><a href="#description">Description</a></li>
     <li><a href="#dynamic-programming-solution">Dynamic Programming Solution</a></li>
+    <li><a href="#palindrome-ad-hoc-solution">Palindrome Ad-hoc Solution</a></li>
+    <li><a href="#manacher-algorithm">Manacher Algorithm</a></li>
   </ul>
 </nav>
   </div>
