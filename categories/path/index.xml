@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<rss version="2.0" 
+  xmlns:content="http://purl.org/rss/1.0/modules/content/" 
+  xmlns:dc="http://purl.org/dc/elements/1.1/" 
+  xmlns:atom="http://www.w3.org/2005/Atom" 
+  xmlns:sy="http://purl.org/rss/1.0/modules/syndication/" 
+  xmlns:media="http://search.yahoo.com/mrss/">
   <channel>
     <title>path on Laniakea</title>
     <link>/categories/path/</link>
@@ -15,14 +20,40 @@
     
     
     
+
       
       <item>
         <title>Dungeon Game</title>
         <link>/solutions/dungeon-game/</link>
         <pubDate>Sun, 01 Mar 2020 16:05:43 +0800</pubDate>
         <author>xxuan@mail.ustc.edu.cn (Xuan)</author>
+        <atom:modified>Sun, 01 Mar 2020 16:05:43 +0800</atom:modified>
         <guid>/solutions/dungeon-game/</guid>
         <description></description>
+        
+        <dc:creator>Xuan</dc:creator>
+        
+        
+        
+        
+          
+            
+              <category>dynamic programming</category>
+            
+          
+        
+        
+          
+            
+              <category>path</category>
+            
+          
+            
+              <category>grid</category>
+            
+          
+        
+        
       </item>
       
       <item>
@@ -30,8 +61,33 @@
         <link>/solutions/triangle/</link>
         <pubDate>Tue, 18 Feb 2020 23:39:31 +0800</pubDate>
         <author>xxuan@mail.ustc.edu.cn (Xuan)</author>
+        <atom:modified>Tue, 18 Feb 2020 23:39:31 +0800</atom:modified>
         <guid>/solutions/triangle/</guid>
         <description></description>
+        
+        <dc:creator>Xuan</dc:creator>
+        
+        
+        
+        
+          
+            
+              <category>dynamic programming</category>
+            
+          
+        
+        
+          
+            
+              <category>path</category>
+            
+          
+            
+              <category>grid</category>
+            
+          
+        
+        
       </item>
       
       <item>
@@ -39,8 +95,33 @@
         <link>/solutions/minimal-path-sum/</link>
         <pubDate>Sun, 16 Feb 2020 00:20:57 +0800</pubDate>
         <author>xxuan@mail.ustc.edu.cn (Xuan)</author>
+        <atom:modified>Sun, 16 Feb 2020 00:20:57 +0800</atom:modified>
         <guid>/solutions/minimal-path-sum/</guid>
         <description></description>
+        
+        <dc:creator>Xuan</dc:creator>
+        
+        
+        
+        
+          
+            
+              <category>dynamic programming</category>
+            
+          
+        
+        
+          
+            
+              <category>path</category>
+            
+          
+            
+              <category>grid</category>
+            
+          
+        
+        
       </item>
       
       <item>
@@ -48,8 +129,37 @@
         <link>/solutions/unique-paths-3/</link>
         <pubDate>Sat, 15 Feb 2020 20:50:53 +0800</pubDate>
         <author>xxuan@mail.ustc.edu.cn (Xuan)</author>
+        <atom:modified>Sat, 15 Feb 2020 20:50:53 +0800</atom:modified>
         <guid>/solutions/unique-paths-3/</guid>
         <description>&lt;p&gt;Walk over all grids without duplicate, with obstacles&lt;/p&gt;</description>
+        
+        <dc:creator>Xuan</dc:creator>
+        
+        
+        
+        
+          
+            
+              <category>backtracking</category>
+            
+          
+            
+              <category>dfs</category>
+            
+          
+        
+        
+          
+            
+              <category>path</category>
+            
+          
+            
+              <category>grid</category>
+            
+          
+        
+        
       </item>
       
       <item>
@@ -57,8 +167,33 @@
         <link>/solutions/unique-paths-2/</link>
         <pubDate>Sat, 15 Feb 2020 20:13:37 +0800</pubDate>
         <author>xxuan@mail.ustc.edu.cn (Xuan)</author>
+        <atom:modified>Sat, 15 Feb 2020 20:13:37 +0800</atom:modified>
         <guid>/solutions/unique-paths-2/</guid>
         <description>&lt;p&gt;Count all paths from a to b, with obstacles.&lt;/p&gt;</description>
+        
+        <dc:creator>Xuan</dc:creator>
+        
+        
+        
+        
+          
+            
+              <category>dynamic programming</category>
+            
+          
+        
+        
+          
+            
+              <category>path</category>
+            
+          
+            
+              <category>grid</category>
+            
+          
+        
+        
       </item>
       
       <item>
@@ -66,10 +201,36 @@
         <link>/solutions/unique-paths/</link>
         <pubDate>Sat, 15 Feb 2020 19:33:05 +0800</pubDate>
         <author>xxuan@mail.ustc.edu.cn (Xuan)</author>
+        <atom:modified>Sat, 15 Feb 2020 19:33:05 +0800</atom:modified>
         <guid>/solutions/unique-paths/</guid>
         <description>&lt;p&gt;Count all paths from a to b&lt;/p&gt;</description>
+        
+        <dc:creator>Xuan</dc:creator>
+        
+        
+        
+        
+          
+            
+              <category>dynamic programming</category>
+            
+          
+        
+        
+          
+            
+              <category>path</category>
+            
+          
+            
+              <category>grid</category>
+            
+          
+        
+        
       </item>
       
+
     
   </channel>
 </rss>

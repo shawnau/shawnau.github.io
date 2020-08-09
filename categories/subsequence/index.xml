@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<rss version="2.0" 
+  xmlns:content="http://purl.org/rss/1.0/modules/content/" 
+  xmlns:dc="http://purl.org/dc/elements/1.1/" 
+  xmlns:atom="http://www.w3.org/2005/Atom" 
+  xmlns:sy="http://purl.org/rss/1.0/modules/syndication/" 
+  xmlns:media="http://search.yahoo.com/mrss/">
   <channel>
     <title>subsequence on Laniakea</title>
     <link>/categories/subsequence/</link>
@@ -15,14 +20,48 @@
     
     
     
+
       
       <item>
         <title>Distinct Subsequences</title>
         <link>/solutions/distinct-subsequences/</link>
         <pubDate>Tue, 18 Feb 2020 16:46:50 +0800</pubDate>
         <author>xxuan@mail.ustc.edu.cn (Xuan)</author>
+        <atom:modified>Tue, 18 Feb 2020 16:46:50 +0800</atom:modified>
         <guid>/solutions/distinct-subsequences/</guid>
         <description></description>
+        
+        <dc:creator>Xuan</dc:creator>
+        
+        
+        
+        
+          
+            
+              <category>dynamic programming</category>
+            
+          
+            
+              <category>backtracking</category>
+            
+          
+        
+        
+          
+            
+              <category>string</category>
+            
+          
+            
+              <category>subsequence</category>
+            
+          
+            
+              <category>pattern matching</category>
+            
+          
+        
+        
       </item>
       
       <item>
@@ -30,10 +69,36 @@
         <link>/solutions/interleaving-string/</link>
         <pubDate>Mon, 17 Feb 2020 17:23:04 +0800</pubDate>
         <author>xxuan@mail.ustc.edu.cn (Xuan)</author>
+        <atom:modified>Mon, 17 Feb 2020 17:23:04 +0800</atom:modified>
         <guid>/solutions/interleaving-string/</guid>
         <description></description>
+        
+        <dc:creator>Xuan</dc:creator>
+        
+        
+        
+        
+          
+            
+              <category>dynamic programming</category>
+            
+          
+        
+        
+          
+            
+              <category>string</category>
+            
+          
+            
+              <category>subsequence</category>
+            
+          
+        
+        
       </item>
       
+
     
   </channel>
 </rss>

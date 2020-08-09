@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<rss version="2.0" 
+  xmlns:content="http://purl.org/rss/1.0/modules/content/" 
+  xmlns:dc="http://purl.org/dc/elements/1.1/" 
+  xmlns:atom="http://www.w3.org/2005/Atom" 
+  xmlns:sy="http://purl.org/rss/1.0/modules/syndication/" 
+  xmlns:media="http://search.yahoo.com/mrss/">
   <channel>
     <title>backtracking on Laniakea</title>
     <link>/tags/backtracking/</link>
@@ -15,14 +20,50 @@
     
     
     
+
       
       <item>
         <title>Count Different Palindromic Subsequences</title>
         <link>/solutions/count-different-palindromic-subsequences/</link>
         <pubDate>Sat, 22 Feb 2020 19:15:06 +0800</pubDate>
         <author>xxuan@mail.ustc.edu.cn (Xuan)</author>
+        <atom:modified>Sat, 22 Feb 2020 19:15:06 +0800</atom:modified>
         <guid>/solutions/count-different-palindromic-subsequences/</guid>
         <description></description>
+        
+        <dc:creator>Xuan</dc:creator>
+        
+        
+        
+        
+          
+            
+              <category>dynamic programming</category>
+            
+          
+            
+              <category>backtracking</category>
+            
+          
+        
+        
+          
+            
+              <category>string</category>
+            
+          
+        
+        
+          
+            
+              <category>palindromic</category>
+            
+          
+            
+              <category>subsequence</category>
+            
+          
+        
       </item>
       
       <item>
@@ -30,8 +71,43 @@
         <link>/solutions/longest-palindromic-subsequence/</link>
         <pubDate>Sat, 22 Feb 2020 16:43:01 +0800</pubDate>
         <author>xxuan@mail.ustc.edu.cn (Xuan)</author>
+        <atom:modified>Sat, 22 Feb 2020 16:43:01 +0800</atom:modified>
         <guid>/solutions/longest-palindromic-subsequence/</guid>
         <description></description>
+        
+        <dc:creator>Xuan</dc:creator>
+        
+        
+        
+        
+          
+            
+              <category>dynamic programming</category>
+            
+          
+            
+              <category>backtracking</category>
+            
+          
+        
+        
+          
+            
+              <category>string</category>
+            
+          
+        
+        
+          
+            
+              <category>palindromic</category>
+            
+          
+            
+              <category>subsequence</category>
+            
+          
+        
       </item>
       
       <item>
@@ -39,8 +115,37 @@
         <link>/solutions/word-break-2/</link>
         <pubDate>Fri, 21 Feb 2020 22:13:35 +0800</pubDate>
         <author>xxuan@mail.ustc.edu.cn (Xuan)</author>
+        <atom:modified>Fri, 21 Feb 2020 22:13:35 +0800</atom:modified>
         <guid>/solutions/word-break-2/</guid>
         <description></description>
+        
+        <dc:creator>Xuan</dc:creator>
+        
+        
+        
+        
+          
+            
+              <category>dynamic programming</category>
+            
+          
+            
+              <category>backtracking</category>
+            
+          
+            
+              <category>dfs</category>
+            
+          
+        
+        
+          
+            
+              <category>string</category>
+            
+          
+        
+        
       </item>
       
       <item>
@@ -48,8 +153,39 @@
         <link>/solutions/palindrome-partitioning/</link>
         <pubDate>Thu, 20 Feb 2020 16:06:21 +0800</pubDate>
         <author>xxuan@mail.ustc.edu.cn (Xuan)</author>
+        <atom:modified>Thu, 20 Feb 2020 16:06:21 +0800</atom:modified>
         <guid>/solutions/palindrome-partitioning/</guid>
         <description></description>
+        
+        <dc:creator>Xuan</dc:creator>
+        
+        
+        
+        
+          
+            
+              <category>backtracking</category>
+            
+          
+            
+              <category>dfs</category>
+            
+          
+        
+        
+          
+            
+              <category>string</category>
+            
+          
+        
+        
+          
+            
+              <category>palindromic</category>
+            
+          
+        
       </item>
       
       <item>
@@ -57,8 +193,41 @@
         <link>/solutions/distinct-subsequences/</link>
         <pubDate>Tue, 18 Feb 2020 16:46:50 +0800</pubDate>
         <author>xxuan@mail.ustc.edu.cn (Xuan)</author>
+        <atom:modified>Tue, 18 Feb 2020 16:46:50 +0800</atom:modified>
         <guid>/solutions/distinct-subsequences/</guid>
         <description></description>
+        
+        <dc:creator>Xuan</dc:creator>
+        
+        
+        
+        
+          
+            
+              <category>dynamic programming</category>
+            
+          
+            
+              <category>backtracking</category>
+            
+          
+        
+        
+          
+            
+              <category>string</category>
+            
+          
+            
+              <category>subsequence</category>
+            
+          
+            
+              <category>pattern matching</category>
+            
+          
+        
+        
       </item>
       
       <item>
@@ -66,8 +235,37 @@
         <link>/solutions/unique-paths-3/</link>
         <pubDate>Sat, 15 Feb 2020 20:50:53 +0800</pubDate>
         <author>xxuan@mail.ustc.edu.cn (Xuan)</author>
+        <atom:modified>Sat, 15 Feb 2020 20:50:53 +0800</atom:modified>
         <guid>/solutions/unique-paths-3/</guid>
         <description>&lt;p&gt;Walk over all grids without duplicate, with obstacles&lt;/p&gt;</description>
+        
+        <dc:creator>Xuan</dc:creator>
+        
+        
+        
+        
+          
+            
+              <category>backtracking</category>
+            
+          
+            
+              <category>dfs</category>
+            
+          
+        
+        
+          
+            
+              <category>path</category>
+            
+          
+            
+              <category>grid</category>
+            
+          
+        
+        
       </item>
       
       <item>
@@ -75,8 +273,43 @@
         <link>/solutions/wildcard-matching/</link>
         <pubDate>Tue, 11 Feb 2020 16:12:15 +0800</pubDate>
         <author>xxuan@mail.ustc.edu.cn (Xuan)</author>
+        <atom:modified>Tue, 11 Feb 2020 16:12:15 +0800</atom:modified>
         <guid>/solutions/wildcard-matching/</guid>
         <description></description>
+        
+        <dc:creator>Xuan</dc:creator>
+        
+        
+        
+        
+          
+            
+              <category>dynamic programming</category>
+            
+          
+            
+              <category>backtracking</category>
+            
+          
+        
+        
+          
+            
+              <category>string</category>
+            
+          
+            
+              <category>pattern matching</category>
+            
+          
+        
+        
+          
+            
+              <category>regular expression</category>
+            
+          
+        
       </item>
       
       <item>
@@ -84,10 +317,46 @@
         <link>/solutions/regular-expression-matching/</link>
         <pubDate>Mon, 10 Feb 2020 21:46:18 +0800</pubDate>
         <author>xxuan@mail.ustc.edu.cn (Xuan)</author>
+        <atom:modified>Mon, 10 Feb 2020 21:46:18 +0800</atom:modified>
         <guid>/solutions/regular-expression-matching/</guid>
         <description></description>
+        
+        <dc:creator>Xuan</dc:creator>
+        
+        
+        
+        
+          
+            
+              <category>dynamic programming</category>
+            
+          
+            
+              <category>backtracking</category>
+            
+          
+        
+        
+          
+            
+              <category>string</category>
+            
+          
+            
+              <category>pattern matching</category>
+            
+          
+        
+        
+          
+            
+              <category>regular expression</category>
+            
+          
+        
       </item>
       
+
     
   </channel>
 </rss>

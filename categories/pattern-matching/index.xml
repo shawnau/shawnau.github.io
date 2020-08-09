@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<rss version="2.0" 
+  xmlns:content="http://purl.org/rss/1.0/modules/content/" 
+  xmlns:dc="http://purl.org/dc/elements/1.1/" 
+  xmlns:atom="http://www.w3.org/2005/Atom" 
+  xmlns:sy="http://purl.org/rss/1.0/modules/syndication/" 
+  xmlns:media="http://search.yahoo.com/mrss/">
   <channel>
     <title>pattern matching on Laniakea</title>
     <link>/categories/pattern-matching/</link>
@@ -15,14 +20,48 @@
     
     
     
+
       
       <item>
         <title>Distinct Subsequences</title>
         <link>/solutions/distinct-subsequences/</link>
         <pubDate>Tue, 18 Feb 2020 16:46:50 +0800</pubDate>
         <author>xxuan@mail.ustc.edu.cn (Xuan)</author>
+        <atom:modified>Tue, 18 Feb 2020 16:46:50 +0800</atom:modified>
         <guid>/solutions/distinct-subsequences/</guid>
         <description></description>
+        
+        <dc:creator>Xuan</dc:creator>
+        
+        
+        
+        
+          
+            
+              <category>dynamic programming</category>
+            
+          
+            
+              <category>backtracking</category>
+            
+          
+        
+        
+          
+            
+              <category>string</category>
+            
+          
+            
+              <category>subsequence</category>
+            
+          
+            
+              <category>pattern matching</category>
+            
+          
+        
+        
       </item>
       
       <item>
@@ -30,8 +69,33 @@
         <link>/solutions/decode-ways-2/</link>
         <pubDate>Mon, 17 Feb 2020 16:52:56 +0800</pubDate>
         <author>xxuan@mail.ustc.edu.cn (Xuan)</author>
+        <atom:modified>Mon, 17 Feb 2020 16:52:56 +0800</atom:modified>
         <guid>/solutions/decode-ways-2/</guid>
         <description></description>
+        
+        <dc:creator>Xuan</dc:creator>
+        
+        
+        
+        
+          
+            
+              <category>dynamic programming</category>
+            
+          
+        
+        
+          
+            
+              <category>string</category>
+            
+          
+            
+              <category>pattern matching</category>
+            
+          
+        
+        
       </item>
       
       <item>
@@ -39,8 +103,33 @@
         <link>/solutions/decode-ways/</link>
         <pubDate>Mon, 17 Feb 2020 15:54:48 +0800</pubDate>
         <author>xxuan@mail.ustc.edu.cn (Xuan)</author>
+        <atom:modified>Mon, 17 Feb 2020 15:54:48 +0800</atom:modified>
         <guid>/solutions/decode-ways/</guid>
         <description></description>
+        
+        <dc:creator>Xuan</dc:creator>
+        
+        
+        
+        
+          
+            
+              <category>dynamic programming</category>
+            
+          
+        
+        
+          
+            
+              <category>string</category>
+            
+          
+            
+              <category>pattern matching</category>
+            
+          
+        
+        
       </item>
       
       <item>
@@ -48,8 +137,33 @@
         <link>/solutions/edit-distance/</link>
         <pubDate>Sun, 16 Feb 2020 13:02:42 +0800</pubDate>
         <author>xxuan@mail.ustc.edu.cn (Xuan)</author>
+        <atom:modified>Sun, 16 Feb 2020 13:02:42 +0800</atom:modified>
         <guid>/solutions/edit-distance/</guid>
         <description>&lt;p&gt;This is about calculation Levenshtein Distance&lt;/p&gt;</description>
+        
+        <dc:creator>Xuan</dc:creator>
+        
+        
+        
+        
+          
+            
+              <category>dynamic programming</category>
+            
+          
+        
+        
+          
+            
+              <category>string</category>
+            
+          
+            
+              <category>pattern matching</category>
+            
+          
+        
+        
       </item>
       
       <item>
@@ -57,8 +171,43 @@
         <link>/solutions/longest-valid-parentheses/</link>
         <pubDate>Fri, 14 Feb 2020 12:12:45 +0800</pubDate>
         <author>xxuan@mail.ustc.edu.cn (Xuan)</author>
+        <atom:modified>Fri, 14 Feb 2020 12:12:45 +0800</atom:modified>
         <guid>/solutions/longest-valid-parentheses/</guid>
         <description></description>
+        
+        <dc:creator>Xuan</dc:creator>
+        
+        
+        
+        
+          
+            
+              <category>dynamic programming</category>
+            
+          
+            
+              <category>stack</category>
+            
+          
+        
+        
+          
+            
+              <category>string</category>
+            
+          
+            
+              <category>pattern matching</category>
+            
+          
+        
+        
+          
+            
+              <category>parentheses</category>
+            
+          
+        
       </item>
       
       <item>
@@ -66,8 +215,43 @@
         <link>/solutions/wildcard-matching/</link>
         <pubDate>Tue, 11 Feb 2020 16:12:15 +0800</pubDate>
         <author>xxuan@mail.ustc.edu.cn (Xuan)</author>
+        <atom:modified>Tue, 11 Feb 2020 16:12:15 +0800</atom:modified>
         <guid>/solutions/wildcard-matching/</guid>
         <description></description>
+        
+        <dc:creator>Xuan</dc:creator>
+        
+        
+        
+        
+          
+            
+              <category>dynamic programming</category>
+            
+          
+            
+              <category>backtracking</category>
+            
+          
+        
+        
+          
+            
+              <category>string</category>
+            
+          
+            
+              <category>pattern matching</category>
+            
+          
+        
+        
+          
+            
+              <category>regular expression</category>
+            
+          
+        
       </item>
       
       <item>
@@ -75,10 +259,46 @@
         <link>/solutions/regular-expression-matching/</link>
         <pubDate>Mon, 10 Feb 2020 21:46:18 +0800</pubDate>
         <author>xxuan@mail.ustc.edu.cn (Xuan)</author>
+        <atom:modified>Mon, 10 Feb 2020 21:46:18 +0800</atom:modified>
         <guid>/solutions/regular-expression-matching/</guid>
         <description></description>
+        
+        <dc:creator>Xuan</dc:creator>
+        
+        
+        
+        
+          
+            
+              <category>dynamic programming</category>
+            
+          
+            
+              <category>backtracking</category>
+            
+          
+        
+        
+          
+            
+              <category>string</category>
+            
+          
+            
+              <category>pattern matching</category>
+            
+          
+        
+        
+          
+            
+              <category>regular expression</category>
+            
+          
+        
       </item>
       
+
     
   </channel>
 </rss>
