@@ -24,11 +24,11 @@
       
       <item>
         <title>Wildcard Matching</title>
-        <link>/solutions/wildcard-matching/</link>
+        <link>/playground/wildcard-matching/</link>
         <pubDate>Tue, 11 Feb 2020 16:12:15 +0800</pubDate>
         <author>xxuan@mail.ustc.edu.cn (Xuan)</author>
         <atom:modified>Tue, 11 Feb 2020 16:12:15 +0800</atom:modified>
-        <guid>/solutions/wildcard-matching/</guid>
+        <guid>/playground/wildcard-matching/</guid>
         <description></description>
         
         <dc:creator>Xuan</dc:creator>
@@ -68,11 +68,11 @@
       
       <item>
         <title>Regular Expression Matching</title>
-        <link>/solutions/regular-expression-matching/</link>
+        <link>/playground/regular-expression-matching/</link>
         <pubDate>Mon, 10 Feb 2020 21:46:18 +0800</pubDate>
         <author>xxuan@mail.ustc.edu.cn (Xuan)</author>
         <atom:modified>Mon, 10 Feb 2020 21:46:18 +0800</atom:modified>
-        <guid>/solutions/regular-expression-matching/</guid>
+        <guid>/playground/regular-expression-matching/</guid>
         <description></description>
         
         <dc:creator>Xuan</dc:creator>

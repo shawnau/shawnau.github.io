@@ -24,11 +24,11 @@
       
       <item>
         <title>Distinct Subsequences</title>
-        <link>/solutions/distinct-subsequences/</link>
+        <link>/playground/distinct-subsequences/</link>
         <pubDate>Tue, 18 Feb 2020 16:46:50 +0800</pubDate>
         <author>xxuan@mail.ustc.edu.cn (Xuan)</author>
         <atom:modified>Tue, 18 Feb 2020 16:46:50 +0800</atom:modified>
-        <guid>/solutions/distinct-subsequences/</guid>
+        <guid>/playground/distinct-subsequences/</guid>
         <description></description>
         
         <dc:creator>Xuan</dc:creator>
@@ -66,11 +66,11 @@
       
       <item>
         <title>Decode Ways 2</title>
-        <link>/solutions/decode-ways-2/</link>
+        <link>/playground/decode-ways-2/</link>
         <pubDate>Mon, 17 Feb 2020 16:52:56 +0800</pubDate>
         <author>xxuan@mail.ustc.edu.cn (Xuan)</author>
         <atom:modified>Mon, 17 Feb 2020 16:52:56 +0800</atom:modified>
-        <guid>/solutions/decode-ways-2/</guid>
+        <guid>/playground/decode-ways-2/</guid>
         <description></description>
         
         <dc:creator>Xuan</dc:creator>
@@ -100,11 +100,11 @@
       
       <item>
         <title>Decode Ways</title>
-        <link>/solutions/decode-ways/</link>
+        <link>/playground/decode-ways/</link>
         <pubDate>Mon, 17 Feb 2020 15:54:48 +0800</pubDate>
         <author>xxuan@mail.ustc.edu.cn (Xuan)</author>
         <atom:modified>Mon, 17 Feb 2020 15:54:48 +0800</atom:modified>
-        <guid>/solutions/decode-ways/</guid>
+        <guid>/playground/decode-ways/</guid>
         <description></description>
         
         <dc:creator>Xuan</dc:creator>
@@ -134,11 +134,11 @@
       
       <item>
         <title>Edit Distance</title>
-        <link>/solutions/edit-distance/</link>
+        <link>/playground/edit-distance/</link>
         <pubDate>Sun, 16 Feb 2020 13:02:42 +0800</pubDate>
         <author>xxuan@mail.ustc.edu.cn (Xuan)</author>
         <atom:modified>Sun, 16 Feb 2020 13:02:42 +0800</atom:modified>
-        <guid>/solutions/edit-distance/</guid>
+        <guid>/playground/edit-distance/</guid>
         <description>&lt;p&gt;This is about calculation Levenshtein Distance&lt;/p&gt;</description>
         
         <dc:creator>Xuan</dc:creator>
@@ -168,11 +168,11 @@
       
       <item>
         <title>Longest Valid Parentheses</title>
-        <link>/solutions/longest-valid-parentheses/</link>
+        <link>/playground/longest-valid-parentheses/</link>
         <pubDate>Fri, 14 Feb 2020 12:12:45 +0800</pubDate>
         <author>xxuan@mail.ustc.edu.cn (Xuan)</author>
         <atom:modified>Fri, 14 Feb 2020 12:12:45 +0800</atom:modified>
-        <guid>/solutions/longest-valid-parentheses/</guid>
+        <guid>/playground/longest-valid-parentheses/</guid>
         <description></description>
         
         <dc:creator>Xuan</dc:creator>
@@ -212,11 +212,11 @@
       
       <item>
         <title>Wildcard Matching</title>
-        <link>/solutions/wildcard-matching/</link>
+        <link>/playground/wildcard-matching/</link>
         <pubDate>Tue, 11 Feb 2020 16:12:15 +0800</pubDate>
         <author>xxuan@mail.ustc.edu.cn (Xuan)</author>
         <atom:modified>Tue, 11 Feb 2020 16:12:15 +0800</atom:modified>
-        <guid>/solutions/wildcard-matching/</guid>
+        <guid>/playground/wildcard-matching/</guid>
         <description></description>
         
         <dc:creator>Xuan</dc:creator>
@@ -256,11 +256,11 @@
       
       <item>
         <title>Regular Expression Matching</title>
-        <link>/solutions/regular-expression-matching/</link>
+        <link>/playground/regular-expression-matching/</link>
         <pubDate>Mon, 10 Feb 2020 21:46:18 +0800</pubDate>
         <author>xxuan@mail.ustc.edu.cn (Xuan)</author>
         <atom:modified>Mon, 10 Feb 2020 21:46:18 +0800</atom:modified>
-        <guid>/solutions/regular-expression-matching/</guid>
+        <guid>/playground/regular-expression-matching/</guid>
         <description></description>
         
         <dc:creator>Xuan</dc:creator>

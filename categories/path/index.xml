@@ -24,11 +24,11 @@
       
       <item>
         <title>Dungeon Game</title>
-        <link>/solutions/dungeon-game/</link>
+        <link>/playground/dungeon-game/</link>
         <pubDate>Sun, 01 Mar 2020 16:05:43 +0800</pubDate>
         <author>xxuan@mail.ustc.edu.cn (Xuan)</author>
         <atom:modified>Sun, 01 Mar 2020 16:05:43 +0800</atom:modified>
-        <guid>/solutions/dungeon-game/</guid>
+        <guid>/playground/dungeon-game/</guid>
         <description></description>
         
         <dc:creator>Xuan</dc:creator>
@@ -58,11 +58,11 @@
       
       <item>
         <title>Triangle</title>
-        <link>/solutions/triangle/</link>
+        <link>/playground/triangle/</link>
         <pubDate>Tue, 18 Feb 2020 23:39:31 +0800</pubDate>
         <author>xxuan@mail.ustc.edu.cn (Xuan)</author>
         <atom:modified>Tue, 18 Feb 2020 23:39:31 +0800</atom:modified>
-        <guid>/solutions/triangle/</guid>
+        <guid>/playground/triangle/</guid>
         <description></description>
         
         <dc:creator>Xuan</dc:creator>
@@ -92,11 +92,11 @@
       
       <item>
         <title>Minimal Path Sum</title>
-        <link>/solutions/minimal-path-sum/</link>
+        <link>/playground/minimal-path-sum/</link>
         <pubDate>Sun, 16 Feb 2020 00:20:57 +0800</pubDate>
         <author>xxuan@mail.ustc.edu.cn (Xuan)</author>
         <atom:modified>Sun, 16 Feb 2020 00:20:57 +0800</atom:modified>
-        <guid>/solutions/minimal-path-sum/</guid>
+        <guid>/playground/minimal-path-sum/</guid>
         <description></description>
         
         <dc:creator>Xuan</dc:creator>
@@ -126,11 +126,11 @@
       
       <item>
         <title>Unique Paths 3</title>
-        <link>/solutions/unique-paths-3/</link>
+        <link>/playground/unique-paths-3/</link>
         <pubDate>Sat, 15 Feb 2020 20:50:53 +0800</pubDate>
         <author>xxuan@mail.ustc.edu.cn (Xuan)</author>
         <atom:modified>Sat, 15 Feb 2020 20:50:53 +0800</atom:modified>
-        <guid>/solutions/unique-paths-3/</guid>
+        <guid>/playground/unique-paths-3/</guid>
         <description>&lt;p&gt;Walk over all grids without duplicate, with obstacles&lt;/p&gt;</description>
         
         <dc:creator>Xuan</dc:creator>
@@ -164,11 +164,11 @@
       
       <item>
         <title>Unique Paths 2</title>
-        <link>/solutions/unique-paths-2/</link>
+        <link>/playground/unique-paths-2/</link>
         <pubDate>Sat, 15 Feb 2020 20:13:37 +0800</pubDate>
         <author>xxuan@mail.ustc.edu.cn (Xuan)</author>
         <atom:modified>Sat, 15 Feb 2020 20:13:37 +0800</atom:modified>
-        <guid>/solutions/unique-paths-2/</guid>
+        <guid>/playground/unique-paths-2/</guid>
         <description>&lt;p&gt;Count all paths from a to b, with obstacles.&lt;/p&gt;</description>
         
         <dc:creator>Xuan</dc:creator>
@@ -198,11 +198,11 @@
       
       <item>
         <title>Unique Paths</title>
-        <link>/solutions/unique-paths/</link>
+        <link>/playground/unique-paths/</link>
         <pubDate>Sat, 15 Feb 2020 19:33:05 +0800</pubDate>
         <author>xxuan@mail.ustc.edu.cn (Xuan)</author>
         <atom:modified>Sat, 15 Feb 2020 19:33:05 +0800</atom:modified>
-        <guid>/solutions/unique-paths/</guid>
+        <guid>/playground/unique-paths/</guid>
         <description>&lt;p&gt;Count all paths from a to b&lt;/p&gt;</description>
         
         <dc:creator>Xuan</dc:creator>

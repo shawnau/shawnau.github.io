@@ -24,11 +24,11 @@
       
       <item>
         <title>Word Break 2</title>
-        <link>/solutions/word-break-2/</link>
+        <link>/playground/word-break-2/</link>
         <pubDate>Fri, 21 Feb 2020 22:13:35 +0800</pubDate>
         <author>xxuan@mail.ustc.edu.cn (Xuan)</author>
         <atom:modified>Fri, 21 Feb 2020 22:13:35 +0800</atom:modified>
-        <guid>/solutions/word-break-2/</guid>
+        <guid>/playground/word-break-2/</guid>
         <description></description>
         
         <dc:creator>Xuan</dc:creator>
@@ -62,11 +62,11 @@
       
       <item>
         <title>Palindrome Partitioning</title>
-        <link>/solutions/palindrome-partitioning/</link>
+        <link>/playground/palindrome-partitioning/</link>
         <pubDate>Thu, 20 Feb 2020 16:06:21 +0800</pubDate>
         <author>xxuan@mail.ustc.edu.cn (Xuan)</author>
         <atom:modified>Thu, 20 Feb 2020 16:06:21 +0800</atom:modified>
-        <guid>/solutions/palindrome-partitioning/</guid>
+        <guid>/playground/palindrome-partitioning/</guid>
         <description></description>
         
         <dc:creator>Xuan</dc:creator>
@@ -102,11 +102,11 @@
       
       <item>
         <title>Unique Paths 3</title>
-        <link>/solutions/unique-paths-3/</link>
+        <link>/playground/unique-paths-3/</link>
         <pubDate>Sat, 15 Feb 2020 20:50:53 +0800</pubDate>
         <author>xxuan@mail.ustc.edu.cn (Xuan)</author>
         <atom:modified>Sat, 15 Feb 2020 20:50:53 +0800</atom:modified>
-        <guid>/solutions/unique-paths-3/</guid>
+        <guid>/playground/unique-paths-3/</guid>
         <description>&lt;p&gt;Walk over all grids without duplicate, with obstacles&lt;/p&gt;</description>
         
         <dc:creator>Xuan</dc:creator>

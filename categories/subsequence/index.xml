@@ -24,11 +24,11 @@
       
       <item>
         <title>Distinct Subsequences</title>
-        <link>/solutions/distinct-subsequences/</link>
+        <link>/playground/distinct-subsequences/</link>
         <pubDate>Tue, 18 Feb 2020 16:46:50 +0800</pubDate>
         <author>xxuan@mail.ustc.edu.cn (Xuan)</author>
         <atom:modified>Tue, 18 Feb 2020 16:46:50 +0800</atom:modified>
-        <guid>/solutions/distinct-subsequences/</guid>
+        <guid>/playground/distinct-subsequences/</guid>
         <description></description>
         
         <dc:creator>Xuan</dc:creator>
@@ -66,11 +66,11 @@
       
       <item>
         <title>Interleaving String</title>
-        <link>/solutions/interleaving-string/</link>
+        <link>/playground/interleaving-string/</link>
         <pubDate>Mon, 17 Feb 2020 17:23:04 +0800</pubDate>
         <author>xxuan@mail.ustc.edu.cn (Xuan)</author>
         <atom:modified>Mon, 17 Feb 2020 17:23:04 +0800</atom:modified>
-        <guid>/solutions/interleaving-string/</guid>
+        <guid>/playground/interleaving-string/</guid>
         <description></description>
         
         <dc:creator>Xuan</dc:creator>
