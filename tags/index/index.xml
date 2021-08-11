@@ -22,12 +22,12 @@
 
       
       <item>
-        <title>Blogs</title>
-        <link>/blogs/</link>
-        <pubDate>Sun, 04 Jul 2021 23:12:54 +0800</pubDate>
+        <title>Playground</title>
+        <link>/playground/</link>
+        <pubDate>Wed, 11 Aug 2021 20:09:03 +0800</pubDate>
         <author>xxuan@mail.ustc.edu.cn (Xuan)</author>
         
-        <guid>/blogs/</guid>
+        <guid>/playground/</guid>
         <description></description>
         
         <dc:creator>Hugo Authors</dc:creator>
@@ -46,12 +46,12 @@
       </item>
       
       <item>
-        <title>Playground</title>
-        <link>/playground/</link>
-        <pubDate>Sun, 01 Mar 2020 16:05:43 +0800</pubDate>
+        <title>Blogs</title>
+        <link>/blogs/</link>
+        <pubDate>Sun, 04 Jul 2021 23:12:54 +0800</pubDate>
         <author>xxuan@mail.ustc.edu.cn (Xuan)</author>
         
-        <guid>/playground/</guid>
+        <guid>/blogs/</guid>
         <description></description>
         
         <dc:creator>Hugo Authors</dc:creator>

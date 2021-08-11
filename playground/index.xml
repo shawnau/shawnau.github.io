@@ -14,13 +14,31 @@
     <managingEditor>xxuan@mail.ustc.edu.cn (Xuan)</managingEditor>
     <webMaster>xxuan@mail.ustc.edu.cn (Xuan)</webMaster>
     <copyright>&amp;copy;{year}, All Rights Reserved</copyright>
-    <lastBuildDate>Sun, 01 Mar 2020 16:05:43 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 11 Aug 2021 20:09:03 +0800</lastBuildDate>
     
         <atom:link href="/playground/index.xml" rel="self" type="application/rss+xml" />
     
     
     
 
+      
+      <item>
+        <title>Trapping Rain Water</title>
+        <link>/playground/trapping-rain-water/</link>
+        <pubDate>Wed, 11 Aug 2021 20:09:03 +0800</pubDate>
+        <author>xxuan@mail.ustc.edu.cn (Xuan)</author>
+        <atom:modified>Wed, 11 Aug 2021 20:09:03 +0800</atom:modified>
+        <guid>/playground/trapping-rain-water/</guid>
+        <description></description>
+        
+        <dc:creator>Xuan</dc:creator>
+        
+        
+        
+        
+        
+        
+      </item>
       
       <item>
         <title>Dungeon Game</title>
