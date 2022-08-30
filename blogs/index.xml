@@ -14,13 +14,49 @@
     <managingEditor>xxuan@mail.ustc.edu.cn (Xuan)</managingEditor>
     <webMaster>xxuan@mail.ustc.edu.cn (Xuan)</webMaster>
     <copyright>&amp;copy;{year}, All Rights Reserved</copyright>
-    <lastBuildDate>Sun, 04 Jul 2021 23:12:54 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 30 Aug 2022 16:56:33 +0800</lastBuildDate>
     
         <atom:link href="/blogs/index.xml" rel="self" type="application/rss+xml" />
     
     
     
 
+      
+      <item>
+        <title>观察者模式</title>
+        <link>/blogs/observer-pattern/</link>
+        <pubDate>Tue, 30 Aug 2022 16:56:33 +0800</pubDate>
+        <author>xxuan@mail.ustc.edu.cn (Xuan)</author>
+        <atom:modified>Tue, 30 Aug 2022 16:56:33 +0800</atom:modified>
+        <guid>/blogs/observer-pattern/</guid>
+        <description>&lt;p&gt;观察者 - 被观察者是一个常见的设计模式.&lt;/p&gt;</description>
+        
+        <dc:creator>Xuan</dc:creator>
+        
+        
+        
+        
+          
+            
+              <category>Observer</category>
+            
+          
+        
+        
+          
+            
+              <category>C#</category>
+            
+          
+        
+        
+          
+            
+              <category>Design Pattern</category>
+            
+          
+        
+      </item>
       
       <item>
         <title>赛博朋克, 调酒师与现实</title>
@@ -52,7 +88,7 @@
         <description>MathJax  A JavaScript display engine for mathematics that works in all browsers.No more setup for readers. It just works.
  When \(a \ne 0\), there are two solutions to \((ax^2 + bx + c = 0)\) and they are \[x = {-b \pm \sqrt{b^2-4ac} \over 2a}.\]
 ChartJS  Simple yet flexible JavaScript charting for designers &amp;amp; developers
- {&amp;quot;type&amp;quot;: &amp;quot;bar&amp;quot;,&amp;quot;data&amp;quot;: {&amp;quot;labels&amp;quot;: [&amp;quot;One&amp;quot;, &amp;quot;Two&amp;quot;, &amp;quot;Three&amp;quot;, &amp;quot;Four&amp;quot;, &amp;quot;Five&amp;quot;, &amp;quot;Six&amp;quot;],&amp;quot;datasets&amp;quot;: [{&amp;quot;label&amp;quot;: &amp;quot;# of Votes&amp;quot;,&amp;quot;data&amp;quot;: [12, 19, 3, 5, 3, 8]}]}}{&amp;quot;type&amp;quot;: &amp;quot;line&amp;quot;,&amp;quot;data&amp;quot;: {&amp;quot;labels&amp;quot;: [&amp;quot;One&amp;quot;, &amp;quot;Two&amp;quot;, &amp;quot;Three&amp;quot;, &amp;quot;Four&amp;quot;, &amp;quot;Five&amp;quot;, &amp;quot;Six&amp;quot;],&amp;quot;datasets&amp;quot;: [{&amp;quot;label&amp;quot;: &amp;quot;# of Votes&amp;quot;,&amp;quot;data&amp;quot;: [12, 19, 3, 5, 2, 3],&amp;quot;backgroundColor&amp;quot;:&amp;quot;transparent&amp;quot;,&amp;quot;borderColor&amp;quot;:&amp;quot;orange&amp;quot;},{&amp;quot;label&amp;quot;: &amp;quot;Some other set&amp;quot;,&amp;quot;data&amp;quot;: [15, 8, 13, 5, 5, 9],&amp;quot;backgroundColor&amp;quot;:&amp;quot;transparent&amp;quot;,&amp;quot;borderColor&amp;quot;:&amp;quot;#44ccff&amp;quot;}]}}FLowChart  flowchart.</description>
+ { &amp;quot;type&amp;quot;: &amp;quot;bar&amp;quot;, &amp;quot;data&amp;quot;: { &amp;quot;labels&amp;quot;: [&amp;quot;One&amp;quot;, &amp;quot;Two&amp;quot;, &amp;quot;Three&amp;quot;, &amp;quot;Four&amp;quot;, &amp;quot;Five&amp;quot;, &amp;quot;Six&amp;quot;], &amp;quot;datasets&amp;quot;: [{ &amp;quot;label&amp;quot;: &amp;quot;# of Votes&amp;quot;, &amp;quot;data&amp;quot;: [12, 19, 3, 5, 3, 8] }] } } { &amp;quot;type&amp;quot;: &amp;quot;line&amp;quot;, &amp;quot;data&amp;quot;: { &amp;quot;labels&amp;quot;: [&amp;quot;One&amp;quot;, &amp;quot;Two&amp;quot;, &amp;quot;Three&amp;quot;, &amp;quot;Four&amp;quot;, &amp;quot;Five&amp;quot;, &amp;quot;Six&amp;quot;], &amp;quot;datasets&amp;quot;: [ { &amp;quot;label&amp;quot;: &amp;quot;# of Votes&amp;quot;, &amp;quot;data&amp;quot;: [12, 19, 3, 5, 2, 3], &amp;quot;backgroundColor&amp;quot;:&amp;quot;transparent&amp;quot;, &amp;quot;borderColor&amp;quot;:&amp;quot;orange&amp;quot; }, { &amp;quot;label&amp;quot;: &amp;quot;Some other set&amp;quot;, &amp;quot;data&amp;quot;: [15, 8, 13, 5, 5, 9], &amp;quot;backgroundColor&amp;quot;:&amp;quot;transparent&amp;quot;, &amp;quot;borderColor&amp;quot;:&amp;quot;#44ccff&amp;quot; } ] } } FLowChart  flowchart.</description>
         
         <dc:creator>Choi</dc:creator>
         

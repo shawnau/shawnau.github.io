@@ -3,6 +3,46 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>/blogs/</loc>
+    <lastmod>2022-08-30T16:56:33+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/categories/c#/</loc>
+    <lastmod>2022-08-30T16:56:33+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/categories/</loc>
+    <lastmod>2022-08-30T16:56:33+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/series/design-pattern/</loc>
+    <lastmod>2022-08-30T16:56:33+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/observer/</loc>
+    <lastmod>2022-08-30T16:56:33+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/series/</loc>
+    <lastmod>2022-08-30T16:56:33+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/</loc>
+    <lastmod>2022-08-30T16:56:33+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/blogs/observer-pattern/</loc>
+    <lastmod>2022-08-30T16:56:33+08:00</lastmod>
+  </url>
+  
+  <url>
     <loc>/playground/</loc>
     <lastmod>2021-08-11T20:09:03+08:00</lastmod>
   </url>
@@ -13,18 +53,8 @@
   </url>
   
   <url>
-    <loc>/blogs/</loc>
-    <lastmod>2021-07-04T23:12:54+08:00</lastmod>
-  </url>
-  
-  <url>
     <loc>/blogs/va11/</loc>
     <lastmod>2021-07-04T23:12:54+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/categories/</loc>
-    <lastmod>2020-03-01T16:05:43+08:00</lastmod>
   </url>
   
   <url>
@@ -48,11 +78,6 @@
   </url>
   
   <url>
-    <loc>/tags/</loc>
-    <lastmod>2020-03-01T16:05:43+08:00</lastmod>
-  </url>
-  
-  <url>
     <loc>/tags/backtracking/</loc>
     <lastmod>2020-02-22T19:15:06+08:00</lastmod>
   </url>
@@ -64,11 +89,6 @@
   
   <url>
     <loc>/series/palindromic/</loc>
-    <lastmod>2020-02-22T19:15:06+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/series/</loc>
     <lastmod>2020-02-22T19:15:06+08:00</lastmod>
   </url>
   

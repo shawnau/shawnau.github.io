@@ -10,13 +10,13 @@
 
 
   
-  <script defer src="/js/fuse.min.c4bee9a8d44273d6154fe86006923d4131eb2e8069d8897687137c6f37f553e3.js"></script>
+  <script defer src="/js/fuse.min.94c78ad70b02749822921660cf4e9f0b3701bc0680c421afb784a78228de0275.js"></script>
 
 
 
-<script src="/js/enquire.min.aa37bdcb743826eecdae5c5d177fc7d6552340f1b4378ffaa9c82b2c6111400b.js"></script>
+<script src="/js/enquire.min.dfb99dee1e029d51d6cfb672d847929890b1585402de17f5ed092edd72a688b4.js"></script>
 
-<script defer src="/js/lazysizes.min.5e11d056075a05065b9c0bfec44084a113fc2976c2952ec804dedb61c7662db9.js"></script>
+<script defer src="/js/lazysizes.min.31dd6a2d3a1ec0f78a8df007535cf23f03aeb5c70f026e6d6a19dac3b3acc340.js"></script>
 
 <script defer src="/js/helper/getParents.min.1618c696be7c98933f9a92677f518b512a74e55bdbb976b09936b4182e93181b.js"></script>
 
@@ -1237,7 +1237,7 @@
 <meta property="og:type" content="article">
 <meta property="og:description" content="warp drive active~">
 
-<meta name="generator" content="Hugo 0.69.0" />
+<meta name="generator" content="Hugo 0.68.3" />
 <meta name="msapplication-TileColor" content="#fff">
 
 <meta name="theme-color" content="#fff">
@@ -1606,7 +1606,7 @@ $$\max\limits_{0\leq l&lt;i&lt;r&lt;n} (\min(h_l, h_r) - h_i) = \min (\max\limit
 <p>由此可知，对于任意一个bar，它左边最高的bar和右边最高的bar中比较低的那个决定了蓄水量.</p>
 <h2 id="水位法">&ldquo;水位&quot;法</h2>
 <p>对此, 网络上有一个非常直观的的解法：</p>
-<p>想象水从两边流向中间, 水位在逐渐上升, 水会逐渐淹没比较低的bar,并且在淹没其之后流向相邻的bar, 从两边逐渐向中间蔓延. <br />
+<p>想象水从两边流向中间, 水位在逐渐上升, 水会逐渐淹没比较低的bar,并且在淹没其之后流向相邻的bar, 从两边逐渐向中间蔓延.<br />
 设水位高度为$level$, 并且水流向了$h_j$.</p>
 <ol>
 <li>$level &gt; h_j$, 水位比bar高, 水会淹没$h_j$, 此时$j$位置可以拦截的水量即为$v_j = level - h_j$. 证明: 无论水是从左边还是右边流向位置$j$的, 它一定得先漫过左右两边最高的bar中比较低的bar, 否则不能流到此位置.</li>
@@ -1617,11 +1617,11 @@ $$\max\limits_{0\leq l&lt;i&lt;r&lt;n} (\min(h_l, h_r) - h_i) = \min (\max\limit
 <ol start="0">
 <li>水位为$0$, 左右两边的bar入队列, 作为初始状态.</li>
 <li>最小值出队列, $h_i = q.pop()$. 这代表水位需要浸没该bar</li>
-<li>更新水位, <br />
+<li>更新水位,<br />
 a. 如果$level \geq h_i$, 说明水位已经高过该bar, 不用更新水位值.<br />
 b. 如果$level &lt; h_i$, 说明水位需要涨到该bar的高度才能浸没它, 更新水位值.<br />
 c. 综上所述, $level = max(level, h_i)$</li>
-<li>浸没$h_i$之后, 水开始探索和$h_i$相邻的bar, 设为$h_{next}$, <br />
+<li>浸没$h_i$之后, 水开始探索和$h_i$相邻的bar, 设为$h_{next}$,<br />
 a. 若$h_{next}$没有入过队列(未被水接触), 将$h_{next}$入队列, 说明水流至此.<br />
 b. 若$h_{next} &lt; level$, 说明水流至此, 并且水位没过$h_{next}$, 计算蓄水量$v_i = level - h_{next}$</li>
 <li>重复1~3步骤直至队列为空.</li>
@@ -2374,7 +2374,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 
-<script defer src="/js/clipboard.min.c168d3a04c45a631be76437054619a4a3b30107960cb9730be96012fef5762b0.js"></script>
+<script defer src="/js/clipboard.min.1626706afc88d95ebe1173b553ec732c6dc82a576989315fdf5e7779af738a44.js"></script>
 
 <script defer src="/js/helper/getParents.min.js"></script>
 
@@ -2972,7 +2972,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 
             <p class="caption">
                 
-                    ©2021, All Rights Reserved
+                    ©2022, All Rights Reserved
                 
             </p>
         

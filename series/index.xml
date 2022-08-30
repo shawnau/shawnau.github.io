@@ -14,13 +14,31 @@
     <managingEditor>xxuan@mail.ustc.edu.cn (Xuan)</managingEditor>
     <webMaster>xxuan@mail.ustc.edu.cn (Xuan)</webMaster>
     <copyright>&amp;copy;{year}, All Rights Reserved</copyright>
-    <lastBuildDate>Sat, 22 Feb 2020 19:15:06 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 30 Aug 2022 16:56:33 +0800</lastBuildDate>
     
         <atom:link href="/series/index.xml" rel="self" type="application/rss+xml" />
     
     
     
 
+      
+      <item>
+        <title>Design Pattern</title>
+        <link>/series/design-pattern/</link>
+        <pubDate>Tue, 30 Aug 2022 16:56:33 +0800</pubDate>
+        <author>xxuan@mail.ustc.edu.cn (Xuan)</author>
+        
+        <guid>/series/design-pattern/</guid>
+        <description></description>
+        
+        <dc:creator>Xuan</dc:creator>
+        
+        
+        
+        
+        
+        
+      </item>
       
       <item>
         <title>palindromic</title>
