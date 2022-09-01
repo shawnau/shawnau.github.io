@@ -18,9 +18,9 @@
 
 <script defer src="/js/lazysizes.min.31dd6a2d3a1ec0f78a8df007535cf23f03aeb5c70f026e6d6a19dac3b3acc340.js"></script>
 
-<script defer src="/js/helper/getParents.min.1618c696be7c98933f9a92677f518b512a74e55bdbb976b09936b4182e93181b.js"></script>
+<script defer src="/js/helper/getParents.min.086022fb02d7a1517e33c2670bffb976b3e80bcacd9caeee0c6a586064f20e42.js"></script>
 
-<script defer src="/js/helper/fadeinout.min.93a331f96194789a542f33690bbe4f0c102c7e78ffc018217f5a1c33010bad91.js"></script>
+<script defer src="/js/helper/fadeinout.min.9fe4b81a87e722d20c220a2b6ca145a3d8a2cb3ea1e89de55329ff417bdd9570.js"></script>
 
 <script defer src="/js/helper/closest.min.js"></script>
   
@@ -1221,7 +1221,7 @@
 
 
     
-<meta name="description" content="warp drive active~" />
+<meta name="description" content="臭名昭著的接雨水以及其常用解法" />
 
 
 <meta name="created" content="2021-08-11T20:09:03&#43;0800">
@@ -1235,9 +1235,9 @@
 <meta property="og:title" content="Trapping Rain Water">
 <meta property="og:url" content="/playground/trapping-rain-water/">
 <meta property="og:type" content="article">
-<meta property="og:description" content="warp drive active~">
+<meta property="og:description" content="臭名昭著的接雨水以及其常用解法">
 
-<meta name="generator" content="Hugo 0.68.3" />
+<meta name="generator" content="Hugo 0.102.2" />
 <meta name="msapplication-TileColor" content="#fff">
 
 <meta name="theme-color" content="#fff">
@@ -1276,7 +1276,7 @@
     "datePublished": "2021-08-11T20:09:03+08:00",
     "dateModified": "2021-08-11T20:09:03+08:00",
     "url" : "/playground/trapping-rain-water/",
-    "description": "",
+    "description": "臭名昭著的接雨水以及其常用解法",
     "mainEntityOfPage": {
       "@type": "WebPage",
       "@id": ""
@@ -1586,6 +1586,7 @@
   <div class="expand__content expand__content--toc">
     <nav id="TableOfContents">
   <ul>
+    <li><a href="#暴力解">暴力解</a></li>
     <li><a href="#水位法">&ldquo;水位&quot;法</a>
       <ul>
         <li><a href="#优先队列解">优先队列解</a></li>
@@ -1600,12 +1601,13 @@
 
       <p><a href="https://leetcode.com/problems/trapping-rain-water/">https://leetcode.com/problems/trapping-rain-water/</a></p>
 <p>设第$i$个bar的高度为$h_i$, 其蓄水量为$v_i$, 一共有$n$个bar,</p>
-<p>对于每一个位置，考虑所有可能的左右bar，计算每一对可以拦截的水量，而每一对拦截水量是$\min(h_l, h_r) - h_i$<br />
-所有可能的围挡方式中，最高值就是答案，即<br />
-$$\max\limits_{0\leq l&lt;i&lt;r&lt;n} (\min(h_l, h_r) - h_i) = \min (\max\limits_{0\leq l&lt;i} h_l, \max\limits_{i&lt;r&lt;n} h_r) - h_i$$</p>
-<p>由此可知，对于任意一个bar，它左边最高的bar和右边最高的bar中比较低的那个决定了蓄水量.</p>
+<h2 id="暴力解">暴力解</h2>
+<p>对于每一个位置$i$, 考虑它头顶有多少水. 很容易发现它左边最高和右边最高的两个bar中比较低的那个决定了水位高度, 再减去当前bar的高度就是水的体积. 也就是:<br />
+$$v_i = \min (\max\limits_{0\leq l&lt;i} h_l, \max\limits_{i&lt;r&lt;n} h_r) - h_i$$</p>
+<p>对所有位置求和就得到了结果. 注意处理负数情况为0. 时间复杂度 $O(n^2)$.<br />
+可以发现如果提前维护好每一个位置左边和右边最大的bar, 就可以 $O(n)$ 时间复杂度解决本题.</p>
 <h2 id="水位法">&ldquo;水位&quot;法</h2>
-<p>对此, 网络上有一个非常直观的的解法：</p>
+<p>对此, 还有一个非常直观的的解法：</p>
 <p>想象水从两边流向中间, 水位在逐渐上升, 水会逐渐淹没比较低的bar,并且在淹没其之后流向相邻的bar, 从两边逐渐向中间蔓延.<br />
 设水位高度为$level$, 并且水流向了$h_j$.</p>
 <ol>
@@ -1613,22 +1615,16 @@ $$\max\limits_{0\leq l&lt;i&lt;r&lt;n} (\min(h_l, h_r) - h_i) = \min (\max\limit
 <li>$level \leq h_j$, 那么水平面遇到了更高的bar, 它不会容纳水, 即$v_j = 0$. 因为水从某一侧来就说明$h_j$的高度比那一侧最高的bar更高.</li>
 </ol>
 <h3 id="优先队列解">优先队列解</h3>
-<p>维护一个优先队列, 其中包含了水平面接触到但是尚未浸没的bar, 随着水位的上升, 有以下步骤</p>
-<ol start="0">
-<li>水位为$0$, 左右两边的bar入队列, 作为初始状态.</li>
-<li>最小值出队列, $h_i = q.pop()$. 这代表水位需要浸没该bar</li>
-<li>更新水位,<br />
-a. 如果$level \geq h_i$, 说明水位已经高过该bar, 不用更新水位值.<br />
-b. 如果$level &lt; h_i$, 说明水位需要涨到该bar的高度才能浸没它, 更新水位值.<br />
-c. 综上所述, $level = max(level, h_i)$</li>
-<li>浸没$h_i$之后, 水开始探索和$h_i$相邻的bar, 设为$h_{next}$,<br />
-a. 若$h_{next}$没有入过队列(未被水接触), 将$h_{next}$入队列, 说明水流至此.<br />
-b. 若$h_{next} &lt; level$, 说明水流至此, 并且水位没过$h_{next}$, 计算蓄水量$v_i = level - h_{next}$</li>
-<li>重复1~3步骤直至队列为空.</li>
+<p>维护水位高度和bar组成的优先队列, 初始时水位为0, 左右两边的bar入队列. 随着水位的上升, 有:</p>
+<ol>
+<li>最小值出队列, 设为<code>i</code>, 同时更新水位 <code>level = max(level, height[i])</code></li>
+<li>探索与<code>i</code>相邻的bar, 设为<code>j</code>, 若未访问过, 压入队列, 累加该位置的蓄水量 <code>v += level - height[j]</code></li>
+<li>重复1~2步骤直至队列为空.</li>
 </ol>
+<p>可以发现, 这就是一个从边界开始的bfs, 对每个元素计算其蓄水量并累加得到结果.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -1653,44 +1649,41 @@ b. 若$h_{next} &lt; level$, 说明水流至此, 并且水位没过$h_{next}$, �
 </span><span class="lnt">23
 </span><span class="lnt">24
 </span><span class="lnt">25
-</span><span class="lnt">26
-</span><span class="lnt">27
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="kt">int</span> <span class="n">visited</span><span class="p">[</span><span class="mi">20001</span><span class="p">];</span>
-<span class="kt">int</span> <span class="nf">trap_heap</span><span class="p">(</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&amp;</span> <span class="n">height</span><span class="p">)</span> <span class="p">{</span>
-    <span class="c1">// 优先队列的数据结构是 {index, height} 分别记录了bar的位置和高度
-</span><span class="c1"></span>    <span class="k">auto</span> <span class="n">cmp_height</span> <span class="o">=</span> <span class="p">[](</span><span class="n">pair</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span> <span class="kt">int</span><span class="o">&gt;</span> <span class="n">a</span><span class="p">,</span> <span class="n">pair</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span> <span class="kt">int</span><span class="o">&gt;</span> <span class="n">b</span><span class="p">)</span> <span class="p">{</span><span class="k">return</span> <span class="n">a</span><span class="p">.</span><span class="n">second</span> <span class="o">&gt;</span> <span class="n">b</span><span class="p">.</span><span class="n">second</span><span class="p">;};</span>
-    <span class="n">priority_queue</span><span class="o">&lt;</span><span class="n">pair</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span> <span class="kt">int</span><span class="o">&gt;</span><span class="p">,</span> <span class="n">vector</span><span class="o">&lt;</span><span class="n">pair</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span> <span class="kt">int</span><span class="o">&gt;&gt;</span><span class="p">,</span> <span class="k">decltype</span><span class="p">(</span><span class="n">cmp_height</span><span class="p">)</span><span class="o">&gt;</span> <span class="n">q</span><span class="p">(</span><span class="n">cmp_height</span><span class="p">);</span>
-    <span class="c1">// 设定初始状态, visited记录了该bar是否入过队列.
-</span><span class="c1"></span>    <span class="kt">int</span> <span class="n">level</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="kt">int</span> <span class="n">v</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">memset</span><span class="p">(</span><span class="n">visited</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">visited</span><span class="p">));</span>
-    <span class="n">q</span><span class="p">.</span><span class="n">push</span><span class="p">({</span><span class="mi">0</span><span class="p">,</span> <span class="n">height</span><span class="p">[</span><span class="mi">0</span><span class="p">]});</span> <span class="n">q</span><span class="p">.</span><span class="n">push</span><span class="p">({</span><span class="n">height</span><span class="p">.</span><span class="n">size</span><span class="p">()</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">height</span><span class="p">[</span><span class="n">height</span><span class="p">.</span><span class="n">size</span><span class="p">()</span><span class="o">-</span><span class="mi">1</span><span class="p">]});</span>
-    <span class="n">visited</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">visited</span><span class="p">[</span><span class="n">height</span><span class="p">.</span><span class="n">size</span><span class="p">()</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
-
-    <span class="k">while</span> <span class="p">(</span><span class="o">!</span><span class="n">q</span><span class="p">.</span><span class="n">empty</span><span class="p">())</span> <span class="p">{</span>
-        <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">q</span><span class="p">.</span><span class="n">top</span><span class="p">().</span><span class="n">first</span><span class="p">;</span> <span class="kt">int</span> <span class="n">h</span> <span class="o">=</span> <span class="n">q</span><span class="p">.</span><span class="n">top</span><span class="p">().</span><span class="n">second</span><span class="p">;</span> <span class="c1">// 最小值出队列
-</span><span class="c1"></span>        <span class="n">q</span><span class="p">.</span><span class="n">pop</span><span class="p">();</span>
-        <span class="n">level</span> <span class="o">=</span> <span class="n">max</span><span class="p">(</span><span class="n">level</span><span class="p">,</span> <span class="n">h</span><span class="p">);</span> <span class="c1">// 更新水位
-</span><span class="c1"></span>        <span class="kt">int</span> <span class="n">neighbours</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">};</span>
-        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="nl">next</span> <span class="p">:</span> <span class="n">neighbours</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// 遍历邻居
-</span><span class="c1"></span>            <span class="k">if</span> <span class="p">(</span><span class="n">next</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">next</span> <span class="o">&lt;</span> <span class="n">height</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="n">visited</span><span class="p">[</span><span class="n">next</span><span class="p">])</span> <span class="p">{</span> <span class="c1">// 边界检查, 且已经入过队列的不可以再入队列.
-</span><span class="c1"></span>                <span class="n">visited</span><span class="p">[</span><span class="n">next</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
-                <span class="k">if</span> <span class="p">(</span><span class="n">level</span> <span class="o">&gt;</span> <span class="n">height</span><span class="p">[</span><span class="n">next</span><span class="p">])</span> <span class="p">{</span> <span class="c1">// 水位高于next
-</span><span class="c1"></span>                    <span class="n">v</span> <span class="o">+=</span> <span class="n">level</span> <span class="o">-</span> <span class="n">height</span><span class="p">[</span><span class="n">next</span><span class="p">];</span>
-                <span class="p">}</span>
-                <span class="n">q</span><span class="p">.</span><span class="n">push</span><span class="p">({</span><span class="n">next</span><span class="p">,</span> <span class="n">height</span><span class="p">[</span><span class="n">next</span><span class="p">]});</span>
-            <span class="p">}</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-    <span class="k">return</span> <span class="n">v</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">trap</span><span class="p">(</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&amp;</span> <span class="n">height</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="kt">int</span> <span class="n">n</span> <span class="o">=</span> <span class="n">height</span><span class="p">.</span><span class="n">size</span><span class="p">(),</span> <span class="n">level</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="kt">int</span> <span class="n">volume</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">visited</span><span class="p">(</span><span class="n">n</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">priority_queue</span><span class="o">&lt;</span><span class="n">pair</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span> <span class="kt">int</span><span class="o">&gt;&gt;</span> <span class="n">q</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        
+</span></span><span class="line"><span class="cl">        <span class="c1">// 首尾入栈
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">q</span><span class="p">.</span><span class="n">push</span><span class="p">({</span><span class="o">-</span><span class="n">height</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="mi">0</span><span class="p">});</span>
+</span></span><span class="line"><span class="cl">        <span class="n">q</span><span class="p">.</span><span class="n">push</span><span class="p">({</span><span class="o">-</span><span class="n">height</span><span class="p">[</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">});</span>
+</span></span><span class="line"><span class="cl">        <span class="n">visited</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">visited</span><span class="p">[</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="k">while</span> <span class="p">(</span><span class="o">!</span><span class="n">q</span><span class="p">.</span><span class="n">empty</span><span class="p">())</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">auto</span> <span class="n">i</span> <span class="o">=</span> <span class="n">q</span><span class="p">.</span><span class="n">top</span><span class="p">();</span> <span class="n">q</span><span class="p">.</span><span class="n">pop</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">            <span class="n">level</span> <span class="o">=</span> <span class="n">max</span><span class="p">(</span><span class="n">level</span><span class="p">,</span> <span class="o">-</span><span class="n">i</span><span class="p">.</span><span class="n">first</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">            <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="nl">j</span> <span class="p">:</span> <span class="p">{</span><span class="n">i</span><span class="p">.</span><span class="n">second</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">i</span><span class="p">.</span><span class="n">second</span><span class="o">+</span><span class="mi">1</span><span class="p">})</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="k">if</span> <span class="p">(</span><span class="n">j</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">n</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="n">visited</span><span class="p">[</span><span class="n">j</span><span class="p">])</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">visited</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">                    <span class="k">if</span> <span class="p">(</span><span class="n">height</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">level</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                        <span class="n">volume</span> <span class="o">+=</span> <span class="n">level</span> <span class="o">-</span> <span class="n">height</span><span class="p">[</span><span class="n">j</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">                    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">q</span><span class="p">.</span><span class="n">push</span><span class="p">({</span><span class="o">-</span><span class="n">height</span><span class="p">[</span><span class="n">j</span><span class="p">],</span> <span class="n">j</span><span class="p">});</span>
+</span></span><span class="line"><span class="cl">                <span class="p">}</span>
+</span></span><span class="line"><span class="cl">            <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">volume</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="双指针解">双指针解</h3>
+</div><p>这里用了几个小技巧. 一个是优先队列比较<code>pair&lt;int, int&gt;</code>中的第一个元素, 所以把高度放在前, 把index放在后. 其次是默认的优先队列是最大堆, 为了变成最小堆, 我们压入负的高度.</p>
+<h3 id="双指针解">双指针解</h3>
 <p>双指针$l, r$从两边向中间遍历, 双指针其实就是水位法中优先队列里的两个元素. 双指针的移动顺序, 其实就是水浸没bar的顺序. 所以逻辑是完全一致的.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -1716,31 +1709,31 @@ b. 若$h_{next} &lt; level$, 说明水流至此, 并且水位没过$h_{next}$, �
 </span><span class="lnt">24
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
-<span class="k">public</span><span class="o">:</span>
-    <span class="kt">int</span> <span class="n">trap</span><span class="p">(</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&amp;</span> <span class="n">height</span><span class="p">)</span> <span class="p">{</span>
-        <span class="kt">int</span> <span class="n">l</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="kt">int</span> <span class="n">r</span> <span class="o">=</span> <span class="n">height</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span> <span class="c1">// l和r对应队列中的index
-</span><span class="c1"></span>        <span class="kt">int</span> <span class="n">lmax</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="kt">int</span> <span class="n">rmax</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="kt">int</span> <span class="n">v</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="c1">// lmax和rmax代表了左右两边水位的高度, 对应level
-</span><span class="c1"></span>        <span class="k">while</span> <span class="p">(</span><span class="n">l</span> <span class="o">&lt;=</span> <span class="n">r</span><span class="p">)</span> <span class="p">{</span>
-            <span class="kt">int</span> <span class="n">hl</span> <span class="o">=</span> <span class="n">height</span><span class="p">[</span><span class="n">l</span><span class="p">];</span> <span class="kt">int</span> <span class="n">hr</span> <span class="o">=</span> <span class="n">height</span><span class="p">[</span><span class="n">r</span><span class="p">];</span> <span class="c1">// hl和hr对应队列中的height
-</span><span class="c1"></span>            <span class="k">if</span> <span class="p">(</span><span class="n">hl</span> <span class="o">&lt;=</span> <span class="n">hr</span><span class="p">)</span> <span class="p">{</span>  <span class="c1">// 左边水位比较低, 先处理左边
-</span><span class="c1"></span>                <span class="n">lmax</span> <span class="o">=</span> <span class="n">max</span><span class="p">(</span><span class="n">lmax</span><span class="p">,</span> <span class="n">hl</span><span class="p">);</span> <span class="c1">// 更新水位
-</span><span class="c1"></span>                <span class="k">if</span> <span class="p">(</span><span class="n">lmax</span> <span class="o">&gt;</span> <span class="n">hl</span><span class="p">)</span> <span class="p">{</span> 
-                    <span class="n">v</span> <span class="o">+=</span> <span class="n">lmax</span> <span class="o">-</span> <span class="n">hl</span><span class="p">;</span> <span class="c1">// 水位浸没hl
-</span><span class="c1"></span>                <span class="p">}</span>
-                <span class="n">l</span><span class="o">++</span><span class="p">;</span> <span class="c1">// 对应hl入队列
-</span><span class="c1"></span>            <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>  <span class="c1">// 右边水位比较低, 先处理右边
-</span><span class="c1"></span>                <span class="n">rmax</span> <span class="o">=</span> <span class="n">max</span><span class="p">(</span><span class="n">rmax</span><span class="p">,</span> <span class="n">hr</span><span class="p">);</span>
-                <span class="k">if</span> <span class="p">(</span><span class="n">rmax</span> <span class="o">&gt;</span> <span class="n">hr</span><span class="p">)</span> <span class="p">{</span>
-                    <span class="n">v</span> <span class="o">+=</span> <span class="n">rmax</span> <span class="o">-</span> <span class="n">hr</span><span class="p">;</span> <span class="c1">// 水位浸没hr
-</span><span class="c1"></span>                <span class="p">}</span>
-                <span class="n">r</span><span class="o">--</span><span class="p">;</span> <span class="c1">// 对应hr入队列
-</span><span class="c1"></span>            <span class="p">}</span>
-        <span class="p">}</span>
-        <span class="k">return</span> <span class="n">v</span><span class="p">;</span>
-    <span class="p">}</span>
-<span class="p">};</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="k">public</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">trap</span><span class="p">(</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&amp;</span> <span class="n">height</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="kt">int</span> <span class="n">l</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="kt">int</span> <span class="n">r</span> <span class="o">=</span> <span class="n">height</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span> <span class="c1">// l和r对应队列中的index
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="kt">int</span> <span class="n">lmax</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="kt">int</span> <span class="n">rmax</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="kt">int</span> <span class="n">v</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="c1">// lmax和rmax代表了左右两边水位的高度, 对应level
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="k">while</span> <span class="p">(</span><span class="n">l</span> <span class="o">&lt;=</span> <span class="n">r</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="kt">int</span> <span class="n">hl</span> <span class="o">=</span> <span class="n">height</span><span class="p">[</span><span class="n">l</span><span class="p">];</span> <span class="kt">int</span> <span class="n">hr</span> <span class="o">=</span> <span class="n">height</span><span class="p">[</span><span class="n">r</span><span class="p">];</span> <span class="c1">// hl和hr对应队列中的height
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="k">if</span> <span class="p">(</span><span class="n">hl</span> <span class="o">&lt;=</span> <span class="n">hr</span><span class="p">)</span> <span class="p">{</span>  <span class="c1">// 左边水位比较低, 先处理左边
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>                <span class="n">lmax</span> <span class="o">=</span> <span class="n">max</span><span class="p">(</span><span class="n">lmax</span><span class="p">,</span> <span class="n">hl</span><span class="p">);</span> <span class="c1">// 更新水位
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>                <span class="k">if</span> <span class="p">(</span><span class="n">lmax</span> <span class="o">&gt;</span> <span class="n">hl</span><span class="p">)</span> <span class="p">{</span> 
+</span></span><span class="line"><span class="cl">                    <span class="n">v</span> <span class="o">+=</span> <span class="n">lmax</span> <span class="o">-</span> <span class="n">hl</span><span class="p">;</span> <span class="c1">// 水位浸没hl
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>                <span class="p">}</span>
+</span></span><span class="line"><span class="cl">                <span class="n">l</span><span class="o">++</span><span class="p">;</span> <span class="c1">// 对应hl入队列
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>  <span class="c1">// 右边水位比较低, 先处理右边
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>                <span class="n">rmax</span> <span class="o">=</span> <span class="n">max</span><span class="p">(</span><span class="n">rmax</span><span class="p">,</span> <span class="n">hr</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">                <span class="k">if</span> <span class="p">(</span><span class="n">rmax</span> <span class="o">&gt;</span> <span class="n">hr</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">v</span> <span class="o">+=</span> <span class="n">rmax</span> <span class="o">-</span> <span class="n">hr</span><span class="p">;</span> <span class="c1">// 水位浸没hr
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>                <span class="p">}</span>
+</span></span><span class="line"><span class="cl">                <span class="n">r</span><span class="o">--</span><span class="p">;</span> <span class="c1">// 对应hr入队列
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">v</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="二维拓展">二维拓展</h2>
 <p>Extend: <a href="https://leetcode.com/problems/trapping-rain-water-ii/">https://leetcode.com/problems/trapping-rain-water-ii/</a><br />
@@ -1749,7 +1742,7 @@ b. 若$h_{next} &lt; level$, 说明水流至此, 并且水位没过$h_{next}$, �
 <p>所以和上一题把两边的bar入栈类似的, 先把最外围一圈入栈, 然后和1维情况一样了. <a href="https://www.youtube.com/watch?v=cJayBq38VYw">演示动画</a></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -1795,55 +1788,63 @@ b. 若$h_{next} &lt; level$, 说明水流至此, 并且水位没过$h_{next}$, �
 </span><span class="lnt">44
 </span><span class="lnt">45
 </span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
-<span class="k">public</span><span class="o">:</span>
-    <span class="kt">int</span> <span class="n">visited</span><span class="p">[</span><span class="mi">201</span><span class="p">][</span><span class="mi">201</span><span class="p">];</span>
-    <span class="kt">int</span> <span class="n">drow</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">};</span> <span class="c1">// clockwise
-</span><span class="c1"></span>    <span class="kt">int</span> <span class="n">dcol</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">};</span>
-    <span class="kt">int</span> <span class="nf">trapRainWater</span><span class="p">(</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&gt;&amp;</span> <span class="n">heightMap</span><span class="p">)</span> <span class="p">{</span>
-        <span class="c1">// 堆中元素的结构: {{row, col}, height}
-</span><span class="c1"></span>        <span class="kt">int</span> <span class="n">nrow</span> <span class="o">=</span> <span class="n">heightMap</span><span class="p">.</span><span class="n">size</span><span class="p">();</span> <span class="kt">int</span> <span class="n">ncol</span> <span class="o">=</span> <span class="n">heightMap</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">size</span><span class="p">();</span>
-        <span class="k">auto</span> <span class="n">cmp_height</span> <span class="o">=</span> <span class="p">[](</span><span class="n">pair</span><span class="o">&lt;</span><span class="n">pair</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span> <span class="kt">int</span><span class="o">&gt;</span><span class="p">,</span> <span class="kt">int</span><span class="o">&gt;</span> <span class="n">a</span><span class="p">,</span> <span class="n">pair</span><span class="o">&lt;</span><span class="n">pair</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span> <span class="kt">int</span><span class="o">&gt;</span><span class="p">,</span> <span class="kt">int</span><span class="o">&gt;</span> <span class="n">b</span><span class="p">)</span> <span class="p">{</span><span class="k">return</span> <span class="n">a</span><span class="p">.</span><span class="n">second</span> <span class="o">&gt;</span> <span class="n">b</span><span class="p">.</span><span class="n">second</span><span class="p">;};</span>
-        <span class="n">priority_queue</span><span class="o">&lt;</span><span class="n">pair</span><span class="o">&lt;</span><span class="n">pair</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span> <span class="kt">int</span><span class="o">&gt;</span><span class="p">,</span> <span class="kt">int</span><span class="o">&gt;</span><span class="p">,</span> <span class="n">vector</span><span class="o">&lt;</span><span class="n">pair</span><span class="o">&lt;</span><span class="n">pair</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span> <span class="kt">int</span><span class="o">&gt;</span><span class="p">,</span> <span class="kt">int</span><span class="o">&gt;&gt;</span><span class="p">,</span> <span class="k">decltype</span><span class="p">(</span><span class="n">cmp_height</span><span class="p">)</span><span class="o">&gt;</span> <span class="n">q</span><span class="p">(</span><span class="n">cmp_height</span><span class="p">);</span>
-        <span class="c1">// 初始化水平面和水量
-</span><span class="c1"></span>        <span class="kt">int</span> <span class="n">level</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="kt">int</span> <span class="n">volume</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-        <span class="n">memset</span><span class="p">(</span><span class="n">visited</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">visited</span><span class="p">));</span>
-        <span class="c1">// 第一行和最后一行入队列
-</span><span class="c1"></span>        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">col</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">col</span> <span class="o">&lt;</span> <span class="n">ncol</span><span class="p">;</span> <span class="n">col</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-            <span class="n">q</span><span class="p">.</span><span class="n">push</span><span class="p">({{</span><span class="mi">0</span><span class="p">,</span> <span class="n">col</span><span class="p">},</span> <span class="n">heightMap</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="n">col</span><span class="p">]});</span>  <span class="c1">// first row
-</span><span class="c1"></span>            <span class="n">q</span><span class="p">.</span><span class="n">push</span><span class="p">({{</span><span class="n">nrow</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">col</span><span class="p">},</span> <span class="n">heightMap</span><span class="p">[</span><span class="n">nrow</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="n">col</span><span class="p">]});</span>  <span class="c1">// last row
-</span><span class="c1"></span>            <span class="n">visited</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">visited</span><span class="p">[</span><span class="n">nrow</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
-        <span class="p">}</span>
-        <span class="c1">// 第一列和最后一列入队列
-</span><span class="c1"></span>        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">row</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">row</span> <span class="o">&lt;</span> <span class="n">nrow</span><span class="o">-</span><span class="mi">1</span><span class="p">;</span> <span class="n">row</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// 跳过第一行和最后一行已经入队列的元素
-</span><span class="c1"></span>            <span class="n">q</span><span class="p">.</span><span class="n">push</span><span class="p">({{</span><span class="n">row</span><span class="p">,</span> <span class="mi">0</span><span class="p">},</span> <span class="n">heightMap</span><span class="p">[</span><span class="n">row</span><span class="p">][</span><span class="mi">0</span><span class="p">]});</span>
-            <span class="n">q</span><span class="p">.</span><span class="n">push</span><span class="p">({{</span><span class="n">row</span><span class="p">,</span> <span class="n">ncol</span><span class="o">-</span><span class="mi">1</span><span class="p">},</span> <span class="n">heightMap</span><span class="p">[</span><span class="n">row</span><span class="p">][</span><span class="n">ncol</span><span class="o">-</span><span class="mi">1</span><span class="p">]});</span>
-            <span class="n">visited</span><span class="p">[</span><span class="n">row</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">visited</span><span class="p">[</span><span class="n">row</span><span class="p">][</span><span class="n">ncol</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
-        <span class="p">}</span>
-
-        <span class="k">while</span> <span class="p">(</span><span class="o">!</span><span class="n">q</span><span class="p">.</span><span class="n">empty</span><span class="p">())</span> <span class="p">{</span>
-            <span class="n">pair</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span> <span class="kt">int</span><span class="o">&gt;</span> <span class="n">coord</span> <span class="o">=</span> <span class="n">q</span><span class="p">.</span><span class="n">top</span><span class="p">().</span><span class="n">first</span><span class="p">;</span> <span class="kt">int</span> <span class="n">h</span> <span class="o">=</span> <span class="n">q</span><span class="p">.</span><span class="n">top</span><span class="p">().</span><span class="n">second</span><span class="p">;</span>
-            <span class="n">q</span><span class="p">.</span><span class="n">pop</span><span class="p">();</span>
-            <span class="n">level</span> <span class="o">=</span> <span class="n">max</span><span class="p">(</span><span class="n">level</span><span class="p">,</span> <span class="n">h</span><span class="p">);</span>
-
-            <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">4</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// 遍历上下左右四个位置
-</span><span class="c1"></span>                <span class="n">pair</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span> <span class="kt">int</span><span class="o">&gt;</span> <span class="n">next</span> <span class="o">=</span> <span class="p">{</span><span class="n">coord</span><span class="p">.</span><span class="n">first</span> <span class="o">+</span> <span class="n">drow</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">coord</span><span class="p">.</span><span class="n">second</span> <span class="o">+</span> <span class="n">dcol</span><span class="p">[</span><span class="n">i</span><span class="p">]};</span>
-                <span class="kt">int</span> <span class="n">next_height</span> <span class="o">=</span> <span class="n">heightMap</span><span class="p">[</span><span class="n">next</span><span class="p">.</span><span class="n">first</span><span class="p">][</span><span class="n">next</span><span class="p">.</span><span class="n">second</span><span class="p">];</span>
-                <span class="k">if</span> <span class="p">(</span><span class="n">next</span><span class="p">.</span><span class="n">first</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">next</span><span class="p">.</span><span class="n">first</span> <span class="o">&lt;</span> <span class="n">nrow</span> <span class="o">&amp;&amp;</span> <span class="n">next</span><span class="p">.</span><span class="n">second</span> <span class="o">&gt;=</span><span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">next</span><span class="p">.</span><span class="n">second</span> <span class="o">&lt;</span> <span class="n">ncol</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="n">visited</span><span class="p">[</span><span class="n">next</span><span class="p">.</span><span class="n">first</span><span class="p">][</span><span class="n">next</span><span class="p">.</span><span class="n">second</span><span class="p">])</span> <span class="p">{</span>
-                    <span class="n">visited</span><span class="p">[</span><span class="n">next</span><span class="p">.</span><span class="n">first</span><span class="p">][</span><span class="n">next</span><span class="p">.</span><span class="n">second</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
-                    <span class="k">if</span> <span class="p">(</span><span class="n">level</span> <span class="o">&gt;</span> <span class="n">next_height</span><span class="p">)</span> <span class="p">{</span>
-                        <span class="n">volume</span> <span class="o">+=</span> <span class="n">level</span> <span class="o">-</span> <span class="n">next_height</span><span class="p">;</span>
-                    <span class="p">}</span>
-                    <span class="n">q</span><span class="p">.</span><span class="n">push</span><span class="p">({</span><span class="n">next</span><span class="p">,</span> <span class="n">next_height</span><span class="p">});</span>
-                <span class="p">}</span>
-            <span class="p">}</span>
-        <span class="p">}</span>
-        <span class="k">return</span> <span class="n">volume</span><span class="p">;</span>
-    <span class="p">}</span>
-<span class="p">};</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="k">public</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// 顺时针遍历周围的元素
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kt">int</span> <span class="n">drow</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">};</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">dcol</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">};</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="nf">trapRainWater</span><span class="p">(</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&gt;&amp;</span> <span class="n">heightMap</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="kt">int</span> <span class="n">nrow</span> <span class="o">=</span> <span class="n">heightMap</span><span class="p">.</span><span class="n">size</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">        <span class="kt">int</span> <span class="n">ncol</span> <span class="o">=</span> <span class="n">heightMap</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">size</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">        <span class="n">priority_queue</span><span class="o">&lt;</span><span class="n">pair</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span> <span class="n">pair</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span> <span class="kt">int</span><span class="o">&gt;&gt;&gt;</span> <span class="n">q</span><span class="p">;</span> <span class="c1">// {-height, {row, col}}
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        
+</span></span><span class="line"><span class="cl">        <span class="kt">int</span> <span class="n">level</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="kt">int</span> <span class="n">volume</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">vector</span><span class="o">&lt;</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&gt;</span> <span class="n">visited</span><span class="p">(</span><span class="n">nrow</span><span class="p">,</span> <span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">(</span><span class="n">ncol</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="c1">// 上下两行入堆
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">col</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">col</span> <span class="o">&lt;</span> <span class="n">ncol</span><span class="p">;</span> <span class="n">col</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">q</span><span class="p">.</span><span class="n">push</span><span class="p">({</span><span class="o">-</span><span class="n">heightMap</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="n">col</span><span class="p">],</span> <span class="p">{</span><span class="mi">0</span><span class="p">,</span> <span class="n">col</span><span class="p">}});</span>            <span class="c1">// 第一行
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="n">q</span><span class="p">.</span><span class="n">push</span><span class="p">({</span><span class="o">-</span><span class="n">heightMap</span><span class="p">[</span><span class="n">nrow</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="n">col</span><span class="p">],</span> <span class="p">{</span><span class="n">nrow</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">col</span><span class="p">}});</span>  <span class="c1">// 最后一行
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="n">visited</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">visited</span><span class="p">[</span><span class="n">nrow</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>      <span class="c1">// 修改visited
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="c1">// 左右两列入堆 (不包括与上下两行重复的部分, 就是四个顶点)
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">row</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">row</span> <span class="o">&lt;</span> <span class="n">nrow</span><span class="o">-</span><span class="mi">1</span><span class="p">;</span> <span class="n">row</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">q</span><span class="p">.</span><span class="n">push</span><span class="p">({</span><span class="o">-</span><span class="n">heightMap</span><span class="p">[</span><span class="n">row</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span> <span class="p">{</span><span class="n">row</span><span class="p">,</span> <span class="mi">0</span><span class="p">}});</span>           <span class="c1">// 第一列
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="n">q</span><span class="p">.</span><span class="n">push</span><span class="p">({</span><span class="o">-</span><span class="n">heightMap</span><span class="p">[</span><span class="n">row</span><span class="p">][</span><span class="n">ncol</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="p">{</span><span class="n">row</span><span class="p">,</span> <span class="n">ncol</span><span class="o">-</span><span class="mi">1</span><span class="p">}});</span> <span class="c1">// 最后一列
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="n">visited</span><span class="p">[</span><span class="n">row</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">visited</span><span class="p">[</span><span class="n">row</span><span class="p">][</span><span class="n">ncol</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>     <span class="c1">// 修改visited
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="k">while</span> <span class="p">(</span><span class="o">!</span><span class="n">q</span><span class="p">.</span><span class="n">empty</span><span class="p">())</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">auto</span> <span class="n">n</span> <span class="o">=</span> <span class="n">q</span><span class="p">.</span><span class="n">top</span><span class="p">();</span> <span class="n">q</span><span class="p">.</span><span class="n">pop</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">            <span class="n">level</span> <span class="o">=</span> <span class="n">max</span><span class="p">(</span><span class="n">level</span><span class="p">,</span> <span class="o">-</span><span class="n">n</span><span class="p">.</span><span class="n">first</span><span class="p">);</span> <span class="c1">// 水平面升至弹出节点的高度
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">            <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">4</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="c1">// 遍历弹出节点的相邻节点
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>                <span class="kt">int</span> <span class="n">next_row</span> <span class="o">=</span> <span class="n">n</span><span class="p">.</span><span class="n">second</span><span class="p">.</span><span class="n">first</span> <span class="o">+</span> <span class="n">drow</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">                <span class="kt">int</span> <span class="n">next_col</span> <span class="o">=</span> <span class="n">n</span><span class="p">.</span><span class="n">second</span><span class="p">.</span><span class="n">second</span> <span class="o">+</span> <span class="n">dcol</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">                
+</span></span><span class="line"><span class="cl">                <span class="k">if</span> <span class="p">(</span><span class="n">next_row</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">next_row</span> <span class="o">&lt;</span> <span class="n">nrow</span> <span class="o">&amp;&amp;</span> <span class="n">next_col</span> <span class="o">&gt;=</span><span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">next_col</span> <span class="o">&lt;</span> <span class="n">ncol</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="n">visited</span><span class="p">[</span><span class="n">next_row</span><span class="p">][</span><span class="n">next_col</span><span class="p">])</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                    <span class="kt">int</span> <span class="n">next_height</span> <span class="o">=</span> <span class="n">heightMap</span><span class="p">[</span><span class="n">next_row</span><span class="p">][</span><span class="n">next_col</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">visited</span><span class="p">[</span><span class="n">next_row</span><span class="p">][</span><span class="n">next_col</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">                    <span class="k">if</span> <span class="p">(</span><span class="n">next_height</span> <span class="o">&lt;</span> <span class="n">level</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                        <span class="n">volume</span> <span class="o">+=</span> <span class="n">level</span> <span class="o">-</span> <span class="n">next_height</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">                    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">q</span><span class="p">.</span><span class="n">push</span><span class="p">({</span><span class="o">-</span><span class="n">next_height</span><span class="p">,</span> <span class="p">{</span><span class="n">next_row</span><span class="p">,</span> <span class="n">next_col</span><span class="p">}});</span>
+</span></span><span class="line"><span class="cl">                <span class="p">}</span>
+</span></span><span class="line"><span class="cl">            <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">volume</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div>
     </article>
@@ -1988,7 +1989,7 @@ b. 若$h_{next} &lt; level$, 说明水流至此, 并且水位没过$h_{next}$, �
 </div>
 
 
-<script defer src="/js/swipe.min.08ff2be1b74347bad9e267f732f1388d271b2f9d97b6a8a87bd6a510f17c5ad2.js"></script>
+<script defer src="/js/swipe.min.7bbf2dacea5b173fe9aa699f17efbf82aeddd807831946756705aec0fc91567f.js"></script>
 
 <script defer src="/js/micromodal.min.de01b44b2f383056bbcaf6ee921fd385d79108ec1129afd0eb2f3f5a07e11f45.js"></script>
 
@@ -2292,6 +2293,7 @@ document.addEventListener('DOMContentLoaded', function () {
   <div class="toc hide" data-dir="ltr" data-folding="true" data-ani="true">
     <nav id="TableOfContents">
   <ul>
+    <li><a href="#暴力解">暴力解</a></li>
     <li><a href="#水位法">&ldquo;水位&quot;法</a>
       <ul>
         <li><a href="#优先队列解">优先队列解</a></li>

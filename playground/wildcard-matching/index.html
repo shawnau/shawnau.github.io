@@ -18,9 +18,9 @@
 
 <script defer src="/js/lazysizes.min.31dd6a2d3a1ec0f78a8df007535cf23f03aeb5c70f026e6d6a19dac3b3acc340.js"></script>
 
-<script defer src="/js/helper/getParents.min.1618c696be7c98933f9a92677f518b512a74e55bdbb976b09936b4182e93181b.js"></script>
+<script defer src="/js/helper/getParents.min.086022fb02d7a1517e33c2670bffb976b3e80bcacd9caeee0c6a586064f20e42.js"></script>
 
-<script defer src="/js/helper/fadeinout.min.93a331f96194789a542f33690bbe4f0c102c7e78ffc018217f5a1c33010bad91.js"></script>
+<script defer src="/js/helper/fadeinout.min.9fe4b81a87e722d20c220a2b6ca145a3d8a2cb3ea1e89de55329ff417bdd9570.js"></script>
 
 <script defer src="/js/helper/closest.min.js"></script>
   
@@ -1239,7 +1239,7 @@
 <meta property="og:type" content="article">
 <meta property="og:description" content="warp drive active~">
 
-<meta name="generator" content="Hugo 0.68.3" />
+<meta name="generator" content="Hugo 0.102.2" />
 <meta name="msapplication-TileColor" content="#fff">
 
 <meta name="theme-color" content="#fff">
@@ -1604,7 +1604,7 @@
 </div>
 
       <h2 id="description">Description</h2>
-<p>Given an input string (s) and a pattern (p), implement wildcard pattern matching with support for &lsquo;?&rsquo; and &lsquo;*'.</p>
+<p>Given an input string (s) and a pattern (p), implement wildcard pattern matching with support for &lsquo;?&rsquo; and &lsquo;*&rsquo;.</p>
 <ul>
 <li>&lsquo;?&rsquo; Matches any single character.</li>
 <li>&lsquo;*&rsquo; Matches any sequence of characters (including the empty sequence).<br />
@@ -1616,17 +1616,17 @@ The matching should cover the entire input string (not partial).</li>
 <li>p could be empty and contains only lowercase letters a-z, and characters like ? or *.</li>
 </ul>
 <p>Example 1:</p>
-<pre><code>Input:
-s = &quot;aa&quot;
-p = &quot;a&quot;
+<pre tabindex="0"><code>Input:
+s = &#34;aa&#34;
+p = &#34;a&#34;
 Output: false
-Explanation: &quot;a&quot; does not match the entire string &quot;aa&quot;.
+Explanation: &#34;a&#34; does not match the entire string &#34;aa&#34;.
 Example 2:
-</code></pre><pre><code>Input:
-s = &quot;aa&quot;
-p = &quot;*&quot;
+</code></pre><pre tabindex="0"><code>Input:
+s = &#34;aa&#34;
+p = &#34;*&#34;
 Output: true
-Explanation: '*' matches any sequence.
+Explanation: &#39;*&#39; matches any sequence.
 </code></pre><h2 id="backtracking-solution">Backtracking Solution</h2>
 <p>This is an easier version of <code>Regular Expression Matching</code>, since we don&rsquo;t need to check character matching when we get a wildcard. The logic is:</p>
 <p>We define <code>search(si, pi)</code> as the search function, which means if <code>s[si:]</code> is matched by <code>p[pi:]</code>.</p>
@@ -1641,7 +1641,7 @@ Explanation: '*' matches any sequence.
 </ol>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -1655,36 +1655,36 @@ Explanation: '*' matches any sequence.
 </span><span class="lnt">12
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
-    <span class="k">def</span> <span class="nf">isMatch</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">s</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">p</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
-        <span class="k">def</span> <span class="nf">search</span><span class="p">(</span><span class="n">si</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">pi</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
-            <span class="k">if</span> <span class="n">pi</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">p</span><span class="p">):</span> 
-                <span class="k">return</span> <span class="n">si</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
-            <span class="n">wildcard</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="n">pi</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">p</span><span class="p">)</span> <span class="ow">and</span> <span class="n">p</span><span class="p">[</span><span class="n">pi</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&#34;*&#34;</span>
-            <span class="k">if</span> <span class="n">wildcard</span><span class="p">:</span>
-                <span class="k">return</span> <span class="p">(</span><span class="n">si</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="ow">and</span> <span class="n">search</span><span class="p">(</span><span class="n">si</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">pi</span><span class="p">))</span> <span class="ow">or</span> <span class="n">search</span><span class="p">(</span><span class="n">si</span><span class="p">,</span> <span class="n">pi</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
-            <span class="k">else</span><span class="p">:</span>
-                <span class="n">match</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="n">si</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="ow">and</span> <span class="n">p</span><span class="p">[</span><span class="n">pi</span><span class="p">]</span> <span class="ow">in</span> <span class="p">{</span><span class="n">s</span><span class="p">[</span><span class="n">si</span><span class="p">],</span> <span class="s2">&#34;?&#34;</span><span class="p">}</span>
-                <span class="k">return</span> <span class="n">match</span> <span class="ow">and</span> <span class="n">search</span><span class="p">(</span><span class="n">si</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">pi</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">search</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">isMatch</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">s</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">p</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">def</span> <span class="nf">search</span><span class="p">(</span><span class="n">si</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">pi</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="n">pi</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">p</span><span class="p">):</span> 
+</span></span><span class="line"><span class="cl">                <span class="k">return</span> <span class="n">si</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="n">wildcard</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="n">pi</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">p</span><span class="p">)</span> <span class="ow">and</span> <span class="n">p</span><span class="p">[</span><span class="n">pi</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&#34;*&#34;</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="n">wildcard</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">                <span class="k">return</span> <span class="p">(</span><span class="n">si</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="ow">and</span> <span class="n">search</span><span class="p">(</span><span class="n">si</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">pi</span><span class="p">))</span> <span class="ow">or</span> <span class="n">search</span><span class="p">(</span><span class="n">si</span><span class="p">,</span> <span class="n">pi</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">                <span class="n">match</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="n">si</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="ow">and</span> <span class="n">p</span><span class="p">[</span><span class="n">pi</span><span class="p">]</span> <span class="ow">in</span> <span class="p">{</span><span class="n">s</span><span class="p">[</span><span class="n">si</span><span class="p">],</span> <span class="s2">&#34;?&#34;</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl">                <span class="k">return</span> <span class="n">match</span> <span class="ow">and</span> <span class="n">search</span><span class="p">(</span><span class="n">si</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">pi</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">search</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>Again, it could be optimized through cache.</p>
 <h2 id="dynamic-programming">Dynamic Programming</h2>
 <p>First we can construct state transision from the backtracking method. Jut let <code>search(si, pi)</code> to be <code>dp[si][pi]</code></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-text" data-lang="text">dp[si][pi] &lt;--dp[si][pi+1]
-    ^      \
-    |       \  
-dp[si+1][pi]  dp[si+1][pi+1]
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">dp[si][pi] &lt;--dp[si][pi+1]
+</span></span><span class="line"><span class="cl">    ^      \
+</span></span><span class="line"><span class="cl">    |       \  
+</span></span><span class="line"><span class="cl">dp[si+1][pi]  dp[si+1][pi+1]
+</span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
 <li>We have a <code>(len(s) + 1, len(p) +1)</code> matrix, the iteration order is described below.</li>
@@ -1755,7 +1755,7 @@ dp[si+1][pi]  dp[si+1][pi+1]
 </table>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -1768,24 +1768,22 @@ dp[si+1][pi]  dp[si+1][pi+1]
 </span><span class="lnt">11
 </span><span class="lnt">12
 </span><span class="lnt">13
-</span><span class="lnt">14
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
-    <span class="k">def</span> <span class="nf">isMatch</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">s</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">p</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
-        <span class="n">dp</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">bool</span><span class="p">]]</span> <span class="o">=</span> <span class="p">[[</span><span class="bp">False</span><span class="p">]</span><span class="o">*</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">p</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">s</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">)]</span>
-        <span class="n">dp</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">s</span><span class="p">)][</span><span class="nb">len</span><span class="p">(</span><span class="n">p</span><span class="p">)]</span> <span class="o">=</span> <span class="bp">True</span>
-        <span class="k">for</span> <span class="n">si</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">s</span><span class="p">),</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">):</span>
-            <span class="k">for</span> <span class="n">pi</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">p</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">):</span>
-                <span class="n">wildcard</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="n">pi</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">p</span><span class="p">)</span> <span class="ow">and</span> <span class="n">p</span><span class="p">[</span><span class="n">pi</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&#34;*&#34;</span>
-                <span class="k">if</span> <span class="n">wildcard</span><span class="p">:</span>
-                    <span class="n">dp</span><span class="p">[</span><span class="n">si</span><span class="p">][</span><span class="n">pi</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">si</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="ow">and</span> <span class="n">dp</span><span class="p">[</span><span class="n">si</span><span class="o">+</span><span class="mi">1</span><span class="p">][</span><span class="n">pi</span><span class="p">])</span> <span class="ow">or</span> <span class="n">dp</span><span class="p">[</span><span class="n">si</span><span class="p">][</span><span class="n">pi</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span>
-                <span class="k">else</span><span class="p">:</span>
-                    <span class="n">match</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="n">si</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="ow">and</span> <span class="n">p</span><span class="p">[</span><span class="n">pi</span><span class="p">]</span> <span class="ow">in</span> <span class="p">{</span><span class="n">s</span><span class="p">[</span><span class="n">si</span><span class="p">],</span> <span class="s2">&#34;?&#34;</span><span class="p">}</span>
-                    <span class="n">dp</span><span class="p">[</span><span class="n">si</span><span class="p">][</span><span class="n">pi</span><span class="p">]</span> <span class="o">=</span> <span class="n">match</span> <span class="ow">and</span> <span class="n">dp</span><span class="p">[</span><span class="n">si</span><span class="o">+</span><span class="mi">1</span><span class="p">][</span><span class="n">pi</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span>
-        <span class="k">return</span> <span class="n">dp</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
-
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">isMatch</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">s</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">p</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">dp</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">bool</span><span class="p">]]</span> <span class="o">=</span> <span class="p">[[</span><span class="kc">False</span><span class="p">]</span><span class="o">*</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">p</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">s</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">)]</span>
+</span></span><span class="line"><span class="cl">        <span class="n">dp</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">s</span><span class="p">)][</span><span class="nb">len</span><span class="p">(</span><span class="n">p</span><span class="p">)]</span> <span class="o">=</span> <span class="kc">True</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="n">si</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">s</span><span class="p">),</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">            <span class="k">for</span> <span class="n">pi</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">p</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">                <span class="n">wildcard</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="n">pi</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">p</span><span class="p">)</span> <span class="ow">and</span> <span class="n">p</span><span class="p">[</span><span class="n">pi</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&#34;*&#34;</span>
+</span></span><span class="line"><span class="cl">                <span class="k">if</span> <span class="n">wildcard</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">dp</span><span class="p">[</span><span class="n">si</span><span class="p">][</span><span class="n">pi</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">si</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="ow">and</span> <span class="n">dp</span><span class="p">[</span><span class="n">si</span><span class="o">+</span><span class="mi">1</span><span class="p">][</span><span class="n">pi</span><span class="p">])</span> <span class="ow">or</span> <span class="n">dp</span><span class="p">[</span><span class="n">si</span><span class="p">][</span><span class="n">pi</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">                <span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">match</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="n">si</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="ow">and</span> <span class="n">p</span><span class="p">[</span><span class="n">pi</span><span class="p">]</span> <span class="ow">in</span> <span class="p">{</span><span class="n">s</span><span class="p">[</span><span class="n">si</span><span class="p">],</span> <span class="s2">&#34;?&#34;</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">dp</span><span class="p">[</span><span class="n">si</span><span class="p">][</span><span class="n">pi</span><span class="p">]</span> <span class="o">=</span> <span class="n">match</span> <span class="ow">and</span> <span class="n">dp</span><span class="p">[</span><span class="n">si</span><span class="o">+</span><span class="mi">1</span><span class="p">][</span><span class="n">pi</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">dp</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div>
     </article>
@@ -1952,7 +1950,7 @@ dp[si+1][pi]  dp[si+1][pi+1]
 </div>
 
 
-<script defer src="/js/swipe.min.08ff2be1b74347bad9e267f732f1388d271b2f9d97b6a8a87bd6a510f17c5ad2.js"></script>
+<script defer src="/js/swipe.min.7bbf2dacea5b173fe9aa699f17efbf82aeddd807831946756705aec0fc91567f.js"></script>
 
 <script defer src="/js/micromodal.min.de01b44b2f383056bbcaf6ee921fd385d79108ec1129afd0eb2f3f5a07e11f45.js"></script>
 

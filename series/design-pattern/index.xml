@@ -23,31 +23,19 @@
 
       
       <item>
-        <title>观察者模式</title>
+        <title>Observer Pattern</title>
         <link>/blogs/observer-pattern/</link>
         <pubDate>Tue, 30 Aug 2022 16:56:33 +0800</pubDate>
         <author>xxuan@mail.ustc.edu.cn (Xuan)</author>
         <atom:modified>Tue, 30 Aug 2022 16:56:33 +0800</atom:modified>
         <guid>/blogs/observer-pattern/</guid>
-        <description>&lt;p&gt;观察者 - 被观察者是一个常见的设计模式.&lt;/p&gt;</description>
+        <description>&lt;p&gt;观察者模式是常见的设计模式之一.&lt;/p&gt;</description>
         
         <dc:creator>Xuan</dc:creator>
         
         
         
         
-          
-            
-              <category>Observer</category>
-            
-          
-        
-        
-          
-            
-              <category>C#</category>
-            
-          
         
         
           

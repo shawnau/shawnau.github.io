@@ -5,7 +5,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>观察者模式 – Laniakea</title>
+    <title>Observer Pattern – Laniakea</title>
     
 
 
@@ -18,9 +18,9 @@
 
 <script defer src="/js/lazysizes.min.31dd6a2d3a1ec0f78a8df007535cf23f03aeb5c70f026e6d6a19dac3b3acc340.js"></script>
 
-<script defer src="/js/helper/getParents.min.1618c696be7c98933f9a92677f518b512a74e55bdbb976b09936b4182e93181b.js"></script>
+<script defer src="/js/helper/getParents.min.086022fb02d7a1517e33c2670bffb976b3e80bcacd9caeee0c6a586064f20e42.js"></script>
 
-<script defer src="/js/helper/fadeinout.min.93a331f96194789a542f33690bbe4f0c102c7e78ffc018217f5a1c33010bad91.js"></script>
+<script defer src="/js/helper/fadeinout.min.9fe4b81a87e722d20c220a2b6ca145a3d8a2cb3ea1e89de55329ff417bdd9570.js"></script>
 
 <script defer src="/js/helper/closest.min.js"></script>
   
@@ -1221,10 +1221,8 @@
 
 
     
-<meta name="description" content="C# Observer Pattern Tutorial" />
+<meta name="description" content="观察者模式简介, 以及c#的event-handler模式带来的便利" />
 
-
-<meta name="keywords" content="Observer">
 
 <meta name="created" content="2022-08-30T16:56:33&#43;0800">
 <meta name="modified" content="2022-08-30T16:56:33&#43;0800">
@@ -1234,12 +1232,12 @@
 
 
 <meta property="og:site_name" content="Laniakea">
-<meta property="og:title" content="观察者模式">
+<meta property="og:title" content="Observer Pattern">
 <meta property="og:url" content="/blogs/observer-pattern/">
 <meta property="og:type" content="article">
-<meta property="og:description" content="C# Observer Pattern Tutorial">
+<meta property="og:description" content="观察者模式简介, 以及c#的event-handler模式带来的便利">
 
-<meta name="generator" content="Hugo 0.68.3" />
+<meta name="generator" content="Hugo 0.102.2" />
 <meta name="msapplication-TileColor" content="#fff">
 
 <meta name="theme-color" content="#fff">
@@ -1274,12 +1272,11 @@
   {
     "@context": "https://schema.org",
     "@type": "WebPage",
-    "headline": "观察者模式",
+    "headline": "Observer Pattern",
     "datePublished": "2022-08-30T16:56:33+08:00",
     "dateModified": "2022-08-30T16:56:33+08:00",
     "url" : "/blogs/observer-pattern/",
-    "description": "C# Observer Pattern Tutorial",
-    "keywords": ["Observer"],
+    "description": "观察者模式简介, 以及c#的event-handler模式带来的便利",
     "mainEntityOfPage": {
       "@type": "WebPage",
       "@id": ""
@@ -1520,7 +1517,7 @@
             
             
 
-<main class="single__main main-main">
+<main class="single__main main">
   
     <nav class="breadcrumb hide" aria-label="breadcrumbs">
   <script>document.querySelector('.breadcrumb').classList.remove('hide')</script>
@@ -1547,7 +1544,7 @@
   
   <li  class="is-active" >
     
-      <span>观察者模式</span>
+      <span>Observer Pattern</span>
     
   </li>
   
@@ -1559,7 +1556,7 @@
   <div class="single ">
     <div class="single__nojs">This page looks best with JavaScript enabled</div>
     <script>document.querySelector('.single').classList.remove('hide'); document.querySelector('.single__nojs').classList.add('hide');</script>
-    <h2 class="single__title" data-ani="true">观察者模式</h2>
+    <h2 class="single__title" data-ani="true">Observer Pattern</h2>
     <div class="single__meta">
       
 <div class="single__infos">
@@ -1574,10 +1571,6 @@
       
 <ul class="single__tags caption">
   
-  🏷️
-  
-
-  <li><a href="/tags/observer/" class="single__tag" title="Observer">#Observer</a></li>
 
 </ul>
     </div>
@@ -1596,12 +1589,12 @@
     <li><a href="#定义消息-观察者和被观察者">定义消息, 观察者和被观察者</a>
       <ul>
         <li><a href="#消息与eventargs">消息与EventArgs</a></li>
-        <li><a href="#观察者接口">观察者接口</a></li>
-        <li><a href="#被观察者接口">被观察者接口</a></li>
+        <li><a href="#定义观察者">定义观察者</a></li>
+        <li><a href="#定义被观察者">定义被观察者</a></li>
       </ul>
     </li>
-    <li><a href="#被观察者实现">被观察者实现</a></li>
-    <li><a href="#观察者实现">观察者实现</a></li>
+    <li><a href="#实现观察者">实现观察者</a></li>
+    <li><a href="#实现被观察者">实现被观察者</a></li>
     <li><a href="#启动程序">启动程序</a>
       <ul>
         <li><a href="#reference">Reference</a></li>
@@ -1612,71 +1605,120 @@
   </div>
 </div>
 
-      <p>观察者 - 被观察者是一个常见的设计模式.</p>
-<p>这里考虑一种场景: 被观察者是报刊, 观察者是订阅报刊的人. 一旦有新闻, 订阅者都可以收到报刊的通知.</p>
+      <p>观察者模式是常见的设计模式之一.</p>
+<p>为了便于理解, 考虑一种常见的场景: 被观察者是报刊, 观察者是订阅报刊的人. 一旦有新闻, 订阅者都可以收到报刊的通知.</p>
 <h2 id="定义消息-观察者和被观察者">定义消息, 观察者和被观察者</h2>
 <h3 id="消息与eventargs">消息与EventArgs</h3>
 <p>第一步是定义消息的格式, 以及观察者和被观察者的行为.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-csharp" data-lang="csharp"><span class="k">public</span> <span class="k">class</span> <span class="nc">NotifyEventArgs</span> <span class="p">:</span> <span class="n">EventArgs</span>
-<span class="p">{</span>
-    <span class="k">public</span> <span class="kt">string</span> <span class="n">Info</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span> <span class="p">=</span> <span class="kt">string</span><span class="p">.</span><span class="n">Empty</span><span class="p">;</span>
-    <span class="k">public</span> <span class="n">DateTime</span> <span class="n">Time</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-c#" data-lang="c#"><span class="line"><span class="cl"><span class="k">public</span> <span class="k">class</span> <span class="nc">NotifyEventArgs</span> <span class="p">:</span> <span class="n">EventArgs</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="kt">string</span> <span class="n">Info</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span> <span class="p">=</span> <span class="kt">string</span><span class="p">.</span><span class="n">Empty</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="n">DateTime</span> <span class="n">Time</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
-</div><p>首先定义消息, 这里继承了<code>EventArgs</code>. C#在语言上就提供了对消息的的支持, 其中<a href="https://docs.microsoft.com/en-us/dotnet/api/system.eventargs?view=net-6.0"><code>EventArgs</code></a> 包装了消息, <a href="https://docs.microsoft.com/en-us/dotnet/api/system.eventhandler?view=net-6.0"><code>EventHandler</code></a> 包装了一个<code>delegate</code>, 抽象了处理<code>EventArg</code>的逻辑, 也就是观察者收到消息之后需要做的事情. 下一小节在观察者的接口中就定义了这个<code>delegate</code>的行为.</p>
-<p>为了简单起见, 这里消息就只包含两个内容: 消息本身以及消息发出的时间.</p>
-<h3 id="观察者接口">观察者接口</h3>
+</div><p>首先定义消息, 这里继承了<code>EventArgs</code>. C#在语言上就提供了对消息的的支持, 其中</p>
+<ol>
+<li><a href="https://docs.microsoft.com/en-us/dotnet/api/system.eventargs?view=net-6.0"><code>EventArgs</code></a> 抽象了消息. 为了简单起见, 这里消息就只包含内容和发出的时间两部分.</li>
+<li><a href="https://docs.microsoft.com/en-us/dotnet/api/system.eventhandler?view=net-6.0"><code>EventHandler</code></a> 抽象了一个<code>delegate</code>, 也就是处理消息的逻辑, 即观察者收到消息之后需要做的事情.</li>
+</ol>
+<h3 id="定义观察者">定义观察者</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-csharp" data-lang="csharp"><span class="k">public</span> <span class="k">interface</span> <span class="n">IObserver</span>
-<span class="p">{</span>
-    <span class="k">public</span> <span class="k">void</span> <span class="n">NotifyEventHandler</span><span class="p">(</span><span class="kt">object?</span> <span class="n">notifier</span><span class="p">,</span> <span class="n">NotifyEventArgs</span> <span class="n">args</span><span class="p">);</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-c#" data-lang="c#"><span class="line"><span class="cl"><span class="k">public</span> <span class="k">interface</span> <span class="nc">IObserver</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="k">void</span> <span class="n">NotifyEventHandler</span><span class="p">(</span><span class="kt">object?</span> <span class="n">notifier</span><span class="p">,</span> <span class="n">NotifyEventArgs</span> <span class="n">args</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
-</div><p>观察者只需要做一件事, 就是收到消息之后做他想做的事情. 这里函数签名与<code>EventHandler</code>一致, 被观察者会把它自身传给第一个参数供观察者使用, 第二个参数是<code>NotifyEventArgs</code>, 就是消息内容.</p>
-<h3 id="被观察者接口">被观察者接口</h3>
+</div><p>观察者只需要做一件事, 就是收到消息之后做他想做的事情. 这里函数签名与<code>EventHandler</code>一致, 被观察者会把它自身传给第一个参数供观察者使用, 第二个参数是<code>NotifyEventArgs</code>, 就是前面定义的消息内容.</p>
+<h3 id="定义被观察者">定义被观察者</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-csharp" data-lang="csharp"><span class="k">public</span> <span class="k">interface</span> <span class="n">IObservable</span>
-<span class="p">{</span>
-    <span class="k">public</span> <span class="k">void</span> <span class="n">Register</span><span class="p">(</span><span class="n">IObserver</span> <span class="n">observer</span><span class="p">);</span>
-    <span class="k">public</span> <span class="k">void</span> <span class="n">OnNotified</span><span class="p">(</span><span class="n">NotifyEventArgs</span> <span class="n">args</span><span class="p">);</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-c#" data-lang="c#"><span class="line"><span class="cl"><span class="k">public</span> <span class="k">interface</span> <span class="nc">IObservable</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="k">void</span> <span class="n">Register</span><span class="p">(</span><span class="n">IObserver</span> <span class="n">observer</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="k">void</span> <span class="n">OnNotified</span><span class="p">(</span><span class="n">NotifyEventArgs</span> <span class="n">args</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>被观察者需要做两件事:</p>
 <ol>
 <li><code>Register</code>: 订阅观察者</li>
 <li>需要通知观察者的时候, 调用<code>OnNotified</code>, 并且传入消息</li>
 </ol>
-<h2 id="被观察者实现">被观察者实现</h2>
+<h2 id="实现观察者">实现观察者</h2>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c#" data-lang="c#"><span class="line"><span class="cl"><span class="k">public</span> <span class="k">class</span> <span class="nc">SubscriberAlice</span> <span class="p">:</span> <span class="n">IObserver</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="kt">string</span> <span class="n">Name</span> <span class="p">=</span> <span class="s">&#34;Alice&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="k">void</span> <span class="n">NotifyEventHandler</span><span class="p">(</span><span class="kt">object?</span> <span class="n">notifier</span><span class="p">,</span> <span class="n">NotifyEventArgs</span> <span class="n">args</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">$&#34;{this.Name} received {args.Info} from {notifier?.ToString()} at {args.Time}.&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">public</span> <span class="k">class</span> <span class="nc">SubscriberBob</span> <span class="p">:</span> <span class="n">IObserver</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="kt">string</span> <span class="n">Name</span> <span class="p">=</span> <span class="s">&#34;Bob&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="k">void</span> <span class="n">NotifyEventHandler</span><span class="p">(</span><span class="kt">object?</span> <span class="n">notifier</span><span class="p">,</span> <span class="n">NotifyEventArgs</span> <span class="n">args</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">$&#34;{this.Name} received {args.Info} from {notifier?.ToString()} at {args.Time}.&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>这里构造了两个观察者, <code>Alice</code>和<code>Bob</code>, 他们做的事情就是把收到的消息打印出来. 利用<code>notifier</code>和<code>args</code>, 我们可以看到消息内容, 时间和发送消息的对象.</p>
+<h2 id="实现被观察者">实现被观察者</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -1702,31 +1744,31 @@
 </span><span class="lnt">24
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-csharp" data-lang="csharp"><span class="k">public</span> <span class="k">class</span> <span class="nc">Observable</span> <span class="p">:</span> <span class="n">IObservable</span>
-<span class="p">{</span>
-    <span class="k">internal</span> <span class="k">event</span> <span class="n">EventHandler</span><span class="p">&lt;</span><span class="n">NotifyEventArgs</span><span class="p">&gt;</span> <span class="n">NotifyEventHandlers</span> <span class="p">=</span> <span class="k">delegate</span> <span class="p">{};</span>
-
-    <span class="k">public</span> <span class="k">virtual</span> <span class="k">void</span> <span class="n">OnNotified</span><span class="p">(</span><span class="n">NotifyEventArgs</span> <span class="n">args</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="n">NotifyEventHandlers</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="n">args</span><span class="p">);</span>
-
-    <span class="k">public</span> <span class="k">void</span> <span class="n">Register</span><span class="p">(</span><span class="n">IObserver</span> <span class="n">observer</span><span class="p">)</span>
-    <span class="p">{</span>
-        <span class="k">this</span><span class="p">.</span><span class="n">NotifyEventHandlers</span> <span class="p">+=</span> <span class="n">observer</span><span class="p">.</span><span class="n">NotifyEventHandler</span><span class="p">;</span>
-    <span class="p">}</span>
-
-    <span class="k">public</span> <span class="k">void</span> <span class="n">Publish</span><span class="p">()</span>
-    <span class="p">{</span>
-        <span class="kt">var</span> <span class="n">args</span> <span class="p">=</span> <span class="k">new</span> <span class="n">NotifyEventArgs</span> 
-        <span class="p">{</span>
-            <span class="n">Info</span> <span class="p">=</span> <span class="s">$&#34;[Breaking News!]&#34;</span><span class="p">,</span> 
-            <span class="n">Time</span> <span class="p">=</span> <span class="n">DateTime</span><span class="p">.</span><span class="n">Now</span> 
-        <span class="p">};</span>
-
-        <span class="n">OnNotified</span><span class="p">(</span><span class="n">args</span><span class="p">);</span>
-    <span class="p">}</span>
-
-    <span class="k">public</span> <span class="k">override</span> <span class="kt">string</span> <span class="n">ToString</span><span class="p">()</span> <span class="p">=&gt;</span> <span class="s">&#34;New York Times&#34;</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-c#" data-lang="c#"><span class="line"><span class="cl"><span class="k">public</span> <span class="k">class</span> <span class="nc">Observable</span> <span class="p">:</span> <span class="n">IObservable</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">internal</span> <span class="k">event</span> <span class="n">EventHandler</span><span class="p">&lt;</span><span class="n">NotifyEventArgs</span><span class="p">&gt;</span> <span class="n">NotifyEventHandlers</span> <span class="p">=</span> <span class="k">delegate</span> <span class="p">{};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="k">virtual</span> <span class="k">void</span> <span class="n">OnNotified</span><span class="p">(</span><span class="n">NotifyEventArgs</span> <span class="n">args</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="n">NotifyEventHandlers</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="n">args</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="k">void</span> <span class="n">Register</span><span class="p">(</span><span class="n">IObserver</span> <span class="n">observer</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">this</span><span class="p">.</span><span class="n">NotifyEventHandlers</span> <span class="p">+=</span> <span class="n">observer</span><span class="p">.</span><span class="n">NotifyEventHandler</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="k">void</span> <span class="n">Publish</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="kt">var</span> <span class="n">args</span> <span class="p">=</span> <span class="k">new</span> <span class="n">NotifyEventArgs</span> 
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">Info</span> <span class="p">=</span> <span class="s">$&#34;[Breaking News!]&#34;</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">            <span class="n">Time</span> <span class="p">=</span> <span class="n">DateTime</span><span class="p">.</span><span class="n">Now</span> 
+</span></span><span class="line"><span class="cl">        <span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="n">OnNotified</span><span class="p">(</span><span class="n">args</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="k">override</span> <span class="kt">string</span> <span class="n">ToString</span><span class="p">()</span> <span class="p">=&gt;</span> <span class="s">&#34;New York Times&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><ol>
 <li><code>NotifyEventHandlers</code> 可以视为一个集合, 保存了所有观察者注册的行为(<code>delegate</code>), 在需要发送消息的时候, 所有行为都会被依次调用, 这样观察者们会被依次通知.</li>
@@ -1734,56 +1776,10 @@
 <li><code>Register</code>将观察者的行为添加到<code>NotifyEventHandlers</code>中.</li>
 <li><code>Publish</code>构造<code>EventArgs</code>并触发<code>OnNotified</code>, 发送消息给所有观察者.</li>
 </ol>
-<h2 id="观察者实现">观察者实现</h2>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span><span class="lnt">18
-</span><span class="lnt">19
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-csharp" data-lang="csharp"><span class="k">public</span> <span class="k">class</span> <span class="nc">SubscriberAlice</span> <span class="p">:</span> <span class="n">IObserver</span>
-<span class="p">{</span>
-    <span class="k">public</span> <span class="kt">string</span> <span class="n">Name</span> <span class="p">=</span> <span class="s">&#34;Alice&#34;</span><span class="p">;</span>
-
-    <span class="k">public</span> <span class="k">void</span> <span class="n">NotifyEventHandler</span><span class="p">(</span><span class="kt">object?</span> <span class="n">notifier</span><span class="p">,</span> <span class="n">NotifyEventArgs</span> <span class="n">args</span><span class="p">)</span>
-    <span class="p">{</span>
-        <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">$&#34;{this.Name} received {args.Info} from {notifier?.ToString()} at {args.Time}.&#34;</span><span class="p">);</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-
-<span class="k">public</span> <span class="k">class</span> <span class="nc">SubscriberBob</span> <span class="p">:</span> <span class="n">IObserver</span>
-<span class="p">{</span>
-    <span class="k">public</span> <span class="kt">string</span> <span class="n">Name</span> <span class="p">=</span> <span class="s">&#34;Bob&#34;</span><span class="p">;</span>
-
-    <span class="k">public</span> <span class="k">void</span> <span class="n">NotifyEventHandler</span><span class="p">(</span><span class="kt">object?</span> <span class="n">notifier</span><span class="p">,</span> <span class="n">NotifyEventArgs</span> <span class="n">args</span><span class="p">)</span>
-    <span class="p">{</span>
-        <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">$&#34;{this.Name} received {args.Info} from {notifier?.ToString()} at {args.Time}.&#34;</span><span class="p">);</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
-</div>
-</div><p>构造了两个观察者, <code>Alice</code>和<code>Bob</code>, 他们做的事情就是把收到的消息打印出来.</p>
 <h2 id="启动程序">启动程序</h2>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -1804,37 +1800,37 @@
 </span><span class="lnt">19
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-csharp" data-lang="csharp"><span class="k">class</span> <span class="nc">Program</span>
-<span class="p">{</span>
-    <span class="k">static</span> <span class="k">void</span> <span class="n">Main</span><span class="p">(</span><span class="kt">string</span><span class="p">[]</span> <span class="n">args</span><span class="p">)</span>
-    <span class="p">{</span>
-        <span class="c1">// 初始化被观察者
-</span><span class="c1"></span>        <span class="kt">var</span> <span class="n">notifier</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Observable</span><span class="p">();</span>
-        
-        <span class="c1">// 初始化观察者
-</span><span class="c1"></span>        <span class="kt">var</span> <span class="n">alice</span> <span class="p">=</span> <span class="k">new</span> <span class="n">SubscriberAlice</span><span class="p">();</span>
-        <span class="kt">var</span> <span class="n">bob</span> <span class="p">=</span> <span class="k">new</span> <span class="n">SubscriberBob</span><span class="p">();</span>
-
-        <span class="c1">// 注册观察者
-</span><span class="c1"></span>        <span class="n">notifier</span><span class="p">.</span><span class="n">Register</span><span class="p">(</span><span class="n">alice</span><span class="p">);</span>
-        <span class="n">notifier</span><span class="p">.</span><span class="n">Register</span><span class="p">(</span><span class="n">bob</span><span class="p">);</span>
-
-        <span class="c1">// 通知观察者
-</span><span class="c1"></span>        <span class="n">notifier</span><span class="p">.</span><span class="n">Publish</span><span class="p">();</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-c#" data-lang="c#"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Program</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">static</span> <span class="k">void</span> <span class="n">Main</span><span class="p">(</span><span class="kt">string</span><span class="p">[]</span> <span class="n">args</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// 初始化被观察者</span>
+</span></span><span class="line"><span class="cl">        <span class="kt">var</span> <span class="n">notifier</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Observable</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">        
+</span></span><span class="line"><span class="cl">        <span class="c1">// 初始化观察者</span>
+</span></span><span class="line"><span class="cl">        <span class="kt">var</span> <span class="n">alice</span> <span class="p">=</span> <span class="k">new</span> <span class="n">SubscriberAlice</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">        <span class="kt">var</span> <span class="n">bob</span> <span class="p">=</span> <span class="k">new</span> <span class="n">SubscriberBob</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="c1">// 注册观察者</span>
+</span></span><span class="line"><span class="cl">        <span class="n">notifier</span><span class="p">.</span><span class="n">Register</span><span class="p">(</span><span class="n">alice</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">notifier</span><span class="p">.</span><span class="n">Register</span><span class="p">(</span><span class="n">bob</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="c1">// 通知观察者</span>
+</span></span><span class="line"><span class="cl">        <span class="n">notifier</span><span class="p">.</span><span class="n">Publish</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>程序输出</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-txt" data-lang="txt">Alice received [Breaking News!] from New York Times at 8/30/2022 3:37:14 PM.
-Bob received [Breaking News!] from New York Times at 8/30/2022 3:37:14 PM.
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-txt" data-lang="txt"><span class="line"><span class="cl">Alice received [Breaking News!] from New York Times at 8/30/2022 3:37:14 PM.
+</span></span><span class="line"><span class="cl">Bob received [Breaking News!] from New York Times at 8/30/2022 3:37:14 PM.
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="reference">Reference</h3>
 <p><a href="https://docs.microsoft.com/en-us/dotnet/standard/events/observer-design-pattern">Observer Design Pattern | Microsoft Docs</a><br />
@@ -1981,7 +1977,7 @@ Bob received [Breaking News!] from New York Times at 8/30/2022 3:37:14 PM.
 </div>
 
 
-<script defer src="/js/swipe.min.08ff2be1b74347bad9e267f732f1388d271b2f9d97b6a8a87bd6a510f17c5ad2.js"></script>
+<script defer src="/js/swipe.min.7bbf2dacea5b173fe9aa699f17efbf82aeddd807831946756705aec0fc91567f.js"></script>
 
 <script defer src="/js/micromodal.min.de01b44b2f383056bbcaf6ee921fd385d79108ec1129afd0eb2f3f5a07e11f45.js"></script>
 
@@ -2273,27 +2269,27 @@ document.addEventListener('DOMContentLoaded', function () {
 
 <section class="sidebar hide">
   <script>document.querySelector('.sidebar').classList.remove('hide')</script>
-  <div class="toc__flexbox" data-position="fixed">
+  <div class="toc__flexbox" data-position="absolute">
     <h6 class="toc__title" data-ani="true">What&#39;s on this Page</h6>
     
       <label class="switch" data-ani="true">
-        <input id="toggle-toc" aria-label="Toggle TOC" type="checkbox" checked>
+        <input id="toggle-toc" aria-label="Toggle TOC" type="checkbox" >
         <span class="slider round"></span>
       </label>
     
   </div>
-  <div class="toc " data-dir="ltr" data-folding="true" data-ani="true">
+  <div class="toc hide" data-dir="ltr" data-folding="true" data-ani="true">
     <nav id="TableOfContents">
   <ul>
     <li><a href="#定义消息-观察者和被观察者">定义消息, 观察者和被观察者</a>
       <ul>
         <li><a href="#消息与eventargs">消息与EventArgs</a></li>
-        <li><a href="#观察者接口">观察者接口</a></li>
-        <li><a href="#被观察者接口">被观察者接口</a></li>
+        <li><a href="#定义观察者">定义观察者</a></li>
+        <li><a href="#定义被观察者">定义被观察者</a></li>
       </ul>
     </li>
-    <li><a href="#被观察者实现">被观察者实现</a></li>
-    <li><a href="#观察者实现">观察者实现</a></li>
+    <li><a href="#实现观察者">实现观察者</a></li>
+    <li><a href="#实现被观察者">实现被观察者</a></li>
     <li><a href="#启动程序">启动程序</a>
       <ul>
         <li><a href="#reference">Reference</a></li>
@@ -2430,7 +2426,7 @@ document.addEventListener('DOMContentLoaded', function () {
     
     var enableToc = JSON.parse("true");
     var toc = JSON.parse("null");
-    var hideToc = JSON.parse("false");
+    var hideToc = JSON.parse("true");
     var tocFlexbox = document.querySelector('.toc__flexbox');
     var tocFlexboxOuter = document.querySelector('.toc__flexbox--outer');
     var tocFolding = JSON.parse("true");
