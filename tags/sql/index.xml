@@ -1,15 +1,15 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
         <title>SQL - Tag - Laniakea</title>
-        <link>http://xxuan.cc/tags/sql/</link>
+        <link>https://xxuan.cc/tags/sql/</link>
         <description>SQL - Tag - Laniakea</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>shawn_au@outlook.com (xiaoxuan)</managingEditor>
-            <webMaster>shawn_au@outlook.com (xiaoxuan)</webMaster><lastBuildDate>Sun, 19 Jun 2016 07:51:31 &#43;0000</lastBuildDate><atom:link href="http://xxuan.cc/tags/sql/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>shawn_au@outlook.com (xiaoxuan)</webMaster><lastBuildDate>Sun, 19 Jun 2016 07:51:31 &#43;0000</lastBuildDate><atom:link href="https://xxuan.cc/tags/sql/" rel="self" type="application/rss+xml" /><item>
     <title>SQL 速查</title>
-    <link>http://xxuan.cc/code/2016-06-20-sql-abc/</link>
+    <link>https://xxuan.cc/code/2016-06-20-sql-abc/</link>
     <pubDate>Sun, 19 Jun 2016 07:51:31 &#43;0000</pubDate>
     <author>xiaoxuan</author>
-    <guid>http://xxuan.cc/code/2016-06-20-sql-abc/</guid>
+    <guid>https://xxuan.cc/code/2016-06-20-sql-abc/</guid>
     <description><![CDATA[<p>All the resources from <a href="https://www.codecademy.com/learn" target="_blank" rel="noopener noreffer ">codecademy</a></p>]]></description>
 </item>
 </channel>

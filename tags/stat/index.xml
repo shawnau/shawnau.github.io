@@ -1,24 +1,24 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
         <title>stat - Tag - Laniakea</title>
-        <link>http://xxuan.cc/tags/stat/</link>
+        <link>https://xxuan.cc/tags/stat/</link>
         <description>stat - Tag - Laniakea</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>shawn_au@outlook.com (xiaoxuan)</managingEditor>
-            <webMaster>shawn_au@outlook.com (xiaoxuan)</webMaster><lastBuildDate>Tue, 26 Dec 2017 19:21:27 &#43;0000</lastBuildDate><atom:link href="http://xxuan.cc/tags/stat/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>shawn_au@outlook.com (xiaoxuan)</webMaster><lastBuildDate>Tue, 26 Dec 2017 19:21:27 &#43;0000</lastBuildDate><atom:link href="https://xxuan.cc/tags/stat/" rel="self" type="application/rss+xml" /><item>
     <title>Survival Models</title>
-    <link>http://xxuan.cc/2017-12-26-survival-models/</link>
+    <link>https://xxuan.cc/2017-12-26-survival-models/</link>
     <pubDate>Tue, 26 Dec 2017 19:21:27 &#43;0000</pubDate>
     <author>xiaoxuan</author>
-    <guid>http://xxuan.cc/2017-12-26-survival-models/</guid>
+    <guid>https://xxuan.cc/2017-12-26-survival-models/</guid>
     <description><![CDATA[<p>
 生存模型(Survival Models)属于General Linear Model, 被广泛用于Censored Data的建模, 譬如用户流失预测. 这里介绍下最基本的生存模型以及在Censored Data上的MLE估计</p>]]></description>
 </item>
 <item>
     <title>Poisson Distribution Summary</title>
-    <link>http://xxuan.cc/2017-08-08-poisson/</link>
+    <link>https://xxuan.cc/2017-08-08-poisson/</link>
     <pubDate>Tue, 08 Aug 2017 15:47:56 &#43;0000</pubDate>
     <author>xiaoxuan</author>
-    <guid>http://xxuan.cc/2017-08-08-poisson/</guid>
+    <guid>https://xxuan.cc/2017-08-08-poisson/</guid>
     <description><![CDATA[<p>泊松分布是随机过程中的一个重要分布</p>]]></description>
 </item>
 </channel>

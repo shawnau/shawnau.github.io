@@ -1,55 +1,55 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
         <title>svm - Tag - Laniakea</title>
-        <link>http://xxuan.cc/tags/svm/</link>
+        <link>https://xxuan.cc/tags/svm/</link>
         <description>svm - Tag - Laniakea</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>shawn_au@outlook.com (xiaoxuan)</managingEditor>
-            <webMaster>shawn_au@outlook.com (xiaoxuan)</webMaster><lastBuildDate>Fri, 24 Mar 2017 23:02:02 &#43;0000</lastBuildDate><atom:link href="http://xxuan.cc/tags/svm/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>shawn_au@outlook.com (xiaoxuan)</webMaster><lastBuildDate>Fri, 24 Mar 2017 23:02:02 &#43;0000</lastBuildDate><atom:link href="https://xxuan.cc/tags/svm/" rel="self" type="application/rss+xml" /><item>
     <title>支持向量机(SVM)</title>
-    <link>http://xxuan.cc/2017-03-24-svm-cn/</link>
+    <link>https://xxuan.cc/2017-03-24-svm-cn/</link>
     <pubDate>Fri, 24 Mar 2017 23:02:02 &#43;0000</pubDate>
     <author>xiaoxuan</author>
-    <guid>http://xxuan.cc/2017-03-24-svm-cn/</guid>
+    <guid>https://xxuan.cc/2017-03-24-svm-cn/</guid>
     <description><![CDATA[<p>旧文章的翻译, 主要参考自李航的统计学习方法一书.</p>]]></description>
 </item>
 <item>
     <title>Support Vector Machine(4)-SMO implementation</title>
-    <link>http://xxuan.cc/2016-05-16-smo-implementation/</link>
+    <link>https://xxuan.cc/2016-05-16-smo-implementation/</link>
     <pubDate>Mon, 16 May 2016 07:41:08 &#43;0000</pubDate>
     <author>xiaoxuan</author>
-    <guid>http://xxuan.cc/2016-05-16-smo-implementation/</guid>
+    <guid>https://xxuan.cc/2016-05-16-smo-implementation/</guid>
     <description><![CDATA[<p>SMO算法的python实现</p>]]></description>
 </item>
 <item>
     <title>Support Vector Machine(3)-SMO</title>
-    <link>http://xxuan.cc/2016-05-14-smo/</link>
+    <link>https://xxuan.cc/2016-05-14-smo/</link>
     <pubDate>Sat, 14 May 2016 13:33:33 &#43;0000</pubDate>
     <author>xiaoxuan</author>
-    <guid>http://xxuan.cc/2016-05-14-smo/</guid>
+    <guid>https://xxuan.cc/2016-05-14-smo/</guid>
     <description><![CDATA[<p>序列最小化算法</p>]]></description>
 </item>
 <item>
     <title>Support Vector Machine(2.2)-Solving dual problem for soft margin maximization</title>
-    <link>http://xxuan.cc/2016-05-12-svm2_2/</link>
+    <link>https://xxuan.cc/2016-05-12-svm2_2/</link>
     <pubDate>Thu, 12 May 2016 13:33:33 &#43;0000</pubDate>
     <author>xiaoxuan</author>
-    <guid>http://xxuan.cc/2016-05-12-svm2_2/</guid>
+    <guid>https://xxuan.cc/2016-05-12-svm2_2/</guid>
     <description><![CDATA[<p>SVM之软间隔最大化</p>]]></description>
 </item>
 <item>
     <title>Support Vector Machine(2.1)-Solving dual problem for hard margin maximization</title>
-    <link>http://xxuan.cc/2016-05-12-svm2_1/</link>
+    <link>https://xxuan.cc/2016-05-12-svm2_1/</link>
     <pubDate>Thu, 12 May 2016 06:57:41 &#43;0000</pubDate>
     <author>xiaoxuan</author>
-    <guid>http://xxuan.cc/2016-05-12-svm2_1/</guid>
+    <guid>https://xxuan.cc/2016-05-12-svm2_1/</guid>
     <description><![CDATA[<p>SVM之硬间隔最大化</p>]]></description>
 </item>
 <item>
     <title>Support Vector Machine(1) - Hard margin maximization</title>
-    <link>http://xxuan.cc/2016-05-11-svm/</link>
+    <link>https://xxuan.cc/2016-05-11-svm/</link>
     <pubDate>Wed, 11 May 2016 15:36:18 &#43;0000</pubDate>
     <author>xiaoxuan</author>
-    <guid>http://xxuan.cc/2016-05-11-svm/</guid>
+    <guid>https://xxuan.cc/2016-05-11-svm/</guid>
     <description><![CDATA[<p>支持向量机</p>]]></description>
 </item>
 </channel>

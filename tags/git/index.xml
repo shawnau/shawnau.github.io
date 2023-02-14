@@ -1,15 +1,15 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
         <title>git - Tag - Laniakea</title>
-        <link>http://xxuan.cc/tags/git/</link>
+        <link>https://xxuan.cc/tags/git/</link>
         <description>git - Tag - Laniakea</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>shawn_au@outlook.com (xiaoxuan)</managingEditor>
-            <webMaster>shawn_au@outlook.com (xiaoxuan)</webMaster><lastBuildDate>Tue, 22 Nov 2016 00:00:00 &#43;0000</lastBuildDate><atom:link href="http://xxuan.cc/tags/git/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>shawn_au@outlook.com (xiaoxuan)</webMaster><lastBuildDate>Tue, 22 Nov 2016 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://xxuan.cc/tags/git/" rel="self" type="application/rss+xml" /><item>
     <title>git 从fork的项目更新自己的项目的简易手段</title>
-    <link>http://xxuan.cc/code/2016-11-22-git-update-forked/</link>
+    <link>https://xxuan.cc/code/2016-11-22-git-update-forked/</link>
     <pubDate>Tue, 22 Nov 2016 00:00:00 &#43;0000</pubDate>
     <author>xiaoxuan</author>
-    <guid>http://xxuan.cc/code/2016-11-22-git-update-forked/</guid>
+    <guid>https://xxuan.cc/code/2016-11-22-git-update-forked/</guid>
     <description><![CDATA[<p>RT</p>]]></description>
 </item>
 </channel>

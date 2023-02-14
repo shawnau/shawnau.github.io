@@ -1,15 +1,15 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
         <title>gbdt - Tag - Laniakea</title>
-        <link>http://xxuan.cc/tags/gbdt/</link>
+        <link>https://xxuan.cc/tags/gbdt/</link>
         <description>gbdt - Tag - Laniakea</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>shawn_au@outlook.com (xiaoxuan)</managingEditor>
-            <webMaster>shawn_au@outlook.com (xiaoxuan)</webMaster><lastBuildDate>Mon, 04 Sep 2017 22:05:06 &#43;0000</lastBuildDate><atom:link href="http://xxuan.cc/tags/gbdt/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>shawn_au@outlook.com (xiaoxuan)</webMaster><lastBuildDate>Mon, 04 Sep 2017 22:05:06 &#43;0000</lastBuildDate><atom:link href="https://xxuan.cc/tags/gbdt/" rel="self" type="application/rss+xml" /><item>
     <title>梯度提升(Gradient Boosting)</title>
-    <link>http://xxuan.cc/2017-09-04-gradient-boosting/</link>
+    <link>https://xxuan.cc/2017-09-04-gradient-boosting/</link>
     <pubDate>Mon, 04 Sep 2017 22:05:06 &#43;0000</pubDate>
     <author>xiaoxuan</author>
-    <guid>http://xxuan.cc/2017-09-04-gradient-boosting/</guid>
+    <guid>https://xxuan.cc/2017-09-04-gradient-boosting/</guid>
     <description><![CDATA[<p></p>
 <p>自己写的老物了, 整理一下发出来, 可能会修改</p>]]></description>
 </item>
