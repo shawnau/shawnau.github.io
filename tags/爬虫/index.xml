@@ -1,23 +1,23 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
         <title>爬虫 - Tag - Laniakea</title>
-        <link>https://xxuan.cc/tags/%E7%88%AC%E8%99%AB/</link>
+        <link>https://shawnau.github.io/tags/%E7%88%AC%E8%99%AB/</link>
         <description>爬虫 - Tag - Laniakea</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>shawn_au@outlook.com (xiaoxuan)</managingEditor>
-            <webMaster>shawn_au@outlook.com (xiaoxuan)</webMaster><lastBuildDate>Sun, 17 Jul 2016 20:09:38 &#43;0000</lastBuildDate><atom:link href="https://xxuan.cc/tags/%E7%88%AC%E8%99%AB/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>shawn_au@outlook.com (xiaoxuan)</webMaster><lastBuildDate>Sun, 17 Jul 2016 20:09:38 &#43;0000</lastBuildDate><atom:link href="https://shawnau.github.io/tags/%E7%88%AC%E8%99%AB/" rel="self" type="application/rss+xml" /><item>
     <title>bilibili新番/旧番弹幕抓取</title>
-    <link>https://xxuan.cc/code/2016-07-17-bilibili-scraper/</link>
+    <link>https://shawnau.github.io/code/2016-07-17-bilibili-scraper/</link>
     <pubDate>Sun, 17 Jul 2016 20:09:38 &#43;0000</pubDate>
     <author>xiaoxuan</author>
-    <guid>https://xxuan.cc/code/2016-07-17-bilibili-scraper/</guid>
+    <guid>https://shawnau.github.io/code/2016-07-17-bilibili-scraper/</guid>
     <description><![CDATA[<p>主要涉及到Selenium的使用</p>]]></description>
 </item>
 <item>
     <title>基于selenium&#43;phantomJS的动态网页抓取</title>
-    <link>https://xxuan.cc/code/2016-07-16-webscraper/</link>
+    <link>https://shawnau.github.io/code/2016-07-16-webscraper/</link>
     <pubDate>Sat, 16 Jul 2016 12:26:35 &#43;0000</pubDate>
     <author>xiaoxuan</author>
-    <guid>https://xxuan.cc/code/2016-07-16-webscraper/</guid>
+    <guid>https://shawnau.github.io/code/2016-07-16-webscraper/</guid>
     <description><![CDATA[<p>源代码: <a href="https://github.com/shawnau/ustcsse_scraper" target="_blank" rel="noopener noreffer ">https://github.com/shawnau/ustcsse_scraper</a></p>]]></description>
 </item>
 </channel>

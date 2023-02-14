@@ -1,15 +1,15 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
         <title>bayes - Tag - Laniakea</title>
-        <link>https://xxuan.cc/tags/bayes/</link>
+        <link>https://shawnau.github.io/tags/bayes/</link>
         <description>bayes - Tag - Laniakea</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>shawn_au@outlook.com (xiaoxuan)</managingEditor>
-            <webMaster>shawn_au@outlook.com (xiaoxuan)</webMaster><lastBuildDate>Wed, 22 Mar 2017 16:06:07 &#43;0000</lastBuildDate><atom:link href="https://xxuan.cc/tags/bayes/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>shawn_au@outlook.com (xiaoxuan)</webMaster><lastBuildDate>Wed, 22 Mar 2017 16:06:07 &#43;0000</lastBuildDate><atom:link href="https://shawnau.github.io/tags/bayes/" rel="self" type="application/rss+xml" /><item>
     <title>朴素贝叶斯</title>
-    <link>https://xxuan.cc/2017-03-22-naive-bayes/</link>
+    <link>https://shawnau.github.io/2017-03-22-naive-bayes/</link>
     <pubDate>Wed, 22 Mar 2017 16:06:07 &#43;0000</pubDate>
     <author>xiaoxuan</author>
-    <guid>https://xxuan.cc/2017-03-22-naive-bayes/</guid>
+    <guid>https://shawnau.github.io/2017-03-22-naive-bayes/</guid>
     <description><![CDATA[<p>朴素贝叶斯(<strong>Naive</strong> Bayes) 如此蛤意盎然的算法, 居然一直没写</p>]]></description>
 </item>
 </channel>

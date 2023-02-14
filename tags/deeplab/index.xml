@@ -1,15 +1,15 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
         <title>DeepLab - Tag - Laniakea</title>
-        <link>https://xxuan.cc/tags/deeplab/</link>
+        <link>https://shawnau.github.io/tags/deeplab/</link>
         <description>DeepLab - Tag - Laniakea</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>shawn_au@outlook.com (xiaoxuan)</managingEditor>
-            <webMaster>shawn_au@outlook.com (xiaoxuan)</webMaster><lastBuildDate>Fri, 13 Jul 2018 18:09:06 &#43;0000</lastBuildDate><atom:link href="https://xxuan.cc/tags/deeplab/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>shawn_au@outlook.com (xiaoxuan)</webMaster><lastBuildDate>Fri, 13 Jul 2018 18:09:06 &#43;0000</lastBuildDate><atom:link href="https://shawnau.github.io/tags/deeplab/" rel="self" type="application/rss+xml" /><item>
     <title>语义分割综述</title>
-    <link>https://xxuan.cc/2018-07-13-semantic-segmentation/</link>
+    <link>https://shawnau.github.io/2018-07-13-semantic-segmentation/</link>
     <pubDate>Fri, 13 Jul 2018 18:09:06 &#43;0000</pubDate>
     <author>xiaoxuan</author>
-    <guid>https://xxuan.cc/2018-07-13-semantic-segmentation/</guid>
+    <guid>https://shawnau.github.io/2018-07-13-semantic-segmentation/</guid>
     <description><![CDATA[<p>存货, 介绍了语义分割模型的发展历史以及基本理念</p>]]></description>
 </item>
 </channel>

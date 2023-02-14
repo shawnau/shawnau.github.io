@@ -2,298 +2,298 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Playgrounds on Laniakea</title>
-    <link>https://xxuan.cc/playground/</link>
+    <link>https://shawnau.github.io/playground/</link>
     <description>Recent content in Playgrounds on Laniakea</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
     <managingEditor>shawn_au@outlook.com (xiaoxuan)</managingEditor>
     <webMaster>shawn_au@outlook.com (xiaoxuan)</webMaster>
-    <lastBuildDate>Thu, 08 Sep 2022 23:21:00 +0800</lastBuildDate><atom:link href="https://xxuan.cc/playground/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 08 Sep 2022 23:21:00 +0800</lastBuildDate><atom:link href="https://shawnau.github.io/playground/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>岛屿问题</title>
-      <link>https://xxuan.cc/playground/islands/</link>
+      <link>https://shawnau.github.io/playground/islands/</link>
       <pubDate>Thu, 08 Sep 2022 23:21:00 +0800</pubDate>
       <author>shawn_au@outlook.com (xiaoxuan)</author>
-      <guid>https://xxuan.cc/playground/islands/</guid>
+      <guid>https://shawnau.github.io/playground/islands/</guid>
       <description>总结了一些01矩阵组成的岛屿问题. 基本上可以通过dfs解决, 但也可以用并查集处理. 其中200是我做的第一道并查集题, 印象很深 200 岛屿数量: 最基</description>
     </item>
     
     <item>
       <title>Trapping Rain Water</title>
-      <link>https://xxuan.cc/playground/trapping-rain-water/</link>
+      <link>https://shawnau.github.io/playground/trapping-rain-water/</link>
       <pubDate>Wed, 11 Aug 2021 20:09:03 +0800</pubDate>
       <author>shawn_au@outlook.com (xiaoxuan)</author>
-      <guid>https://xxuan.cc/playground/trapping-rain-water/</guid>
+      <guid>https://shawnau.github.io/playground/trapping-rain-water/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Dungeon Game</title>
-      <link>https://xxuan.cc/playground/dungeon-game/</link>
+      <link>https://shawnau.github.io/playground/dungeon-game/</link>
       <pubDate>Sun, 01 Mar 2020 16:05:43 +0800</pubDate>
       <author>shawn_au@outlook.com (xiaoxuan)</author>
-      <guid>https://xxuan.cc/playground/dungeon-game/</guid>
+      <guid>https://shawnau.github.io/playground/dungeon-game/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Count Different Palindromic Subsequences</title>
-      <link>https://xxuan.cc/playground/count-different-palindromic-subsequences/</link>
+      <link>https://shawnau.github.io/playground/count-different-palindromic-subsequences/</link>
       <pubDate>Sat, 22 Feb 2020 19:15:06 +0800</pubDate>
       <author>shawn_au@outlook.com (xiaoxuan)</author>
-      <guid>https://xxuan.cc/playground/count-different-palindromic-subsequences/</guid>
+      <guid>https://shawnau.github.io/playground/count-different-palindromic-subsequences/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Longest Palindromic Subsequence</title>
-      <link>https://xxuan.cc/playground/longest-palindromic-subsequence/</link>
+      <link>https://shawnau.github.io/playground/longest-palindromic-subsequence/</link>
       <pubDate>Sat, 22 Feb 2020 16:43:01 +0800</pubDate>
       <author>shawn_au@outlook.com (xiaoxuan)</author>
-      <guid>https://xxuan.cc/playground/longest-palindromic-subsequence/</guid>
+      <guid>https://shawnau.github.io/playground/longest-palindromic-subsequence/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Maximum Product Subarray</title>
-      <link>https://xxuan.cc/playground/maximum-product-subarray/</link>
+      <link>https://shawnau.github.io/playground/maximum-product-subarray/</link>
       <pubDate>Sat, 22 Feb 2020 16:16:07 +0800</pubDate>
       <author>shawn_au@outlook.com (xiaoxuan)</author>
-      <guid>https://xxuan.cc/playground/maximum-product-subarray/</guid>
+      <guid>https://shawnau.github.io/playground/maximum-product-subarray/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Word Break 2</title>
-      <link>https://xxuan.cc/playground/word-break-2/</link>
+      <link>https://shawnau.github.io/playground/word-break-2/</link>
       <pubDate>Fri, 21 Feb 2020 22:13:35 +0800</pubDate>
       <author>shawn_au@outlook.com (xiaoxuan)</author>
-      <guid>https://xxuan.cc/playground/word-break-2/</guid>
+      <guid>https://shawnau.github.io/playground/word-break-2/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Word Break</title>
-      <link>https://xxuan.cc/playground/word-break/</link>
+      <link>https://shawnau.github.io/playground/word-break/</link>
       <pubDate>Fri, 21 Feb 2020 20:59:19 +0800</pubDate>
       <author>shawn_au@outlook.com (xiaoxuan)</author>
-      <guid>https://xxuan.cc/playground/word-break/</guid>
+      <guid>https://shawnau.github.io/playground/word-break/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Palindrome Partitioning 2</title>
-      <link>https://xxuan.cc/playground/palindrome-partitioning-2/</link>
+      <link>https://shawnau.github.io/playground/palindrome-partitioning-2/</link>
       <pubDate>Thu, 20 Feb 2020 20:29:24 +0800</pubDate>
       <author>shawn_au@outlook.com (xiaoxuan)</author>
-      <guid>https://xxuan.cc/playground/palindrome-partitioning-2/</guid>
+      <guid>https://shawnau.github.io/playground/palindrome-partitioning-2/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Palindrome Partitioning</title>
-      <link>https://xxuan.cc/playground/palindrome-partitioning/</link>
+      <link>https://shawnau.github.io/playground/palindrome-partitioning/</link>
       <pubDate>Thu, 20 Feb 2020 16:06:21 +0800</pubDate>
       <author>shawn_au@outlook.com (xiaoxuan)</author>
-      <guid>https://xxuan.cc/playground/palindrome-partitioning/</guid>
+      <guid>https://shawnau.github.io/playground/palindrome-partitioning/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Best Time to Buy and Sell Stock Iv</title>
-      <link>https://xxuan.cc/playground/best-time-to-buy-and-sell-stock-iv/</link>
+      <link>https://shawnau.github.io/playground/best-time-to-buy-and-sell-stock-iv/</link>
       <pubDate>Wed, 19 Feb 2020 16:50:28 +0800</pubDate>
       <author>shawn_au@outlook.com (xiaoxuan)</author>
-      <guid>https://xxuan.cc/playground/best-time-to-buy-and-sell-stock-iv/</guid>
+      <guid>https://shawnau.github.io/playground/best-time-to-buy-and-sell-stock-iv/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Triangle</title>
-      <link>https://xxuan.cc/playground/triangle/</link>
+      <link>https://shawnau.github.io/playground/triangle/</link>
       <pubDate>Tue, 18 Feb 2020 23:39:31 +0800</pubDate>
       <author>shawn_au@outlook.com (xiaoxuan)</author>
-      <guid>https://xxuan.cc/playground/triangle/</guid>
+      <guid>https://shawnau.github.io/playground/triangle/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Distinct Subsequences</title>
-      <link>https://xxuan.cc/playground/distinct-subsequences/</link>
+      <link>https://shawnau.github.io/playground/distinct-subsequences/</link>
       <pubDate>Tue, 18 Feb 2020 16:46:50 +0800</pubDate>
       <author>shawn_au@outlook.com (xiaoxuan)</author>
-      <guid>https://xxuan.cc/playground/distinct-subsequences/</guid>
+      <guid>https://shawnau.github.io/playground/distinct-subsequences/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Interleaving String</title>
-      <link>https://xxuan.cc/playground/interleaving-string/</link>
+      <link>https://shawnau.github.io/playground/interleaving-string/</link>
       <pubDate>Mon, 17 Feb 2020 17:23:04 +0800</pubDate>
       <author>shawn_au@outlook.com (xiaoxuan)</author>
-      <guid>https://xxuan.cc/playground/interleaving-string/</guid>
+      <guid>https://shawnau.github.io/playground/interleaving-string/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Decode Ways 2</title>
-      <link>https://xxuan.cc/playground/decode-ways-2/</link>
+      <link>https://shawnau.github.io/playground/decode-ways-2/</link>
       <pubDate>Mon, 17 Feb 2020 16:52:56 +0800</pubDate>
       <author>shawn_au@outlook.com (xiaoxuan)</author>
-      <guid>https://xxuan.cc/playground/decode-ways-2/</guid>
+      <guid>https://shawnau.github.io/playground/decode-ways-2/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Decode Ways</title>
-      <link>https://xxuan.cc/playground/decode-ways/</link>
+      <link>https://shawnau.github.io/playground/decode-ways/</link>
       <pubDate>Mon, 17 Feb 2020 15:54:48 +0800</pubDate>
       <author>shawn_au@outlook.com (xiaoxuan)</author>
-      <guid>https://xxuan.cc/playground/decode-ways/</guid>
+      <guid>https://shawnau.github.io/playground/decode-ways/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Largest Rectangle in Histogram</title>
-      <link>https://xxuan.cc/playground/largest-rectangle-in-histogram/</link>
+      <link>https://shawnau.github.io/playground/largest-rectangle-in-histogram/</link>
       <pubDate>Sun, 16 Feb 2020 19:11:20 +0800</pubDate>
       <author>shawn_au@outlook.com (xiaoxuan)</author>
-      <guid>https://xxuan.cc/playground/largest-rectangle-in-histogram/</guid>
+      <guid>https://shawnau.github.io/playground/largest-rectangle-in-histogram/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Maximal Rectangle</title>
-      <link>https://xxuan.cc/playground/maximal-rectangle/</link>
+      <link>https://shawnau.github.io/playground/maximal-rectangle/</link>
       <pubDate>Sun, 16 Feb 2020 17:48:27 +0800</pubDate>
       <author>shawn_au@outlook.com (xiaoxuan)</author>
-      <guid>https://xxuan.cc/playground/maximal-rectangle/</guid>
+      <guid>https://shawnau.github.io/playground/maximal-rectangle/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Edit Distance</title>
-      <link>https://xxuan.cc/playground/edit-distance/</link>
+      <link>https://shawnau.github.io/playground/edit-distance/</link>
       <pubDate>Sun, 16 Feb 2020 13:02:42 +0800</pubDate>
       <author>shawn_au@outlook.com (xiaoxuan)</author>
-      <guid>https://xxuan.cc/playground/edit-distance/</guid>
+      <guid>https://shawnau.github.io/playground/edit-distance/</guid>
       <description>&lt;p&gt;This is about calculation Levenshtein Distance&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>Minimal Path Sum</title>
-      <link>https://xxuan.cc/playground/minimal-path-sum/</link>
+      <link>https://shawnau.github.io/playground/minimal-path-sum/</link>
       <pubDate>Sun, 16 Feb 2020 00:20:57 +0800</pubDate>
       <author>shawn_au@outlook.com (xiaoxuan)</author>
-      <guid>https://xxuan.cc/playground/minimal-path-sum/</guid>
+      <guid>https://shawnau.github.io/playground/minimal-path-sum/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Unique Paths 3</title>
-      <link>https://xxuan.cc/playground/unique-paths-3/</link>
+      <link>https://shawnau.github.io/playground/unique-paths-3/</link>
       <pubDate>Sat, 15 Feb 2020 20:50:53 +0800</pubDate>
       <author>shawn_au@outlook.com (xiaoxuan)</author>
-      <guid>https://xxuan.cc/playground/unique-paths-3/</guid>
+      <guid>https://shawnau.github.io/playground/unique-paths-3/</guid>
       <description>&lt;p&gt;Walk over all grids without duplicate, with obstacles&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>Unique Paths 2</title>
-      <link>https://xxuan.cc/playground/unique-paths-2/</link>
+      <link>https://shawnau.github.io/playground/unique-paths-2/</link>
       <pubDate>Sat, 15 Feb 2020 20:13:37 +0800</pubDate>
       <author>shawn_au@outlook.com (xiaoxuan)</author>
-      <guid>https://xxuan.cc/playground/unique-paths-2/</guid>
+      <guid>https://shawnau.github.io/playground/unique-paths-2/</guid>
       <description>&lt;p&gt;Count all paths from a to b, with obstacles.&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>Unique Paths</title>
-      <link>https://xxuan.cc/playground/unique-paths/</link>
+      <link>https://shawnau.github.io/playground/unique-paths/</link>
       <pubDate>Sat, 15 Feb 2020 19:33:05 +0800</pubDate>
       <author>shawn_au@outlook.com (xiaoxuan)</author>
-      <guid>https://xxuan.cc/playground/unique-paths/</guid>
+      <guid>https://shawnau.github.io/playground/unique-paths/</guid>
       <description>&lt;p&gt;Count all paths from a to b&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>Maximum Subarray</title>
-      <link>https://xxuan.cc/playground/maximum-subarray/</link>
+      <link>https://shawnau.github.io/playground/maximum-subarray/</link>
       <pubDate>Sat, 15 Feb 2020 16:33:34 +0800</pubDate>
       <author>shawn_au@outlook.com (xiaoxuan)</author>
-      <guid>https://xxuan.cc/playground/maximum-subarray/</guid>
+      <guid>https://shawnau.github.io/playground/maximum-subarray/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Valid Parentheses</title>
-      <link>https://xxuan.cc/playground/valid-parentheses/</link>
+      <link>https://shawnau.github.io/playground/valid-parentheses/</link>
       <pubDate>Fri, 14 Feb 2020 17:29:25 +0800</pubDate>
       <author>shawn_au@outlook.com (xiaoxuan)</author>
-      <guid>https://xxuan.cc/playground/valid-parentheses/</guid>
+      <guid>https://shawnau.github.io/playground/valid-parentheses/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Longest Valid Parentheses</title>
-      <link>https://xxuan.cc/playground/longest-valid-parentheses/</link>
+      <link>https://shawnau.github.io/playground/longest-valid-parentheses/</link>
       <pubDate>Fri, 14 Feb 2020 12:12:45 +0800</pubDate>
       <author>shawn_au@outlook.com (xiaoxuan)</author>
-      <guid>https://xxuan.cc/playground/longest-valid-parentheses/</guid>
+      <guid>https://shawnau.github.io/playground/longest-valid-parentheses/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Longest Palindromic Substring</title>
-      <link>https://xxuan.cc/playground/longest-palindromic-substring/</link>
+      <link>https://shawnau.github.io/playground/longest-palindromic-substring/</link>
       <pubDate>Tue, 11 Feb 2020 17:18:35 +0800</pubDate>
       <author>shawn_au@outlook.com (xiaoxuan)</author>
-      <guid>https://xxuan.cc/playground/longest-palindromic-substring/</guid>
+      <guid>https://shawnau.github.io/playground/longest-palindromic-substring/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Wildcard Matching</title>
-      <link>https://xxuan.cc/playground/wildcard-matching/</link>
+      <link>https://shawnau.github.io/playground/wildcard-matching/</link>
       <pubDate>Tue, 11 Feb 2020 16:12:15 +0800</pubDate>
       <author>shawn_au@outlook.com (xiaoxuan)</author>
-      <guid>https://xxuan.cc/playground/wildcard-matching/</guid>
+      <guid>https://shawnau.github.io/playground/wildcard-matching/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Optimize Recursion</title>
-      <link>https://xxuan.cc/playground/optimize-recursion/</link>
+      <link>https://shawnau.github.io/playground/optimize-recursion/</link>
       <pubDate>Tue, 11 Feb 2020 15:33:49 +0800</pubDate>
       <author>shawn_au@outlook.com (xiaoxuan)</author>
-      <guid>https://xxuan.cc/playground/optimize-recursion/</guid>
+      <guid>https://shawnau.github.io/playground/optimize-recursion/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Regular Expression Matching</title>
-      <link>https://xxuan.cc/playground/regular-expression-matching/</link>
+      <link>https://shawnau.github.io/playground/regular-expression-matching/</link>
       <pubDate>Mon, 10 Feb 2020 21:46:18 +0800</pubDate>
       <author>shawn_au@outlook.com (xiaoxuan)</author>
-      <guid>https://xxuan.cc/playground/regular-expression-matching/</guid>
+      <guid>https://shawnau.github.io/playground/regular-expression-matching/</guid>
       <description></description>
     </item>
     
     <item>
       <title>某动态规划小题</title>
-      <link>https://xxuan.cc/playground/2017-08-07-dp1/</link>
+      <link>https://shawnau.github.io/playground/2017-08-07-dp1/</link>
       <pubDate>Mon, 07 Aug 2017 16:43:15 +0000</pubDate>
       <author>shawn_au@outlook.com (xiaoxuan)</author>
-      <guid>https://xxuan.cc/playground/2017-08-07-dp1/</guid>
+      <guid>https://shawnau.github.io/playground/2017-08-07-dp1/</guid>
       <description>&lt;p&gt;好像是谷歌面试题&amp;hellip;中比较弱智的&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>一道阿里在线面试算法题--落入心形线的概率</title>
-      <link>https://xxuan.cc/playground/2017-03-08-online-interview/</link>
+      <link>https://shawnau.github.io/playground/2017-03-08-online-interview/</link>
       <pubDate>Wed, 08 Mar 2017 18:53:20 +0000</pubDate>
       <author>shawn_au@outlook.com (xiaoxuan)</author>
-      <guid>https://xxuan.cc/playground/2017-03-08-online-interview/</guid>
+      <guid>https://shawnau.github.io/playground/2017-03-08-online-interview/</guid>
       <description>&lt;p&gt;最近连续被问到两三次, 可惜时间紧张没能帮上什么忙, 这里就记一下解决过程吧&lt;/p&gt;</description>
     </item>
     

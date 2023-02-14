@@ -1,23 +1,23 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
         <title>docker - Tag - Laniakea</title>
-        <link>https://xxuan.cc/tags/docker/</link>
+        <link>https://shawnau.github.io/tags/docker/</link>
         <description>docker - Tag - Laniakea</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>shawn_au@outlook.com (xiaoxuan)</managingEditor>
-            <webMaster>shawn_au@outlook.com (xiaoxuan)</webMaster><lastBuildDate>Sat, 10 Dec 2016 19:24:42 &#43;0000</lastBuildDate><atom:link href="https://xxuan.cc/tags/docker/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>shawn_au@outlook.com (xiaoxuan)</webMaster><lastBuildDate>Sat, 10 Dec 2016 19:24:42 &#43;0000</lastBuildDate><atom:link href="https://shawnau.github.io/tags/docker/" rel="self" type="application/rss+xml" /><item>
     <title>基于Docker的Faster R-CNN, CPU-Only环境配置</title>
-    <link>https://xxuan.cc/code/2016-12-10-build-fast-rcnn-under-docker/</link>
+    <link>https://shawnau.github.io/code/2016-12-10-build-fast-rcnn-under-docker/</link>
     <pubDate>Sat, 10 Dec 2016 19:24:42 &#43;0000</pubDate>
     <author>xiaoxuan</author>
-    <guid>https://xxuan.cc/code/2016-12-10-build-fast-rcnn-under-docker/</guid>
+    <guid>https://shawnau.github.io/code/2016-12-10-build-fast-rcnn-under-docker/</guid>
     <description><![CDATA[<p>详见<a href="https://github.com/shawnau/py-faster-rcnn-cpu" target="_blank" rel="noopener noreffer ">我的repo</a></p>]]></description>
 </item>
 <item>
     <title>Docker速查</title>
-    <link>https://xxuan.cc/code/2016-12-06-docker-abc/</link>
+    <link>https://shawnau.github.io/code/2016-12-06-docker-abc/</link>
     <pubDate>Thu, 08 Dec 2016 19:29:07 &#43;0000</pubDate>
     <author>xiaoxuan</author>
-    <guid>https://xxuan.cc/code/2016-12-06-docker-abc/</guid>
+    <guid>https://shawnau.github.io/code/2016-12-06-docker-abc/</guid>
     <description><![CDATA[<p>docker是一款很牛逼的虚拟化工具</p>]]></description>
 </item>
 </channel>

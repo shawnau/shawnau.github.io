@@ -1,23 +1,23 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
         <title>面试题 - Tag - Laniakea</title>
-        <link>https://xxuan.cc/tags/%E9%9D%A2%E8%AF%95%E9%A2%98/</link>
+        <link>https://shawnau.github.io/tags/%E9%9D%A2%E8%AF%95%E9%A2%98/</link>
         <description>面试题 - Tag - Laniakea</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>shawn_au@outlook.com (xiaoxuan)</managingEditor>
-            <webMaster>shawn_au@outlook.com (xiaoxuan)</webMaster><lastBuildDate>Mon, 07 Aug 2017 16:43:15 &#43;0000</lastBuildDate><atom:link href="https://xxuan.cc/tags/%E9%9D%A2%E8%AF%95%E9%A2%98/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>shawn_au@outlook.com (xiaoxuan)</webMaster><lastBuildDate>Mon, 07 Aug 2017 16:43:15 &#43;0000</lastBuildDate><atom:link href="https://shawnau.github.io/tags/%E9%9D%A2%E8%AF%95%E9%A2%98/" rel="self" type="application/rss+xml" /><item>
     <title>某动态规划小题</title>
-    <link>https://xxuan.cc/playground/2017-08-07-dp1/</link>
+    <link>https://shawnau.github.io/playground/2017-08-07-dp1/</link>
     <pubDate>Mon, 07 Aug 2017 16:43:15 &#43;0000</pubDate>
     <author>xiaoxuan</author>
-    <guid>https://xxuan.cc/playground/2017-08-07-dp1/</guid>
+    <guid>https://shawnau.github.io/playground/2017-08-07-dp1/</guid>
     <description><![CDATA[<p>好像是谷歌面试题&hellip;中比较弱智的</p>]]></description>
 </item>
 <item>
     <title>一道阿里在线面试算法题--落入心形线的概率</title>
-    <link>https://xxuan.cc/playground/2017-03-08-online-interview/</link>
+    <link>https://shawnau.github.io/playground/2017-03-08-online-interview/</link>
     <pubDate>Wed, 08 Mar 2017 18:53:20 &#43;0000</pubDate>
     <author>xiaoxuan</author>
-    <guid>https://xxuan.cc/playground/2017-03-08-online-interview/</guid>
+    <guid>https://shawnau.github.io/playground/2017-03-08-online-interview/</guid>
     <description><![CDATA[<p>最近连续被问到两三次, 可惜时间紧张没能帮上什么忙, 这里就记一下解决过程吧</p>]]></description>
 </item>
 </channel>

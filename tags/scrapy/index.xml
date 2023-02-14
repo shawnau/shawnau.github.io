@@ -1,15 +1,15 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
         <title>scrapy - Tag - Laniakea</title>
-        <link>https://xxuan.cc/tags/scrapy/</link>
+        <link>https://shawnau.github.io/tags/scrapy/</link>
         <description>scrapy - Tag - Laniakea</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>shawn_au@outlook.com (xiaoxuan)</managingEditor>
-            <webMaster>shawn_au@outlook.com (xiaoxuan)</webMaster><lastBuildDate>Sat, 18 Feb 2017 16:29:59 &#43;0000</lastBuildDate><atom:link href="https://xxuan.cc/tags/scrapy/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>shawn_au@outlook.com (xiaoxuan)</webMaster><lastBuildDate>Sat, 18 Feb 2017 16:29:59 &#43;0000</lastBuildDate><atom:link href="https://shawnau.github.io/tags/scrapy/" rel="self" type="application/rss+xml" /><item>
     <title>Scrapy简介(附项目:爬取实习僧实习信息)</title>
-    <link>https://xxuan.cc/code/2017-02-18-scrapy/</link>
+    <link>https://shawnau.github.io/code/2017-02-18-scrapy/</link>
     <pubDate>Sat, 18 Feb 2017 16:29:59 &#43;0000</pubDate>
     <author>xiaoxuan</author>
-    <guid>https://xxuan.cc/code/2017-02-18-scrapy/</guid>
+    <guid>https://shawnau.github.io/code/2017-02-18-scrapy/</guid>
     <description><![CDATA[<p><a href="http://scrapy-chs.readthedocs.io/zh_CN/latest/index.html" target="_blank" rel="noopener noreffer ">scrapy的官方中文文档</a></p>
 <p><a href="https://github.com/shawnau/shixiseng" target="_blank" rel="noopener noreffer ">源代码</a></p>]]></description>
 </item>

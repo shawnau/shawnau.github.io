@@ -1,15 +1,15 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
         <title>LSTM - Tag - Laniakea</title>
-        <link>https://xxuan.cc/tags/lstm/</link>
+        <link>https://shawnau.github.io/tags/lstm/</link>
         <description>LSTM - Tag - Laniakea</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>shawn_au@outlook.com (xiaoxuan)</managingEditor>
-            <webMaster>shawn_au@outlook.com (xiaoxuan)</webMaster><lastBuildDate>Mon, 29 Jan 2018 15:27:59 &#43;0000</lastBuildDate><atom:link href="https://xxuan.cc/tags/lstm/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>shawn_au@outlook.com (xiaoxuan)</webMaster><lastBuildDate>Mon, 29 Jan 2018 15:27:59 &#43;0000</lastBuildDate><atom:link href="https://shawnau.github.io/tags/lstm/" rel="self" type="application/rss+xml" /><item>
     <title>循环神经网络的前世今生</title>
-    <link>https://xxuan.cc/2018-01-29-lstm/</link>
+    <link>https://shawnau.github.io/2018-01-29-lstm/</link>
     <pubDate>Mon, 29 Jan 2018 15:27:59 &#43;0000</pubDate>
     <author>xiaoxuan</author>
-    <guid>https://xxuan.cc/2018-01-29-lstm/</guid>
+    <guid>https://shawnau.github.io/2018-01-29-lstm/</guid>
     <description><![CDATA[<p>
 新年第一篇, 和永无止境的八月一样循环的神经网络(其实是存货</p>]]></description>
 </item>

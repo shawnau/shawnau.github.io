@@ -1,71 +1,71 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
         <title>backtracking - Tag - Laniakea</title>
-        <link>https://xxuan.cc/tags/backtracking/</link>
+        <link>https://shawnau.github.io/tags/backtracking/</link>
         <description>backtracking - Tag - Laniakea</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>shawn_au@outlook.com (xiaoxuan)</managingEditor>
-            <webMaster>shawn_au@outlook.com (xiaoxuan)</webMaster><lastBuildDate>Sat, 22 Feb 2020 19:15:06 &#43;0800</lastBuildDate><atom:link href="https://xxuan.cc/tags/backtracking/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>shawn_au@outlook.com (xiaoxuan)</webMaster><lastBuildDate>Sat, 22 Feb 2020 19:15:06 &#43;0800</lastBuildDate><atom:link href="https://shawnau.github.io/tags/backtracking/" rel="self" type="application/rss+xml" /><item>
     <title>Count Different Palindromic Subsequences</title>
-    <link>https://xxuan.cc/playground/count-different-palindromic-subsequences/</link>
+    <link>https://shawnau.github.io/playground/count-different-palindromic-subsequences/</link>
     <pubDate>Sat, 22 Feb 2020 19:15:06 &#43;0800</pubDate>
     <author>xiaoxuan</author>
-    <guid>https://xxuan.cc/playground/count-different-palindromic-subsequences/</guid>
+    <guid>https://shawnau.github.io/playground/count-different-palindromic-subsequences/</guid>
     <description><![CDATA[]]></description>
 </item>
 <item>
     <title>Longest Palindromic Subsequence</title>
-    <link>https://xxuan.cc/playground/longest-palindromic-subsequence/</link>
+    <link>https://shawnau.github.io/playground/longest-palindromic-subsequence/</link>
     <pubDate>Sat, 22 Feb 2020 16:43:01 &#43;0800</pubDate>
     <author>xiaoxuan</author>
-    <guid>https://xxuan.cc/playground/longest-palindromic-subsequence/</guid>
+    <guid>https://shawnau.github.io/playground/longest-palindromic-subsequence/</guid>
     <description><![CDATA[]]></description>
 </item>
 <item>
     <title>Word Break 2</title>
-    <link>https://xxuan.cc/playground/word-break-2/</link>
+    <link>https://shawnau.github.io/playground/word-break-2/</link>
     <pubDate>Fri, 21 Feb 2020 22:13:35 &#43;0800</pubDate>
     <author>xiaoxuan</author>
-    <guid>https://xxuan.cc/playground/word-break-2/</guid>
+    <guid>https://shawnau.github.io/playground/word-break-2/</guid>
     <description><![CDATA[]]></description>
 </item>
 <item>
     <title>Palindrome Partitioning</title>
-    <link>https://xxuan.cc/playground/palindrome-partitioning/</link>
+    <link>https://shawnau.github.io/playground/palindrome-partitioning/</link>
     <pubDate>Thu, 20 Feb 2020 16:06:21 &#43;0800</pubDate>
     <author>xiaoxuan</author>
-    <guid>https://xxuan.cc/playground/palindrome-partitioning/</guid>
+    <guid>https://shawnau.github.io/playground/palindrome-partitioning/</guid>
     <description><![CDATA[]]></description>
 </item>
 <item>
     <title>Distinct Subsequences</title>
-    <link>https://xxuan.cc/playground/distinct-subsequences/</link>
+    <link>https://shawnau.github.io/playground/distinct-subsequences/</link>
     <pubDate>Tue, 18 Feb 2020 16:46:50 &#43;0800</pubDate>
     <author>xiaoxuan</author>
-    <guid>https://xxuan.cc/playground/distinct-subsequences/</guid>
+    <guid>https://shawnau.github.io/playground/distinct-subsequences/</guid>
     <description><![CDATA[]]></description>
 </item>
 <item>
     <title>Unique Paths 3</title>
-    <link>https://xxuan.cc/playground/unique-paths-3/</link>
+    <link>https://shawnau.github.io/playground/unique-paths-3/</link>
     <pubDate>Sat, 15 Feb 2020 20:50:53 &#43;0800</pubDate>
     <author>xiaoxuan</author>
-    <guid>https://xxuan.cc/playground/unique-paths-3/</guid>
+    <guid>https://shawnau.github.io/playground/unique-paths-3/</guid>
     <description><![CDATA[<p>Walk over all grids without duplicate, with obstacles</p>]]></description>
 </item>
 <item>
     <title>Wildcard Matching</title>
-    <link>https://xxuan.cc/playground/wildcard-matching/</link>
+    <link>https://shawnau.github.io/playground/wildcard-matching/</link>
     <pubDate>Tue, 11 Feb 2020 16:12:15 &#43;0800</pubDate>
     <author>xiaoxuan</author>
-    <guid>https://xxuan.cc/playground/wildcard-matching/</guid>
+    <guid>https://shawnau.github.io/playground/wildcard-matching/</guid>
     <description><![CDATA[]]></description>
 </item>
 <item>
     <title>Regular Expression Matching</title>
-    <link>https://xxuan.cc/playground/regular-expression-matching/</link>
+    <link>https://shawnau.github.io/playground/regular-expression-matching/</link>
     <pubDate>Mon, 10 Feb 2020 21:46:18 &#43;0800</pubDate>
     <author>xiaoxuan</author>
-    <guid>https://xxuan.cc/playground/regular-expression-matching/</guid>
+    <guid>https://shawnau.github.io/playground/regular-expression-matching/</guid>
     <description><![CDATA[]]></description>
 </item>
 </channel>

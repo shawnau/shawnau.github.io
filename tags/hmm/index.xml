@@ -1,15 +1,15 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
         <title>HMM - Tag - Laniakea</title>
-        <link>https://xxuan.cc/tags/hmm/</link>
+        <link>https://shawnau.github.io/tags/hmm/</link>
         <description>HMM - Tag - Laniakea</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>shawn_au@outlook.com (xiaoxuan)</managingEditor>
-            <webMaster>shawn_au@outlook.com (xiaoxuan)</webMaster><lastBuildDate>Sat, 03 Feb 2018 18:04:28 &#43;0000</lastBuildDate><atom:link href="https://xxuan.cc/tags/hmm/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>shawn_au@outlook.com (xiaoxuan)</webMaster><lastBuildDate>Sat, 03 Feb 2018 18:04:28 &#43;0000</lastBuildDate><atom:link href="https://shawnau.github.io/tags/hmm/" rel="self" type="application/rss+xml" /><item>
     <title>Hidden Markov Model</title>
-    <link>https://xxuan.cc/2018-02-03-hmm/</link>
+    <link>https://shawnau.github.io/2018-02-03-hmm/</link>
     <pubDate>Sat, 03 Feb 2018 18:04:28 &#43;0000</pubDate>
     <author>xiaoxuan</author>
-    <guid>https://xxuan.cc/2018-02-03-hmm/</guid>
+    <guid>https://shawnau.github.io/2018-02-03-hmm/</guid>
     <description><![CDATA[<p>
 使用HMM的赌徒, 你还好吗? hmmm&hellip;.</p>]]></description>
 </item>

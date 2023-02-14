@@ -1,94 +1,94 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
         <title>python - Tag - Laniakea</title>
-        <link>https://xxuan.cc/tags/python/</link>
+        <link>https://shawnau.github.io/tags/python/</link>
         <description>python - Tag - Laniakea</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>shawn_au@outlook.com (xiaoxuan)</managingEditor>
-            <webMaster>shawn_au@outlook.com (xiaoxuan)</webMaster><lastBuildDate>Wed, 27 Sep 2017 23:59:35 &#43;0000</lastBuildDate><atom:link href="https://xxuan.cc/tags/python/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>shawn_au@outlook.com (xiaoxuan)</webMaster><lastBuildDate>Wed, 27 Sep 2017 23:59:35 &#43;0000</lastBuildDate><atom:link href="https://shawnau.github.io/tags/python/" rel="self" type="application/rss+xml" /><item>
     <title>Python核心编程笔记5 扩展Python</title>
-    <link>https://xxuan.cc/2017-09-27-python-extend/</link>
+    <link>https://shawnau.github.io/2017-09-27-python-extend/</link>
     <pubDate>Wed, 27 Sep 2017 23:59:35 &#43;0000</pubDate>
     <author>xiaoxuan</author>
-    <guid>https://xxuan.cc/2017-09-27-python-extend/</guid>
+    <guid>https://shawnau.github.io/2017-09-27-python-extend/</guid>
     <description><![CDATA[<p>
 左手C++, 右手Python, 性能与表达力的完美融合</p>]]></description>
 </item>
 <item>
     <title>Python核心编程笔记4 多线程</title>
-    <link>https://xxuan.cc/2017-09-26-python-thread/</link>
+    <link>https://shawnau.github.io/2017-09-26-python-thread/</link>
     <pubDate>Tue, 26 Sep 2017 21:54:13 &#43;0000</pubDate>
     <author>xiaoxuan</author>
-    <guid>https://xxuan.cc/2017-09-26-python-thread/</guid>
+    <guid>https://shawnau.github.io/2017-09-26-python-thread/</guid>
     <description><![CDATA[<p>
 即使有GIL的存在使得python的多线程显得鸡肋, 但在重I/O应用中还是很实用, 并且multiprecessing是基于threading的, 有必要理解</p>]]></description>
 </item>
 <item>
     <title>Python核心编程笔记3 面向对象编程</title>
-    <link>https://xxuan.cc/2017-09-25-python-oop/</link>
+    <link>https://shawnau.github.io/2017-09-25-python-oop/</link>
     <pubDate>Mon, 25 Sep 2017 16:54:18 &#43;0000</pubDate>
     <author>xiaoxuan</author>
-    <guid>https://xxuan.cc/2017-09-25-python-oop/</guid>
+    <guid>https://shawnau.github.io/2017-09-25-python-oop/</guid>
     <description><![CDATA[<p>
 python有很好的OOP特性, 自由度也非常大</p>]]></description>
 </item>
 <item>
     <title>Python核心编程笔记2 函数式编程</title>
-    <link>https://xxuan.cc/2017-08-20-python-functional-programming/</link>
+    <link>https://shawnau.github.io/2017-08-20-python-functional-programming/</link>
     <pubDate>Sun, 20 Aug 2017 18:22:10 &#43;0000</pubDate>
     <author>xiaoxuan</author>
-    <guid>https://xxuan.cc/2017-08-20-python-functional-programming/</guid>
+    <guid>https://shawnau.github.io/2017-08-20-python-functional-programming/</guid>
     <description><![CDATA[<p>
 不学好函数式编程, 总觉得人生有遗憾</p>]]></description>
 </item>
 <item>
     <title>Python核心编程笔记1 基础知识</title>
-    <link>https://xxuan.cc/2017-08-18-core-python-programming-1/</link>
+    <link>https://shawnau.github.io/2017-08-18-core-python-programming-1/</link>
     <pubDate>Fri, 18 Aug 2017 13:42:39 &#43;0000</pubDate>
     <author>xiaoxuan</author>
-    <guid>https://xxuan.cc/2017-08-18-core-python-programming-1/</guid>
+    <guid>https://shawnau.github.io/2017-08-18-core-python-programming-1/</guid>
     <description><![CDATA[<p>
 这本书翻译稀烂, 然而我还是忍着看完了第一部分</p>]]></description>
 </item>
 <item>
     <title>数据可视化工具Seaborn指南</title>
-    <link>https://xxuan.cc/code/2017-03-29-seaborn/</link>
+    <link>https://shawnau.github.io/code/2017-03-29-seaborn/</link>
     <pubDate>Wed, 29 Mar 2017 23:30:01 &#43;0000</pubDate>
     <author>xiaoxuan</author>
-    <guid>https://xxuan.cc/code/2017-03-29-seaborn/</guid>
+    <guid>https://shawnau.github.io/code/2017-03-29-seaborn/</guid>
     <description><![CDATA[<p>Seaborn是基于matplotlib的封装, 使得制作图表更为简便</p>]]></description>
 </item>
 <item>
     <title>Adaboost算法 &#43; python实现</title>
-    <link>https://xxuan.cc/2017-03-24-adaboost/</link>
+    <link>https://shawnau.github.io/2017-03-24-adaboost/</link>
     <pubDate>Fri, 24 Mar 2017 23:39:40 &#43;0000</pubDate>
     <author>xiaoxuan</author>
-    <guid>https://xxuan.cc/2017-03-24-adaboost/</guid>
+    <guid>https://shawnau.github.io/2017-03-24-adaboost/</guid>
     <description><![CDATA[<p>Adaboost的总结</p>]]></description>
 </item>
 <item>
     <title>nginx &#43; uwsgi &#43; flask部署应用</title>
-    <link>https://xxuan.cc/code/2017-03-16-nginx-uwsgi-flask/</link>
+    <link>https://shawnau.github.io/code/2017-03-16-nginx-uwsgi-flask/</link>
     <pubDate>Thu, 16 Mar 2017 15:38:14 &#43;0000</pubDate>
     <author>xiaoxuan</author>
-    <guid>https://xxuan.cc/code/2017-03-16-nginx-uwsgi-flask/</guid>
+    <guid>https://shawnau.github.io/code/2017-03-16-nginx-uwsgi-flask/</guid>
     <description><![CDATA[<p>主要参考了这篇文章
 <a href="https://www.digitalocean.com/community/tutorials/how-to-serve-flask-applications-with-uwsgi-and-nginx-on-ubuntu-14-04" target="_blank" rel="noopener noreffer ">How To Serve Flask Applications with uWSGI and Nginx on Ubuntu 14.04</a></p>]]></description>
 </item>
 <item>
     <title>scrapy &#43; mongodb &#43; flask &#43; echarts 数据可视化</title>
-    <link>https://xxuan.cc/code/2017-03-13-mongodb-flask-echarts-data-visualize/</link>
+    <link>https://shawnau.github.io/code/2017-03-13-mongodb-flask-echarts-data-visualize/</link>
     <pubDate>Mon, 13 Mar 2017 21:33:07 &#43;0000</pubDate>
     <author>xiaoxuan</author>
-    <guid>https://xxuan.cc/code/2017-03-13-mongodb-flask-echarts-data-visualize/</guid>
+    <guid>https://shawnau.github.io/code/2017-03-13-mongodb-flask-echarts-data-visualize/</guid>
     <description><![CDATA[<p><a href="https://github.com/shawnau/intern_visualization" target="_blank" rel="noopener noreffer ">源码</a>
 <a href="http://54.169.117.35:8080" target="_blank" rel="noopener noreffer ">项目地址</a></p>]]></description>
 </item>
 <item>
     <title>Scrapy简介(附项目:爬取实习僧实习信息)</title>
-    <link>https://xxuan.cc/code/2017-02-18-scrapy/</link>
+    <link>https://shawnau.github.io/code/2017-02-18-scrapy/</link>
     <pubDate>Sat, 18 Feb 2017 16:29:59 &#43;0000</pubDate>
     <author>xiaoxuan</author>
-    <guid>https://xxuan.cc/code/2017-02-18-scrapy/</guid>
+    <guid>https://shawnau.github.io/code/2017-02-18-scrapy/</guid>
     <description><![CDATA[<p><a href="http://scrapy-chs.readthedocs.io/zh_CN/latest/index.html" target="_blank" rel="noopener noreffer ">scrapy的官方中文文档</a></p>
 <p><a href="https://github.com/shawnau/shixiseng" target="_blank" rel="noopener noreffer ">源代码</a></p>]]></description>
 </item>

@@ -1,15 +1,15 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
         <title>shadowsocks - Tag - Laniakea</title>
-        <link>https://xxuan.cc/tags/shadowsocks/</link>
+        <link>https://shawnau.github.io/tags/shadowsocks/</link>
         <description>shadowsocks - Tag - Laniakea</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>shawn_au@outlook.com (xiaoxuan)</managingEditor>
-            <webMaster>shawn_au@outlook.com (xiaoxuan)</webMaster><lastBuildDate>Thu, 23 Feb 2017 00:56:07 &#43;0000</lastBuildDate><atom:link href="https://xxuan.cc/tags/shadowsocks/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>shawn_au@outlook.com (xiaoxuan)</webMaster><lastBuildDate>Thu, 23 Feb 2017 00:56:07 &#43;0000</lastBuildDate><atom:link href="https://shawnau.github.io/tags/shadowsocks/" rel="self" type="application/rss+xml" /><item>
     <title>shadowsocks&#43;chrome代理配置速查手册</title>
-    <link>https://xxuan.cc/code/2017-02-23-shadowsocks-chrome-config/</link>
+    <link>https://shawnau.github.io/code/2017-02-23-shadowsocks-chrome-config/</link>
     <pubDate>Thu, 23 Feb 2017 00:56:07 &#43;0000</pubDate>
     <author>xiaoxuan</author>
-    <guid>https://xxuan.cc/code/2017-02-23-shadowsocks-chrome-config/</guid>
+    <guid>https://shawnau.github.io/code/2017-02-23-shadowsocks-chrome-config/</guid>
     <description><![CDATA[<p>最近老是要配置ss, 顺手记下来以便存档. 为了方便0基础人士阅读极其傻瓜</p>]]></description>
 </item>
 </channel>

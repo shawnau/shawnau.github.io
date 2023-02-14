@@ -1,58 +1,58 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
         <title>All Posts - Laniakea</title>
-        <link>https://xxuan.cc/posts/</link>
+        <link>https://shawnau.github.io/posts/</link>
         <description>All Posts | Laniakea</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>shawn_au@outlook.com (xiaoxuan)</managingEditor>
-            <webMaster>shawn_au@outlook.com (xiaoxuan)</webMaster><lastBuildDate>Tue, 14 Feb 2023 23:07:39 &#43;0800</lastBuildDate><atom:link href="https://xxuan.cc/posts/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>shawn_au@outlook.com (xiaoxuan)</webMaster><lastBuildDate>Tue, 14 Feb 2023 23:07:39 &#43;0800</lastBuildDate><atom:link href="https://shawnau.github.io/posts/" rel="self" type="application/rss+xml" /><item>
     <title>图床迁移和旧文章恢复!</title>
-    <link>https://xxuan.cc/2023-02-14-refresh/</link>
+    <link>https://shawnau.github.io/2023-02-14-refresh/</link>
     <pubDate>Tue, 14 Feb 2023 23:07:39 &#43;0800</pubDate>
     <author>xiaoxuan</author>
-    <guid>https://xxuan.cc/2023-02-14-refresh/</guid>
+    <guid>https://shawnau.github.io/2023-02-14-refresh/</guid>
     <description><![CDATA[经过一系列艰苦的考古, 找回了当时七牛云挂掉之后备份的阿里云图床. 这么多年来兢兢业业为我当图床还没跑路, 甚至也没花一分钱 (至今账上还有2块钱)]]></description>
 </item>
 <item>
     <title>设计模式 - 观察者模式(Observer Pattern)</title>
-    <link>https://xxuan.cc/2022-08-30-observer-pattern/</link>
+    <link>https://shawnau.github.io/2022-08-30-observer-pattern/</link>
     <pubDate>Tue, 30 Aug 2022 16:56:33 &#43;0800</pubDate>
     <author>xiaoxuan</author>
-    <guid>https://xxuan.cc/2022-08-30-observer-pattern/</guid>
+    <guid>https://shawnau.github.io/2022-08-30-observer-pattern/</guid>
     <description><![CDATA[<p>观察者模式是常见的设计模式之一.</p>]]></description>
 </item>
 <item>
     <title>赛博朋克, 调酒师与现实</title>
-    <link>https://xxuan.cc/2021-07-04-va11/</link>
+    <link>https://shawnau.github.io/2021-07-04-va11/</link>
     <pubDate>Sun, 04 Jul 2021 23:12:54 &#43;0800</pubDate>
     <author>xiaoxuan</author>
-    <guid>https://xxuan.cc/2021-07-04-va11/</guid>
+    <guid>https://shawnau.github.io/2021-07-04-va11/</guid>
     <description><![CDATA[<blockquote>
 <p>Time to mix drinks and change lives</p>
 </blockquote>]]></description>
 </item>
 <item>
     <title>风格迁移(Style Transfer)</title>
-    <link>https://xxuan.cc/2018-10-08-style-transfer/</link>
+    <link>https://shawnau.github.io/2018-10-08-style-transfer/</link>
     <pubDate>Mon, 08 Oct 2018 18:37:39 &#43;0000</pubDate>
     <author>xiaoxuan</author>
-    <guid>https://xxuan.cc/2018-10-08-style-transfer/</guid>
+    <guid>https://shawnau.github.io/2018-10-08-style-transfer/</guid>
     <description><![CDATA[<p>如何将艺术风格量化? 基于深度学习的风格迁移是个很有趣也很浪漫的领域</p>]]></description>
 </item>
 <item>
     <title>七牛云图床挂了</title>
-    <link>https://xxuan.cc/2018-10-08-imgshare-dead/</link>
+    <link>https://shawnau.github.io/2018-10-08-imgshare-dead/</link>
     <pubDate>Mon, 08 Oct 2018 18:34:06 &#43;0000</pubDate>
     <author>xiaoxuan</author>
-    <guid>https://xxuan.cc/2018-10-08-imgshare-dead/</guid>
+    <guid>https://shawnau.github.io/2018-10-08-imgshare-dead/</guid>
     <description><![CDATA[<p>因为本域名没备案, 七牛云收回了临时链接, 本blog之前所有文章的图片都挂了, 需要一段时间抢修, 见谅
 目前切换阿里云oss</p>]]></description>
 </item>
 <item>
     <title>Data Science Bowl 2018 比赛小结</title>
-    <link>https://xxuan.cc/2018-07-13-dsb2018/</link>
+    <link>https://shawnau.github.io/2018-07-13-dsb2018/</link>
     <pubDate>Fri, 13 Jul 2018 18:27:34 &#43;0000</pubDate>
     <author>xiaoxuan</author>
-    <guid>https://xxuan.cc/2018-07-13-dsb2018/</guid>
+    <guid>https://shawnau.github.io/2018-07-13-dsb2018/</guid>
     <description><![CDATA[<p>Kaggle 实例分割比赛小结. 比赛花了我1800在阿里云上训练模型, 最后还因为没提交模型的checksum而取消了成绩.</p>
 <blockquote>
 <p>包大人, 冤啊!</p>
@@ -60,34 +60,34 @@
 </item>
 <item>
     <title>Mask-RCNN</title>
-    <link>https://xxuan.cc/2018-07-13-mask-rcnn/</link>
+    <link>https://shawnau.github.io/2018-07-13-mask-rcnn/</link>
     <pubDate>Fri, 13 Jul 2018 18:10:35 &#43;0000</pubDate>
     <author>xiaoxuan</author>
-    <guid>https://xxuan.cc/2018-07-13-mask-rcnn/</guid>
+    <guid>https://shawnau.github.io/2018-07-13-mask-rcnn/</guid>
     <description><![CDATA[<p>存货, 介绍了Mask-RCNN和具体的实现细节</p>]]></description>
 </item>
 <item>
     <title>语义分割综述</title>
-    <link>https://xxuan.cc/2018-07-13-semantic-segmentation/</link>
+    <link>https://shawnau.github.io/2018-07-13-semantic-segmentation/</link>
     <pubDate>Fri, 13 Jul 2018 18:09:06 &#43;0000</pubDate>
     <author>xiaoxuan</author>
-    <guid>https://xxuan.cc/2018-07-13-semantic-segmentation/</guid>
+    <guid>https://shawnau.github.io/2018-07-13-semantic-segmentation/</guid>
     <description><![CDATA[<p>存货, 介绍了语义分割模型的发展历史以及基本理念</p>]]></description>
 </item>
 <item>
     <title>目标检测综述-从RCNN到Mask-RCNN</title>
-    <link>https://xxuan.cc/2018-07-13-object-detection/</link>
+    <link>https://shawnau.github.io/2018-07-13-object-detection/</link>
     <pubDate>Fri, 13 Jul 2018 18:06:56 &#43;0000</pubDate>
     <author>xiaoxuan</author>
-    <guid>https://xxuan.cc/2018-07-13-object-detection/</guid>
+    <guid>https://shawnau.github.io/2018-07-13-object-detection/</guid>
     <description><![CDATA[<p>存货, 介绍了RCNN系列的发展历史以及基本理念</p>]]></description>
 </item>
 <item>
     <title>图像识别综述-从Inception到ResNet</title>
-    <link>https://xxuan.cc/2018-07-13-image-classification/</link>
+    <link>https://shawnau.github.io/2018-07-13-image-classification/</link>
     <pubDate>Fri, 13 Jul 2018 18:04:05 &#43;0000</pubDate>
     <author>xiaoxuan</author>
-    <guid>https://xxuan.cc/2018-07-13-image-classification/</guid>
+    <guid>https://shawnau.github.io/2018-07-13-image-classification/</guid>
     <description><![CDATA[<p>存货, 介绍了从Inception系列到Resnet系列的发展历史以及基本理念和pytorch实现</p>]]></description>
 </item>
 </channel>
