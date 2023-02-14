@@ -32,7 +32,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "http:\/\/xxuan.cc\/code\/2017-03-13-mongodb-flask-echarts-data-visualize\/"
-        },"genre": "code","keywords": "mongodb, flask, echarts, python","wordcount":  3011 ,
+        },"genre": "code","keywords": "mongodb, flask, echarts, python","wordcount":  3448 ,
         "url": "http:\/\/xxuan.cc\/code\/2017-03-13-mongodb-flask-echarts-data-visualize\/","datePublished": "2017-03-13T21:33:07+00:00","dateModified": "2023-02-14T23:37:00+08:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
@@ -207,330 +207,666 @@
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>进入<code>127.0.0.1:5000</code>下预览吧</p>
-<p>{% echarts 400 &lsquo;100%&rsquo; %}
-var dataAxis = [&ldquo;北京&rdquo;, &ldquo;上海&rdquo;, &ldquo;广州&rdquo;, &ldquo;杭州&rdquo;, &ldquo;成都&rdquo;, &ldquo;深圳&rdquo;, &ldquo;南京&rdquo;, &ldquo;武汉&rdquo;, &ldquo;大连&rdquo;, &ldquo;苏州&rdquo;, &ldquo;西安&rdquo;, &ldquo;厦门&rdquo;, &ldquo;珠海&rdquo;, &ldquo;重庆&rdquo;, &ldquo;天津&rdquo;];
-var data = [720, 420, 171, 128, 109, 103, 66, 53, 31, 18, 18, 17, 14, 14, 14];
-var yMax = 500;
-var dataShadow = [];</p>
-<pre><code>    for (var i = 0; i &lt; data.length; i++) {
-        dataShadow.push(yMax);
-    }
-    
-    option = {
-        backgroundColor: '#fff',
-        title: {
-            text: '实习数量-城市分布排名',
-            subtext: 'data from 实习僧',
-            sublink: 'http://www.shixiseng.com',
-        },
-        tooltip : {
-            trigger: 'axis',
-            axisPointer : {        // 坐标轴指示器，坐标轴触发有效
-            type : 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
-            }
-        },
-        xAxis: {
-            data: dataAxis,
-            axisLabel: {
-                inside: true,
-                textStyle: {
-                    color: '#000'
-                }
-            },
-            axisTick: {
-                show: false
-            },
-            axisLine: {
-                show: false
-            },
-            z: 10
-        },
-        yAxis: {
-            axisLine: {
-                show: false
-            },
-            axisTick: {
-                show: false
-            },
-            axisLabel: {
-                textStyle: {
-                    color: '#999'
-                }
-            }
-        },
-        dataZoom: [
-            {
-                type: 'inside'
-            }
-        ],
-        series: [
-            {
-                type: 'bar',
-                name: '数量',
-                itemStyle: {
-                    normal: {
-                        color: new echarts.graphic.LinearGradient(
-                            0, 0, 0, 1,
-                            [
-                                {offset: 0, color: '#83bff6'},
-                                {offset: 0.5, color: '#188df0'},
-                                {offset: 1, color: '#188df0'}
-                            ]
-                        )
-                    },
-                    emphasis: {
-                        color: new echarts.graphic.LinearGradient(
-                            0, 0, 0, 1,
-                            [
-                                {offset: 0, color: '#2378f7'},
-                                {offset: 0.7, color: '#2378f7'},
-                                {offset: 1, color: '#83bff6'}
-                            ]
-                        )
-                    }
-                },
-                data: data
-            }
-        ]
-    };
-</code></pre>
-<p>{% endecharts %}</p>
-<p>{% echarts 400 &lsquo;100%&rsquo; %}
-option = {
-backgroundColor: &lsquo;#fff&rsquo;,
-title: {
-text: &lsquo;实习标签/公司-数量分布&rsquo;,
-left: &rsquo;left&rsquo;,
-textStyle: {
-color: &lsquo;#000&rsquo;
-}
-},
-tooltip: {
-trigger: &lsquo;item&rsquo;,
-formatter: &ldquo;{a} <br/>{b}: {c} ({d}%)&rdquo;
-},
-legend: {
-orient: &lsquo;vertical&rsquo;,
-x: &rsquo;left&rsquo;,
-},
-series: [
-{
-name:&lsquo;标签&rsquo;,
-type:&lsquo;pie&rsquo;,
-radius: [&lsquo;50%&rsquo;, &lsquo;70%&rsquo;],
-avoidLabelOverlap: true,
-label: {
-normal: {
-show: true,
-position: &lsquo;outside&rsquo;
-},
-emphasis: {
-show: true,
-textStyle: {
-fontSize: &lsquo;30&rsquo;,
-fontWeight: &lsquo;bold&rsquo;
-}
-}
-},
-labelLine: {
-normal: {
-show: true
-}
-},
-data: [{&ldquo;name&rdquo;: &ldquo;软件&rdquo;, &ldquo;value&rdquo;: 422}, {&ldquo;name&rdquo;: &ldquo;IT运维&rdquo;, &ldquo;value&rdquo;: 185}, {&ldquo;name&rdquo;: &ldquo;Java&rdquo;, &ldquo;value&rdquo;: 147}, {&ldquo;name&rdquo;: &ldquo;前端&rdquo;, &ldquo;value&rdquo;: 144}, {&ldquo;name&rdquo;: &ldquo;算法&rdquo;, &ldquo;value&rdquo;: 138}, {&ldquo;name&rdquo;: &ldquo;云计算/大数据&rdquo;, &ldquo;value&rdquo;: 129}, {&ldquo;name&rdquo;: &ldquo;C/C++&rdquo;, &ldquo;value&rdquo;: 124}, {&ldquo;name&rdquo;: &ldquo;测试&rdquo;, &ldquo;value&rdquo;: 124}, {&ldquo;name&rdquo;: &ldquo;数据挖掘&rdquo;, &ldquo;value&rdquo;: 108}, {&ldquo;name&rdquo;: &ldquo;数据库&rdquo;, &ldquo;value&rdquo;: 101}, {&ldquo;name&rdquo;: &ldquo;PHP&rdquo;, &ldquo;value&rdquo;: 95}, {&ldquo;name&rdquo;: &ldquo;Android&rdquo;, &ldquo;value&rdquo;: 77}, {&ldquo;name&rdquo;: &ldquo;Python&rdquo;, &ldquo;value&rdquo;: 63}, {&ldquo;name&rdquo;: &ldquo;IOS&rdquo;, &ldquo;value&rdquo;: 63}, {&ldquo;name&rdquo;: &ldquo;Node.js&rdquo;, &ldquo;value&rdquo;: 11}]
-},</p>
-<pre><code>            {
-                name:'公司',
-                type:'pie',
-                radius: ['10%', '40%'],
-                avoidLabelOverlap: true,
-                label: {
-                    normal: {
-                        show: false,
-                        position: 'inside'
-                    },
-                    emphasis: {
-                        show: true,
-                        textStyle: {
-                            color: '#000',
-                            fontSize: '20',
-                            fontWeight: 'bold'
-                        }
-                    }
-                },
-                labelLine: {
-                    normal: {
-                        show: true
-                    }
-                },
-                data: [{&quot;name&quot;: &quot;好未来&quot;, &quot;value&quot;: 21}, {&quot;name&quot;: &quot;百度&quot;, &quot;value&quot;: 19}, {&quot;name&quot;: &quot;爱奇艺&quot;, &quot;value&quot;: 18}, {&quot;name&quot;: &quot;链家网&quot;, &quot;value&quot;: 17}, {&quot;name&quot;: &quot;金山云&quot;, &quot;value&quot;: 16}, {&quot;name&quot;: &quot;睿琪软件&quot;, &quot;value&quot;: 16}, {&quot;name&quot;: &quot;讯猫&quot;, &quot;value&quot;: 15}, {&quot;name&quot;: &quot;搜狐&quot;, &quot;value&quot;: 14}, {&quot;name&quot;: &quot;UISEE&quot;, &quot;value&quot;: 12}, {&quot;name&quot;: &quot;非白三维&quot;, &quot;value&quot;: 12}, {&quot;name&quot;: &quot;星环科技&quot;, &quot;value&quot;: 12}, {&quot;name&quot;: &quot;美团点评&quot;, &quot;value&quot;: 11}, {&quot;name&quot;: &quot;今日头条&quot;, &quot;value&quot;: 11}, {&quot;name&quot;: &quot;北纬通信&quot;, &quot;value&quot;: 11}, {&quot;name&quot;: &quot;大连东软&quot;, &quot;value&quot;: 10}]
-            }
-        ]
-    };
-</code></pre>
-<p>{% endecharts %}</p>
-<p>{% echarts 400 &lsquo;100%&rsquo; %}
-option = {
-backgroundColor: &lsquo;#fff&rsquo;,
-title: {
-text: &lsquo;堆叠区域图&rsquo;,
-left: &rsquo;left&rsquo;
-},
-tooltip : {
-trigger: &lsquo;axis&rsquo;
-},
-legend: {
-data:[&ldquo;软件&rdquo;, &ldquo;IT运维&rdquo;, &ldquo;Java&rdquo;, &ldquo;前端&rdquo;, &ldquo;算法&rdquo;, &ldquo;云计算/大数据&rdquo;, &ldquo;C/C++&rdquo;, &ldquo;测试&rdquo;, &ldquo;数据挖掘&rdquo;, &ldquo;数据库&rdquo;, &ldquo;PHP&rdquo;, &ldquo;Android&rdquo;, &ldquo;Python&rdquo;, &ldquo;IOS&rdquo;, &ldquo;Node.js&rdquo;]
-},
-toolbox: {
-feature: {
-saveAsImage: {}
-}
-},
-grid: {
-left: &lsquo;3%&rsquo;,
-right: &lsquo;4%&rsquo;,
-bottom: &lsquo;3%&rsquo;,
-containLabel: true
-},
-xAxis : [
-{
-type : &lsquo;category&rsquo;,
-boundaryGap : false,
-data : [&lsquo;2017/01/05&rsquo;, &lsquo;2017/01/10&rsquo;, &lsquo;2017/01/11&rsquo;, &lsquo;2017/01/12&rsquo;, &lsquo;2017/01/18&rsquo;, &lsquo;2017/01/19&rsquo;, &lsquo;2017/02/03&rsquo;, &lsquo;2017/02/04&rsquo;, &lsquo;2017/02/06&rsquo;, &lsquo;2017/02/07&rsquo;, &lsquo;2017/02/08&rsquo;, &lsquo;2017/02/09&rsquo;, &lsquo;2017/02/10&rsquo;, &lsquo;2017/02/11&rsquo;, &lsquo;2017/02/12&rsquo;, &lsquo;2017/02/13&rsquo;, &lsquo;2017/02/14&rsquo;, &lsquo;2017/02/15&rsquo;, &lsquo;2017/02/16&rsquo;, &lsquo;2017/02/17&rsquo;, &lsquo;2017/02/19&rsquo;, &lsquo;2017/02/20&rsquo;, &lsquo;2017/02/21&rsquo;, &lsquo;2017/02/22&rsquo;, &lsquo;2017/02/23&rsquo;, &lsquo;2017/02/24&rsquo;, &lsquo;2017/02/25&rsquo;, &lsquo;2017/02/26&rsquo;, &lsquo;2017/02/27&rsquo;, &lsquo;2017/02/28&rsquo;, &lsquo;2017/03/01&rsquo;, &lsquo;2017/03/02&rsquo;, &lsquo;2017/03/03&rsquo;, &lsquo;2017/03/04&rsquo;, &lsquo;2017/03/05&rsquo;, &lsquo;2017/03/06&rsquo;, &lsquo;2017/03/07&rsquo;, &lsquo;2017/03/08&rsquo;, &lsquo;2017/03/09&rsquo;, &lsquo;2017/03/10&rsquo;, &lsquo;2017/03/11&rsquo;, &lsquo;2017/03/12&rsquo;, &lsquo;2017/03/13&rsquo;, &lsquo;2017/03/14&rsquo;]
-}
-],
-yAxis : [
-{
-type : &lsquo;value&rsquo;
-}
-],
-series : [</p>
-<pre><code>                {
-                    name: '软件',
-                    type: 'line',
-                    stack: '总量',
-                    areaStyle: {normal: {}},
-                    data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 2, 0, 1, 0, 1, 0, 2, 1, 2, 0, 1, 3, 4, 3, 4, 26, 5, 6, 38, 2, 9, 22, 16, 3, 3, 84, 168]
-                },
-                
-                {
-                    name: 'IT运维',
-                    type: 'line',
-                    stack: '总量',
-                    areaStyle: {normal: {}},
-                    data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 3, 1, 1, 4, 2, 0, 0, 7, 4, 8, 0, 4, 1, 0, 5, 13, 9, 9, 19, 0, 0, 62, 29]
-                },
-                
-                {
-                    name: 'Java',
-                    type: 'line',
-                    stack: '总量',
-                    areaStyle: {normal: {}},
-                    data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 2, 0, 1, 0, 0, 6, 16, 25, 2, 3, 63, 27]
-                },
-                
-                {
-                    name: '前端',
-                    type: 'line',
-                    stack: '总量',
-                    areaStyle: {normal: {}},
-                    data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 16, 10, 16, 6, 0, 53, 37]
-                },
-                
-                {
-                    name: '算法',
-                    type: 'line',
-                    stack: '总量',
-                    areaStyle: {normal: {}},
-                    data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 16, 1, 15, 20, 13, 4, 4, 51, 10]
-                },
-                
-                {
-                    name: '云计算/大数据',
-                    type: 'line',
-                    stack: '总量',
-                    areaStyle: {normal: {}},
-                    data: [0, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 2, 1, 1, 2, 2, 2, 4, 1, 0, 0, 4, 4, 4, 0, 0, 0, 5, 1, 3, 2, 1, 1, 0, 5, 5, 5, 15, 8, 2, 0, 29, 9]
-                },
-                
-                {
-                    name: 'C/C++',
-                    type: 'line',
-                    stack: '总量',
-                    areaStyle: {normal: {}},
-                    data: [0, 0, 0, 0, 0, 0, 0, 0, 2, 1, 0, 0, 0, 0, 0, 0, 0, 2, 4, 2, 0, 5, 1, 0, 0, 0, 0, 0, 2, 4, 5, 3, 5, 0, 0, 4, 7, 12, 7, 9, 1, 3, 30, 8]
-                },
-                
-                {
-                    name: '测试',
-                    type: 'line',
-                    stack: '总量',
-                    areaStyle: {normal: {}},
-                    data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 1, 0, 0, 0, 0, 0, 0, 82, 32]
-                },
-                
-                {
-                    name: '数据挖掘',
-                    type: 'line',
-                    stack: '总量',
-                    areaStyle: {normal: {}},
-                    data: [0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 3, 0, 0, 2, 0, 2, 1, 0, 0, 1, 3, 5, 2, 2, 5, 0, 0, 9, 9, 5, 9, 8, 1, 0, 20, 15]
-                },
-                
-                {
-                    name: '数据库',
-                    type: 'line',
-                    stack: '总量',
-                    areaStyle: {normal: {}},
-                    data: [0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 2, 0, 1, 0, 1, 1, 2, 1, 0, 0, 0, 0, 1, 1, 1, 2, 0, 0, 2, 2, 4, 1, 5, 0, 0, 8, 4, 12, 14, 8, 1, 0, 13, 6]
-                },
-                
-                {
-                    name: 'PHP',
-                    type: 'line',
-                    stack: '总量',
-                    areaStyle: {normal: {}},
-                    data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 4, 0, 3, 0, 0, 0, 2, 1, 2, 1, 0, 1, 0, 2, 1, 3, 1, 2, 0, 0, 3, 4, 7, 7, 6, 2, 1, 22, 12]
-                },
-                
-                {
-                    name: 'Android',
-                    type: 'line',
-                    stack: '总量',
-                    areaStyle: {normal: {}},
-                    data: [0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 2, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 1, 0, 0, 0, 0, 0, 3, 1, 1, 0, 0, 1, 2, 1, 7, 5, 6, 5, 0, 27, 7]
-                },
-                
-                {
-                    name: 'Python',
-                    type: 'line',
-                    stack: '总量',
-                    areaStyle: {normal: {}},
-                    data: [0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 2, 2, 1, 1, 0, 1, 0, 1, 5, 2, 0, 0, 1, 1, 4, 4, 6, 0, 1, 12, 14]
-                },
-                
-                {
-                    name: 'IOS',
-                    type: 'line',
-                    stack: '总量',
-                    areaStyle: {normal: {}},
-                    data: [0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 1, 1, 3, 2, 1, 0, 1, 2, 0, 4, 8, 3, 3, 0, 15, 6]
-                },
-                
-                {
-                    name: 'Node.js',
-                    type: 'line',
-                    stack: '总量',
-                    areaStyle: {normal: {}},
-                    data: [0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 2, 0, 1, 2, 0]
-                },
-                
-            ]
-        };
-</code></pre>
-<p>{% endecharts %}</p>
-<h2 id="一些坑">一些坑</h2>
+<p>(2023/02/14更新: 以下是一个 echarts 图标源数据, 需要安装插件渲染, 但因为年久失修没有维护, 我已经禁用了它)</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">  1
+</span><span class="lnt">  2
+</span><span class="lnt">  3
+</span><span class="lnt">  4
+</span><span class="lnt">  5
+</span><span class="lnt">  6
+</span><span class="lnt">  7
+</span><span class="lnt">  8
+</span><span class="lnt">  9
+</span><span class="lnt"> 10
+</span><span class="lnt"> 11
+</span><span class="lnt"> 12
+</span><span class="lnt"> 13
+</span><span class="lnt"> 14
+</span><span class="lnt"> 15
+</span><span class="lnt"> 16
+</span><span class="lnt"> 17
+</span><span class="lnt"> 18
+</span><span class="lnt"> 19
+</span><span class="lnt"> 20
+</span><span class="lnt"> 21
+</span><span class="lnt"> 22
+</span><span class="lnt"> 23
+</span><span class="lnt"> 24
+</span><span class="lnt"> 25
+</span><span class="lnt"> 26
+</span><span class="lnt"> 27
+</span><span class="lnt"> 28
+</span><span class="lnt"> 29
+</span><span class="lnt"> 30
+</span><span class="lnt"> 31
+</span><span class="lnt"> 32
+</span><span class="lnt"> 33
+</span><span class="lnt"> 34
+</span><span class="lnt"> 35
+</span><span class="lnt"> 36
+</span><span class="lnt"> 37
+</span><span class="lnt"> 38
+</span><span class="lnt"> 39
+</span><span class="lnt"> 40
+</span><span class="lnt"> 41
+</span><span class="lnt"> 42
+</span><span class="lnt"> 43
+</span><span class="lnt"> 44
+</span><span class="lnt"> 45
+</span><span class="lnt"> 46
+</span><span class="lnt"> 47
+</span><span class="lnt"> 48
+</span><span class="lnt"> 49
+</span><span class="lnt"> 50
+</span><span class="lnt"> 51
+</span><span class="lnt"> 52
+</span><span class="lnt"> 53
+</span><span class="lnt"> 54
+</span><span class="lnt"> 55
+</span><span class="lnt"> 56
+</span><span class="lnt"> 57
+</span><span class="lnt"> 58
+</span><span class="lnt"> 59
+</span><span class="lnt"> 60
+</span><span class="lnt"> 61
+</span><span class="lnt"> 62
+</span><span class="lnt"> 63
+</span><span class="lnt"> 64
+</span><span class="lnt"> 65
+</span><span class="lnt"> 66
+</span><span class="lnt"> 67
+</span><span class="lnt"> 68
+</span><span class="lnt"> 69
+</span><span class="lnt"> 70
+</span><span class="lnt"> 71
+</span><span class="lnt"> 72
+</span><span class="lnt"> 73
+</span><span class="lnt"> 74
+</span><span class="lnt"> 75
+</span><span class="lnt"> 76
+</span><span class="lnt"> 77
+</span><span class="lnt"> 78
+</span><span class="lnt"> 79
+</span><span class="lnt"> 80
+</span><span class="lnt"> 81
+</span><span class="lnt"> 82
+</span><span class="lnt"> 83
+</span><span class="lnt"> 84
+</span><span class="lnt"> 85
+</span><span class="lnt"> 86
+</span><span class="lnt"> 87
+</span><span class="lnt"> 88
+</span><span class="lnt"> 89
+</span><span class="lnt"> 90
+</span><span class="lnt"> 91
+</span><span class="lnt"> 92
+</span><span class="lnt"> 93
+</span><span class="lnt"> 94
+</span><span class="lnt"> 95
+</span><span class="lnt"> 96
+</span><span class="lnt"> 97
+</span><span class="lnt"> 98
+</span><span class="lnt"> 99
+</span><span class="lnt">100
+</span><span class="lnt">101
+</span><span class="lnt">102
+</span><span class="lnt">103
+</span><span class="lnt">104
+</span><span class="lnt">105
+</span><span class="lnt">106
+</span><span class="lnt">107
+</span><span class="lnt">108
+</span><span class="lnt">109
+</span><span class="lnt">110
+</span><span class="lnt">111
+</span><span class="lnt">112
+</span><span class="lnt">113
+</span><span class="lnt">114
+</span><span class="lnt">115
+</span><span class="lnt">116
+</span><span class="lnt">117
+</span><span class="lnt">118
+</span><span class="lnt">119
+</span><span class="lnt">120
+</span><span class="lnt">121
+</span><span class="lnt">122
+</span><span class="lnt">123
+</span><span class="lnt">124
+</span><span class="lnt">125
+</span><span class="lnt">126
+</span><span class="lnt">127
+</span><span class="lnt">128
+</span><span class="lnt">129
+</span><span class="lnt">130
+</span><span class="lnt">131
+</span><span class="lnt">132
+</span><span class="lnt">133
+</span><span class="lnt">134
+</span><span class="lnt">135
+</span><span class="lnt">136
+</span><span class="lnt">137
+</span><span class="lnt">138
+</span><span class="lnt">139
+</span><span class="lnt">140
+</span><span class="lnt">141
+</span><span class="lnt">142
+</span><span class="lnt">143
+</span><span class="lnt">144
+</span><span class="lnt">145
+</span><span class="lnt">146
+</span><span class="lnt">147
+</span><span class="lnt">148
+</span><span class="lnt">149
+</span><span class="lnt">150
+</span><span class="lnt">151
+</span><span class="lnt">152
+</span><span class="lnt">153
+</span><span class="lnt">154
+</span><span class="lnt">155
+</span><span class="lnt">156
+</span><span class="lnt">157
+</span><span class="lnt">158
+</span><span class="lnt">159
+</span><span class="lnt">160
+</span><span class="lnt">161
+</span><span class="lnt">162
+</span><span class="lnt">163
+</span><span class="lnt">164
+</span><span class="lnt">165
+</span><span class="lnt">166
+</span><span class="lnt">167
+</span><span class="lnt">168
+</span><span class="lnt">169
+</span><span class="lnt">170
+</span><span class="lnt">171
+</span><span class="lnt">172
+</span><span class="lnt">173
+</span><span class="lnt">174
+</span><span class="lnt">175
+</span><span class="lnt">176
+</span><span class="lnt">177
+</span><span class="lnt">178
+</span><span class="lnt">179
+</span><span class="lnt">180
+</span><span class="lnt">181
+</span><span class="lnt">182
+</span><span class="lnt">183
+</span><span class="lnt">184
+</span><span class="lnt">185
+</span><span class="lnt">186
+</span><span class="lnt">187
+</span><span class="lnt">188
+</span><span class="lnt">189
+</span><span class="lnt">190
+</span><span class="lnt">191
+</span><span class="lnt">192
+</span><span class="lnt">193
+</span><span class="lnt">194
+</span><span class="lnt">195
+</span><span class="lnt">196
+</span><span class="lnt">197
+</span><span class="lnt">198
+</span><span class="lnt">199
+</span><span class="lnt">200
+</span><span class="lnt">201
+</span><span class="lnt">202
+</span><span class="lnt">203
+</span><span class="lnt">204
+</span><span class="lnt">205
+</span><span class="lnt">206
+</span><span class="lnt">207
+</span><span class="lnt">208
+</span><span class="lnt">209
+</span><span class="lnt">210
+</span><span class="lnt">211
+</span><span class="lnt">212
+</span><span class="lnt">213
+</span><span class="lnt">214
+</span><span class="lnt">215
+</span><span class="lnt">216
+</span><span class="lnt">217
+</span><span class="lnt">218
+</span><span class="lnt">219
+</span><span class="lnt">220
+</span><span class="lnt">221
+</span><span class="lnt">222
+</span><span class="lnt">223
+</span><span class="lnt">224
+</span><span class="lnt">225
+</span><span class="lnt">226
+</span><span class="lnt">227
+</span><span class="lnt">228
+</span><span class="lnt">229
+</span><span class="lnt">230
+</span><span class="lnt">231
+</span><span class="lnt">232
+</span><span class="lnt">233
+</span><span class="lnt">234
+</span><span class="lnt">235
+</span><span class="lnt">236
+</span><span class="lnt">237
+</span><span class="lnt">238
+</span><span class="lnt">239
+</span><span class="lnt">240
+</span><span class="lnt">241
+</span><span class="lnt">242
+</span><span class="lnt">243
+</span><span class="lnt">244
+</span><span class="lnt">245
+</span><span class="lnt">246
+</span><span class="lnt">247
+</span><span class="lnt">248
+</span><span class="lnt">249
+</span><span class="lnt">250
+</span><span class="lnt">251
+</span><span class="lnt">252
+</span><span class="lnt">253
+</span><span class="lnt">254
+</span><span class="lnt">255
+</span><span class="lnt">256
+</span><span class="lnt">257
+</span><span class="lnt">258
+</span><span class="lnt">259
+</span><span class="lnt">260
+</span><span class="lnt">261
+</span><span class="lnt">262
+</span><span class="lnt">263
+</span><span class="lnt">264
+</span><span class="lnt">265
+</span><span class="lnt">266
+</span><span class="lnt">267
+</span><span class="lnt">268
+</span><span class="lnt">269
+</span><span class="lnt">270
+</span><span class="lnt">271
+</span><span class="lnt">272
+</span><span class="lnt">273
+</span><span class="lnt">274
+</span><span class="lnt">275
+</span><span class="lnt">276
+</span><span class="lnt">277
+</span><span class="lnt">278
+</span><span class="lnt">279
+</span><span class="lnt">280
+</span><span class="lnt">281
+</span><span class="lnt">282
+</span><span class="lnt">283
+</span><span class="lnt">284
+</span><span class="lnt">285
+</span><span class="lnt">286
+</span><span class="lnt">287
+</span><span class="lnt">288
+</span><span class="lnt">289
+</span><span class="lnt">290
+</span><span class="lnt">291
+</span><span class="lnt">292
+</span><span class="lnt">293
+</span><span class="lnt">294
+</span><span class="lnt">295
+</span><span class="lnt">296
+</span><span class="lnt">297
+</span><span class="lnt">298
+</span><span class="lnt">299
+</span><span class="lnt">300
+</span><span class="lnt">301
+</span><span class="lnt">302
+</span><span class="lnt">303
+</span><span class="lnt">304
+</span><span class="lnt">305
+</span><span class="lnt">306
+</span><span class="lnt">307
+</span><span class="lnt">308
+</span><span class="lnt">309
+</span><span class="lnt">310
+</span><span class="lnt">311
+</span><span class="lnt">312
+</span><span class="lnt">313
+</span><span class="lnt">314
+</span><span class="lnt">315
+</span><span class="lnt">316
+</span><span class="lnt">317
+</span><span class="lnt">318
+</span><span class="lnt">319
+</span><span class="lnt">320
+</span><span class="lnt">321
+</span><span class="lnt">322
+</span><span class="lnt">323
+</span><span class="lnt">324
+</span><span class="lnt">325
+</span><span class="lnt">326
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">{% echarts 400 &#39;100%&#39; %}
+</span></span><span class="line"><span class="cl">        var dataAxis = [&#34;北京&#34;, &#34;上海&#34;, &#34;广州&#34;, &#34;杭州&#34;, &#34;成都&#34;, &#34;深圳&#34;, &#34;南京&#34;, &#34;武汉&#34;, &#34;大连&#34;, &#34;苏州&#34;, &#34;西安&#34;, &#34;厦门&#34;, &#34;珠海&#34;, &#34;重庆&#34;, &#34;天津&#34;];
+</span></span><span class="line"><span class="cl">        var data = [720, 420, 171, 128, 109, 103, 66, 53, 31, 18, 18, 17, 14, 14, 14];
+</span></span><span class="line"><span class="cl">        var yMax = 500;
+</span></span><span class="line"><span class="cl">        var dataShadow = [];
+</span></span><span class="line"><span class="cl">        
+</span></span><span class="line"><span class="cl">        for (var i = 0; i &lt; data.length; i++) {
+</span></span><span class="line"><span class="cl">            dataShadow.push(yMax);
+</span></span><span class="line"><span class="cl">        }
+</span></span><span class="line"><span class="cl">        
+</span></span><span class="line"><span class="cl">        option = {
+</span></span><span class="line"><span class="cl">            backgroundColor: &#39;#fff&#39;,
+</span></span><span class="line"><span class="cl">            title: {
+</span></span><span class="line"><span class="cl">                text: &#39;实习数量-城市分布排名&#39;,
+</span></span><span class="line"><span class="cl">                subtext: &#39;data from 实习僧&#39;,
+</span></span><span class="line"><span class="cl">                sublink: &#39;http://www.shixiseng.com&#39;,
+</span></span><span class="line"><span class="cl">            },
+</span></span><span class="line"><span class="cl">            tooltip : {
+</span></span><span class="line"><span class="cl">                trigger: &#39;axis&#39;,
+</span></span><span class="line"><span class="cl">                axisPointer : {        // 坐标轴指示器，坐标轴触发有效
+</span></span><span class="line"><span class="cl">                type : &#39;shadow&#39;        // 默认为直线，可选为：&#39;line&#39; | &#39;shadow&#39;
+</span></span><span class="line"><span class="cl">                }
+</span></span><span class="line"><span class="cl">            },
+</span></span><span class="line"><span class="cl">            xAxis: {
+</span></span><span class="line"><span class="cl">                data: dataAxis,
+</span></span><span class="line"><span class="cl">                axisLabel: {
+</span></span><span class="line"><span class="cl">                    inside: true,
+</span></span><span class="line"><span class="cl">                    textStyle: {
+</span></span><span class="line"><span class="cl">                        color: &#39;#000&#39;
+</span></span><span class="line"><span class="cl">                    }
+</span></span><span class="line"><span class="cl">                },
+</span></span><span class="line"><span class="cl">                axisTick: {
+</span></span><span class="line"><span class="cl">                    show: false
+</span></span><span class="line"><span class="cl">                },
+</span></span><span class="line"><span class="cl">                axisLine: {
+</span></span><span class="line"><span class="cl">                    show: false
+</span></span><span class="line"><span class="cl">                },
+</span></span><span class="line"><span class="cl">                z: 10
+</span></span><span class="line"><span class="cl">            },
+</span></span><span class="line"><span class="cl">            yAxis: {
+</span></span><span class="line"><span class="cl">                axisLine: {
+</span></span><span class="line"><span class="cl">                    show: false
+</span></span><span class="line"><span class="cl">                },
+</span></span><span class="line"><span class="cl">                axisTick: {
+</span></span><span class="line"><span class="cl">                    show: false
+</span></span><span class="line"><span class="cl">                },
+</span></span><span class="line"><span class="cl">                axisLabel: {
+</span></span><span class="line"><span class="cl">                    textStyle: {
+</span></span><span class="line"><span class="cl">                        color: &#39;#999&#39;
+</span></span><span class="line"><span class="cl">                    }
+</span></span><span class="line"><span class="cl">                }
+</span></span><span class="line"><span class="cl">            },
+</span></span><span class="line"><span class="cl">            dataZoom: [
+</span></span><span class="line"><span class="cl">                {
+</span></span><span class="line"><span class="cl">                    type: &#39;inside&#39;
+</span></span><span class="line"><span class="cl">                }
+</span></span><span class="line"><span class="cl">            ],
+</span></span><span class="line"><span class="cl">            series: [
+</span></span><span class="line"><span class="cl">                {
+</span></span><span class="line"><span class="cl">                    type: &#39;bar&#39;,
+</span></span><span class="line"><span class="cl">                    name: &#39;数量&#39;,
+</span></span><span class="line"><span class="cl">                    itemStyle: {
+</span></span><span class="line"><span class="cl">                        normal: {
+</span></span><span class="line"><span class="cl">                            color: new echarts.graphic.LinearGradient(
+</span></span><span class="line"><span class="cl">                                0, 0, 0, 1,
+</span></span><span class="line"><span class="cl">                                [
+</span></span><span class="line"><span class="cl">                                    {offset: 0, color: &#39;#83bff6&#39;},
+</span></span><span class="line"><span class="cl">                                    {offset: 0.5, color: &#39;#188df0&#39;},
+</span></span><span class="line"><span class="cl">                                    {offset: 1, color: &#39;#188df0&#39;}
+</span></span><span class="line"><span class="cl">                                ]
+</span></span><span class="line"><span class="cl">                            )
+</span></span><span class="line"><span class="cl">                        },
+</span></span><span class="line"><span class="cl">                        emphasis: {
+</span></span><span class="line"><span class="cl">                            color: new echarts.graphic.LinearGradient(
+</span></span><span class="line"><span class="cl">                                0, 0, 0, 1,
+</span></span><span class="line"><span class="cl">                                [
+</span></span><span class="line"><span class="cl">                                    {offset: 0, color: &#39;#2378f7&#39;},
+</span></span><span class="line"><span class="cl">                                    {offset: 0.7, color: &#39;#2378f7&#39;},
+</span></span><span class="line"><span class="cl">                                    {offset: 1, color: &#39;#83bff6&#39;}
+</span></span><span class="line"><span class="cl">                                ]
+</span></span><span class="line"><span class="cl">                            )
+</span></span><span class="line"><span class="cl">                        }
+</span></span><span class="line"><span class="cl">                    },
+</span></span><span class="line"><span class="cl">                    data: data
+</span></span><span class="line"><span class="cl">                }
+</span></span><span class="line"><span class="cl">            ]
+</span></span><span class="line"><span class="cl">        };
+</span></span><span class="line"><span class="cl">{% endecharts %}
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">{% echarts 400 &#39;100%&#39; %}
+</span></span><span class="line"><span class="cl">        option = {
+</span></span><span class="line"><span class="cl">            backgroundColor: &#39;#fff&#39;,
+</span></span><span class="line"><span class="cl">            title: {
+</span></span><span class="line"><span class="cl">                text: &#39;实习标签/公司-数量分布&#39;,
+</span></span><span class="line"><span class="cl">                left: &#39;left&#39;,
+</span></span><span class="line"><span class="cl">                textStyle: {
+</span></span><span class="line"><span class="cl">                    color: &#39;#000&#39;
+</span></span><span class="line"><span class="cl">                }
+</span></span><span class="line"><span class="cl">            },
+</span></span><span class="line"><span class="cl">            tooltip: {
+</span></span><span class="line"><span class="cl">                trigger: &#39;item&#39;,
+</span></span><span class="line"><span class="cl">                formatter: &#34;{a} &lt;br/&gt;{b}: {c} ({d}%)&#34;
+</span></span><span class="line"><span class="cl">            },
+</span></span><span class="line"><span class="cl">            legend: {
+</span></span><span class="line"><span class="cl">                orient: &#39;vertical&#39;,
+</span></span><span class="line"><span class="cl">                x: &#39;left&#39;,
+</span></span><span class="line"><span class="cl">            },
+</span></span><span class="line"><span class="cl">            series: [
+</span></span><span class="line"><span class="cl">                {
+</span></span><span class="line"><span class="cl">                    name:&#39;标签&#39;,
+</span></span><span class="line"><span class="cl">                    type:&#39;pie&#39;,
+</span></span><span class="line"><span class="cl">                    radius: [&#39;50%&#39;, &#39;70%&#39;],
+</span></span><span class="line"><span class="cl">                    avoidLabelOverlap: true,
+</span></span><span class="line"><span class="cl">                    label: {
+</span></span><span class="line"><span class="cl">                        normal: {
+</span></span><span class="line"><span class="cl">                            show: true,
+</span></span><span class="line"><span class="cl">                            position: &#39;outside&#39;
+</span></span><span class="line"><span class="cl">                        },
+</span></span><span class="line"><span class="cl">                        emphasis: {
+</span></span><span class="line"><span class="cl">                            show: true,
+</span></span><span class="line"><span class="cl">                            textStyle: {
+</span></span><span class="line"><span class="cl">                                fontSize: &#39;30&#39;,
+</span></span><span class="line"><span class="cl">                                fontWeight: &#39;bold&#39;
+</span></span><span class="line"><span class="cl">                            }
+</span></span><span class="line"><span class="cl">                        }
+</span></span><span class="line"><span class="cl">                    },
+</span></span><span class="line"><span class="cl">                    labelLine: {
+</span></span><span class="line"><span class="cl">                        normal: {
+</span></span><span class="line"><span class="cl">                            show: true
+</span></span><span class="line"><span class="cl">                        }
+</span></span><span class="line"><span class="cl">                    },
+</span></span><span class="line"><span class="cl">                    data: [{&#34;name&#34;: &#34;软件&#34;, &#34;value&#34;: 422}, {&#34;name&#34;: &#34;IT运维&#34;, &#34;value&#34;: 185}, {&#34;name&#34;: &#34;Java&#34;, &#34;value&#34;: 147}, {&#34;name&#34;: &#34;前端&#34;, &#34;value&#34;: 144}, {&#34;name&#34;: &#34;算法&#34;, &#34;value&#34;: 138}, {&#34;name&#34;: &#34;云计算/大数据&#34;, &#34;value&#34;: 129}, {&#34;name&#34;: &#34;C/C++&#34;, &#34;value&#34;: 124}, {&#34;name&#34;: &#34;测试&#34;, &#34;value&#34;: 124}, {&#34;name&#34;: &#34;数据挖掘&#34;, &#34;value&#34;: 108}, {&#34;name&#34;: &#34;数据库&#34;, &#34;value&#34;: 101}, {&#34;name&#34;: &#34;PHP&#34;, &#34;value&#34;: 95}, {&#34;name&#34;: &#34;Android&#34;, &#34;value&#34;: 77}, {&#34;name&#34;: &#34;Python&#34;, &#34;value&#34;: 63}, {&#34;name&#34;: &#34;IOS&#34;, &#34;value&#34;: 63}, {&#34;name&#34;: &#34;Node.js&#34;, &#34;value&#34;: 11}]
+</span></span><span class="line"><span class="cl">                },
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">                {
+</span></span><span class="line"><span class="cl">                    name:&#39;公司&#39;,
+</span></span><span class="line"><span class="cl">                    type:&#39;pie&#39;,
+</span></span><span class="line"><span class="cl">                    radius: [&#39;10%&#39;, &#39;40%&#39;],
+</span></span><span class="line"><span class="cl">                    avoidLabelOverlap: true,
+</span></span><span class="line"><span class="cl">                    label: {
+</span></span><span class="line"><span class="cl">                        normal: {
+</span></span><span class="line"><span class="cl">                            show: false,
+</span></span><span class="line"><span class="cl">                            position: &#39;inside&#39;
+</span></span><span class="line"><span class="cl">                        },
+</span></span><span class="line"><span class="cl">                        emphasis: {
+</span></span><span class="line"><span class="cl">                            show: true,
+</span></span><span class="line"><span class="cl">                            textStyle: {
+</span></span><span class="line"><span class="cl">                                color: &#39;#000&#39;,
+</span></span><span class="line"><span class="cl">                                fontSize: &#39;20&#39;,
+</span></span><span class="line"><span class="cl">                                fontWeight: &#39;bold&#39;
+</span></span><span class="line"><span class="cl">                            }
+</span></span><span class="line"><span class="cl">                        }
+</span></span><span class="line"><span class="cl">                    },
+</span></span><span class="line"><span class="cl">                    labelLine: {
+</span></span><span class="line"><span class="cl">                        normal: {
+</span></span><span class="line"><span class="cl">                            show: true
+</span></span><span class="line"><span class="cl">                        }
+</span></span><span class="line"><span class="cl">                    },
+</span></span><span class="line"><span class="cl">                    data: [{&#34;name&#34;: &#34;好未来&#34;, &#34;value&#34;: 21}, {&#34;name&#34;: &#34;百度&#34;, &#34;value&#34;: 19}, {&#34;name&#34;: &#34;爱奇艺&#34;, &#34;value&#34;: 18}, {&#34;name&#34;: &#34;链家网&#34;, &#34;value&#34;: 17}, {&#34;name&#34;: &#34;金山云&#34;, &#34;value&#34;: 16}, {&#34;name&#34;: &#34;睿琪软件&#34;, &#34;value&#34;: 16}, {&#34;name&#34;: &#34;讯猫&#34;, &#34;value&#34;: 15}, {&#34;name&#34;: &#34;搜狐&#34;, &#34;value&#34;: 14}, {&#34;name&#34;: &#34;UISEE&#34;, &#34;value&#34;: 12}, {&#34;name&#34;: &#34;非白三维&#34;, &#34;value&#34;: 12}, {&#34;name&#34;: &#34;星环科技&#34;, &#34;value&#34;: 12}, {&#34;name&#34;: &#34;美团点评&#34;, &#34;value&#34;: 11}, {&#34;name&#34;: &#34;今日头条&#34;, &#34;value&#34;: 11}, {&#34;name&#34;: &#34;北纬通信&#34;, &#34;value&#34;: 11}, {&#34;name&#34;: &#34;大连东软&#34;, &#34;value&#34;: 10}]
+</span></span><span class="line"><span class="cl">                }
+</span></span><span class="line"><span class="cl">            ]
+</span></span><span class="line"><span class="cl">        };
+</span></span><span class="line"><span class="cl">{% endecharts %}
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">{% echarts 400 &#39;100%&#39; %}
+</span></span><span class="line"><span class="cl">            option = {
+</span></span><span class="line"><span class="cl">                backgroundColor: &#39;#fff&#39;,
+</span></span><span class="line"><span class="cl">                title: {
+</span></span><span class="line"><span class="cl">                    text: &#39;堆叠区域图&#39;,
+</span></span><span class="line"><span class="cl">                    left: &#39;left&#39;
+</span></span><span class="line"><span class="cl">                },
+</span></span><span class="line"><span class="cl">                tooltip : {
+</span></span><span class="line"><span class="cl">                    trigger: &#39;axis&#39;
+</span></span><span class="line"><span class="cl">                },
+</span></span><span class="line"><span class="cl">                legend: {
+</span></span><span class="line"><span class="cl">                    data:[&#34;软件&#34;, &#34;IT运维&#34;, &#34;Java&#34;, &#34;前端&#34;, &#34;算法&#34;, &#34;云计算/大数据&#34;, &#34;C/C++&#34;, &#34;测试&#34;, &#34;数据挖掘&#34;, &#34;数据库&#34;, &#34;PHP&#34;, &#34;Android&#34;, &#34;Python&#34;, &#34;IOS&#34;, &#34;Node.js&#34;]
+</span></span><span class="line"><span class="cl">                },
+</span></span><span class="line"><span class="cl">                toolbox: {
+</span></span><span class="line"><span class="cl">                    feature: {
+</span></span><span class="line"><span class="cl">                        saveAsImage: {}
+</span></span><span class="line"><span class="cl">                    }
+</span></span><span class="line"><span class="cl">                },
+</span></span><span class="line"><span class="cl">                grid: {
+</span></span><span class="line"><span class="cl">                    left: &#39;3%&#39;,
+</span></span><span class="line"><span class="cl">                    right: &#39;4%&#39;,
+</span></span><span class="line"><span class="cl">                    bottom: &#39;3%&#39;,
+</span></span><span class="line"><span class="cl">                    containLabel: true
+</span></span><span class="line"><span class="cl">                },
+</span></span><span class="line"><span class="cl">                xAxis : [
+</span></span><span class="line"><span class="cl">                    {
+</span></span><span class="line"><span class="cl">                        type : &#39;category&#39;,
+</span></span><span class="line"><span class="cl">                        boundaryGap : false,
+</span></span><span class="line"><span class="cl">                        data : [&#39;2017/01/05&#39;, &#39;2017/01/10&#39;, &#39;2017/01/11&#39;, &#39;2017/01/12&#39;, &#39;2017/01/18&#39;, &#39;2017/01/19&#39;, &#39;2017/02/03&#39;, &#39;2017/02/04&#39;, &#39;2017/02/06&#39;, &#39;2017/02/07&#39;, &#39;2017/02/08&#39;, &#39;2017/02/09&#39;, &#39;2017/02/10&#39;, &#39;2017/02/11&#39;, &#39;2017/02/12&#39;, &#39;2017/02/13&#39;, &#39;2017/02/14&#39;, &#39;2017/02/15&#39;, &#39;2017/02/16&#39;, &#39;2017/02/17&#39;, &#39;2017/02/19&#39;, &#39;2017/02/20&#39;, &#39;2017/02/21&#39;, &#39;2017/02/22&#39;, &#39;2017/02/23&#39;, &#39;2017/02/24&#39;, &#39;2017/02/25&#39;, &#39;2017/02/26&#39;, &#39;2017/02/27&#39;, &#39;2017/02/28&#39;, &#39;2017/03/01&#39;, &#39;2017/03/02&#39;, &#39;2017/03/03&#39;, &#39;2017/03/04&#39;, &#39;2017/03/05&#39;, &#39;2017/03/06&#39;, &#39;2017/03/07&#39;, &#39;2017/03/08&#39;, &#39;2017/03/09&#39;, &#39;2017/03/10&#39;, &#39;2017/03/11&#39;, &#39;2017/03/12&#39;, &#39;2017/03/13&#39;, &#39;2017/03/14&#39;]
+</span></span><span class="line"><span class="cl">                    }
+</span></span><span class="line"><span class="cl">                ],
+</span></span><span class="line"><span class="cl">                yAxis : [
+</span></span><span class="line"><span class="cl">                    {
+</span></span><span class="line"><span class="cl">                        type : &#39;value&#39;
+</span></span><span class="line"><span class="cl">                    }
+</span></span><span class="line"><span class="cl">                ],
+</span></span><span class="line"><span class="cl">                series : [
+</span></span><span class="line"><span class="cl">                    
+</span></span><span class="line"><span class="cl">                    {
+</span></span><span class="line"><span class="cl">                        name: &#39;软件&#39;,
+</span></span><span class="line"><span class="cl">                        type: &#39;line&#39;,
+</span></span><span class="line"><span class="cl">                        stack: &#39;总量&#39;,
+</span></span><span class="line"><span class="cl">                        areaStyle: {normal: {}},
+</span></span><span class="line"><span class="cl">                        data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 2, 0, 1, 0, 1, 0, 2, 1, 2, 0, 1, 3, 4, 3, 4, 26, 5, 6, 38, 2, 9, 22, 16, 3, 3, 84, 168]
+</span></span><span class="line"><span class="cl">                    },
+</span></span><span class="line"><span class="cl">                    
+</span></span><span class="line"><span class="cl">                    {
+</span></span><span class="line"><span class="cl">                        name: &#39;IT运维&#39;,
+</span></span><span class="line"><span class="cl">                        type: &#39;line&#39;,
+</span></span><span class="line"><span class="cl">                        stack: &#39;总量&#39;,
+</span></span><span class="line"><span class="cl">                        areaStyle: {normal: {}},
+</span></span><span class="line"><span class="cl">                        data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 3, 1, 1, 4, 2, 0, 0, 7, 4, 8, 0, 4, 1, 0, 5, 13, 9, 9, 19, 0, 0, 62, 29]
+</span></span><span class="line"><span class="cl">                    },
+</span></span><span class="line"><span class="cl">                    
+</span></span><span class="line"><span class="cl">                    {
+</span></span><span class="line"><span class="cl">                        name: &#39;Java&#39;,
+</span></span><span class="line"><span class="cl">                        type: &#39;line&#39;,
+</span></span><span class="line"><span class="cl">                        stack: &#39;总量&#39;,
+</span></span><span class="line"><span class="cl">                        areaStyle: {normal: {}},
+</span></span><span class="line"><span class="cl">                        data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 2, 0, 1, 0, 0, 6, 16, 25, 2, 3, 63, 27]
+</span></span><span class="line"><span class="cl">                    },
+</span></span><span class="line"><span class="cl">                    
+</span></span><span class="line"><span class="cl">                    {
+</span></span><span class="line"><span class="cl">                        name: &#39;前端&#39;,
+</span></span><span class="line"><span class="cl">                        type: &#39;line&#39;,
+</span></span><span class="line"><span class="cl">                        stack: &#39;总量&#39;,
+</span></span><span class="line"><span class="cl">                        areaStyle: {normal: {}},
+</span></span><span class="line"><span class="cl">                        data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 16, 10, 16, 6, 0, 53, 37]
+</span></span><span class="line"><span class="cl">                    },
+</span></span><span class="line"><span class="cl">                    
+</span></span><span class="line"><span class="cl">                    {
+</span></span><span class="line"><span class="cl">                        name: &#39;算法&#39;,
+</span></span><span class="line"><span class="cl">                        type: &#39;line&#39;,
+</span></span><span class="line"><span class="cl">                        stack: &#39;总量&#39;,
+</span></span><span class="line"><span class="cl">                        areaStyle: {normal: {}},
+</span></span><span class="line"><span class="cl">                        data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 16, 1, 15, 20, 13, 4, 4, 51, 10]
+</span></span><span class="line"><span class="cl">                    },
+</span></span><span class="line"><span class="cl">                    
+</span></span><span class="line"><span class="cl">                    {
+</span></span><span class="line"><span class="cl">                        name: &#39;云计算/大数据&#39;,
+</span></span><span class="line"><span class="cl">                        type: &#39;line&#39;,
+</span></span><span class="line"><span class="cl">                        stack: &#39;总量&#39;,
+</span></span><span class="line"><span class="cl">                        areaStyle: {normal: {}},
+</span></span><span class="line"><span class="cl">                        data: [0, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 2, 1, 1, 2, 2, 2, 4, 1, 0, 0, 4, 4, 4, 0, 0, 0, 5, 1, 3, 2, 1, 1, 0, 5, 5, 5, 15, 8, 2, 0, 29, 9]
+</span></span><span class="line"><span class="cl">                    },
+</span></span><span class="line"><span class="cl">                    
+</span></span><span class="line"><span class="cl">                    {
+</span></span><span class="line"><span class="cl">                        name: &#39;C/C++&#39;,
+</span></span><span class="line"><span class="cl">                        type: &#39;line&#39;,
+</span></span><span class="line"><span class="cl">                        stack: &#39;总量&#39;,
+</span></span><span class="line"><span class="cl">                        areaStyle: {normal: {}},
+</span></span><span class="line"><span class="cl">                        data: [0, 0, 0, 0, 0, 0, 0, 0, 2, 1, 0, 0, 0, 0, 0, 0, 0, 2, 4, 2, 0, 5, 1, 0, 0, 0, 0, 0, 2, 4, 5, 3, 5, 0, 0, 4, 7, 12, 7, 9, 1, 3, 30, 8]
+</span></span><span class="line"><span class="cl">                    },
+</span></span><span class="line"><span class="cl">                    
+</span></span><span class="line"><span class="cl">                    {
+</span></span><span class="line"><span class="cl">                        name: &#39;测试&#39;,
+</span></span><span class="line"><span class="cl">                        type: &#39;line&#39;,
+</span></span><span class="line"><span class="cl">                        stack: &#39;总量&#39;,
+</span></span><span class="line"><span class="cl">                        areaStyle: {normal: {}},
+</span></span><span class="line"><span class="cl">                        data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 1, 0, 0, 0, 0, 0, 0, 82, 32]
+</span></span><span class="line"><span class="cl">                    },
+</span></span><span class="line"><span class="cl">                    
+</span></span><span class="line"><span class="cl">                    {
+</span></span><span class="line"><span class="cl">                        name: &#39;数据挖掘&#39;,
+</span></span><span class="line"><span class="cl">                        type: &#39;line&#39;,
+</span></span><span class="line"><span class="cl">                        stack: &#39;总量&#39;,
+</span></span><span class="line"><span class="cl">                        areaStyle: {normal: {}},
+</span></span><span class="line"><span class="cl">                        data: [0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 3, 0, 0, 2, 0, 2, 1, 0, 0, 1, 3, 5, 2, 2, 5, 0, 0, 9, 9, 5, 9, 8, 1, 0, 20, 15]
+</span></span><span class="line"><span class="cl">                    },
+</span></span><span class="line"><span class="cl">                    
+</span></span><span class="line"><span class="cl">                    {
+</span></span><span class="line"><span class="cl">                        name: &#39;数据库&#39;,
+</span></span><span class="line"><span class="cl">                        type: &#39;line&#39;,
+</span></span><span class="line"><span class="cl">                        stack: &#39;总量&#39;,
+</span></span><span class="line"><span class="cl">                        areaStyle: {normal: {}},
+</span></span><span class="line"><span class="cl">                        data: [0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 2, 0, 1, 0, 1, 1, 2, 1, 0, 0, 0, 0, 1, 1, 1, 2, 0, 0, 2, 2, 4, 1, 5, 0, 0, 8, 4, 12, 14, 8, 1, 0, 13, 6]
+</span></span><span class="line"><span class="cl">                    },
+</span></span><span class="line"><span class="cl">                    
+</span></span><span class="line"><span class="cl">                    {
+</span></span><span class="line"><span class="cl">                        name: &#39;PHP&#39;,
+</span></span><span class="line"><span class="cl">                        type: &#39;line&#39;,
+</span></span><span class="line"><span class="cl">                        stack: &#39;总量&#39;,
+</span></span><span class="line"><span class="cl">                        areaStyle: {normal: {}},
+</span></span><span class="line"><span class="cl">                        data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 4, 0, 3, 0, 0, 0, 2, 1, 2, 1, 0, 1, 0, 2, 1, 3, 1, 2, 0, 0, 3, 4, 7, 7, 6, 2, 1, 22, 12]
+</span></span><span class="line"><span class="cl">                    },
+</span></span><span class="line"><span class="cl">                    
+</span></span><span class="line"><span class="cl">                    {
+</span></span><span class="line"><span class="cl">                        name: &#39;Android&#39;,
+</span></span><span class="line"><span class="cl">                        type: &#39;line&#39;,
+</span></span><span class="line"><span class="cl">                        stack: &#39;总量&#39;,
+</span></span><span class="line"><span class="cl">                        areaStyle: {normal: {}},
+</span></span><span class="line"><span class="cl">                        data: [0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 2, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 1, 0, 0, 0, 0, 0, 3, 1, 1, 0, 0, 1, 2, 1, 7, 5, 6, 5, 0, 27, 7]
+</span></span><span class="line"><span class="cl">                    },
+</span></span><span class="line"><span class="cl">                    
+</span></span><span class="line"><span class="cl">                    {
+</span></span><span class="line"><span class="cl">                        name: &#39;Python&#39;,
+</span></span><span class="line"><span class="cl">                        type: &#39;line&#39;,
+</span></span><span class="line"><span class="cl">                        stack: &#39;总量&#39;,
+</span></span><span class="line"><span class="cl">                        areaStyle: {normal: {}},
+</span></span><span class="line"><span class="cl">                        data: [0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 2, 2, 1, 1, 0, 1, 0, 1, 5, 2, 0, 0, 1, 1, 4, 4, 6, 0, 1, 12, 14]
+</span></span><span class="line"><span class="cl">                    },
+</span></span><span class="line"><span class="cl">                    
+</span></span><span class="line"><span class="cl">                    {
+</span></span><span class="line"><span class="cl">                        name: &#39;IOS&#39;,
+</span></span><span class="line"><span class="cl">                        type: &#39;line&#39;,
+</span></span><span class="line"><span class="cl">                        stack: &#39;总量&#39;,
+</span></span><span class="line"><span class="cl">                        areaStyle: {normal: {}},
+</span></span><span class="line"><span class="cl">                        data: [0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 1, 1, 3, 2, 1, 0, 1, 2, 0, 4, 8, 3, 3, 0, 15, 6]
+</span></span><span class="line"><span class="cl">                    },
+</span></span><span class="line"><span class="cl">                    
+</span></span><span class="line"><span class="cl">                    {
+</span></span><span class="line"><span class="cl">                        name: &#39;Node.js&#39;,
+</span></span><span class="line"><span class="cl">                        type: &#39;line&#39;,
+</span></span><span class="line"><span class="cl">                        stack: &#39;总量&#39;,
+</span></span><span class="line"><span class="cl">                        areaStyle: {normal: {}},
+</span></span><span class="line"><span class="cl">                        data: [0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 2, 0, 1, 2, 0]
+</span></span><span class="line"><span class="cl">                    },
+</span></span><span class="line"><span class="cl">                    
+</span></span><span class="line"><span class="cl">                ]
+</span></span><span class="line"><span class="cl">            };
+</span></span><span class="line"><span class="cl">{% endecharts %}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="一些坑">一些坑</h2>
 <ol>
 <li>这篇blog中插入了echarts图表, 参见<a href="http://kchen.cc/2016/11/05/echarts-in-hexo/" target="_blank" rel="noopener noreffer ">这篇文章</a>, 并做了一些魔改以适应复杂的图表</li>
 <li>falsk中的APScheduler貌似不好用, 最后自己使用丑陋的方法写了个独立的py文件处理生成的json, 再用crontab定时运行</li>
