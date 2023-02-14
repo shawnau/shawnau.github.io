@@ -2,12 +2,12 @@
     xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
     xmlns:xhtml="http://www.w3.org/1999/xhtml"
     ><url>
-            <loc>http://xxuan.cc/</loc><lastmod>2023-02-14T23:37:00&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>http://xxuan.cc/</loc><lastmod>2023-02-15T00:05:02&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>http://xxuan.cc/posts/</loc><lastmod>2023-02-14T23:37:00&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>http://xxuan.cc/2023-02-14-refresh/</loc><lastmod>2023-02-14T23:37:00&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>http://xxuan.cc/tags/dfs/</loc><lastmod>2023-02-14T23:37:00&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>http://xxuan.cc/playground/</loc><lastmod>2023-02-14T23:37:00&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>http://xxuan.cc/tags/</loc><lastmod>2023-02-14T23:37:00&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>http://xxuan.cc/tags/</loc><lastmod>2023-02-15T00:05:02&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>http://xxuan.cc/playground/islands/</loc><lastmod>2023-02-14T23:37:00&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>http://xxuan.cc/2022-08-30-observer-pattern/</loc><lastmod>2023-02-14T23:37:00&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>http://xxuan.cc/playground/trapping-rain-water/</loc><lastmod>2023-02-14T23:37:00&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
@@ -77,11 +77,11 @@
             <loc>http://xxuan.cc/tags/glm/</loc><lastmod>2023-02-14T23:37:00&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>http://xxuan.cc/tags/stat/</loc><lastmod>2023-02-14T23:37:00&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>http://xxuan.cc/2017-12-26-survival-models/</loc><lastmod>2023-02-14T23:37:00&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>http://xxuan.cc/code/</loc><lastmod>2023-02-14T23:37:00&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>http://xxuan.cc/code/</loc><lastmod>2023-02-15T00:05:02&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>http://xxuan.cc/tags/pandas/</loc><lastmod>2023-02-14T23:37:00&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>http://xxuan.cc/tags/python-data-analysis/</loc><lastmod>2023-02-14T23:37:00&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>http://xxuan.cc/code/2017-09-28-pandas/</loc><lastmod>2023-02-14T23:37:00&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>http://xxuan.cc/tags/python/</loc><lastmod>2023-02-14T23:37:00&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>http://xxuan.cc/tags/python/</loc><lastmod>2023-02-15T00:05:02&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>http://xxuan.cc/2017-09-27-python-extend/</loc><lastmod>2023-02-14T23:37:00&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>http://xxuan.cc/2017-09-26-python-thread/</loc><lastmod>2023-02-14T23:37:00&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>http://xxuan.cc/2017-09-25-python-oop/</loc><lastmod>2023-02-14T23:37:00&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
@@ -116,19 +116,19 @@
             <loc>http://xxuan.cc/tags/bayes/</loc><lastmod>2023-02-14T23:37:00&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>http://xxuan.cc/2017-03-22-naive-bayes/</loc><lastmod>2023-02-14T23:37:00&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>http://xxuan.cc/2017-03-18-data-mining-assn1/</loc><lastmod>2023-02-14T23:37:00&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>http://xxuan.cc/tags/flask/</loc><lastmod>2023-02-14T23:37:00&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>http://xxuan.cc/tags/flask/</loc><lastmod>2023-02-15T00:05:02&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>http://xxuan.cc/tags/nginx/</loc><lastmod>2023-02-14T23:37:00&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>http://xxuan.cc/code/2017-03-16-nginx-uwsgi-flask/</loc><lastmod>2023-02-14T23:37:00&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>http://xxuan.cc/tags/uwsgi/</loc><lastmod>2023-02-14T23:37:00&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>http://xxuan.cc/tags/echarts/</loc><lastmod>2023-02-14T23:37:00&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>http://xxuan.cc/tags/mongodb/</loc><lastmod>2023-02-14T23:37:00&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>http://xxuan.cc/code/2017-03-13-mongodb-flask-echarts-data-visualize/</loc><lastmod>2023-02-14T23:37:00&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>http://xxuan.cc/tags/echarts/</loc><lastmod>2023-02-15T00:05:02&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>http://xxuan.cc/tags/mongodb/</loc><lastmod>2023-02-15T00:05:02&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>http://xxuan.cc/code/2017-03-13-mongodb-flask-echarts-data-visualize/</loc><lastmod>2023-02-15T00:05:02&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>http://xxuan.cc/playground/2017-03-08-online-interview/</loc><lastmod>2023-02-14T23:37:00&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>http://xxuan.cc/tags/shadowsocks/</loc><lastmod>2023-02-14T23:37:00&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>http://xxuan.cc/code/2017-02-23-shadowsocks-chrome-config/</loc><lastmod>2023-02-14T23:37:00&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>http://xxuan.cc/tags/scrapy/</loc><lastmod>2023-02-14T23:37:00&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>http://xxuan.cc/code/2017-02-18-scrapy/</loc><lastmod>2023-02-14T23:37:00&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>http://xxuan.cc/code/2017-02-17-mongodb/</loc><lastmod>2023-02-14T23:37:00&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>http://xxuan.cc/code/2017-02-17-mongodb/</loc><lastmod>2023-02-15T00:01:58&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>http://xxuan.cc/2017-01-11-algo-sum/</loc><lastmod>2023-02-14T23:37:00&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>http://xxuan.cc/2017-01-05-np2016/</loc><lastmod>2023-02-14T23:37:00&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>http://xxuan.cc/code/2016-12-26-yolo-darknet/</loc><lastmod>2023-02-14T23:37:00&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
