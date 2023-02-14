@@ -1,0 +1,24 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>decision tree - Tag - Laniakea</title>
+        <link>http://xxuan.cc/tags/decision-tree/</link>
+        <description>decision tree - Tag - Laniakea</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>shawn_au@outlook.com (xiaoxuan)</managingEditor>
+            <webMaster>shawn_au@outlook.com (xiaoxuan)</webMaster><lastBuildDate>Mon, 27 Mar 2017 00:29:14 &#43;0000</lastBuildDate><atom:link href="http://xxuan.cc/tags/decision-tree/" rel="self" type="application/rss+xml" /><item>
+    <title>决策树</title>
+    <link>http://xxuan.cc/2017-03-26-decision-tree/</link>
+    <pubDate>Mon, 27 Mar 2017 00:29:14 &#43;0000</pubDate>
+    <author>xiaoxuan</author>
+    <guid>http://xxuan.cc/2017-03-26-decision-tree/</guid>
+    <description><![CDATA[<p>决策树的小结</p>]]></description>
+</item>
+<item>
+    <title>决策树 (Decision Tree)</title>
+    <link>http://xxuan.cc/2016-05-22-decision-tree/</link>
+    <pubDate>Sun, 22 May 2016 07:41:08 &#43;0000</pubDate>
+    <author>xiaoxuan</author>
+    <guid>http://xxuan.cc/2016-05-22-decision-tree/</guid>
+    <description><![CDATA[<p>决策树</p>]]></description>
+</item>
+</channel>
+</rss>

@@ -1,0 +1,924 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>Spark Tutorial - Learning Apache Spark - Laniakea</title><meta name="Description" content="xxuan&#39;s blog"><meta property="og:title" content="Spark Tutorial - Learning Apache Spark" />
+<meta property="og:description" content="Spark简介" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://xxuan.cc/code/2016-06-28-spark-tutorial/" /><meta property="og:image" content="http://xxuan.cc/logo.png"/><meta property="article:section" content="code" />
+<meta property="article:published_time" content="2016-06-28T04:15:50+00:00" />
+<meta property="article:modified_time" content="2016-06-28T04:15:50+00:00" /><meta property="og:site_name" content="xxuan.cc" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="http://xxuan.cc/logo.png"/>
+
+<meta name="twitter:title" content="Spark Tutorial - Learning Apache Spark"/>
+<meta name="twitter:description" content="Spark简介"/>
+<meta name="application-name" content="Laniakea">
+<meta name="apple-mobile-web-app-title" content="Laniakea"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://xxuan.cc/code/2016-06-28-spark-tutorial/" /><link rel="prev" href="http://xxuan.cc/code/2016-06-20-sql-abc/" /><link rel="next" href="http://xxuan.cc/code/2016-07-16-webscraper/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" href="/lib/animate/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Spark Tutorial - Learning Apache Spark",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/xxuan.cc\/code\/2016-06-28-spark-tutorial\/"
+        },"genre": "code","keywords": "spark, CS105x","wordcount":  5656 ,
+        "url": "http:\/\/xxuan.cc\/code\/2016-06-28-spark-tutorial\/","datePublished": "2016-06-28T04:15:50+00:00","dateModified": "2016-06-28T04:15:50+00:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "xiaoxuan"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Laniakea">Laniakea</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/" title="存档脑细胞"> 文章 </a><a class="menu-item" href="/playground/" title="玩耍算法题的地方"> 练习场 </a><a class="menu-item" href="/code/" title="存放大概率过期的代码"> 码农 </a><a class="menu-item" href="/tags/" title="标签"> Tags </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Laniakea">Laniakea</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="存档脑细胞">文章</a><a class="menu-item" href="/playground/" title="玩耍算法题的地方">练习场</a><a class="menu-item" href="/code/" title="存放大概率过期的代码">码农</a><a class="menu-item" href="/tags/" title="标签">Tags</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="page single special"><h1 class="single-title animate__animated animate__pulse animate__faster">Spark Tutorial - Learning Apache Spark</h1><div class="content" id="content"><p>Spark简介</p>
+<p>This article is copied from the <a href="https://courses.edx.org/courses/course-v1:BerkeleyX&#43;CS105x&#43;1T2016/info" target="_blank" rel="noopener noreffer ">BerkeleyX: CS105x Introduction to Apache Spark</a> course materials.</p>
+<p>Source:
+<a href="https://raw.githubusercontent.com/spark-mooc/mooc-setup/master/cs105_lab1a_spark_tutorial.dbc" target="_blank" rel="noopener noreffer ">https://raw.githubusercontent.com/spark-mooc/mooc-setup/master/cs105_lab1a_spark_tutorial.dbc</a></p>
+<p><a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-nd/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/">Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License</a>.</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="http://spark-mooc.github.io/web-assets/images/ta_Spark-logo-small.png"
+        data-srcset="http://spark-mooc.github.io/web-assets/images/ta_Spark-logo-small.png, http://spark-mooc.github.io/web-assets/images/ta_Spark-logo-small.png 1.5x, http://spark-mooc.github.io/web-assets/images/ta_Spark-logo-small.png 2x"
+        data-sizes="auto"
+        alt="http://spark-mooc.github.io/web-assets/images/ta_Spark-logo-small.png"
+        title="Spark Logo" /> <img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="http://spark-mooc.github.io/web-assets/images/python-logo-master-v3-TM-flattened_small.png"
+        data-srcset="http://spark-mooc.github.io/web-assets/images/python-logo-master-v3-TM-flattened_small.png, http://spark-mooc.github.io/web-assets/images/python-logo-master-v3-TM-flattened_small.png 1.5x, http://spark-mooc.github.io/web-assets/images/python-logo-master-v3-TM-flattened_small.png 2x"
+        data-sizes="auto"
+        alt="http://spark-mooc.github.io/web-assets/images/python-logo-master-v3-TM-flattened_small.png"
+        title="Python Logo" /></p>
+<h2 id="spark-tutorial-learning-apache-spark"><strong>Spark Tutorial: Learning Apache Spark</strong></h2>
+<p>This tutorial will teach you how to use <a href="http://spark.apache.org/" target="_blank" rel="noopener noreffer ">Apache Spark</a>, a framework for large-scale data processing, within a notebook. Many traditional frameworks were designed to be run on a single computer.  However, many datasets today are too large to be stored on a single computer, and even when a dataset can be stored on one computer (such as the datasets in this tutorial), the dataset can often be processed much more quickly using multiple computers.</p>
+<p>Spark has efficient implementations of a number of transformations and actions that can be composed together to perform data processing and analysis.  Spark excels at distributing these operations across a cluster while abstracting away many of the underlying implementation details.  Spark has been designed with a focus on scalability and efficiency.  With Spark you can begin developing your solution on your laptop, using a small dataset, and then use that same code to process terabytes or even petabytes across a distributed cluster.</p>
+<p><strong>During this tutorial we will cover:</strong></p>
+<ul>
+<li><em>Part 1:</em> Basic notebook usage and <a href="https://docs.python.org/2/" target="_blank" rel="noopener noreffer ">Python</a> integration</li>
+<li><em>Part 2:</em> An introduction to using <a href="https://spark.apache.org/" target="_blank" rel="noopener noreffer ">Apache Spark</a> with the <a href="http://spark.apache.org/docs/latest/api/python/pyspark.sql.html#pyspark-sql-module" target="_blank" rel="noopener noreffer ">PySpark SQL API</a> running in a notebook</li>
+<li><em>Part 3:</em> Using DataFrames and chaining together transformations and actions</li>
+<li><em>Part 4</em>: Python Lambda functions and User Defined Functions</li>
+<li><em>Part 5:</em> Additional DataFrame actions</li>
+<li><em>Part 6:</em> Additional DataFrame transformations</li>
+<li><em>Part 7:</em> Caching DataFrames and storage options</li>
+<li><em>Part 8:</em> Debugging Spark applications and lazy evaluation</li>
+</ul>
+<p>The following transformations will be covered:</p>
+<ul>
+<li><code>select()</code>, <code>filter()</code>, <code>distinct()</code>, <code>dropDuplicates()</code>, <code>orderBy()</code>, <code>groupBy()</code></li>
+</ul>
+<p>The following actions will be covered:</p>
+<ul>
+<li><code>first()</code>, <code>take()</code>, <code>count()</code>, <code>collect()</code>, <code>show()</code></li>
+</ul>
+<p>Also covered:</p>
+<ul>
+<li><code>cache()</code>, <code>unpersist()</code></li>
+</ul>
+<p>Note that, for reference, you can look up the details of these methods in the <a href="http://spark.apache.org/docs/latest/api/python/pyspark.sql.html#pyspark-sql-module" target="_blank" rel="noopener noreffer ">Spark&rsquo;s PySpark SQL API</a></p>
+<h2 id="part-1-basic-notebook-usage-and-pythonhttpsdocspythonorg2-integration-">**Part 1: Basic notebook usage and <a href="https://docs.python.org/2/" target="_blank" rel="noopener noreffer ">Python</a> integration **</h2>
+<h3 id="1a-notebook-usage">(1a) Notebook usage</h3>
+<p>A notebook is comprised of a linear sequence of cells.  These cells can contain either markdown or code, but we won&rsquo;t mix both in one cell.  When a markdown cell is executed it renders formatted text, images, and links just like HTML in a normal webpage.  The text you are reading right now is part of a markdown cell.  Python code cells allow you to execute arbitrary Python commands just like in any Python shell. Place your cursor inside the cell below, and press &ldquo;Shift&rdquo; + &ldquo;Enter&rdquo; to execute the code and advance to the next cell.  You can also press &ldquo;Ctrl&rdquo; + &ldquo;Enter&rdquo; to execute the code and remain in the cell.  These commands work the same in both markdown and code cells.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl"># This is a Python cell. You can run normal Python code here...
+</span></span><span class="line"><span class="cl">print &#39;The sum of 1 and 1 is {0}&#39;.format(1+1)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"># Here is another Python cell, this time with a variable (x) declaration and an if statement:
+</span></span><span class="line"><span class="cl">x = 42
+</span></span><span class="line"><span class="cl">if x &gt; 40:
+</span></span><span class="line"><span class="cl">    print &#39;The sum of 1 and 2 is {0}&#39;.format(1+2)
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="1b-notebook-state">(1b) Notebook state</h3>
+<p>As you work through a notebook it is important that you run all of the code cells.  The notebook is stateful, which means that variables and their values are retained until the notebook is detached (in Databricks) or the kernel is restarted (in Jupyter notebooks).  If you do not run all of the code cells as you proceed through the notebook, your variables will not be properly initialized and later code might fail.  You will also need to rerun any cells that you have modified in order for the changes to be available to other cells.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl"># This cell relies on x being defined already.
+</span></span><span class="line"><span class="cl"># If we didn&#39;t run the cells from part (1a) this code would fail.
+</span></span><span class="line"><span class="cl">print x * 2
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="1c-library-imports">(1c) Library imports</h3>
+<p>We can import standard Python libraries (<a href="https://docs.python.org/2/tutorial/modules.html" target="_blank" rel="noopener noreffer ">modules</a>) the usual way.  An <code>import</code> statement will import the specified module.  In this tutorial and future labs, we will provide any imports that are necessary.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl"># Import the regular expression library
+</span></span><span class="line"><span class="cl">import re
+</span></span><span class="line"><span class="cl">m = re.search(&#39;(?&lt;=abc)def&#39;, &#39;abcdef&#39;)
+</span></span><span class="line"><span class="cl">m.group(0)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"># Import the datetime library
+</span></span><span class="line"><span class="cl">import datetime
+</span></span><span class="line"><span class="cl">print &#39;This was last run on: {0}&#39;.format(datetime.datetime.now())
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="part-2-an-introduction-to-using-apache-sparkhttpssparkapacheorg-with-the-pyspark-sql-apihttpsparkapacheorgdocslatestapipythonpysparksqlhtmlpyspark-sql-module-running-in-a-notebook"><strong>Part 2: An introduction to using <a href="https://spark.apache.org/" target="_blank" rel="noopener noreffer ">Apache Spark</a> with the <a href="http://spark.apache.org/docs/latest/api/python/pyspark.sql.html#pyspark-sql-module" target="_blank" rel="noopener noreffer ">PySpark SQL API</a> running in a notebook</strong></h2>
+<h3 id="spark-context">Spark Context</h3>
+<p>In Spark, communication occurs between a driver and executors.  The driver has Spark jobs that it needs to run and these jobs are split into tasks that are submitted to the executors for completion.  The results from these tasks are delivered back to the driver.</p>
+<p>In part 1, we saw that normal Python code can be executed via cells. When using Databricks this code gets executed in the Spark driver&rsquo;s Java Virtual Machine (JVM) and not in an executor&rsquo;s JVM, and when using an Jupyter notebook it is executed within the kernel associated with the notebook. Since no Spark functionality is actually being used, no tasks are launched on the executors.</p>
+<p>In order to use Spark and its DataFrame API we will need to use a <code>SQLContext</code>.  When running Spark, you start a new Spark application by creating a <a href="http://spark.apache.org/docs/latest/api/python/pyspark.html#pyspark.SparkContext" target="_blank" rel="noopener noreffer ">SparkContext</a>. You can then create a <a href="http://spark.apache.org/docs/latest/api/python/pyspark.sql.html#pyspark.sql.SQLContext" target="_blank" rel="noopener noreffer ">SQLContext</a> from the <code>SparkContext</code>. When the <code>SparkContext</code> is created, it asks the master for some cores to use to do work.  The master sets these cores aside just for you; they won&rsquo;t be used for other applications. When using Databricks, both a <code>SparkContext</code> and a <code>SQLContext</code> are created for you automatically. <code>sc</code> is your <code>SparkContext</code>, and <code>sqlContext</code> is your <code>SQLContext</code>.</p>
+<h3 id="2a-example-cluster">(2a) Example Cluster</h3>
+<p>The diagram shows an example cluster, where the slots allocated for an application are outlined in purple. (Note: We&rsquo;re using the term <em>slots</em> here to indicate threads available to perform parallel work for Spark.
+Spark documentation often refers to these threads as <em>cores</em>, which is a confusing term, as the number of slots available on a particular machine does not necessarily have any relationship to the number of physical CPU
+cores on that machine.)</p>
+<img src="http://spark-mooc.github.io/web-assets/images/cs105x/diagram-2a.png" style="height: 800px;float: right"/>
+<p>You can view the details of your Spark application in the Spark web UI.  The web UI is accessible in Databricks by going to &ldquo;Clusters&rdquo; and then clicking on the &ldquo;Spark UI&rdquo; link for your cluster.  In the web UI, under the &ldquo;Jobs&rdquo; tab, you can see a list of jobs that have been scheduled or run.  It&rsquo;s likely there isn&rsquo;t any thing interesting here yet because we haven&rsquo;t run any jobs, but we&rsquo;ll return to this page later.</p>
+<p>At a high level, every Spark application consists of a driver program that launches various parallel operations on executor Java Virtual Machines (JVMs) running either in a cluster or locally on the same machine. In Databricks, &ldquo;Databricks Shell&rdquo; is the driver program.  When running locally, <code>pyspark</code> is the driver program. In all cases, this driver program contains the main loop for the program and creates distributed datasets on the cluster, then applies operations (transformations &amp; actions) to those datasets.
+Driver programs access Spark through a SparkContext object, which represents a connection to a computing cluster. A Spark SQL context object (<code>sqlContext</code>) is the main entry point for Spark DataFrame and SQL functionality. A <code>SQLContext</code> can be used to create DataFrames, which allows you to direct the operations on your data.</p>
+<p>Try printing out <code>sqlContext</code> to see its type.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl"># Display the type of the Spark sqlContext
+</span></span><span class="line"><span class="cl">type(sqlContext)
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Note that the type is <code>HiveContext</code>. This means we&rsquo;re working with a version of Spark that has Hive support. Compiling Spark with Hive support is a good idea, even if you don&rsquo;t have a Hive metastore. As the
+<a href="http://spark.apache.org/docs/latest/sql-programming-guide.html#starting-point-sqlcontext" target="_blank" rel="noopener noreffer ">Spark Programming Guide</a> states, a <code>HiveContext</code> &ldquo;provides a superset of the functionality provided by the basic <code>SQLContext</code>. Additional features include the ability to write queries using the more complete HiveQL parser, access to Hive UDFs [user-defined functions], and the ability to read data from Hive tables. To use a <code>HiveContext</code>, you do not need to have an existing Hive setup, and all of the data sources available to a <code>SQLContext</code> are still available.&rdquo;</p>
+<h3 id="2b-sparkcontext-attributes">(2b) SparkContext attributes</h3>
+<p>You can use Python&rsquo;s <a href="https://docs.python.org/2/library/functions.html?highlight=dir#dir" target="_blank" rel="noopener noreffer ">dir()</a> function to get a list of all the attributes (including methods) accessible through the <code>sqlContext</code> object.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl"># List sqlContext&#39;s attributes
+</span></span><span class="line"><span class="cl">dir(sqlContext)
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="2c-getting-help">(2c) Getting help</h3>
+<p>Alternatively, you can use Python&rsquo;s <a href="https://docs.python.org/2/library/functions.html?highlight=help#help" target="_blank" rel="noopener noreffer ">help()</a> function to get an easier to read list of all the attributes, including examples, that the <code>sqlContext</code> object has.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl"># Use help to obtain more detailed information
+</span></span><span class="line"><span class="cl">help(sqlContext)
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Outside of <code>pyspark</code> or a notebook, <code>SQLContext</code> is created from the lower-level <code>SparkContext</code>, which is usually used to create Resilient Distributed Datasets (RDDs). An RDD is the way Spark actually represents data internally; DataFrames are actually implemented in terms of RDDs.</p>
+<p>While you can interact directly with RDDs, DataFrames are preferred. They&rsquo;re generally faster, and they perform the same no matter what language (Python, R, Scala or Java) you use with Spark.</p>
+<p>In this course, we&rsquo;ll be using DataFrames, so we won&rsquo;t be interacting directly with the Spark Context object very much. However, it&rsquo;s worth knowing that inside <code>pyspark</code> or a notebook, you already have an existing <code>SparkContext</code> in the <code>sc</code> variable. One simple thing we can do with <code>sc</code> is check the version of Spark we&rsquo;re using:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl"># After reading the help we&#39;ve decided we want to use sc.version to see what version of Spark we are running
+</span></span><span class="line"><span class="cl">sc.version
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"># Help can be used on any Python object
+</span></span><span class="line"><span class="cl">help(map)
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="part-3-using-dataframes-and-chaining-together-transformations-and-actions"><strong>Part 3: Using DataFrames and chaining together transformations and actions</strong></h2>
+<h3 id="working-with-your-first-dataframes">Working with your first DataFrames</h3>
+<p>In Spark, we first create a base <a href="http://spark.apache.org/docs/latest/api/python/pyspark.sql.html#pyspark.sql.DataFrame" target="_blank" rel="noopener noreffer ">DataFrame</a>. We can then apply one or more transformations to that base DataFrame. <em>A DataFrame is immutable, so once it is created, it cannot be changed.</em> As a result, each transformation creates a new DataFrame. Finally, we can apply one or more actions to the DataFrames.</p>
+<blockquote>
+<p>Note that Spark uses lazy evaluation, so transformations are not actually executed until an action occurs.</p>
+</blockquote>
+<p>We will perform several exercises to obtain a better understanding of DataFrames:</p>
+<ul>
+<li>Create a Python collection of 10,000 integers</li>
+<li>Create a Spark DataFrame from that collection</li>
+<li>Subtract one from each value using <code>map</code></li>
+<li>Perform action <code>collect</code> to view results</li>
+<li>Perform action <code>count</code> to view counts</li>
+<li>Apply transformation <code>filter</code> and view results with <code>collect</code></li>
+<li>Learn about lambda functions</li>
+<li>Explore how lazy evaluation works and the debugging challenges that it introduces</li>
+</ul>
+<p>A DataFrame consists of a series of <code>Row</code> objects; each <code>Row</code> object has a set of named columns. You can think of a DataFrame as modeling a table, though the data source being processed does not have to be a table.</p>
+<p>More formally, a DataFrame must have a <em>schema</em>, which means it must consist of columns, each of which has a <em>name</em> and a <em>type</em>. Some data sources have schemas built into them. Examples include RDBMS databases, Parquet files, and NoSQL databases like Cassandra. Other data sources don&rsquo;t have computer-readable schemas, but you can often apply a schema programmatically.</p>
+<h3 id="3a-create-a-python-collection-of-10000-people">(3a) Create a Python collection of 10,000 people</h3>
+<p>We will use a third-party Python testing library called <a href="https://pypi.python.org/pypi/fake-factory/0.5.3" target="_blank" rel="noopener noreffer ">fake-factory</a> to create a collection of fake person records.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">from faker import Factory
+</span></span><span class="line"><span class="cl">fake = Factory.create()
+</span></span><span class="line"><span class="cl">fake.seed(4321)
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>We&rsquo;re going to use this factory to create a collection of randomly generated people records. In the next section, we&rsquo;ll turn that collection into a DataFrame. We&rsquo;ll use the Spark <code>Row</code> class,
+because that will help us define the Spark DataFrame schema. There are other ways to define schemas, though; see
+the Spark Programming Guide&rsquo;s discussion of <a href="http://spark.apache.org/docs/latest/sql-programming-guide.html#inferring-the-schema-using-reflection" target="_blank" rel="noopener noreffer ">schema inference</a> for more information. (For instance,
+we could also use a Python <code>namedtuple</code>.)</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl"># Each entry consists of last_name, first_name, ssn, job, and age (at least 1)
+</span></span><span class="line"><span class="cl">from pyspark.sql import Row
+</span></span><span class="line"><span class="cl">def fake_entry():
+</span></span><span class="line"><span class="cl">  name = fake.name().split()
+</span></span><span class="line"><span class="cl">  return (name[1], name[0], fake.ssn(), fake.job(), abs(2016 - fake.date_time().year) + 1)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"># Create a helper function to call a function repeatedly
+</span></span><span class="line"><span class="cl">def repeat(times, func, *args, **kwargs):
+</span></span><span class="line"><span class="cl">    for _ in xrange(times):
+</span></span><span class="line"><span class="cl">        yield func(*args, **kwargs)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">data = list(repeat(10000, fake_entry))
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><code>data</code> is just a normal Python list, containing Python tuples objects. Let&rsquo;s look at the first item in the list:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">data[0]
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>We can check the size of the list using the Python <code>len()</code> function.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">len(data)
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="3b-distributed-data-and-using-a-collection-to-create-a-dataframe">(3b) Distributed data and using a collection to create a DataFrame</h3>
+<p>In Spark, datasets are represented as a list of entries, where the list is broken up into many different partitions that are each stored on a different machine.  Each partition holds a unique subset of the entries in the list.  Spark calls datasets that it stores &ldquo;Resilient Distributed Datasets&rdquo; (RDDs). Even DataFrames are ultimately represented as RDDs, with additional meta-data.</p>
+<img src="http://spark-mooc.github.io/web-assets/images/cs105x/diagram-3b.png" style="width: 900px; float: right; margin: 5px"/>
+<p>One of the defining features of Spark, compared to other data analytics frameworks (e.g., Hadoop), is that it stores data in memory rather than on disk.  This allows Spark applications to run much more quickly, because they are not slowed down by needing to read data from disk.
+The figure to the right illustrates how Spark breaks a list of data entries into partitions that are each stored in memory on a worker.</p>
+<p>To create the DataFrame, we&rsquo;ll use <code>sqlContext.createDataFrame()</code>, and we&rsquo;ll pass our array of data in as an argument to that function. Spark will create a new set of input data based on data that is passed in.  A DataFrame requires a <em>schema</em>, which is a list of columns, where each column has a name and a type. Our list of data has elements with types (mostly strings, but one integer). We&rsquo;ll supply the rest of the schema and the column names as the second argument to <code>createDataFrame()</code>.</p>
+<p>Let&rsquo;s view the help for <code>createDataFrame()</code>.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">help(sqlContext.createDataFrame)
+</span></span><span class="line"><span class="cl">dataDF = sqlContext.createDataFrame(data, (&#39;last_name&#39;, &#39;first_name&#39;, &#39;ssn&#39;, &#39;occupation&#39;, &#39;age&#39;))
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Let&rsquo;s see what type <code>sqlContext.createDataFrame()</code> returned.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">print &#39;type of dataDF: {0}&#39;.format(type(dataDF))
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Let&rsquo;s take a look at the DataFrame&rsquo;s schema and some of its rows.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">dataDF.printSchema()
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>We can register the newly created DataFrame as a named table, using the <code>registerDataFrameAsTable()</code> method.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">sqlContext.registerDataFrameAsTable(dataDF, &#39;dataframe&#39;)
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>What methods can we call on this DataFrame?</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">help(dataDF)
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>How many partitions will the DataFrame be split into?</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">dataDF.rdd.getNumPartitions()
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="a-note-about-dataframes-and-queries">A note about DataFrames and queries</h4>
+<p>When you use DataFrames or Spark SQL, you are building up a <em>query plan</em>. Each transformation you apply to a DataFrame adds some information to the query plan. When you finally call an action, which triggers execution of your Spark job, several things happen:</p>
+<ol>
+<li>Spark&rsquo;s Catalyst optimizer analyzes the query plan (called an <em>unoptimized logical query plan</em>) and attempts to optimize it. Optimizations include (but aren&rsquo;t limited to) rearranging and combining <code>filter()</code> operations for efficiency, converting <code>Decimal</code> operations to more efficient long integer operations, and pushing some operations down into the data source (e.g., a <code>filter()</code> operation might be translated to a SQL <code>WHERE</code> clause, if the data source is a traditional SQL RDBMS). The result of this optimization phase is an <em>optimized logical plan</em>.</li>
+<li>Once Catalyst has an optimized logical plan, it then constructs multiple <em>physical</em> plans from it. Specifically, it implements the query in terms of lower level Spark RDD operations.</li>
+<li>Catalyst chooses which physical plan to use via <em>cost optimization</em>. That is, it determines which physical plan is the most efficient (or least expensive), and uses that one.</li>
+<li>Finally, once the physical RDD execution plan is established, Spark actually executes the job.</li>
+</ol>
+<p>You can examine the query plan using the <code>explain()</code> function on a DataFrame. By default, <code>explain()</code> only shows you the final physical plan; however, if you pass it an argument of <code>True</code>, it will show you all phases.</p>
+<p>(If you want to take a deeper dive into how Catalyst optimizes DataFrame queries, this blog post, while a little old, is an excellent overview: <a href="https://databricks.com/blog/2015/04/13/deep-dive-into-spark-sqls-catalyst-optimizer.html" target="_blank" rel="noopener noreffer ">Deep Dive into Spark SQL&rsquo;s Catalyst Optimizer</a>.)</p>
+<p>Let&rsquo;s add a couple transformations to our DataFrame and look at the query plan on the resulting transformed DataFrame. Don&rsquo;t be too concerned if it looks like gibberish. As you gain more experience with Apache Spark, you&rsquo;ll begin to be able to use <code>explain()</code> to help you understand more about your DataFrame operations.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">newDF = dataDF.distinct().select(&#39;*&#39;)
+</span></span><span class="line"><span class="cl">newDF.explain(True)
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="3c-subtract-one-from-each-value-using-_select_">(3c): Subtract one from each value using <em>select</em></h3>
+<p>So far, we&rsquo;ve created a distributed DataFrame that is split into many partitions, where each partition is stored on a single machine in our cluster.  Let&rsquo;s look at what happens when we do a basic operation on the dataset.  Many useful data analysis operations can be specified as &ldquo;do something to each item in the dataset&rdquo;.  These data-parallel operations are convenient because each item in the dataset can be processed individually: the operation on one entry doesn&rsquo;t effect the operations on any of the other entries.  Therefore, Spark can parallelize the operation.</p>
+<p>One of the most common DataFrame operations is <code>select()</code>, and it works more or less like a SQL <code>SELECT</code> statement: You can select specific columns from the DataFrame, and you can even use <code>select()</code> to create <em>new</em> columns with values that are derived from existing column values. We can use <code>select()</code> to create a new column that decrements the value of the existing <code>age</code> column.</p>
+<p><code>select()</code> is a <em>transformation</em>. It returns a new DataFrame that captures both the previous DataFrame and the operation to add to the query (<code>select</code>, in this case). But it does <em>not</em> actually execute anything on the cluster. When transforming DataFrames, we are building up a <em>query plan</em>. That query plan will be optimized, implemented (in terms of RDDs), and executed by Spark <em>only</em> when we call an action.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl"># Transform dataDF through a select transformation and rename the newly created &#39;(age -1)&#39; column to &#39;age&#39;
+</span></span><span class="line"><span class="cl"># Because select is a transformation and Spark uses lazy evaluation, no jobs, stages,
+</span></span><span class="line"><span class="cl"># or tasks will be launched when we run this code.
+</span></span><span class="line"><span class="cl">subDF = dataDF.select(&#39;last_name&#39;, &#39;first_name&#39;, &#39;ssn&#39;, &#39;occupation&#39;, (dataDF.age - 1).alias(&#39;age&#39;))
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Let&rsquo;s take a look at the query plan.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">subDF.explain(True)
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="3d-use-_collect_-to-view-results">(3d) Use <em>collect</em> to view results</h3>
+<img src="http://spark-mooc.github.io/web-assets/images/cs105x/diagram-3d.png" style="height:700px;float:right"/>
+<p>To see a list of elements decremented by one, we need to create a new list on the driver from the the data distributed in the executor nodes.  To do this we can call the <code>collect()</code> method on our DataFrame.  <code>collect()</code> is often used after transformations to ensure that we are only returning a <em>small</em> amount of data to the driver.  This is done because the data returned to the driver must fit into the driver&rsquo;s available memory.  If not, the driver will crash.</p>
+<p>The <code>collect()</code> method is the first action operation that we have encountered.  Action operations cause Spark to perform the (lazy) transformation operations that are required to compute the values returned by the action.  In our example, this means that tasks will now be launched to perform the <code>createDataFrame</code>, <code>select</code>, and <code>collect</code> operations.</p>
+<p>In the diagram, the dataset is broken into four partitions, so four <code>collect()</code> tasks are launched. Each task collects the entries in its partition and sends the result to the driver, which creates a list of the values, as shown in the figure below.</p>
+<p>Now let&rsquo;s run <code>collect()</code> on <code>subDF</code>.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl"># Let&#39;s collect the data
+</span></span><span class="line"><span class="cl">results = subDF.collect()
+</span></span><span class="line"><span class="cl">print results
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>A better way to visualize the data is to use the <code>show()</code> method. If you don&rsquo;t tell <code>show()</code> how many rows to display, it displays 20 rows.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">subDF.show()
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>If you&rsquo;d prefer that <code>show()</code> not truncate the data, you can tell it not to:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">subDF.show(n=30, truncate=False)
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>In Databricks, there&rsquo;s an even nicer way to look at the values in a DataFrame: The <code>display()</code> helper function.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">display(subDF)
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="3e-use-_count_-to-get-total">(3e) Use <em>count</em> to get total</h3>
+<p>One of the most basic jobs that we can run is the <code>count()</code> job which will count the number of elements in a DataFrame, using the <code>count()</code> action. Since <code>select()</code> creates a new DataFrame with the same number of elements as the starting DataFrame, we expect that applying <code>count()</code> to each DataFrame will return the same result.</p>
+<img src="http://spark-mooc.github.io/web-assets/images/cs105x/diagram-3e.png" style="height:700px;float:right"/>
+<p>Note that because <code>count()</code> is an action operation, if we had not already performed an action with <code>collect()</code>, then Spark would now perform the transformation operations when we executed <code>count()</code>.</p>
+<p>Each task counts the entries in its partition and sends the result to your SparkContext, which adds up all of the counts. The figure on the right shows what would happen if we ran <code>count()</code> on a small example dataset with just four partitions.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">print dataDF.count()
+</span></span><span class="line"><span class="cl">print subDF.count()
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="3f-apply-transformation-_filter_-and-view-results-with-_collect_">(3f) Apply transformation <em>filter</em> and view results with <em>collect</em></h3>
+<p>Next, we&rsquo;ll create a new DataFrame that only contains the people whose ages are less than 10. To do this, we&rsquo;ll use the <code>filter()</code> transformation. (You can also use <code>where()</code>, an alias for <code>filter()</code>, if you prefer something more SQL-like). The <code>filter()</code> method is a transformation operation that creates a new DataFrame from the input DataFrame, keeping only values that match the filter expression.</p>
+<p>The figure shows how this might work on the small four-partition dataset.</p>
+<img src="http://spark-mooc.github.io/web-assets/images/cs105x/diagram-3f.png" style="height:700px;float:right"/>
+<p>To view the filtered list of elements less than 10, we need to create a new list on the driver from the distributed data on the executor nodes.  We use the <code>collect()</code> method to return a list that contains all of the elements in this filtered DataFrame to the driver program.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">filteredDF = subDF.where(subDF.age &lt; 10)
+</span></span><span class="line"><span class="cl">filteredDF.show()
+</span></span><span class="line"><span class="cl">filteredDF.count()
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>(These are some <em>seriously</em> precocious children&hellip;)</p>
+<h2 id="part-4-python-lambda-functions-and-user-defined-functions">Part 4: Python Lambda functions and User Defined Functions</h2>
+<p>Python supports the use of small one-line anonymous functions that are not bound to a name at runtime.</p>
+<p><code>lambda</code> functions, borrowed from LISP, can be used wherever function objects are required. They are syntactically restricted to a single expression. Remember that <code>lambda</code> functions are a matter of style and using them is never required - semantically, they are just syntactic sugar for a normal function definition. You can always define a separate normal function instead, but using a <code>lambda</code> function is an equivalent and more compact form of coding. Ideally you should consider using <code>lambda</code> functions where you want to encapsulate non-reusable code without littering your code with one-line functions.</p>
+<p>Here, instead of defining a separate function for the <code>filter()</code> transformation, we will use an inline <code>lambda()</code> function and we will register that lambda as a Spark <em>User Defined Function</em> (UDF). A UDF is a special wrapper around a function, allowing the function to be used in a DataFrame query.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">from pyspark.sql.types import BooleanType
+</span></span><span class="line"><span class="cl">less_ten = udf(lambda s: s &lt; 10, BooleanType())
+</span></span><span class="line"><span class="cl">lambdaDF = subDF.filter(less_ten(subDF.age))
+</span></span><span class="line"><span class="cl">lambdaDF.show()
+</span></span><span class="line"><span class="cl">lambdaDF.count()
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"># Let&#39;s collect the even values less than 10
+</span></span><span class="line"><span class="cl">even = udf(lambda s: s % 2 == 0, BooleanType())
+</span></span><span class="line"><span class="cl">evenDF = lambdaDF.filter(even(lambdaDF.age))
+</span></span><span class="line"><span class="cl">evenDF.show()
+</span></span><span class="line"><span class="cl">evenDF.count()
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="part-5-additional-dataframe-actions">Part 5: Additional DataFrame actions</h2>
+<p>Let&rsquo;s investigate some additional actions:</p>
+<ul>
+<li><a href="http://spark.apache.org/docs/latest/api/python/pyspark.sql.html#pyspark.sql.DataFrame.first" target="_blank" rel="noopener noreffer ">first()</a></li>
+<li><a href="http://spark.apache.org/docs/latest/api/python/pyspark.sql.html#pyspark.sql.DataFrame.take" target="_blank" rel="noopener noreffer ">take()</a></li>
+</ul>
+<p>One useful thing to do when we have a new dataset is to look at the first few entries to obtain a rough idea of what information is available.  In Spark, we can do that using actions like <code>first()</code>, <code>take()</code>, and <code>show()</code>. Note that for the <code>first()</code> and <code>take()</code> actions, the elements that are returned depend on how the DataFrame is <em>partitioned</em>.</p>
+<p>Instead of using the <code>collect()</code> action, we can use the <code>take(n)</code> action to return the first <em>n</em> elements of the DataFrame. The <code>first()</code> action returns the first element of a DataFrame, and is equivalent to <code>take(1)[0]</code>.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">print &#34;first: {0}\n&#34;.format(filteredDF.first())
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">print &#34;Four of them: {0}\n&#34;.format(filteredDF.take(4))
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>This looks better:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">display(filteredDF.take(4))
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="part-6-additional-dataframe-transformations">Part 6: Additional DataFrame transformations</h2>
+<h3 id="6a-_orderby_">(6a) <em>orderBy</em></h3>
+<p><a href="http://spark.apache.org/docs/latest/api/python/pyspark.sql.html#pyspark.sql.DataFrame.distinct" target="_blank" rel="noopener noreffer "><code>orderBy()</code></a> allows you to sort a DataFrame by one or more columns, producing a new DataFrame.</p>
+<p>For example, let&rsquo;s get the first five oldest people in the original (unfiltered) DataFrame. We can use the <code>orderBy()</code> transformation. <code>orderBy</code> takes one or more columns, either as <em>names</em> (strings) or as <code>Column</code> objects. To get a <code>Column</code> object, we use one of two notations on the DataFrame:</p>
+<ul>
+<li>Pandas-style notation: <code>filteredDF.age</code></li>
+<li>Subscript notation: <code>filteredDF['age']</code></li>
+</ul>
+<p>Both of those syntaxes return a <code>Column</code>, which has additional methods like <code>desc()</code> (for sorting in descending order) or <code>asc()</code> (for sorting in ascending order, which is the default).</p>
+<p>Here are some examples:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">dataDF.orderBy(dataDF[&#39;age&#39;])  # sort by age in ascending order; returns a new DataFrame
+</span></span><span class="line"><span class="cl">dataDF.orderBy(dataDF.last_name.desc()) # sort by last name in descending order
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl"># Get the five oldest people in the list. To do that, sort by age in descending order.
+</span></span><span class="line"><span class="cl">display(dataDF.orderBy(dataDF.age.desc()).take(5))
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Let&rsquo;s reverse the sort order. Since ascending sort is the default, we can actually use a <code>Column</code> object expression or a simple string, in this case. The <code>desc()</code> and <code>asc()</code> methods are only defined on <code>Column</code>. Something like <code>orderBy('age'.desc())</code> would not work, because there&rsquo;s no <code>desc()</code> method on Python string objects. That&rsquo;s why we needed the column expression. But if we&rsquo;re just using the defaults, we can pass a string column name into <code>orderBy()</code>. This is sometimes easier to read.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">display(dataDF.orderBy(&#39;age&#39;).take(5))
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="6b-_distinct_-and-_dropduplicates_">(6b) <em>distinct</em> and <em>dropDuplicates</em></h3>
+<p><a href="http://spark.apache.org/docs/latest/api/python/pyspark.sql.html#pyspark.sql.DataFrame.distinct" target="_blank" rel="noopener noreffer "><code>distinct()</code></a> filters out duplicate rows, and it considers all columns. Since our data is completely randomly generated (by <code>fake-factory</code>), it&rsquo;s extremely unlikely that there are any duplicate rows:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">print dataDF.count()
+</span></span><span class="line"><span class="cl">print dataDF.distinct().count()
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>To demonstrate <code>distinct()</code>, let&rsquo;s create a quick throwaway dataset.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">tempDF = sqlContext.createDataFrame([(&#34;Joe&#34;, 1), (&#34;Joe&#34;, 1), (&#34;Anna&#34;, 15), (&#34;Anna&#34;, 12), (&#34;Ravi&#34;, 5)], (&#39;name&#39;, &#39;score&#39;))
+</span></span><span class="line"><span class="cl">tempDF.show()
+</span></span><span class="line"><span class="cl">tempDF.distinct().show()
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Note that one of the (&ldquo;Joe&rdquo;, 1) rows was deleted, but both rows with name &ldquo;Anna&rdquo; were kept, because all columns in a row must match another row for it to be considered a duplicate.</p>
+<p><a href="http://spark.apache.org/docs/latest/api/python/pyspark.sql.html#pyspark.sql.DataFrame.dropDuplicates" target="_blank" rel="noopener noreffer "><code>dropDuplicates()</code></a> is like <code>distinct()</code>, except that it allows us to specify the columns to compare. For instance, we can use it to drop all rows where the first name and last name duplicates (ignoring the occupation and age columns).</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">print dataDF.count()
+</span></span><span class="line"><span class="cl">print dataDF.dropDuplicates([&#39;first_name&#39;, &#39;last_name&#39;]).count()
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="6c-_drop_">(6c) <em>drop</em></h3>
+<p><a href="http://spark.apache.org/docs/latest/api/python/pyspark.sql.html#pyspark.sql.DataFrame.drop" target="_blank" rel="noopener noreffer "><code>drop()</code></a> is like the opposite of <code>select()</code>: Instead of selecting specific columns from a DataFrame, it drops a specifed column from a DataFrame.</p>
+<p>Here&rsquo;s a simple use case: Suppose you&rsquo;re reading from a 1,000-column CSV file, and you have to get rid of five of the columns. Instead of selecting 995 of the columns, it&rsquo;s easier just to drop the five you don&rsquo;t want.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">dataDF.drop(&#39;occupation&#39;).drop(&#39;age&#39;).show()
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="6d-_groupby_">(6d) <em>groupBy</em></h3>
+<p>[<code>groupBy()</code>]((<a href="http://spark.apache.org/docs/latest/api/python/pyspark.sql.html#pyspark.sql.DataFrame.groupBy" target="_blank" rel="noopener noreffer ">http://spark.apache.org/docs/latest/api/python/pyspark.sql.html#pyspark.sql.DataFrame.groupBy</a>) is one of the most powerful transformations. It allows you to perform aggregations on a DataFrame.</p>
+<p>Unlike other DataFrame transformations, <code>groupBy()</code> does <em>not</em> return a DataFrame. Instead, it returns a special <a href="http://spark.apache.org/docs/latest/api/python/pyspark.sql.html#pyspark.sql.GroupedData" target="_blank" rel="noopener noreffer ">GroupedData</a> object that contains various aggregation functions.</p>
+<p>The most commonly used aggregation function is <a href="http://spark.apache.org/docs/latest/api/python/pyspark.sql.html#pyspark.sql.GroupedData.count" target="_blank" rel="noopener noreffer ">count()</a>,
+but there are others (like <a href="http://spark.apache.org/docs/latest/api/python/pyspark.sql.html#pyspark.sql.GroupedData.sum" target="_blank" rel="noopener noreffer ">sum()</a>, <a href="http://spark.apache.org/docs/latest/api/python/pyspark.sql.html#pyspark.sql.GroupedData.max" target="_blank" rel="noopener noreffer ">max()</a>, and <a href="http://spark.apache.org/docs/latest/api/python/pyspark.sql.html#pyspark.sql.GroupedData.avg" target="_blank" rel="noopener noreffer ">avg()</a>.</p>
+<p>These aggregation functions typically create a new column and return a new DataFrame.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">dataDF.groupBy(&#39;occupation&#39;).count().show(truncate=False)
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>We can also use groupBy() to do aother useful aggregations:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">print &#34;Maximum age: {0}&#34;.format(dataDF.groupBy().max(&#39;age&#39;).first()[0])
+</span></span><span class="line"><span class="cl">print &#34;Minimum age: {0}&#34;.format(dataDF.groupBy().min(&#39;age&#39;).first()[0])
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="6e-_sample_-optional">(6e) <em>sample</em> (optional)</h3>
+<p>When analyzing data, the <a href="http://spark.apache.org/docs/latest/api/python/pyspark.sql.html#pyspark.sql.DataFrame.sample" target="_blank" rel="noopener noreffer "><code>sample()</code></a> transformation is often quite useful. It returns a new DataFrame with a random sample of elements from the dataset.  It takes in a <code>withReplacement</code> argument, which specifies whether it is okay to randomly pick the same item multiple times from the parent DataFrame (so when <code>withReplacement=True</code>, you can get the same item back multiple times). It takes in a <code>fraction</code> parameter, which specifies the fraction elements in the dataset you want to return. (So a <code>fraction</code> value of <code>0.20</code> returns 20% of the elements in the DataFrame.) It also takes an optional <code>seed</code> parameter that allows you to specify a seed value for the random number generator, so that reproducible results can be obtained.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">sampledDF = dataDF.sample(withReplacement=False, fraction=0.10)
+</span></span><span class="line"><span class="cl">print sampledDF.count()
+</span></span><span class="line"><span class="cl">sampledDF.show()
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">print dataDF.sample(withReplacement=False, fraction=0.05).count()
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="part-7-caching-dataframes-and-storage-options">Part 7: Caching DataFrames and storage options</h2>
+<h3 id="7a-caching-dataframes">(7a) Caching DataFrames</h3>
+<p>For efficiency Spark keeps your DataFrames in memory. (More formally, it keeps the <em>RDDs</em> that implement your DataFrames in memory.) By keeping the contents in memory, Spark can quickly access the data. However, memory is limited, so if you try to keep too many partitions in memory, Spark will automatically delete partitions from memory to make space for new ones. If you later refer to one of the deleted partitions, Spark will automatically recreate it for you, but that takes time.</p>
+<p>So, if you plan to use a DataFrame more than once, then you should tell Spark to cache it. You can use the <code>cache()</code> operation to keep the DataFrame in memory. However, you must still trigger an action on the DataFrame, such as <code>collect()</code> or <code>count()</code> before the caching will occur. In other words, <code>cache()</code> is lazy: It merely tells Spark that the DataFrame should be cached <em>when the data is materialized</em>. You have to run an action to materialize the data; the DataFrame will be cached as a side effect. The next time you use the DataFrame, Spark will use the cached data, rather than recomputing the DataFrame from the original data.</p>
+<p>You can see your cached DataFrame in the &ldquo;Storage&rdquo; section of the Spark web UI. If you click on the name value, you can see more information about where the the DataFrame is stored.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl"># Cache the DataFrame
+</span></span><span class="line"><span class="cl">filteredDF.cache()
+</span></span><span class="line"><span class="cl"># Trigger an action
+</span></span><span class="line"><span class="cl">print filteredDF.count()
+</span></span><span class="line"><span class="cl"># Check if it is cached
+</span></span><span class="line"><span class="cl">print filteredDF.is_cached
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="7b-unpersist-and-storage-options">(7b) Unpersist and storage options</h3>
+<p>Spark automatically manages the partitions cached in memory. If it has more partitions than available memory, by default, it will evict older partitions to make room for new ones. For efficiency, once you are finished using cached DataFrame, you can optionally tell Spark to stop caching it in memory by using the DataFrame&rsquo;s <code>unpersist()</code> method to inform Spark that you no longer need the cached data.</p>
+<p>** Advanced: ** Spark provides many more options for managing how DataFrames cached. For instance, you can tell Spark to spill cached partitions to disk when it runs out of memory, instead of simply throwing old ones away. You can explore the API for DataFrame&rsquo;s <a href="http://spark.apache.org/docs/latest/api/python/pyspark.sql.html#pyspark.sql.DataFrame.persist" target="_blank" rel="noopener noreffer ">persist()</a> operation using Python&rsquo;s <a href="https://docs.python.org/2/library/functions.html?highlight=help#help" target="_blank" rel="noopener noreffer ">help()</a> command.  The <code>persist()</code> operation, optionally, takes a pySpark <a href="http://spark.apache.org/docs/latest/api/python/pyspark.html#pyspark.StorageLevel" target="_blank" rel="noopener noreffer ">StorageLevel</a> object.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl"># If we are done with the DataFrame we can unpersist it so that its memory can be reclaimed
+</span></span><span class="line"><span class="cl">filteredDF.unpersist()
+</span></span><span class="line"><span class="cl"># Check if it is cached
+</span></span><span class="line"><span class="cl">print filteredDF.is_cached
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="-part-8-debugging-spark-applications-and-lazy-evaluation-">** Part 8: Debugging Spark applications and lazy evaluation **</h2>
+<h3 id="how-python-is-executed-in-spark">How Python is Executed in Spark</h3>
+<p>Internally, Spark executes using a Java Virtual Machine (JVM). pySpark runs Python code in a JVM using <a href="http://py4j.sourceforge.net" target="_blank" rel="noopener noreffer ">Py4J</a>. Py4J enables Python programs running in a Python interpreter to dynamically access Java objects in a Java Virtual Machine. Methods are called as if the Java objects resided in the Python interpreter and Java collections can be accessed through standard Python collection methods. Py4J also enables Java programs to call back Python objects.</p>
+<p>Because pySpark uses Py4J, coding errors often result in a complicated, confusing stack trace that can be difficult to understand. In the following section, we&rsquo;ll explore how to understand stack traces.</p>
+<h3 id="8a-challenges-with-lazy-evaluation-using-transformations-and-actions">(8a) Challenges with lazy evaluation using transformations and actions</h3>
+<p>Spark&rsquo;s use of lazy evaluation can make debugging more difficult because code is not always executed immediately. To see an example of how this can happen, let&rsquo;s first define a broken filter function.
+Next we perform a <code>filter()</code> operation using the broken filtering function.  No error will occur at this point due to Spark&rsquo;s use of lazy evaluation.</p>
+<p>The <code>filter()</code> method will not be executed <em>until</em> an action operation is invoked on the DataFrame.  We will perform an action by using the <code>count()</code> method to return a list that contains all of the elements in this DataFrame.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-mysql" data-lang="mysql"><span class="line"><span class="cl"><span class="n">def</span><span class="w"> </span><span class="nf">brokenTen</span><span class="p">(</span><span class="n">value</span><span class="p">):</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="s2">&#34;&#34;&#34;Incorrect implementation of the ten function.
+</span></span></span><span class="line"><span class="cl"><span class="s2">
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Note:
+</span></span></span><span class="line"><span class="cl"><span class="s2">        The `if` statement checks an undefined variable `val` instead of `value`.
+</span></span></span><span class="line"><span class="cl"><span class="s2">
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Args:
+</span></span></span><span class="line"><span class="cl"><span class="s2">        value (int): A number.
+</span></span></span><span class="line"><span class="cl"><span class="s2">
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Returns:
+</span></span></span><span class="line"><span class="cl"><span class="s2">        bool: Whether `value` is less than ten.
+</span></span></span><span class="line"><span class="cl"><span class="s2">
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Raises:
+</span></span></span><span class="line"><span class="cl"><span class="s2">        NameError: The function references `val`, which is not available in the local or global
+</span></span></span><span class="line"><span class="cl"><span class="s2">            namespace, so a `NameError` is raised.
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">val</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">10</span><span class="p">):</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="no">True</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">else</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="no">False</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">btUDF</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">udf</span><span class="p">(</span><span class="n">brokenTen</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">brokenDF</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">subDF</span><span class="p">.</span><span class="nf">filter</span><span class="p">(</span><span class="nf">btUDF</span><span class="p">(</span><span class="n">subDF</span><span class="p">.</span><span class="n">age</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="no">True</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c1"># Now we&#39;ll see the error
+</span></span></span><span class="line"><span class="cl"><span class="c1"># Click on the `+` button to expand the error and scroll through the message.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">brokenDF</span><span class="p">.</span><span class="nf">count</span><span class="p">()</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="8b-finding-the-bug">(8b) Finding the bug</h3>
+<p>When the <code>filter()</code> method is executed, Spark calls the UDF. Since our UDF has an error in the underlying filtering function <code>brokenTen()</code>, an error occurs.</p>
+<p>Scroll through the output &ldquo;Py4JJavaError     Traceback (most recent call last)&rdquo; part of the cell and first you will see that the line that generated the error is the <code>count()</code> method line. There is <em>nothing wrong with this line</em>. However, it is an action and that caused other methods to be executed. Continue scrolling through the Traceback and you will see the following error line:</p>
+<p><code>NameError: global name 'val' is not defined</code></p>
+<p>Looking at this error line, we can see that we used the wrong variable name in our filtering function <code>brokenTen()</code>.</p>
+<h3 id="8c-moving-toward-expert-style">(8c) Moving toward expert style</h3>
+<p>As you are learning Spark, I recommend that you write your code in the form:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">    df2 = df1.transformation1()
+</span></span><span class="line"><span class="cl">    df2.action1()
+</span></span><span class="line"><span class="cl">    df3 = df2.transformation2()
+</span></span><span class="line"><span class="cl">    df3.action2()
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Using this style will make debugging your code much easier as it makes errors easier to localize - errors in your transformations will occur when the next action is executed.</p>
+<p>Once you become more experienced with Spark, you can write your code with the form: <code>df.transformation1().transformation2().action()</code></p>
+<p>We can also use <code>lambda()</code> functions instead of separately defined functions when their use improves readability and conciseness.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl"># Cleaner code through lambda use
+</span></span><span class="line"><span class="cl">myUDF = udf(lambda v: v &lt; 10)
+</span></span><span class="line"><span class="cl">subDF.filter(myUDF(subDF.age) == True)
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="8d-readability-and-code-style">(8d) Readability and code style</h3>
+<p>To make the expert coding style more readable, enclose the statement in parentheses and put each method, transformation, or action on a separate line.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl"># Final version
+</span></span><span class="line"><span class="cl">from pyspark.sql.functions import *
+</span></span><span class="line"><span class="cl">(dataDF
+</span></span><span class="line"><span class="cl"> .filter(dataDF.age &gt; 20)
+</span></span><span class="line"><span class="cl"> .select(concat(dataDF.first_name, lit(&#39; &#39;), dataDF.last_name), dataDF.occupation)
+</span></span><span class="line"><span class="cl"> .show(truncate=False)
+</span></span><span class="line"><span class="cl"> )
+</span></span></code></pre></td></tr></table>
+</div>
+</div></div><div id="comments"><div id="disqus_thread" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://disqus.com/?ref_noscript">Disqus</a>.
+            </noscript></div></div></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.102.2">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2016 - 2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">xiaoxuan</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/cookieconsent/cookieconsent.min.css"><script type="text/javascript" src="https://xxuan-cc.disqus.com/embed.js" defer></script><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/mhchem.min.js"></script><script type="text/javascript" src="/lib/cookieconsent/cookieconsent.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{},"cookieconsent":{"content":{"dismiss":"Got it!","link":"Learn more","message":"This website uses Cookies to improve your experience."},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":50,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>scrapy &#43; mongodb &#43; flask &#43; echarts 数据可视化 - Laniakea</title><meta name="Description" content="xxuan&#39;s blog"><meta property="og:title" content="scrapy &#43; mongodb &#43; flask &#43; echarts 数据可视化" />
+<meta property="og:description" content="源码
+项目地址" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://xxuan.cc/code/2017-03-13-mongodb-flask-echarts-data-visualize/" /><meta property="og:image" content="http://xxuan.cc/logo.png"/><meta property="article:section" content="code" />
+<meta property="article:published_time" content="2017-03-13T21:33:07+00:00" />
+<meta property="article:modified_time" content="2017-03-13T21:33:07+00:00" /><meta property="og:site_name" content="xxuan.cc" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="http://xxuan.cc/logo.png"/>
+
+<meta name="twitter:title" content="scrapy &#43; mongodb &#43; flask &#43; echarts 数据可视化"/>
+<meta name="twitter:description" content="源码
+项目地址"/>
+<meta name="application-name" content="Laniakea">
+<meta name="apple-mobile-web-app-title" content="Laniakea"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://xxuan.cc/code/2017-03-13-mongodb-flask-echarts-data-visualize/" /><link rel="prev" href="http://xxuan.cc/code/2017-02-23-shadowsocks-chrome-config/" /><link rel="next" href="http://xxuan.cc/code/2017-03-16-nginx-uwsgi-flask/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" href="/lib/animate/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "scrapy + mongodb + flask + echarts 数据可视化",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/xxuan.cc\/code\/2017-03-13-mongodb-flask-echarts-data-visualize\/"
+        },"genre": "code","keywords": "mongodb, flask, echarts, python","wordcount":  3011 ,
+        "url": "http:\/\/xxuan.cc\/code\/2017-03-13-mongodb-flask-echarts-data-visualize\/","datePublished": "2017-03-13T21:33:07+00:00","dateModified": "2017-03-13T21:33:07+00:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "xiaoxuan"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Laniakea">Laniakea</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/" title="存档脑细胞"> 文章 </a><a class="menu-item" href="/playground/" title="玩耍算法题的地方"> 练习场 </a><a class="menu-item" href="/code/" title="存放大概率过期的代码"> 码农 </a><a class="menu-item" href="/tags/" title="标签"> Tags </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Laniakea">Laniakea</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="存档脑细胞">文章</a><a class="menu-item" href="/playground/" title="玩耍算法题的地方">练习场</a><a class="menu-item" href="/code/" title="存放大概率过期的代码">码农</a><a class="menu-item" href="/tags/" title="标签">Tags</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="page single special"><h1 class="single-title animate__animated animate__pulse animate__faster">scrapy &#43; mongodb &#43; flask &#43; echarts 数据可视化</h1><div class="content" id="content"><p><a href="https://github.com/shawnau/intern_visualization" target="_blank" rel="noopener noreffer ">源码</a>
+<a href="http://54.169.117.35:8080" target="_blank" rel="noopener noreffer ">项目地址</a></p>
+<h2 id="项目框架">项目框架</h2>
+<ol>
+<li>scrapy负责定时抓取数据到mongodb中</li>
+<li>每小时定时生成echarts需要的数据, 以json格式保存</li>
+<li>flask读取json数据之后用jinja2渲染到echarts里作图, 使用的都是修改过的(毫无美感的)官方例子</li>
+</ol>
+<p>整个过程大致如图:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">             spider       pipelines.py
+</span></span><span class="line"><span class="cl">shixiseng.com------&gt;scrapy-----------&gt;mongodb
+</span></span><span class="line"><span class="cl">                                       |
+</span></span><span class="line"><span class="cl">                                       | model.py
+</span></span><span class="line"><span class="cl">       template.html        view.py    v
+</span></span><span class="line"><span class="cl">echart&lt;-------------flask&lt;----------.json
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="prerequisite">Prerequisite:</h2>
+<ol>
+<li>定时工具: crontab(调度scrapy), apscheduler(调度flask)</li>
+<li>数据库: mongodb + pymongo</li>
+<li>后端: flask + flask-pymongo(负责flask和mongodb的对接, 其实也可以不用)</li>
+<li>绘图: echarts</li>
+</ol>
+<h2 id="安装-ubuntu-14041604">安装 (Ubuntu 14.04/16.04)</h2>
+<ol>
+<li>apscheduler
+<a href="http://apscheduler.readthedocs.io/en/3.3.1/userguide.html" target="_blank" rel="noopener noreffer ">apscheduler官方文档</a></li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ pip install apscheduler
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ol start="2">
+<li>mongodb &amp; pymongo</li>
+</ol>
+<p><a href="https://docs.mongodb.com/getting-started/shell/tutorial/install-mongodb-on-ubuntu/" target="_blank" rel="noopener noreffer ">mongodb官方文档</a>, <a href="https://api.mongodb.com/python/current/installation.html" target="_blank" rel="noopener noreffer ">pymongo官方文档</a></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 0C49F3730359A14518585931BC711F9BA15703C6
+</span></span><span class="line"><span class="cl"><span class="c1"># Ubuntu 14.04</span>
+</span></span><span class="line"><span class="cl">$ <span class="nb">echo</span> <span class="s2">&#34;deb http://repo.mongodb.org/apt/ubuntu trusty/mongodb-org/3.4 multiverse&#34;</span> <span class="p">|</span> sudo tee /etc/apt/sources.list.d/mongodb-org-3.4.list
+</span></span><span class="line"><span class="cl"><span class="c1"># Ubuntu 16.04</span>
+</span></span><span class="line"><span class="cl">$ <span class="nb">echo</span> <span class="s2">&#34;deb http://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/3.4 multiverse&#34;</span> <span class="p">|</span> sudo tee /etc/apt/sources.list.d/mongodb-org-3.4.list
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">$ sudo apt-get update
+</span></span><span class="line"><span class="cl">$ sudo apt-get install -y mongodb-org
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># pymongo</span>
+</span></span><span class="line"><span class="cl">$ python -m pip install pymongo
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ol start="3">
+<li>flask &amp; flask-pymongo
+<a href="http://docs.jinkan.org/docs/flask/" target="_blank" rel="noopener noreffer ">flask中文文档</a>, <a href="http://www.pythondoc.com/flask-pymongo/" target="_blank" rel="noopener noreffer ">flask-pymongo官方文档</a></li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ sudo pip install Flask <span class="c1"># 推荐使用virtualenv, 这里懒得用了</span>
+</span></span><span class="line"><span class="cl">$ pip install Flask-PyMongo
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="测试">测试</h2>
+<p><code>cd</code>到git目录下</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ sudo service mongod start <span class="c1"># 启动mongod (其实不用, 因为已经预加载了json)</span>
+</span></span><span class="line"><span class="cl">$ python visualization/view.py
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>进入<code>127.0.0.1:5000</code>下预览吧</p>
+<p>{% echarts 400 &lsquo;100%&rsquo; %}
+var dataAxis = [&ldquo;北京&rdquo;, &ldquo;上海&rdquo;, &ldquo;广州&rdquo;, &ldquo;杭州&rdquo;, &ldquo;成都&rdquo;, &ldquo;深圳&rdquo;, &ldquo;南京&rdquo;, &ldquo;武汉&rdquo;, &ldquo;大连&rdquo;, &ldquo;苏州&rdquo;, &ldquo;西安&rdquo;, &ldquo;厦门&rdquo;, &ldquo;珠海&rdquo;, &ldquo;重庆&rdquo;, &ldquo;天津&rdquo;];
+var data = [720, 420, 171, 128, 109, 103, 66, 53, 31, 18, 18, 17, 14, 14, 14];
+var yMax = 500;
+var dataShadow = [];</p>
+<pre><code>    for (var i = 0; i &lt; data.length; i++) {
+        dataShadow.push(yMax);
+    }
+    
+    option = {
+        backgroundColor: '#fff',
+        title: {
+            text: '实习数量-城市分布排名',
+            subtext: 'data from 实习僧',
+            sublink: 'http://www.shixiseng.com',
+        },
+        tooltip : {
+            trigger: 'axis',
+            axisPointer : {        // 坐标轴指示器，坐标轴触发有效
+            type : 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+            }
+        },
+        xAxis: {
+            data: dataAxis,
+            axisLabel: {
+                inside: true,
+                textStyle: {
+                    color: '#000'
+                }
+            },
+            axisTick: {
+                show: false
+            },
+            axisLine: {
+                show: false
+            },
+            z: 10
+        },
+        yAxis: {
+            axisLine: {
+                show: false
+            },
+            axisTick: {
+                show: false
+            },
+            axisLabel: {
+                textStyle: {
+                    color: '#999'
+                }
+            }
+        },
+        dataZoom: [
+            {
+                type: 'inside'
+            }
+        ],
+        series: [
+            {
+                type: 'bar',
+                name: '数量',
+                itemStyle: {
+                    normal: {
+                        color: new echarts.graphic.LinearGradient(
+                            0, 0, 0, 1,
+                            [
+                                {offset: 0, color: '#83bff6'},
+                                {offset: 0.5, color: '#188df0'},
+                                {offset: 1, color: '#188df0'}
+                            ]
+                        )
+                    },
+                    emphasis: {
+                        color: new echarts.graphic.LinearGradient(
+                            0, 0, 0, 1,
+                            [
+                                {offset: 0, color: '#2378f7'},
+                                {offset: 0.7, color: '#2378f7'},
+                                {offset: 1, color: '#83bff6'}
+                            ]
+                        )
+                    }
+                },
+                data: data
+            }
+        ]
+    };
+</code></pre>
+<p>{% endecharts %}</p>
+<p>{% echarts 400 &lsquo;100%&rsquo; %}
+option = {
+backgroundColor: &lsquo;#fff&rsquo;,
+title: {
+text: &lsquo;实习标签/公司-数量分布&rsquo;,
+left: &rsquo;left&rsquo;,
+textStyle: {
+color: &lsquo;#000&rsquo;
+}
+},
+tooltip: {
+trigger: &lsquo;item&rsquo;,
+formatter: &ldquo;{a} <br/>{b}: {c} ({d}%)&rdquo;
+},
+legend: {
+orient: &lsquo;vertical&rsquo;,
+x: &rsquo;left&rsquo;,
+},
+series: [
+{
+name:&lsquo;标签&rsquo;,
+type:&lsquo;pie&rsquo;,
+radius: [&lsquo;50%&rsquo;, &lsquo;70%&rsquo;],
+avoidLabelOverlap: true,
+label: {
+normal: {
+show: true,
+position: &lsquo;outside&rsquo;
+},
+emphasis: {
+show: true,
+textStyle: {
+fontSize: &lsquo;30&rsquo;,
+fontWeight: &lsquo;bold&rsquo;
+}
+}
+},
+labelLine: {
+normal: {
+show: true
+}
+},
+data: [{&ldquo;name&rdquo;: &ldquo;软件&rdquo;, &ldquo;value&rdquo;: 422}, {&ldquo;name&rdquo;: &ldquo;IT运维&rdquo;, &ldquo;value&rdquo;: 185}, {&ldquo;name&rdquo;: &ldquo;Java&rdquo;, &ldquo;value&rdquo;: 147}, {&ldquo;name&rdquo;: &ldquo;前端&rdquo;, &ldquo;value&rdquo;: 144}, {&ldquo;name&rdquo;: &ldquo;算法&rdquo;, &ldquo;value&rdquo;: 138}, {&ldquo;name&rdquo;: &ldquo;云计算/大数据&rdquo;, &ldquo;value&rdquo;: 129}, {&ldquo;name&rdquo;: &ldquo;C/C++&rdquo;, &ldquo;value&rdquo;: 124}, {&ldquo;name&rdquo;: &ldquo;测试&rdquo;, &ldquo;value&rdquo;: 124}, {&ldquo;name&rdquo;: &ldquo;数据挖掘&rdquo;, &ldquo;value&rdquo;: 108}, {&ldquo;name&rdquo;: &ldquo;数据库&rdquo;, &ldquo;value&rdquo;: 101}, {&ldquo;name&rdquo;: &ldquo;PHP&rdquo;, &ldquo;value&rdquo;: 95}, {&ldquo;name&rdquo;: &ldquo;Android&rdquo;, &ldquo;value&rdquo;: 77}, {&ldquo;name&rdquo;: &ldquo;Python&rdquo;, &ldquo;value&rdquo;: 63}, {&ldquo;name&rdquo;: &ldquo;IOS&rdquo;, &ldquo;value&rdquo;: 63}, {&ldquo;name&rdquo;: &ldquo;Node.js&rdquo;, &ldquo;value&rdquo;: 11}]
+},</p>
+<pre><code>            {
+                name:'公司',
+                type:'pie',
+                radius: ['10%', '40%'],
+                avoidLabelOverlap: true,
+                label: {
+                    normal: {
+                        show: false,
+                        position: 'inside'
+                    },
+                    emphasis: {
+                        show: true,
+                        textStyle: {
+                            color: '#000',
+                            fontSize: '20',
+                            fontWeight: 'bold'
+                        }
+                    }
+                },
+                labelLine: {
+                    normal: {
+                        show: true
+                    }
+                },
+                data: [{&quot;name&quot;: &quot;好未来&quot;, &quot;value&quot;: 21}, {&quot;name&quot;: &quot;百度&quot;, &quot;value&quot;: 19}, {&quot;name&quot;: &quot;爱奇艺&quot;, &quot;value&quot;: 18}, {&quot;name&quot;: &quot;链家网&quot;, &quot;value&quot;: 17}, {&quot;name&quot;: &quot;金山云&quot;, &quot;value&quot;: 16}, {&quot;name&quot;: &quot;睿琪软件&quot;, &quot;value&quot;: 16}, {&quot;name&quot;: &quot;讯猫&quot;, &quot;value&quot;: 15}, {&quot;name&quot;: &quot;搜狐&quot;, &quot;value&quot;: 14}, {&quot;name&quot;: &quot;UISEE&quot;, &quot;value&quot;: 12}, {&quot;name&quot;: &quot;非白三维&quot;, &quot;value&quot;: 12}, {&quot;name&quot;: &quot;星环科技&quot;, &quot;value&quot;: 12}, {&quot;name&quot;: &quot;美团点评&quot;, &quot;value&quot;: 11}, {&quot;name&quot;: &quot;今日头条&quot;, &quot;value&quot;: 11}, {&quot;name&quot;: &quot;北纬通信&quot;, &quot;value&quot;: 11}, {&quot;name&quot;: &quot;大连东软&quot;, &quot;value&quot;: 10}]
+            }
+        ]
+    };
+</code></pre>
+<p>{% endecharts %}</p>
+<p>{% echarts 400 &lsquo;100%&rsquo; %}
+option = {
+backgroundColor: &lsquo;#fff&rsquo;,
+title: {
+text: &lsquo;堆叠区域图&rsquo;,
+left: &rsquo;left&rsquo;
+},
+tooltip : {
+trigger: &lsquo;axis&rsquo;
+},
+legend: {
+data:[&ldquo;软件&rdquo;, &ldquo;IT运维&rdquo;, &ldquo;Java&rdquo;, &ldquo;前端&rdquo;, &ldquo;算法&rdquo;, &ldquo;云计算/大数据&rdquo;, &ldquo;C/C++&rdquo;, &ldquo;测试&rdquo;, &ldquo;数据挖掘&rdquo;, &ldquo;数据库&rdquo;, &ldquo;PHP&rdquo;, &ldquo;Android&rdquo;, &ldquo;Python&rdquo;, &ldquo;IOS&rdquo;, &ldquo;Node.js&rdquo;]
+},
+toolbox: {
+feature: {
+saveAsImage: {}
+}
+},
+grid: {
+left: &lsquo;3%&rsquo;,
+right: &lsquo;4%&rsquo;,
+bottom: &lsquo;3%&rsquo;,
+containLabel: true
+},
+xAxis : [
+{
+type : &lsquo;category&rsquo;,
+boundaryGap : false,
+data : [&lsquo;2017/01/05&rsquo;, &lsquo;2017/01/10&rsquo;, &lsquo;2017/01/11&rsquo;, &lsquo;2017/01/12&rsquo;, &lsquo;2017/01/18&rsquo;, &lsquo;2017/01/19&rsquo;, &lsquo;2017/02/03&rsquo;, &lsquo;2017/02/04&rsquo;, &lsquo;2017/02/06&rsquo;, &lsquo;2017/02/07&rsquo;, &lsquo;2017/02/08&rsquo;, &lsquo;2017/02/09&rsquo;, &lsquo;2017/02/10&rsquo;, &lsquo;2017/02/11&rsquo;, &lsquo;2017/02/12&rsquo;, &lsquo;2017/02/13&rsquo;, &lsquo;2017/02/14&rsquo;, &lsquo;2017/02/15&rsquo;, &lsquo;2017/02/16&rsquo;, &lsquo;2017/02/17&rsquo;, &lsquo;2017/02/19&rsquo;, &lsquo;2017/02/20&rsquo;, &lsquo;2017/02/21&rsquo;, &lsquo;2017/02/22&rsquo;, &lsquo;2017/02/23&rsquo;, &lsquo;2017/02/24&rsquo;, &lsquo;2017/02/25&rsquo;, &lsquo;2017/02/26&rsquo;, &lsquo;2017/02/27&rsquo;, &lsquo;2017/02/28&rsquo;, &lsquo;2017/03/01&rsquo;, &lsquo;2017/03/02&rsquo;, &lsquo;2017/03/03&rsquo;, &lsquo;2017/03/04&rsquo;, &lsquo;2017/03/05&rsquo;, &lsquo;2017/03/06&rsquo;, &lsquo;2017/03/07&rsquo;, &lsquo;2017/03/08&rsquo;, &lsquo;2017/03/09&rsquo;, &lsquo;2017/03/10&rsquo;, &lsquo;2017/03/11&rsquo;, &lsquo;2017/03/12&rsquo;, &lsquo;2017/03/13&rsquo;, &lsquo;2017/03/14&rsquo;]
+}
+],
+yAxis : [
+{
+type : &lsquo;value&rsquo;
+}
+],
+series : [</p>
+<pre><code>                {
+                    name: '软件',
+                    type: 'line',
+                    stack: '总量',
+                    areaStyle: {normal: {}},
+                    data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 2, 0, 1, 0, 1, 0, 2, 1, 2, 0, 1, 3, 4, 3, 4, 26, 5, 6, 38, 2, 9, 22, 16, 3, 3, 84, 168]
+                },
+                
+                {
+                    name: 'IT运维',
+                    type: 'line',
+                    stack: '总量',
+                    areaStyle: {normal: {}},
+                    data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 3, 1, 1, 4, 2, 0, 0, 7, 4, 8, 0, 4, 1, 0, 5, 13, 9, 9, 19, 0, 0, 62, 29]
+                },
+                
+                {
+                    name: 'Java',
+                    type: 'line',
+                    stack: '总量',
+                    areaStyle: {normal: {}},
+                    data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 2, 0, 1, 0, 0, 6, 16, 25, 2, 3, 63, 27]
+                },
+                
+                {
+                    name: '前端',
+                    type: 'line',
+                    stack: '总量',
+                    areaStyle: {normal: {}},
+                    data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 16, 10, 16, 6, 0, 53, 37]
+                },
+                
+                {
+                    name: '算法',
+                    type: 'line',
+                    stack: '总量',
+                    areaStyle: {normal: {}},
+                    data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 16, 1, 15, 20, 13, 4, 4, 51, 10]
+                },
+                
+                {
+                    name: '云计算/大数据',
+                    type: 'line',
+                    stack: '总量',
+                    areaStyle: {normal: {}},
+                    data: [0, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 2, 1, 1, 2, 2, 2, 4, 1, 0, 0, 4, 4, 4, 0, 0, 0, 5, 1, 3, 2, 1, 1, 0, 5, 5, 5, 15, 8, 2, 0, 29, 9]
+                },
+                
+                {
+                    name: 'C/C++',
+                    type: 'line',
+                    stack: '总量',
+                    areaStyle: {normal: {}},
+                    data: [0, 0, 0, 0, 0, 0, 0, 0, 2, 1, 0, 0, 0, 0, 0, 0, 0, 2, 4, 2, 0, 5, 1, 0, 0, 0, 0, 0, 2, 4, 5, 3, 5, 0, 0, 4, 7, 12, 7, 9, 1, 3, 30, 8]
+                },
+                
+                {
+                    name: '测试',
+                    type: 'line',
+                    stack: '总量',
+                    areaStyle: {normal: {}},
+                    data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 1, 0, 0, 0, 0, 0, 0, 82, 32]
+                },
+                
+                {
+                    name: '数据挖掘',
+                    type: 'line',
+                    stack: '总量',
+                    areaStyle: {normal: {}},
+                    data: [0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 3, 0, 0, 2, 0, 2, 1, 0, 0, 1, 3, 5, 2, 2, 5, 0, 0, 9, 9, 5, 9, 8, 1, 0, 20, 15]
+                },
+                
+                {
+                    name: '数据库',
+                    type: 'line',
+                    stack: '总量',
+                    areaStyle: {normal: {}},
+                    data: [0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 2, 0, 1, 0, 1, 1, 2, 1, 0, 0, 0, 0, 1, 1, 1, 2, 0, 0, 2, 2, 4, 1, 5, 0, 0, 8, 4, 12, 14, 8, 1, 0, 13, 6]
+                },
+                
+                {
+                    name: 'PHP',
+                    type: 'line',
+                    stack: '总量',
+                    areaStyle: {normal: {}},
+                    data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 4, 0, 3, 0, 0, 0, 2, 1, 2, 1, 0, 1, 0, 2, 1, 3, 1, 2, 0, 0, 3, 4, 7, 7, 6, 2, 1, 22, 12]
+                },
+                
+                {
+                    name: 'Android',
+                    type: 'line',
+                    stack: '总量',
+                    areaStyle: {normal: {}},
+                    data: [0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 2, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 1, 0, 0, 0, 0, 0, 3, 1, 1, 0, 0, 1, 2, 1, 7, 5, 6, 5, 0, 27, 7]
+                },
+                
+                {
+                    name: 'Python',
+                    type: 'line',
+                    stack: '总量',
+                    areaStyle: {normal: {}},
+                    data: [0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 2, 2, 1, 1, 0, 1, 0, 1, 5, 2, 0, 0, 1, 1, 4, 4, 6, 0, 1, 12, 14]
+                },
+                
+                {
+                    name: 'IOS',
+                    type: 'line',
+                    stack: '总量',
+                    areaStyle: {normal: {}},
+                    data: [0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 1, 1, 3, 2, 1, 0, 1, 2, 0, 4, 8, 3, 3, 0, 15, 6]
+                },
+                
+                {
+                    name: 'Node.js',
+                    type: 'line',
+                    stack: '总量',
+                    areaStyle: {normal: {}},
+                    data: [0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 2, 0, 1, 2, 0]
+                },
+                
+            ]
+        };
+</code></pre>
+<p>{% endecharts %}</p>
+<h2 id="一些坑">一些坑</h2>
+<ol>
+<li>这篇blog中插入了echarts图表, 参见<a href="http://kchen.cc/2016/11/05/echarts-in-hexo/" target="_blank" rel="noopener noreffer ">这篇文章</a>, 并做了一些魔改以适应复杂的图表</li>
+<li>falsk中的APScheduler貌似不好用, 最后自己使用丑陋的方法写了个独立的py文件处理生成的json, 再用crontab定时运行</li>
+</ol>
+<blockquote>
+<p>待续</p>
+</blockquote></div><div id="comments"><div id="disqus_thread" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://disqus.com/?ref_noscript">Disqus</a>.
+            </noscript></div></div></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.102.2">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2016 - 2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">xiaoxuan</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/cookieconsent/cookieconsent.min.css"><script type="text/javascript" src="https://xxuan-cc.disqus.com/embed.js" defer></script><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/mhchem.min.js"></script><script type="text/javascript" src="/lib/cookieconsent/cookieconsent.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{},"cookieconsent":{"content":{"dismiss":"Got it!","link":"Learn more","message":"This website uses Cookies to improve your experience."},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":50,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

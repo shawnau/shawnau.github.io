@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>图像识别综述-从Inception到ResNet - Laniakea</title><meta name="Description" content="xxuan&#39;s blog"><meta property="og:title" content="图像识别综述-从Inception到ResNet" />
+<meta property="og:description" content="存货, 介绍了从Inception系列到Resnet系列的发展历史以及基本理念和pytorch实现" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://xxuan.cc/2018-07-13-image-classification/" /><meta property="og:image" content="http://xxuan.cc/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2018-07-13T18:04:05+00:00" />
+<meta property="article:modified_time" content="2018-07-13T18:04:05+00:00" /><meta property="og:site_name" content="xxuan.cc" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="http://xxuan.cc/logo.png"/>
+
+<meta name="twitter:title" content="图像识别综述-从Inception到ResNet"/>
+<meta name="twitter:description" content="存货, 介绍了从Inception系列到Resnet系列的发展历史以及基本理念和pytorch实现"/>
+<meta name="application-name" content="Laniakea">
+<meta name="apple-mobile-web-app-title" content="Laniakea"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://xxuan.cc/2018-07-13-image-classification/" /><link rel="prev" href="http://xxuan.cc/2018-02-03-crf/" /><link rel="next" href="http://xxuan.cc/2018-07-13-object-detection/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" href="/lib/animate/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "图像识别综述-从Inception到ResNet",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/xxuan.cc\/2018-07-13-image-classification\/"
+        },"genre": "posts","keywords": "ResNet, Inception, SE-Net","wordcount":  2760 ,
+        "url": "http:\/\/xxuan.cc\/2018-07-13-image-classification\/","datePublished": "2018-07-13T18:04:05+00:00","dateModified": "2018-07-13T18:04:05+00:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "xiaoxuan"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Laniakea">Laniakea</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/" title="存档脑细胞"> 文章 </a><a class="menu-item" href="/playground/" title="玩耍算法题的地方"> 练习场 </a><a class="menu-item" href="/code/" title="存放大概率过期的代码"> 码农 </a><a class="menu-item" href="/tags/" title="标签"> Tags </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Laniakea">Laniakea</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="存档脑细胞">文章</a><a class="menu-item" href="/playground/" title="玩耍算法题的地方">练习场</a><a class="menu-item" href="/code/" title="存放大概率过期的代码">码农</a><a class="menu-item" href="/tags/" title="标签">Tags</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">图像识别综述-从Inception到ResNet</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>xiaoxuan</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2018-07-13">2018-07-13</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;2760 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;6 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="true">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#inception系列">Inception系列</a>
+      <ul>
+        <li><a href="#1x1-卷积核的出处">1x1 卷积核的出处</a></li>
+        <li><a href="#inception-v1httpsarxivorgabs14094842"><a href="https://arxiv.org/abs/1409.4842">Inception v1</a></a></li>
+        <li><a href="#inception-v2v3httpsarxivorgabs151200567"><a href="https://arxiv.org/abs/1512.00567">Inception v2/v3</a></a></li>
+        <li><a href="#inception-v4httpsarxivorgabs160207261contextcs"><a href="https://arxiv.org/abs/1602.07261?context=cs">Inception v4</a></a></li>
+        <li><a href="#xception">Xception</a></li>
+      </ul>
+    </li>
+    <li><a href="#resnet">ResNet</a>
+      <ul>
+        <li><a href="#几个小问题">几个小问题</a></li>
+      </ul>
+    </li>
+    <li><a href="#resnext">ResNeXt</a></li>
+    <li><a href="#senet">SENet</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><p>存货, 介绍了从Inception系列到Resnet系列的发展历史以及基本理念和pytorch实现</p>
+<h2 id="inception系列">Inception系列</h2>
+<h3 id="1x1-卷积核的出处">1x1 卷积核的出处</h3>
+<p>出自颜水成组的<a href="https://arxiv.org/abs/1312.4400" target="_blank" rel="noopener noreffer ">Network in Network</a>(ICLR 2014)中. 传统CNN使用线性滤波器, 为了捕捉高度非线性关系, 需要堆积卷积核, 计算量太大. 本文的贡献主要是</p>
+<ol>
+<li>提出<strong>MLP conv层</strong>, 即用多层感知机建模卷积层之间的非线性关系, 可以
+<ol>
+<li>实现跨通道的交互和信息整合.</li>
+<li>进行卷积核通道数的降维和升维，减少网络参数</li>
+<li>具体到实现上, 可以用1x1 卷积核来近似实现. 普通卷积层+多个1＊1卷积（followed by 激活层）等价于类patch级别的MLP</li>
+</ol>
+</li>
+<li>提出用<strong>全局均值池化</strong>提到全连接层: 比如输出$k$类, 最后一层conv layer就有$k$个channel, 最后经过全局均值池化输出一个$k$维向量</li>
+<li>原作把MLP conv和maxout进行比较, 并表示</li>
+</ol>
+<blockquote>
+<p>maxout network imposes the prior that instances of a latent concept lie within a convex set in the input space, which does not necessarily hold</p>
+</blockquote>
+<h3 id="inception-v1httpsarxivorgabs14094842"><a href="https://arxiv.org/abs/1409.4842" target="_blank" rel="noopener noreffer ">Inception v1</a></h3>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/inceptionv1_2.png"
+        data-srcset="http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/inceptionv1_2.png, http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/inceptionv1_2.png 1.5x, http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/inceptionv1_2.png 2x"
+        data-sizes="auto"
+        alt="http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/inceptionv1_2.png"
+        title="http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/inceptionv1_2.png" />
+出自Google Brain. C Szegedy, CVPR 2015</p>
+<ol>
+<li>整个网络由9个上图形成的block组成</li>
+<li>第三个和第五个block有辅助分类器处理梯度消失问题</li>
+<li>图中的1x1 conv降维不仅可以降低计算量, 还可以使得数据更加dense:</li>
+</ol>
+<blockquote>
+<p>Clustering sparse matrices into relatively dense submatrices tends to give state of the art practical performance for sparse matrix multiplication</p>
+</blockquote>
+<h3 id="inception-v2v3httpsarxivorgabs151200567"><a href="https://arxiv.org/abs/1512.00567" target="_blank" rel="noopener noreffer ">Inception v2/v3</a></h3>
+<p>出自Google Brain. C Szegedy, CVPR 2016.</p>
+<ol>
+<li>
+<p>论文首先提出了一些在构建深度网络时值得借鉴的意见.</p>
+<ul>
+<li>不要过早地引入Bottleneck. 并且Bottleneck之间过多地减少维度可能会造成信息的损失. 当卷积不会大幅度改变输入维度时，神经网络可能会执行地更好</li>
+<li>Higher dimensional representations are easier to process locally within a network. 没太理解. 似乎是说特征维度越高, 越容易训练</li>
+<li>在卷积之前<strong>提前降维</strong>信息损失会很低. 这可能是因为相邻层之间有较大的协方差(strong correlation between adjacent unit), 所以可以先降维来降低运算量, 训练速度也会提升, 这就是Bottleneck概念的来源</li>
+<li>平衡网络的深度和宽度</li>
+</ul>
+</li>
+<li>
+<p>提出了<strong>分解大卷积核为小卷积核</strong>的想法(Factorizing Convolutions with Large Filter Size).</p>
+<ul>
+<li>感受野相同的情况下, 将 5×5 的卷积分解为两个 3×3 的卷积, 降低了2.78倍运算量</li>
+<li>将 n*n 的卷积核尺寸分解为 1×n 和 n×1 两个卷积</li>
+</ul>
+</li>
+<li>
+<p>提出<strong>Bottleneck</strong>概念, 先降维再升维. 这个概念取自于自编码器? 例如:</p>
+<ul>
+<li>输入输出皆为256 channel的卷积层, 由3x3x256个卷积核组成</li>
+<li>转换成一组1x1x64, 3x3x64, 1x1x256维的卷积层, 计算量降低了接近10倍</li>
+</ul>
+</li>
+</ol>
+<p>最后提出了Label Smoothing来对网络输出正则化, 也是率先使用了batch norm的网络之一
+v3是同一篇论文提出的, 增加了RMSProp优化器, Factorized 7x7 卷积, 辅助分类器使用了 BatchNorm</p>
+<h3 id="inception-v4httpsarxivorgabs160207261contextcs"><a href="https://arxiv.org/abs/1602.07261?context=cs" target="_blank" rel="noopener noreffer ">Inception v4</a></h3>
+<p>使用了更多骨骼惊奇的building block, 并且结合了resnet的跳跃式结构.</p>
+<h3 id="xception">Xception</h3>
+<p><a href="https://arxiv.org/abs/1610.02357" target="_blank" rel="noopener noreffer ">Xception: Deep Learning with Depthwise Separable Convolutions</a>
+某层卷积层输入channel为$16$, 输出channel为$32$</p>
+<ol>
+<li>使用32个$k \times k \times 16$的卷积核, 参数数量为:
+$$32 \times k \times k \times 16$$</li>
+<li>使用$16$个$k \times k \times 1$的卷积核分别在$16$个channel上独自进行卷积, 输出为$16$个channel, 再用$32$个$1 \times 1 \times 16$的一维卷积核, 输出为$32$个channel, 参数数量为:
+$$16 \times k \times k \times 1 + 32 \times 1 \times 1 \times 16$$</li>
+</ol>
+<p>由此可见参数量被大大减小. 在实现上, <code>Depthwise Conv</code>等价于一个$k \times k \times 16$的卷积核在尚未sum各个channel的值之前就输出成16个channel, 然后再接$32$个<code>Pointwise Conv</code>, 即$1 \times 1$卷积核</p>
+<p>注: <code>Depthwise Conv</code>在pytorch中可以用<code>groups</code>参数实现:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># A Depthwise Conv layer</span>
+</span></span><span class="line"><span class="cl"><span class="n">nn</span><span class="o">.</span><span class="n">Conv2d</span><span class="p">(</span><span class="mi">128</span><span class="p">,</span> <span class="mi">128</span><span class="p">,</span> <span class="n">kernel_size</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">groups</span><span class="o">=</span><span class="mi">128</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="resnet">ResNet</h2>
+<p>resnet由四个<code>stage</code>组成, 而每个<code>stage</code>又由数个<code>bottleneck</code>组成.
+<code>bottleneck</code>结构借鉴了Inception v2</p>
+<p>一个Bottleneck由3层CBR(conv-batch norm-relu)层组成, 见下:</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/bottleneck.png"
+        data-srcset="http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/bottleneck.png, http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/bottleneck.png 1.5x, http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/bottleneck.png 2x"
+        data-sizes="auto"
+        alt="http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/bottleneck.png"
+        title="http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/bottleneck.png" /></p>
+<p>同时一个<code>stage</code>由若干重复<code>bottleneck</code>组成, 整个网络由4个<code>stage</code>组成</p>
+<ol>
+<li>每个<code>stage</code>的开头第一个<code>bottleneck</code>的3x3卷积层的步长是2, 使得每个<code>stage</code>将feature map尺寸缩小一半</li>
+<li>每个<code>stage</code>的开头第一个<code>bottleneck</code>需要处理上一个<code>stage</code>的输出通过shortcut与该<code>bottleneck</code>的输出相加时通道不匹配的问题, 故需要增加一层Conv-BN处理通道一致性</li>
+</ol>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/resnet.png"
+        data-srcset="http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/resnet.png, http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/resnet.png 1.5x, http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/resnet.png 2x"
+        data-sizes="auto"
+        alt="http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/resnet.png"
+        title="resnet" /></p>
+<p>构造<code>Bottleneck</code>:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Bottleneck</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    ResNet 50/101 BottleNeck
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">in_planes</span><span class="p">,</span> <span class="n">k_planes</span><span class="p">,</span> <span class="n">stride</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">        :param in_planes: input channels
+</span></span></span><span class="line"><span class="cl"><span class="s2">        :param k_planes: conv kernel output channels in each stage
+</span></span></span><span class="line"><span class="cl"><span class="s2">        :param stride: the 3x3 kernel in a stage may set to 2
+</span></span></span><span class="line"><span class="cl"><span class="s2">                       only in each group of stages&#39; 1st stage
+</span></span></span><span class="line"><span class="cl"><span class="s2">        &#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">super</span><span class="p">(</span><span class="n">Bottleneck</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">conv1</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Conv2d</span><span class="p">(</span><span class="n">in_planes</span><span class="p">,</span> <span class="n">k_planes</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">bias</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">bn1</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">BatchNorm2d</span><span class="p">(</span><span class="n">k_planes</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">conv2</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Conv2d</span><span class="p">(</span><span class="n">k_planes</span><span class="p">,</span> <span class="n">k_planes</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">stride</span><span class="o">=</span><span class="n">stride</span><span class="p">,</span> <span class="n">bias</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">bn2</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">BatchNorm2d</span><span class="p">(</span><span class="n">k_planes</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">conv3</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Conv2d</span><span class="p">(</span><span class="n">k_planes</span><span class="p">,</span> <span class="n">k_planes</span> <span class="o">*</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">bias</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">bn3</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">BatchNorm2d</span><span class="p">(</span><span class="n">k_planes</span> <span class="o">*</span> <span class="mi">4</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">relu</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">shortcut</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Sequential</span><span class="p">()</span>  <span class="c1"># empty Sequential module returns the original input</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="n">stride</span> <span class="o">!=</span> <span class="mi">1</span> <span class="ow">or</span> <span class="n">in_planes</span> <span class="o">!=</span> <span class="n">k_planes</span> <span class="o">*</span> <span class="mi">4</span><span class="p">:</span>  <span class="c1"># tackle input/output size/channel mismatch during shortcut add</span>
+</span></span><span class="line"><span class="cl">            <span class="bp">self</span><span class="o">.</span><span class="n">shortcut</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Sequential</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">                <span class="n">nn</span><span class="o">.</span><span class="n">Conv2d</span><span class="p">(</span><span class="n">in_planes</span><span class="p">,</span> <span class="n">k_planes</span> <span class="o">*</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">stride</span><span class="o">=</span><span class="n">stride</span><span class="p">,</span> <span class="n">bias</span><span class="o">=</span><span class="kc">False</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">                <span class="n">nn</span><span class="o">.</span><span class="n">BatchNorm2d</span><span class="p">(</span><span class="n">k_planes</span> <span class="o">*</span> <span class="mi">4</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="n">out</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">relu</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">bn1</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">conv1</span><span class="p">(</span><span class="n">x</span><span class="p">)))</span>
+</span></span><span class="line"><span class="cl">        <span class="n">out</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">relu</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">bn2</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">conv2</span><span class="p">(</span><span class="n">out</span><span class="p">)))</span>
+</span></span><span class="line"><span class="cl">        <span class="n">out</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">bn3</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">conv3</span><span class="p">(</span><span class="n">out</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="n">out</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">shortcut</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">out</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">relu</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">out</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>构造第一层<code>conv1</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">_make_conv1</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">nn</span><span class="o">.</span><span class="n">Sequential</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">        <span class="n">nn</span><span class="o">.</span><span class="n">Conv2d</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">64</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="n">stride</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">bias</span><span class="o">=</span><span class="kc">False</span><span class="p">),</span>  <span class="c1"># (224-7+2*3) // 2 +1 = 112</span>
+</span></span><span class="line"><span class="cl">        <span class="n">nn</span><span class="o">.</span><span class="n">BatchNorm2d</span><span class="p">(</span><span class="mi">64</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">        <span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">        <span class="c1"># nn.MaxPool2d(kernel_size=3, stride=2, padding=1) # shrink to 1/4 of original size</span>
+</span></span><span class="line"><span class="cl">    <span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>构造四个<code>stage</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">_make_stage</span><span class="p">(</span><span class="n">ch_in</span><span class="p">,</span> <span class="n">ch</span><span class="p">,</span> <span class="n">num_blocks</span><span class="p">,</span> <span class="n">stride</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">layers</span> <span class="o">=</span> <span class="p">[]</span>
+</span></span><span class="line"><span class="cl">    <span class="n">layers</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Bottleneck</span><span class="p">(</span><span class="n">ch_in</span><span class="p">,</span> <span class="n">ch</span><span class="p">,</span> <span class="n">stride</span><span class="p">))</span>  <span class="c1"># only the first stage in the module need stride=2</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">num_blocks</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="n">layers</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Bottleneck</span><span class="p">(</span><span class="n">ch</span> <span class="o">*</span> <span class="mi">4</span><span class="p">,</span> <span class="n">ch</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">nn</span><span class="o">.</span><span class="n">Sequential</span><span class="p">(</span><span class="o">*</span><span class="n">layers</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="几个小问题">几个小问题</h3>
+<p>1大量使用BatchNorm. BN应该在激活函数之前还是之后呢?
+- <a href="https://zhuanlan.zhihu.com/p/28124810" target="_blank" rel="noopener noreffer ">https://zhuanlan.zhihu.com/p/28124810</a>
+- <a href="https://www.zhihu.com/question/64494691" target="_blank" rel="noopener noreffer ">https://www.zhihu.com/question/64494691</a>
+- <a href="https://zhuanlan.zhihu.com/p/28749411" target="_blank" rel="noopener noreffer ">https://zhuanlan.zhihu.com/p/28749411</a>
+2. 为什么resnet?
+- <a href="https://www.zhihu.com/question/64494691" target="_blank" rel="noopener noreffer ">https://www.zhihu.com/question/64494691</a></p>
+<h2 id="resnext">ResNeXt</h2>
+<p>核心思路是在<code>Bottleneck</code>中:</p>
+<ol>
+<li>利用1x1卷积核, 先降维再升维的方式降低计算开销(下图c)</li>
+<li>在降维过程中, 利用Xception的<code>Depthwise Conv</code>进一步降低计算开销(下图b)
+<ul>
+<li>将输入的128通道分成32组, 每组4个通道</li>
+<li>对每组使用4个核为3x3的卷积层, 输出4个通道</li>
+<li>将32个卷积层的4x32=128个通道concat为128个输出层</li>
+</ul>
+</li>
+</ol>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/resnext.png"
+        data-srcset="http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/resnext.png, http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/resnext.png 1.5x, http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/resnext.png 2x"
+        data-sizes="auto"
+        alt="http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/resnext.png"
+        title="resnext" /></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/v2-854177e100d7d48dc5dda40306f5b311_hd.png"
+        data-srcset="http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/v2-854177e100d7d48dc5dda40306f5b311_hd.png, http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/v2-854177e100d7d48dc5dda40306f5b311_hd.png 1.5x, http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/v2-854177e100d7d48dc5dda40306f5b311_hd.png 2x"
+        data-sizes="auto"
+        alt="http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/v2-854177e100d7d48dc5dda40306f5b311_hd.png"
+        title="http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/v2-854177e100d7d48dc5dda40306f5b311_hd.png" /></p>
+<p>与ResNet的比较:
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/resnextcompare.png"
+        data-srcset="http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/resnextcompare.png, http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/resnextcompare.png 1.5x, http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/resnextcompare.png 2x"
+        data-sizes="auto"
+        alt="http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/resnextcompare.png"
+        title="resnext-resnet" />
+构造<code>Bottleneck</code>, 和resnet相比改动很简单, 参考上图最右边的实现, 在每个stage的第二个卷积层启用<code>group</code>参数即可.</p>
+<h2 id="senet">SENet</h2>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="http://img.mp.itc.cn/upload/20170802/247d198e8ef64a7fa040887b6f0ee0e0_th.jpg"
+        data-srcset="http://img.mp.itc.cn/upload/20170802/247d198e8ef64a7fa040887b6f0ee0e0_th.jpg, http://img.mp.itc.cn/upload/20170802/247d198e8ef64a7fa040887b6f0ee0e0_th.jpg 1.5x, http://img.mp.itc.cn/upload/20170802/247d198e8ef64a7fa040887b6f0ee0e0_th.jpg 2x"
+        data-sizes="auto"
+        alt="http://img.mp.itc.cn/upload/20170802/247d198e8ef64a7fa040887b6f0ee0e0_th.jpg"
+        title="senet" />
+大体思路是对各个channel(或者说整张图片)的一个attention, 个人理解就是结合了文章开头NIN的理念和Attention机制</p>
+<ol>
+<li>通过全局均值池化将$C$个channel变成$C$维向量.</li>
+<li>第一个FC层称为squeeze层, 将维度压缩为$reduction$, 使用ReLU, 起到LSTM中门控的作用</li>
+<li>第二个FC层称为excitation层, 将维度还原为$C$, 使用Sigmoid, 起到输出权重作用, 重新赋予每个channel权重. 核心思想是<strong>建模通道间的相关性</strong></li>
+<li>最后输出的向量作为各层的权重乘到输出上</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">SEScale</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>  
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">channel</span><span class="p">,</span> <span class="n">reduction</span><span class="o">=</span><span class="mi">16</span><span class="p">):</span>  
+</span></span><span class="line"><span class="cl">        <span class="nb">super</span><span class="p">(</span><span class="n">SEScale</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>  
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">fc1</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Conv2d</span><span class="p">(</span><span class="n">channel</span><span class="p">,</span> <span class="n">reduction</span><span class="p">,</span> <span class="n">kernel_size</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>  
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">fc2</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Conv2d</span><span class="p">(</span><span class="n">reduction</span><span class="p">,</span> <span class="n">channel</span><span class="p">,</span> <span class="n">kernel_size</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>  
+</span></span><span class="line"><span class="cl">        <span class="n">x</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">adaptive_avg_pool2d</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>  
+</span></span><span class="line"><span class="cl">        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">fc1</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>  
+</span></span><span class="line"><span class="cl">        <span class="n">x</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">relu</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>  
+</span></span><span class="line"><span class="cl">        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">fc2</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>  
+</span></span><span class="line"><span class="cl">        <span class="n">x</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">sigmoid</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>  
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">x</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>带SEScale的ResNext:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">SENextBottleneckBlock</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">in_planes</span><span class="p">,</span> <span class="n">planes</span><span class="p">,</span> <span class="n">out_planes</span><span class="p">,</span> <span class="n">groups</span><span class="p">,</span> <span class="n">reduction</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span> <span class="n">is_downsample</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">stride</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">super</span><span class="p">(</span><span class="n">SENextBottleneckBlock</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">is_downsample</span> <span class="o">=</span> <span class="n">is_downsample</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">conv_bn1</span> <span class="o">=</span> <span class="n">ConvBn2d</span><span class="p">(</span><span class="n">in_planes</span><span class="p">,</span>     <span class="n">planes</span><span class="p">,</span> <span class="n">kernel_size</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">stride</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">conv_bn2</span> <span class="o">=</span> <span class="n">ConvBn2d</span><span class="p">(</span>   <span class="n">planes</span><span class="p">,</span>     <span class="n">planes</span><span class="p">,</span> <span class="n">kernel_size</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">stride</span><span class="o">=</span><span class="n">stride</span><span class="p">,</span> <span class="n">groups</span><span class="o">=</span><span class="n">groups</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">conv_bn3</span> <span class="o">=</span> <span class="n">ConvBn2d</span><span class="p">(</span>   <span class="n">planes</span><span class="p">,</span> <span class="n">out_planes</span><span class="p">,</span> <span class="n">kernel_size</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">stride</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">scale</span>    <span class="o">=</span> <span class="n">SEScale</span><span class="p">(</span><span class="n">out_planes</span><span class="p">,</span> <span class="n">reduction</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="n">is_downsample</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="bp">self</span><span class="o">.</span><span class="n">downsample</span> <span class="o">=</span> <span class="n">ConvBn2d</span><span class="p">(</span><span class="n">in_planes</span><span class="p">,</span> <span class="n">out_planes</span><span class="p">,</span> <span class="n">kernel_size</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">stride</span><span class="o">=</span><span class="n">stride</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="n">z</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">relu</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">conv_bn1</span><span class="p">(</span><span class="n">x</span><span class="p">),</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">z</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">relu</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">conv_bn2</span><span class="p">(</span><span class="n">z</span><span class="p">),</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">z</span> <span class="o">=</span>        <span class="bp">self</span><span class="o">.</span><span class="n">conv_bn3</span><span class="p">(</span><span class="n">z</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_downsample</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="n">z</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="n">z</span><span class="p">)</span><span class="o">*</span><span class="n">z</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">downsample</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="n">z</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="n">z</span><span class="p">)</span><span class="o">*</span><span class="n">z</span> <span class="o">+</span> <span class="n">x</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="n">z</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">relu</span><span class="p">(</span><span class="n">z</span><span class="p">,</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">z</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2018-07-13</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/2018-07-13-image-classification/index.md" target="_blank">Read Markdown</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="http://xxuan.cc/2018-07-13-image-classification/" data-title="图像识别综述-从Inception到ResNet" data-hashtags="ResNet,Inception,SE-Net"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="http://xxuan.cc/2018-07-13-image-classification/" data-hashtag="ResNet"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="http://xxuan.cc/2018-07-13-image-classification/" data-title="图像识别综述-从Inception到ResNet"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="http://xxuan.cc/2018-07-13-image-classification/" data-title="图像识别综述-从Inception到ResNet"><i data-svg-src="/lib/simple-icons/icons/line.min.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="http://xxuan.cc/2018-07-13-image-classification/" data-title="图像识别综述-从Inception到ResNet"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/resnet/">ResNet</a>,&nbsp;<a href="/tags/inception/">Inception</a>,&nbsp;<a href="/tags/se-net/">SE-Net</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/2018-02-03-crf/" class="prev" rel="prev" title="对数线性模型, MEMM与CRF"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>对数线性模型, MEMM与CRF</a>
+            <a href="/2018-07-13-object-detection/" class="next" rel="next" title="目标检测综述-从RCNN到Mask-RCNN">目标检测综述-从RCNN到Mask-RCNN<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+<div id="comments"><div id="disqus_thread" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://disqus.com/?ref_noscript">Disqus</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.102.2">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2016 - 2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">xiaoxuan</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/cookieconsent/cookieconsent.min.css"><script type="text/javascript" src="https://xxuan-cc.disqus.com/embed.js" defer></script><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/mhchem.min.js"></script><script type="text/javascript" src="/lib/cookieconsent/cookieconsent.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{},"cookieconsent":{"content":{"dismiss":"Got it!","link":"Learn more","message":"This website uses Cookies to improve your experience."},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":50,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

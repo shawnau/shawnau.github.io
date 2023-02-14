@@ -1,0 +1,24 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>cpp - Tag - Laniakea</title>
+        <link>http://xxuan.cc/tags/cpp/</link>
+        <description>cpp - Tag - Laniakea</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>shawn_au@outlook.com (xiaoxuan)</managingEditor>
+            <webMaster>shawn_au@outlook.com (xiaoxuan)</webMaster><lastBuildDate>Fri, 22 Jan 2016 20:03:27 &#43;0000</lastBuildDate><atom:link href="http://xxuan.cc/tags/cpp/" rel="self" type="application/rss+xml" /><item>
+    <title>利用链表ADT学习C&#43;&#43;面向对象(2) - 栈和队列继承链表</title>
+    <link>http://xxuan.cc/2016-01-22-cpp-fundamental-2/</link>
+    <pubDate>Fri, 22 Jan 2016 20:03:27 &#43;0000</pubDate>
+    <author>xiaoxuan</author>
+    <guid>http://xxuan.cc/2016-01-22-cpp-fundamental-2/</guid>
+    <description><![CDATA[<p>some cpp fundamentals</p>]]></description>
+</item>
+<item>
+    <title>利用链表ADT学习C&#43;&#43;面向对象(1) - 基础知识</title>
+    <link>http://xxuan.cc/2016-01-22-cpp-fundamental-1/</link>
+    <pubDate>Fri, 22 Jan 2016 17:35:14 &#43;0000</pubDate>
+    <author>xiaoxuan</author>
+    <guid>http://xxuan.cc/2016-01-22-cpp-fundamental-1/</guid>
+    <description><![CDATA[<p>some cpp fundamentals</p>]]></description>
+</item>
+</channel>
+</rss>

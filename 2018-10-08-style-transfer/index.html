@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>风格迁移(Style Transfer) - Laniakea</title><meta name="Description" content="xxuan&#39;s blog"><meta property="og:title" content="风格迁移(Style Transfer)" />
+<meta property="og:description" content="如何将艺术风格量化? 基于深度学习的风格迁移是个很有趣也很浪漫的领域" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://xxuan.cc/2018-10-08-style-transfer/" /><meta property="og:image" content="http://xxuan.cc/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2018-10-08T18:37:39+00:00" />
+<meta property="article:modified_time" content="2018-10-08T18:37:39+00:00" /><meta property="og:site_name" content="xxuan.cc" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="http://xxuan.cc/logo.png"/>
+
+<meta name="twitter:title" content="风格迁移(Style Transfer)"/>
+<meta name="twitter:description" content="如何将艺术风格量化? 基于深度学习的风格迁移是个很有趣也很浪漫的领域"/>
+<meta name="application-name" content="Laniakea">
+<meta name="apple-mobile-web-app-title" content="Laniakea"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://xxuan.cc/2018-10-08-style-transfer/" /><link rel="prev" href="http://xxuan.cc/2018-10-08-imgshare-dead/" /><link rel="next" href="http://xxuan.cc/2021-07-04-va11/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" href="/lib/animate/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "风格迁移(Style Transfer)",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/xxuan.cc\/2018-10-08-style-transfer\/"
+        },"genre": "posts","keywords": "style transfer","wordcount":  984 ,
+        "url": "http:\/\/xxuan.cc\/2018-10-08-style-transfer\/","datePublished": "2018-10-08T18:37:39+00:00","dateModified": "2018-10-08T18:37:39+00:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "xiaoxuan"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Laniakea">Laniakea</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/" title="存档脑细胞"> 文章 </a><a class="menu-item" href="/playground/" title="玩耍算法题的地方"> 练习场 </a><a class="menu-item" href="/code/" title="存放大概率过期的代码"> 码农 </a><a class="menu-item" href="/tags/" title="标签"> Tags </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Laniakea">Laniakea</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="存档脑细胞">文章</a><a class="menu-item" href="/playground/" title="玩耍算法题的地方">练习场</a><a class="menu-item" href="/code/" title="存放大概率过期的代码">码农</a><a class="menu-item" href="/tags/" title="标签">Tags</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">风格迁移(Style Transfer)</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>xiaoxuan</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2018-10-08">2018-10-08</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;984 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;2 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="true">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#texture-synthesis-using-convolutional-neural-networkshttpsarxivorgpdf150507376pdf"><a href="https://arxiv.org/pdf/1505.07376.pdf">Texture Synthesis Using Convolutional Neural Networks</a></a></li>
+    <li><a href="#a-neural-algorithm-of-artistic-stylehttpsarxivorgpdf150806576pdf"><a href="https://arxiv.org/pdf/1508.06576.pdf">A Neural Algorithm of Artistic Style</a></a></li>
+    <li><a href="#perceptual-losses-for-real-time-style-transfer-and-super-resolutionhttpsarxivorgpdf160308155v1pdf"><a href="https://arxiv.org/pdf/1603.08155v1.pdf">Perceptual Losses for Real-Time Style Transfer and Super-Resolution</a></a>
+      <ul>
+        <li><a href="#feature-reconstruction-loss">Feature Reconstruction Loss</a></li>
+        <li><a href="#style-reconstruction-loss">Style Reconstruction Loss</a></li>
+      </ul>
+    </li>
+    <li><a href="#fast-patch-based-style-transfer-of-arbitrary-stylehttpsarxivorgpdf161204337pdf"><a href="https://arxiv.org/pdf/1612.04337.pdf">Fast Patch-based Style Transfer of Arbitrary Style</a></a>
+      <ul>
+        <li><a href="#style-swap">Style Swap</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><p>如何将艺术风格量化? 基于深度学习的风格迁移是个很有趣也很浪漫的领域</p>
+<h2 id="texture-synthesis-using-convolutional-neural-networkshttpsarxivorgpdf150507376pdf"><a href="https://arxiv.org/pdf/1505.07376.pdf" target="_blank" rel="noopener noreffer ">Texture Synthesis Using Convolutional Neural Networks</a></h2>
+<p>2015a, Gatys
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/gatys-1.png"
+        data-srcset="http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/gatys-1.png, http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/gatys-1.png 1.5x, http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/gatys-1.png 2x"
+        data-sizes="auto"
+        alt="http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/gatys-1.png"
+        title="enter image description here" /></p>
+<ol>
+<li>将图片输入预训练好的神经网络(VGG-19)中， 生成每层的特征</li>
+<li>将灰度图同样输入预训练好的神经网络中，生成每层的特征</li>
+<li>计算每层特征的Gram矩阵，计算两张图片对应层的Gram矩阵的平方误差，再将每层的误差按权求和，获得损失函数</li>
+<li>计算损失函数对灰度图每个像素的梯度，进行梯度下降，最终得到输出图。这里进行梯度下降的不是模型参数，而是输入像素。这也是Deep Dream的主要思路。</li>
+</ol>
+<p>其中最重要的贡献是定义了纹理，即特征图的Gram矩阵。网络第$l$层的纹理误差为</p>
+<p>$$
+E_{l}(S, \hat{X}) = \frac{1}{4C_{in}^2C_{out}^2}\sum\limits_{i,j}(G_{ij} - \hat{G}_{ij})^2
+$$</p>
+<p>其中$S$是需要学习的纹理(Texture Style)的图片，$\hat{X}$代表了需要生成的图片，总误差就是各层误差的加权和：</p>
+<p>$$
+\mathcal{L}_{style}(S, \hat{X}) = \sum\limits_{l}w_{l}E_{l}
+$$</p>
+<p>计算Gram矩阵的方法如下。Gram矩阵可以视为有偏的协方差矩阵
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/gram-1.jpg"
+        data-srcset="http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/gram-1.jpg, http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/gram-1.jpg 1.5x, http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/gram-1.jpg 2x"
+        data-sizes="auto"
+        alt="http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/gram-1.jpg"
+        title="enter image description here" />
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/gram-2.jpg"
+        data-srcset="http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/gram-2.jpg, http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/gram-2.jpg 1.5x, http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/gram-2.jpg 2x"
+        data-sizes="auto"
+        alt="http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/gram-2.jpg"
+        title="enter image description here" /></p>
+<h2 id="a-neural-algorithm-of-artistic-stylehttpsarxivorgpdf150806576pdf"><a href="https://arxiv.org/pdf/1508.06576.pdf" target="_blank" rel="noopener noreffer ">A Neural Algorithm of Artistic Style</a></h2>
+<p>2015b, Gatys
+本文增加了计算内容相似性的部分。内容相似性就是特征图的平方误差。
+$$
+\mathcal{L}_{content}(P, \hat{X}) = \frac{1}{2}\sum\limits_{i,j}(F_{ij} - \hat{F}_{ij})^2
+$$
+其中$P$代表了需要渲染的图片，$\hat{X}$代表了需要生成的图片，$F_{ij}$和$\hat{F}_{ij}$代表了他们在某一层的特征图。总的损失是内容和风格损失的加权和：
+$$
+\mathcal{L}(P, S, \hat{X}) = \alpha\mathcal{L}_{content}(P, \hat{X}) + \beta\mathcal{L}_{style}(S, \hat{X})
+$$
+其中alpha和beta可以使用L-BFGS训练</p>
+<h2 id="perceptual-losses-for-real-time-style-transfer-and-super-resolutionhttpsarxivorgpdf160308155v1pdf"><a href="https://arxiv.org/pdf/1603.08155v1.pdf" target="_blank" rel="noopener noreffer ">Perceptual Losses for Real-Time Style Transfer and Super-Resolution</a></h2>
+<p>Mar 2016, Justin Johnson
+以上方法生成一张图是通过梯度下降的方法，也就是一次训练过程，耗时较长，计算资源消耗也大。本工作将生成图片的过程变成了一次inference，降低了计算量，提升了速度。</p>
+<p>本文对风格和内容损失有更现代的定义：</p>
+<h3 id="feature-reconstruction-loss">Feature Reconstruction Loss</h3>
+<p>网络$j$层对应的content loss
+$$
+\mathcal{L^{j}_{content}}(y, \hat{y}) = \frac{1}{C_{j}H_{j}W_{j}} \Vert \phi_{j}(y) - \phi_{j}(\hat{y}) \Vert^{2}_{2}
+$$</p>
+<h3 id="style-reconstruction-loss">Style Reconstruction Loss</h3>
+<p>网络$j$层对应的style loss
+$$
+\mathcal{L^{j}_{style}}(y, \hat{y}) = \frac{1}{C_{j}H_{j}W_{j}}\Vert G^{\phi}_{j}(y) - G^{\phi}_{j}({\hat{y}}) \Vert^{2}_{F}
+$$</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/Perceptual-Losses.png"
+        data-srcset="http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/Perceptual-Losses.png, http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/Perceptual-Losses.png 1.5x, http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/Perceptual-Losses.png 2x"
+        data-sizes="auto"
+        alt="http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/Perceptual-Losses.png"
+        title="enter image description here" /></p>
+<p>本文使用一个resnet来学习生成图片的变换，而将内容和风格损失作为损失函数，其计算方式通过一个固定参数的VGG16来生成。去掉风格损失之后还可以作为超分辨率模型使用。此外3.3节还提到了两个额外的损失函数，Pixel Loss和Total Variation Regularization。后者在风格迁移任务中也被使用到。</p>
+<h2 id="fast-patch-based-style-transfer-of-arbitrary-stylehttpsarxivorgpdf161204337pdf"><a href="https://arxiv.org/pdf/1612.04337.pdf" target="_blank" rel="noopener noreffer ">Fast Patch-based Style Transfer of Arbitrary Style</a></h2>
+<p>Dec 2016, Tian Qi Chen
+实现了任意风格任意图片的迁移，
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/Fast-Patch-based-style-transfer.png"
+        data-srcset="http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/Fast-Patch-based-style-transfer.png, http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/Fast-Patch-based-style-transfer.png 1.5x, http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/Fast-Patch-based-style-transfer.png 2x"
+        data-sizes="auto"
+        alt="http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/Fast-Patch-based-style-transfer.png"
+        title="enter image description here" /></p>
+<h3 id="style-swap">Style Swap</h3>
+<ol>
+<li>Content图片产生特征图$\phi(C)$</li>
+<li>Style图片产生特征图$\phi(S)$</li>
+<li>用$\phi(S)$做卷积核扫过$\phi(C)$,寻找最相似的</li>
+</ol>
+<p><a href="https://blog.csdn.net/hungryof/article/details/61195783" target="_blank" rel="noopener noreffer ">参考blog</a></p></div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2018-10-08</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/2018-10-08-style-transfer/index.md" target="_blank">Read Markdown</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="http://xxuan.cc/2018-10-08-style-transfer/" data-title="风格迁移(Style Transfer)" data-hashtags="style transfer"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="http://xxuan.cc/2018-10-08-style-transfer/" data-hashtag="style transfer"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="http://xxuan.cc/2018-10-08-style-transfer/" data-title="风格迁移(Style Transfer)"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="http://xxuan.cc/2018-10-08-style-transfer/" data-title="风格迁移(Style Transfer)"><i data-svg-src="/lib/simple-icons/icons/line.min.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="http://xxuan.cc/2018-10-08-style-transfer/" data-title="风格迁移(Style Transfer)"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/style-transfer/">style transfer</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/2018-10-08-imgshare-dead/" class="prev" rel="prev" title="七牛云图床挂了"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>七牛云图床挂了</a>
+            <a href="/2021-07-04-va11/" class="next" rel="next" title="赛博朋克, 调酒师与现实">赛博朋克, 调酒师与现实<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+<div id="comments"><div id="disqus_thread" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://disqus.com/?ref_noscript">Disqus</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.102.2">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2016 - 2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">xiaoxuan</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/cookieconsent/cookieconsent.min.css"><script type="text/javascript" src="https://xxuan-cc.disqus.com/embed.js" defer></script><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/mhchem.min.js"></script><script type="text/javascript" src="/lib/cookieconsent/cookieconsent.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{},"cookieconsent":{"content":{"dismiss":"Got it!","link":"Learn more","message":"This website uses Cookies to improve your experience."},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":50,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

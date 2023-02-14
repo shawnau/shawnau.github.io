@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>Data Science Bowl 2018 比赛小结 - Laniakea</title><meta name="Description" content="xxuan&#39;s blog"><meta property="og:title" content="Data Science Bowl 2018 比赛小结" />
+<meta property="og:description" content="Kaggle 实例分割比赛小结. 比赛花了我1800在阿里云上训练模型, 最后还因为没提交模型的checksum而取消了成绩.
+
+包大人, 冤啊!
+" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://xxuan.cc/2018-07-13-dsb2018/" /><meta property="og:image" content="http://xxuan.cc/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2018-07-13T18:27:34+00:00" />
+<meta property="article:modified_time" content="2018-07-13T18:27:34+00:00" /><meta property="og:site_name" content="xxuan.cc" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="http://xxuan.cc/logo.png"/>
+
+<meta name="twitter:title" content="Data Science Bowl 2018 比赛小结"/>
+<meta name="twitter:description" content="Kaggle 实例分割比赛小结. 比赛花了我1800在阿里云上训练模型, 最后还因为没提交模型的checksum而取消了成绩.
+
+包大人, 冤啊!
+"/>
+<meta name="application-name" content="Laniakea">
+<meta name="apple-mobile-web-app-title" content="Laniakea"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://xxuan.cc/2018-07-13-dsb2018/" /><link rel="prev" href="http://xxuan.cc/2018-07-13-mask-rcnn/" /><link rel="next" href="http://xxuan.cc/2018-10-08-imgshare-dead/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" href="/lib/animate/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Data Science Bowl 2018 比赛小结",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/xxuan.cc\/2018-07-13-dsb2018\/"
+        },"genre": "posts","keywords": "Kaggle","wordcount":  1994 ,
+        "url": "http:\/\/xxuan.cc\/2018-07-13-dsb2018\/","datePublished": "2018-07-13T18:27:34+00:00","dateModified": "2018-07-13T18:27:34+00:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "xiaoxuan"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Laniakea">Laniakea</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/" title="存档脑细胞"> 文章 </a><a class="menu-item" href="/playground/" title="玩耍算法题的地方"> 练习场 </a><a class="menu-item" href="/code/" title="存放大概率过期的代码"> 码农 </a><a class="menu-item" href="/tags/" title="标签"> Tags </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Laniakea">Laniakea</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="存档脑细胞">文章</a><a class="menu-item" href="/playground/" title="玩耍算法题的地方">练习场</a><a class="menu-item" href="/code/" title="存放大概率过期的代码">码农</a><a class="menu-item" href="/tags/" title="标签">Tags</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Data Science Bowl 2018 比赛小结</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>xiaoxuan</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2018-07-13">2018-07-13</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;1994 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;4 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="true">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#难点">难点</a></li>
+    <li><a href="#解决方案">解决方案</a>
+      <ul>
+        <li><a href="#mask-rcnn-base-model">Mask-RCNN base model</a></li>
+        <li><a href="#预处理">预处理</a></li>
+        <li><a href="#train-time-augment">Train Time Augment</a></li>
+        <li><a href="#test-time-augment">Test Time Augment</a></li>
+        <li><a href="#训练策略">训练策略</a></li>
+        <li><a href="#winner-strategy">Winner Strategy</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><p>Kaggle 实例分割比赛小结. 比赛花了我1800在阿里云上训练模型, 最后还因为没提交模型的checksum而取消了成绩.</p>
+<blockquote>
+<p>包大人, 冤啊!</p>
+</blockquote>
+<h2 id="难点">难点</h2>
+<ol start="0">
+<li>训练数据少. 黑白600, 彩色100</li>
+<li>细胞核形状多样, 有的十分细长</li>
+<li>细胞核紧挨, 有重叠部分, 难以使用unet区分(unet先预测mask再用watershed(分水岭算法)分割)</li>
+<li>黑白染色和彩色染色的图片细胞核区别显著. 彩色图片训练数据少, 颜色种类不同, 模型表现差</li>
+<li>测试集具备训练集没有的细胞核类型. 甚至教科书中的手绘插图</li>
+</ol>
+<h2 id="解决方案">解决方案</h2>
+<p>实例分割可用选项:</p>
+<ol>
+<li>U-Net, 比赛初期的主流选择. 这是二分类网络, 且只能用于语义分割而不是instance level的实例分割(无法区分不同细胞核), 需要用后处理(watershed算法)分割拥挤细胞核. 直觉上比Mask RCNN这种自带目标检测的有劣势</li>
+<li>FCIS(全卷积网络用来做实例分割), 比U-Net的优势是可以做实例分割, 实际上就是先detection之后, 开一个新分支, 把ROI进一步划分(成9块), 专门判断ROI里面那些内容是前景. 这么做还是比较粗糙, Mask RCNN论文里也提到 But FCIS exhibits systematic errors on overlapping instances. 对重叠部分表现很差.</li>
+</ol>
+<p>敲定Mask RCNN之后, 选择合适的Backbone.</p>
+<h3 id="mask-rcnn-base-model">Mask-RCNN base model</h3>
+<ol>
+<li>SE-ResNeXt50-FPN BackBone, 训练集不大, 所以需要一个尽量小巧并且高效的Backbone. 最初想到的是ResNet50. 做了一些research之后发现还可以用Xception里depthwise conv进一步减肥, 于是使用<strong>ResNeXt50</strong>. 这场比赛比较大的困难是不同图片里的细胞核大小天差地别, 因此很自然上<strong>FPN</strong>. 最后实验性地加入了SE 模块, 免费提分的工具何不试试.</li>
+<li>图片尺寸只有256, 而coco数据集图片一般是1024*1024尺寸的. 因此取消ResNeXt的conv1的pooling层获得类似尺寸的FPN-Feature Map</li>
+<li>更多细长比例Anchor Boxes捕捉细长并紧挨的细胞核, 并且根据mask绘制更紧密的gt(训练集只提供了mask). 但是考虑到太过细长的anchorbox超出了3x3卷积核的感受野, 是不是需要更丰富的卷积核呢?(<strong>提升点</strong>)</li>
+<li>RPN的cls head使用了<strong>focal loss</strong>, 这样也避免了OHEM的复杂性. reg head使用了<strong>weighted_smooth_l1</strong>, 加上了权重, 给foreground和scale较小的实例更高的权重</li>
+<li><strong>UnitBox</strong>用于bbox regression, <a href="https://arxiv.org/abs/1608.01471" target="_blank" rel="noopener noreffer ">UnitBox: An Advanced Object Detection Network</a>: RPN的Reg Head原来使用的是weighted_smooth_l1, (未来得及使用<strong>iou loss</strong>替代, <strong>提升点</strong>. 因为有大量紧密重叠的细胞核, 类似于人群中人脸识别的特点, iou loss对小的细胞核有帮助, 可以回归得更准确) 使用UnitBox的encoding方式主要是因为没有exp, 而训练伊始exp这部分很容易爆炸, 强制做clip收敛又慢, 因此做了这样的改进.</li>
+<li>因为是细胞核(偏向于圆形)且为二分类, Mask Head使用<a href="https://dev.to/andys0975/what-is-dice-loss-for-image-segmentation-3p85" target="_blank" rel="noopener noreffer "><strong>Dice Loss</strong></a>, 比cross entropy效果更好一些. dice loss蕴含了强调了中心点的重要性. 因为最难处理的情况是proposal包含了拥挤的细胞核, mask head的任务是找出中心的细胞核.此时mask的每一个pixel都是相同的权重, 这不符合直觉, 需要dice loss来进行强调</li>
+</ol>
+<h3 id="预处理">预处理</h3>
+<ol>
+<li>CLAHE(限制对比度自适应直方图均衡算法), 对医学图像增强效果好</li>
+<li>Stain Normalize: A. Vahadane et al., ‘Structure-Preserving Color Normalization and Sparse Stain Separation for Histological Images 维持不同染色细胞颜色统一</li>
+</ol>
+<h3 id="train-time-augment">Train Time Augment</h3>
+<ol>
+<li>随机裁剪到256*256, 若不够则zero padding维持长宽比</li>
+<li>0.5~1.5的随机缩放</li>
+<li>水平/垂直翻转</li>
+<li>90°旋转</li>
+<li>随机高斯模糊</li>
+<li>高斯噪音</li>
+<li>随机对比度</li>
+<li><a href="http://lamda.nju.edu.cn/weixs/project/CNNTricks/CNNTricks.html" target="_blank" rel="noopener noreffer ">random_hue_transform做数据增强</a>: 有彩色和黑白图同时存在, 彩色图片染色风格不同</li>
+</ol>
+<h3 id="test-time-augment">Test Time Augment</h3>
+<ol>
+<li>padding 到anchor的整数倍, 保证anchor可以覆盖到边缘</li>
+<li><strong>scale</strong>: 0.6, 0.8, 1.0, 1.2, 1.4, <strong>rotate</strong>: 90, 180, 270</li>
+<li>把做了各种增强之后的rpn proposal ensemble, 之后再nms</li>
+<li>mask instance <strong>clustering</strong>. 以iou为依据进行聚类, 聚类核心为所有mask的交集(按交集/并集处理之后发现交集比较好)</li>
+<li>mask instance ensemble, 叠加之后取均值. 最佳阈值根据验证集计算出</li>
+<li>根据mask 尺寸进行false positive suppression, <strong>由于基本策略是先提升recall, 再抑制FP,</strong> 由于同一张图里的细胞大小差异不会过于悬殊, 因为是显微镜拍摄的图片, 显微镜中是切片, 细胞核距离镜头都是一样的. 直接使用一维异常值检测算法MAD(平均绝对偏差)过滤小的mask. 一开始使用DBSCAN, 后来发现MAD更快而且效果差不多. 因为这个任务比较简单.</li>
+</ol>
+<h3 id="训练策略">训练策略</h3>
+<ol>
+<li><a href="https://arxiv.org/abs/1506.01186" target="_blank" rel="noopener noreffer ">Cyclical Learning Rates for Training Neural Networks</a>, SetpLR, DecayLR, etc, 最后还是用了StepLR</li>
+<li>训练时的run-in: 初始阶段每个batch中掺入了小部分gt, 既保证了RCNN能有输出, 也保证了Mask head快速收敛. 否则需要很长时间才能收敛. 后期撤除gt</li>
+<li>训练流程是依次训练三个head, 最后一起训练</li>
+</ol>
+<h3 id="winner-strategy">Winner Strategy</h3>
+<ol>
+<li><a href="https://www.kaggle.com/c/data-science-bowl-2018/discussion/54741" target="_blank" rel="noopener noreffer ">1st</a></li>
+<li><a href="https://www.kaggle.com/c/data-science-bowl-2018/discussion/55118" target="_blank" rel="noopener noreffer ">4th</a></li>
+<li><a href="https://zhuanlan.zhihu.com/p/35770716" target="_blank" rel="noopener noreffer ">一文介绍3篇无需Proposal的_实例分割_论文</a></li>
+</ol>
+<blockquote>
+<p>待续</p>
+</blockquote></div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2018-07-13</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/2018-07-13-dsb2018/index.md" target="_blank">Read Markdown</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="http://xxuan.cc/2018-07-13-dsb2018/" data-title="Data Science Bowl 2018 比赛小结" data-hashtags="Kaggle"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="http://xxuan.cc/2018-07-13-dsb2018/" data-hashtag="Kaggle"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="http://xxuan.cc/2018-07-13-dsb2018/" data-title="Data Science Bowl 2018 比赛小结"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="http://xxuan.cc/2018-07-13-dsb2018/" data-title="Data Science Bowl 2018 比赛小结"><i data-svg-src="/lib/simple-icons/icons/line.min.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="http://xxuan.cc/2018-07-13-dsb2018/" data-title="Data Science Bowl 2018 比赛小结"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/kaggle/">Kaggle</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/2018-07-13-mask-rcnn/" class="prev" rel="prev" title="Mask-RCNN"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>Mask-RCNN</a>
+            <a href="/2018-10-08-imgshare-dead/" class="next" rel="next" title="七牛云图床挂了">七牛云图床挂了<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+<div id="comments"><div id="disqus_thread" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://disqus.com/?ref_noscript">Disqus</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.102.2">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2016 - 2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">xiaoxuan</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/cookieconsent/cookieconsent.min.css"><script type="text/javascript" src="https://xxuan-cc.disqus.com/embed.js" defer></script><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/mhchem.min.js"></script><script type="text/javascript" src="/lib/cookieconsent/cookieconsent.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{},"cookieconsent":{"content":{"dismiss":"Got it!","link":"Learn more","message":"This website uses Cookies to improve your experience."},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":50,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

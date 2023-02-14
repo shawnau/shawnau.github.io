@@ -1,0 +1,16 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>style transfer - Tag - Laniakea</title>
+        <link>http://xxuan.cc/tags/style-transfer/</link>
+        <description>style transfer - Tag - Laniakea</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>shawn_au@outlook.com (xiaoxuan)</managingEditor>
+            <webMaster>shawn_au@outlook.com (xiaoxuan)</webMaster><lastBuildDate>Mon, 08 Oct 2018 18:37:39 &#43;0000</lastBuildDate><atom:link href="http://xxuan.cc/tags/style-transfer/" rel="self" type="application/rss+xml" /><item>
+    <title>风格迁移(Style Transfer)</title>
+    <link>http://xxuan.cc/2018-10-08-style-transfer/</link>
+    <pubDate>Mon, 08 Oct 2018 18:37:39 &#43;0000</pubDate>
+    <author>xiaoxuan</author>
+    <guid>http://xxuan.cc/2018-10-08-style-transfer/</guid>
+    <description><![CDATA[<p>如何将艺术风格量化? 基于深度学习的风格迁移是个很有趣也很浪漫的领域</p>]]></description>
+</item>
+</channel>
+</rss>

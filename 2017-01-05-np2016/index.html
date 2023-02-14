@@ -1,0 +1,1271 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>2016秋 网络程序设计 课程学习心得总结 - Laniakea</title><meta name="Description" content="xxuan&#39;s blog"><meta property="og:title" content="2016秋 网络程序设计 课程学习心得总结" />
+<meta property="og:description" content="这是个课程报告" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://xxuan.cc/2017-01-05-np2016/" /><meta property="og:image" content="http://xxuan.cc/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2017-01-05T20:24:27+00:00" />
+<meta property="article:modified_time" content="2017-01-05T20:24:27+00:00" /><meta property="og:site_name" content="xxuan.cc" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="http://xxuan.cc/logo.png"/>
+
+<meta name="twitter:title" content="2016秋 网络程序设计 课程学习心得总结"/>
+<meta name="twitter:description" content="这是个课程报告"/>
+<meta name="application-name" content="Laniakea">
+<meta name="apple-mobile-web-app-title" content="Laniakea"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://xxuan.cc/2017-01-05-np2016/" /><link rel="prev" href="http://xxuan.cc/2016-08-26-expectation-maximization/" /><link rel="next" href="http://xxuan.cc/2017-01-11-algo-sum/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" href="/lib/animate/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "2016秋 网络程序设计 课程学习心得总结",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/xxuan.cc\/2017-01-05-np2016\/"
+        },"genre": "posts","wordcount":  5252 ,
+        "url": "http:\/\/xxuan.cc\/2017-01-05-np2016\/","datePublished": "2017-01-05T20:24:27+00:00","dateModified": "2017-01-05T20:24:27+00:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "xiaoxuan"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Laniakea">Laniakea</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/" title="存档脑细胞"> 文章 </a><a class="menu-item" href="/playground/" title="玩耍算法题的地方"> 练习场 </a><a class="menu-item" href="/code/" title="存放大概率过期的代码"> 码农 </a><a class="menu-item" href="/tags/" title="标签"> Tags </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Laniakea">Laniakea</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="存档脑细胞">文章</a><a class="menu-item" href="/playground/" title="玩耍算法题的地方">练习场</a><a class="menu-item" href="/code/" title="存放大概率过期的代码">码农</a><a class="menu-item" href="/tags/" title="标签">Tags</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">2016秋 网络程序设计 课程学习心得总结</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>xiaoxuan</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2017-01-05">2017-01-05</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;5252 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;11 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="true">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#21-adaboost理论简介">2.1 Adaboost理论简介</a>
+      <ul>
+        <li><a href="#强可学习和弱可学习">强可学习和弱可学习</a></li>
+        <li><a href="#组合弱分类器">组合弱分类器</a></li>
+        <li><a href="#adaboost-算法">AdaBoost 算法</a></li>
+        <li><a href="#adaboost-算法-1">AdaBoost 算法</a></li>
+        <li><a href="#实现细节">实现细节</a></li>
+        <li><a href="#直观解释">直观解释</a></li>
+        <li><a href="#加法模型与前向分步算法">加法模型与前向分步算法</a></li>
+        <li><a href="#前向分步算法">前向分步算法</a></li>
+        <li><a href="#adaboost与前向分步算法">Adaboost与前向分步算法</a></li>
+      </ul>
+    </li>
+    <li><a href="#22-adaboost-code-review">2.2 Adaboost Code Review</a>
+      <ul>
+        <li><a href="#数据集介绍">数据集介绍</a></li>
+        <li><a href="#项目结构">项目结构</a></li>
+        <li><a href="#基分类器决策树桩">基分类器:决策树桩</a></li>
+        <li><a href="#基分类器训练过程-寻找最小损失的阈值">基分类器训练过程: 寻找最小损失的阈值</a></li>
+        <li><a href="#集成分类器数据结构">集成分类器数据结构</a></li>
+        <li><a href="#adaboost训练集成分类器">Adaboost训练集成分类器</a></li>
+        <li><a href="#集成分类器">集成分类器</a></li>
+        <li><a href="#分类器测试函数">分类器测试函数</a></li>
+        <li><a href="#保存模型参数到json文件">保存模型参数到json文件</a></li>
+        <li><a href="#测试用例">测试用例</a>
+          <ul>
+            <li><a href="#训练结果">训练结果</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#22-caffe简介">2.2 caffe简介</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#31-安装">3.1 安装</a></li>
+    <li><a href="#32-运行">3.2 运行</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><p>这是个课程报告</p>
+<h1 id="1-课程贡献-pull-requests2次">1. 课程贡献: pull requests(2次)</h1>
+<p><a href="https://coding.net/u/mengning/p/np2016/git/commit/ae58d5dd77a6b1b03baead39cf1c6bd8ecba52ef" target="_blank" rel="noopener noreffer ">#更新项目1手写体识别的README</a></p>
+<p><a href="https://coding.net/u/mengning/p/np2016/git/pull/221" target="_blank" rel="noopener noreffer ">#221 sklearn改进</a></p>
+<ol>
+<li>
+<p>将数据集更换为train2.csv(数据集容量提升到了8000), 使用相同脚本预测性别时<strong>准确率从70%提升到了80%</strong>, 说明在2000以上的样本容量对准确率依然有影响</p>
+</li>
+<li>
+<p>数据预处理, 使用平均值<strong>填充缺失值</strong></p>
+</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">load_data</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># 数据集已合并, 去掉了标签行, sex预处理为数字</span>
+</span></span><span class="line"><span class="cl">    <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;train2.csv&#39;</span><span class="p">,</span> <span class="n">names</span><span class="o">=</span><span class="n">class_names_train2</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># 转化为字符串</span>
+</span></span><span class="line"><span class="cl">    <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">convert_objects</span><span class="p">(</span><span class="n">convert_numeric</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># 使用平均值填充缺失值</span>
+</span></span><span class="line"><span class="cl">    <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><!--more-->
+<ol start="3">
+<li>按照年龄将数据集分为不同年龄段分段进行训练</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">split_data</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">low</span><span class="p">,</span> <span class="n">high</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    :param df: 输入的dataframe
+</span></span></span><span class="line"><span class="cl"><span class="s2">    :param low: 截取区间的低阈值
+</span></span></span><span class="line"><span class="cl"><span class="s2">    :param high: 截取区间的高阈值(不包含)
+</span></span></span><span class="line"><span class="cl"><span class="s2">    :return: 截取的dataframe
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">df_lowcut</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;age&#39;</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="n">low</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="n">df_cut</span> <span class="o">=</span> <span class="n">df_lowcut</span><span class="p">[</span><span class="n">df_lowcut</span><span class="p">[</span><span class="s1">&#39;age&#39;</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">high</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="n">selected_names</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">class_names_train2</span> <span class="k">if</span> <span class="p">(</span><span class="n">x</span> <span class="o">!=</span> <span class="s1">&#39;age&#39;</span> <span class="ow">and</span> <span class="n">x</span> <span class="o">!=</span> <span class="s1">&#39;sex&#39;</span><span class="p">)]</span>
+</span></span><span class="line"><span class="cl">    <span class="n">x_data</span> <span class="o">=</span> <span class="n">df_cut</span><span class="p">[</span><span class="n">selected_names</span><span class="p">]</span><span class="o">.</span><span class="n">as_matrix</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="n">y_data</span> <span class="o">=</span> <span class="n">df_cut</span><span class="p">[</span><span class="s1">&#39;age&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">as_matrix</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># 用平均值填充nan</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">fill_nan</span><span class="p">(</span><span class="n">np_array</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="n">col_mean</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nanmean</span><span class="p">(</span><span class="n">np_array</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">nan_ids</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">np_array</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">        <span class="n">np_array</span><span class="p">[</span><span class="n">nan_ids</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">take</span><span class="p">(</span><span class="n">col_mean</span><span class="p">,</span> <span class="n">nan_ids</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">np_array</span>
+</span></span><span class="line"><span class="cl">    <span class="n">x_data</span> <span class="o">=</span> <span class="n">fill_nan</span><span class="p">(</span><span class="n">x_data</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span> <span class="s1">&#39;x有没有nan值:&#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">x_data</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span> <span class="s1">&#39;y有没有nan值:&#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">y_data</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">x_data</span><span class="p">,</span> <span class="n">y_data</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ol start="4">
+<li>
+<p>区分年龄段之后, 预测结果如下</p>
+<ol>
+<li>
+<p>0-25岁
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/ppt_4.png"
+        data-srcset="http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/ppt_4.png, http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/ppt_4.png 1.5x, http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/ppt_4.png 2x"
+        data-sizes="auto"
+        alt="http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/ppt_4.png"
+        title="http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/ppt_4.png" />
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/ppt_5.png"
+        data-srcset="http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/ppt_5.png, http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/ppt_5.png 1.5x, http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/ppt_5.png 2x"
+        data-sizes="auto"
+        alt="http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/ppt_5.png"
+        title="http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/ppt_5.png" />
+训练集准确率为: 0.983532934132
+测试集准确率为: 0.906040268456</p>
+</li>
+<li>
+<p>25-60岁
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/ppt_6.png"
+        data-srcset="http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/ppt_6.png, http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/ppt_6.png 1.5x, http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/ppt_6.png 2x"
+        data-sizes="auto"
+        alt="http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/ppt_6.png"
+        title="http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/ppt_6.png" />
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/ppt_7.png"
+        data-srcset="http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/ppt_7.png, http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/ppt_7.png 1.5x, http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/ppt_7.png 2x"
+        data-sizes="auto"
+        alt="http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/ppt_7.png"
+        title="http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/ppt_7.png" />
+训练集准确率为: 0.843848874
+测试集准确率为: 0.373534338358</p>
+</li>
+<li>
+<p>60-80岁
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/ppt_8.png"
+        data-srcset="http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/ppt_8.png, http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/ppt_8.png 1.5x, http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/ppt_8.png 2x"
+        data-sizes="auto"
+        alt="http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/ppt_8.png"
+        title="http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/ppt_8.png" />
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/ppt_9.png"
+        data-srcset="http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/ppt_9.png, http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/ppt_9.png 1.5x, http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/ppt_9.png 2x"
+        data-sizes="auto"
+        alt="http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/ppt_9.png"
+        title="http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/ppt_9.png" />
+训练集准确率为: 0.977473065622
+测试集准确率为: 0.649122807018</p>
+</li>
+</ol>
+</li>
+</ol>
+<p>由此可见, 区分不同年龄段之后预测准确率有了极大提升, 尤其是低年龄段, 说明不同年龄段的分布不是一样的.</p>
+<h1 id="2-课程贡献-presentation2次">2. 课程贡献: Presentation(2次)</h1>
+<h2 id="21-adaboost理论简介">2.1 Adaboost理论简介</h2>
+<h3 id="强可学习和弱可学习">强可学习和弱可学习</h3>
+<ol>
+<li>在概率近似正确(PAC)学习框架中, 一个类如果存在:
+<ul>
+<li>一个多项式复杂度的学习算法,正确率略大于随机猜测(例如二分类问题中大于1/2),称弱可学习的类</li>
+<li>一个多项式复杂度的学习算法,并且正确率很高,称强可学习的类</li>
+</ul>
+</li>
+<li>Kearns和Valiant证明了强可学习和弱可学习是等价的</li>
+<li>Adaboost算法就是将弱学习器组成强学习器的算法</li>
+</ol>
+<h3 id="组合弱分类器">组合弱分类器</h3>
+<ol>
+<li>
+<p>测试集:
+$$T = \left\lbrace (x^{(1)}, y^{(1)}), (x^{(2)}, y^{(2)}), \cdots, (x^{(N)}, y^{(N)})\right\rbrace, \quad
+x \in \chi \subseteq R^N, y \in \lbrace +1, -1 \rbrace \\
+\text{with weights: } D_i = (w_{i1}, w_{i2}, \cdots, w_{iN})$$</p>
+</li>
+<li>
+<p>分类器
+$$G_m(x): \chi \to \lbrace +1, -1\rbrace, \quad G(x) = \sum\limits^M_{i=1} \alpha_m G_m(x) \\
+\text{with weights: } A = (\alpha_{1}, \alpha_{2}, \cdots, \alpha_{M})
+$$</p>
+</li>
+</ol>
+<h3 id="adaboost-算法">AdaBoost 算法</h3>
+<p>输入: 训练集 $T$, m个弱分类器 $G_m(x)$
+输出: 集成分类器 $G(x)$</p>
+<ol>
+<li>
+<p>初始化权重:
+$$ D_1 = (w_{11}, w_{12}, \cdots,  w_{1N}), \quad w_{1i} = \frac{1}{N} $$</p>
+</li>
+<li>
+<p>For $m = 1,2, \cdots, M$:<br>
+(a) 对具有权重分布 $D_m = (w_{m1}, w_{m2}, \cdots,  w_{mN})$ 的训练集 $T$ 训练出弱分类器 $G_m(x)$<br>
+(b) 计算弱分类器 $G_m(x)$ 在 $T$ 上的误差率:
+$$ e_m = P(G_m(x^{(i)}) \neq y^{(i)}) = \sum\limits^N_{i=1} w_{mi}I(G_m(x^{(i)}) \neq y^{(i)}) \tag{1}$$<br>
+(c) 计算 $G_m(x)$ 的系数 $\alpha_m$:
+$$ \alpha_m = \frac{1}{2} ln \frac{1-e_m}{e_m} \tag{2}$$</p>
+</li>
+</ol>
+<h3 id="adaboost-算法-1">AdaBoost 算法</h3>
+<p>(d) 更新训练集的权重分布 $D_{m+1}$:<br>
+$$ D_{m+1} = (w_{m+1, 1}, w_{m+1, 2}, \cdots,  w_{m+1, N}) $$
+$$w_{m+1, i}  =\begin{cases}
+\frac{w_{mi}}{Z_m} e^{-\alpha_m},  &amp; G_m(x^{(i)}) = y^{(i)} \\ \\
+\frac{w_{mi}}{Z_m}e^{\alpha_m},  &amp; G_m(x^{(i)}) \neq y^{(i)}
+\end{cases}
+= \frac {w_{mi}e^{-\alpha_m y^{(i)} G_m(x^{(i)})}} {Z_m} \tag{3}$$
+$$Z_m = \sum\limits^N_{i=1}w_{mi}e^{-\alpha_m y^{(i)} G_m(x^{(i)})} $$
+这里 $Z_m$ 是规范化因子, 使得 $D_{m+1}$ 成为一个概率分布, 保证了 $\sum\limits^N_{i=1}w_{m+1, i} = 1$</p>
+<p>最后,组合所有弱分类器 $G_m(x)$:
+$$ f(x) =  \sum\limits^M_{i=1} \alpha_m G_m(x), \quad G(x) = sign(f(x))$$</p>
+<h3 id="实现细节">实现细节</h3>
+<p>注意到每次迭代测试集中的样本都具有不同的权重, 实现方法有:</p>
+<ol>
+<li>在每个弱分类器计算损失函数的时候, 对相应样本的loss乘以权重
+<ul>
+<li>缺点: 需要修改弱分类器, 在loss中引入权重</li>
+</ul>
+</li>
+<li>不需要修改弱分类器的方案: 直接修改训练集
+<ul>
+<li>每次迭代都使用 $D_i$ 作为概率分布从原始数据集中生成新的数据集进行训练</li>
+</ul>
+</li>
+</ol>
+<h3 id="直观解释">直观解释</h3>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/Logistic.png"
+        data-srcset="http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/Logistic.png, http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/Logistic.png 1.5x, http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/Logistic.png 2x"
+        data-sizes="auto"
+        alt="http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/Logistic.png"
+        title="function" /></p>
+<ul>
+<li>对模型来说, 这里显示了弱分类器 $G_m(x)$的权重, $ \alpha_m = \frac{1}{2} ln \frac{1-e_m}{e_m} $ 与误差 $e_m$, 变化的关系. 显然更精确的弱分类器具有更大的权重</li>
+<li>相反, 对训练集数据来说, 从 (3) 可知被误分类的样本的权重会增加, 被正确分类的样本权重会降低, 增加/降低的速度都是指数级别的.</li>
+</ul>
+<h3 id="加法模型与前向分步算法">加法模型与前向分步算法</h3>
+<p>考虑一个与adaboost相似的<strong>累加模型 (additive model)</strong> :
+$$
+f(x) = \sum\limits_{m=1}^M \beta_m b(x; \gamma_m)
+$$
+in which $b(x; \gamma_m)$ 是基分类器, $\gamma_m$ 是基分类器的参数, $\beta_m$ 是基分类器的权重.</p>
+<p>为了最小化损失函数, 提出<strong>前向分步算法(forward stagewise algorithm)</strong>, <strong>每一步只学习一个基函数及其系数</strong>, 即每一步中把其他所有模型看成常数, 只优化一个模型. 这是前向分步算法的核心概念.</p>
+<h3 id="前向分步算法">前向分步算法</h3>
+<p>输入: 训练集 $T = \lbrace (x^{(1)}, y^{(1)}), (x^{(2)}, y^{(2)}), \cdots,  (x^{(N)}, y^{(N)}) \rbrace$, 损失函数$L(y, f(x))$, 基分类器 $b(x; \gamma)$<br>
+输出: 累加模型 $f(x)$, 初始化 $f_0(x) = 0$</p>
+<ol>
+<li>For $m = 1,2,\cdots,M$:
+<ul>
+<li>最小化损失函数:
+$$  (\beta_m, \gamma_m) = arg\min\limits_{\beta, \gamma} \sum\limits_{i=1}^N L(y^{(i)}, f_{m-1}(x^{(i)}) + \beta b(x^{(i)};\gamma)) $$</li>
+<li>更新 $f(x)$:
+$$ f_m(x) = f_{m-1}(x) + \beta_m b(x^{(i)};\gamma_m)$$</li>
+</ul>
+</li>
+<li>生成累加模型:
+$$ f(x) = \sum\limits_{m=1}^M \beta_m b(x; \gamma_m) $$</li>
+</ol>
+<h3 id="adaboost与前向分步算法">Adaboost与前向分步算法</h3>
+<p>以下证明, adaboost算法实际上就是一个使用累加模型, 且损失函数为指数函数的模型</p>
+<p>假设损失函数为<strong>指数损失函数(exponential loss function)</strong>:
+$$ L(y, f(x)) = exp(-yf(x)) $$
+在第$m$次迭代中:
+$$
+f_m(x) = f_{m-1}(x) + \alpha_mG_m(x), \\
+\text{其中 } f_{m-1}(x) = \sum\limits_{m=1}^{M-1} \alpha_mG_m(x)
+$$
+为了最小化
+$$\begin{align}
+(\alpha_m, G_m) &amp; = arg\min\limits_{\alpha, G} \sum\limits_{i=1}^N exp \left\lbrace -y^{(i)}(f_{m-1}(x^{(i)}) + \alpha_m G_m(x^{(i)}))\right\rbrace \\
+&amp; = arg\min\limits_{\alpha, G} \sum\limits_{i=1}^N w_{mi} exp \left\lbrace -y^{(i)} \alpha_m G_m(x^{(i)}) \right\rbrace
+\end{align}
+$$
+其中 $w_{mi} = exp(-y^{(i)} f_{m-1}(x^{(i)}))$, 则损失函数仅依赖于$\alpha$ 和 $G$.
+为了证明算法中的$\alpha_m^*, G_m^*$ 与adaboost中的 $\alpha_m, G_m$ 等价:</p>
+<ol>
+<li>对任意 $\alpha &gt; 0$, 使损失函数最小的 $G_m^*(x)$ 由下式得到:
+$$
+G_m^*(x) =  arg\min\limits_{G} \sum\limits_{i=1}^N w_{mi} I(y^{(i)} \neq G(x^{(i)}))
+$$
+此分类器即为adaboost算法中的基分类器, 即 $G_m^*(x) = G_m(x)$</li>
+<li>求 $\alpha_m$
+$$\begin{align}
+L(\alpha, G_m) &amp; =  \sum\limits_{i=1}^N w_{mi} exp \left\lbrace -y^{(i)} \alpha G_m(x^{(i)}) \right\rbrace \\
+&amp; = (e^{\alpha} - e^{-\alpha}) \sum\limits_{\neq} w_{mi} + e^{-\alpha} \sum\limits w_{mi}
+\end{align} $$
+其中$\sum\limits_{\neq}$ 是$\sum\limits_{y^{(i)} \neq G(x^{(i)})}$的缩写, $\sum$ 是$\sum\limits_{i=1}^N$ 的缩写</li>
+</ol>
+<p>对$\alpha$求导并使导数为0, 即得到使损失函数最小的$\alpha$
+$$\frac {\partial L(\alpha, G_m)} {\partial \alpha} = (e^{\alpha} + e^{-\alpha}) \sum\limits_{\neq} w_{mi} - e^{-\alpha} \sum\limits w_{mi} = 0$$
+s.t. $$(e^{\alpha} + e^{-\alpha}) \frac{\sum\limits_{\neq} w_{mi}}{\sum\limits w_{mi}} - e^{-\alpha}  = 0$$
+s.t. $$(e^{\alpha} + e^{-\alpha}) \epsilon_m - e^{-\alpha}  = 0$$
+s.t. $$ \alpha^* = \frac{1}{2}ln \frac{1-\epsilon_m}{\epsilon_m} $$
+其中 $\epsilon_m = \frac{\sum\limits_{\neq} w_{mi}}{\sum\limits w_{mi}}$, 即为 $G_m^*(x)$ 的损失函数
+最后我们得到 $(\alpha_m, G_m)$ 是和adaboost中的一致的</p>
+<h2 id="22-adaboost-code-review">2.2 Adaboost Code Review</h2>
+<h3 id="数据集介绍">数据集介绍</h3>
+<p><a href="http://archive.ics.uci.edu/ml/datasets/Horse&#43;Colic" target="_blank" rel="noopener noreffer ">Horse Colic Data Set</a></p>
+<ul>
+<li>马是否得了疝气的预测</li>
+<li>数据集大小: 68</li>
+<li>特征数目: 24</li>
+<li>数据集是否完整: 有缺失数据, 用0补全</li>
+</ul>
+<h3 id="项目结构">项目结构</h3>
+<ol>
+<li>基分类器使用决策树桩
+<ul>
+<li>基分类器的数据结构: 采用字典结构</li>
+<li>基分类器的训练: 损失函数为0-1损失函数, 找到最好阈值</li>
+</ul>
+</li>
+<li>adaboost算法
+<ul>
+<li>集成分类器的数据结构: 采用类保存权重list和基分类器list</li>
+<li>算法训练</li>
+</ul>
+</li>
+<li>保存/载入模型的功能: 读取/保存为json文件</li>
+<li>模型评估: 准确率和ROC曲线</li>
+</ol>
+<h3 id="基分类器决策树桩">基分类器:决策树桩</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl">    <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">stump_classifier</span><span class="p">(</span><span class="n">data_matrix</span><span class="p">,</span> <span class="n">feature_index</span><span class="p">,</span> <span class="n">threshold</span><span class="p">,</span> <span class="n">rule</span><span class="o">=</span><span class="s1">&#39;lt&#39;</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">        :param: data_matrix: 测试集, 样本按行排列
+</span></span></span><span class="line"><span class="cl"><span class="s2">        :param: feature_index: 用来分类的特征序号
+</span></span></span><span class="line"><span class="cl"><span class="s2">        :param: threshold: 阈值
+</span></span></span><span class="line"><span class="cl"><span class="s2">        :param: rule: 规则, 默认情况下是小于阈值被分类为-1.0
+</span></span></span><span class="line"><span class="cl"><span class="s2">        决策树桩
+</span></span></span><span class="line"><span class="cl"><span class="s2">        输入: 测试集
+</span></span></span><span class="line"><span class="cl"><span class="s2">        输出: 预测结果(以1,-1标注)
+</span></span></span><span class="line"><span class="cl"><span class="s2">        &#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">results</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="n">data_matrix</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="mi">1</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">        <span class="n">feature_values</span> <span class="o">=</span> <span class="n">data_matrix</span><span class="p">[:,</span> <span class="n">feature_index</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="n">rule</span> <span class="o">==</span> <span class="s1">&#39;lt&#39;</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="n">results</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">feature_values</span> <span class="o">&lt;=</span> <span class="n">threshold</span><span class="p">)[</span><span class="mi">0</span><span class="p">]]</span> <span class="o">=</span> <span class="o">-</span><span class="mf">1.0</span>
+</span></span><span class="line"><span class="cl">        <span class="k">elif</span> <span class="n">rule</span> <span class="o">==</span> <span class="s1">&#39;gt&#39;</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="n">results</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">feature_values</span> <span class="o">&gt;</span> <span class="n">threshold</span><span class="p">)[</span><span class="mi">0</span><span class="p">]]</span> <span class="o">=</span> <span class="o">-</span><span class="mf">1.0</span>
+</span></span><span class="line"><span class="cl">        <span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;ERROR: rule not recognized, use default as lt.&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="n">results</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">feature_values</span> <span class="o">&lt;=</span> <span class="n">threshold</span><span class="p">)[</span><span class="mi">0</span><span class="p">]]</span> <span class="o">=</span> <span class="o">-</span><span class="mf">1.0</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">results</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="基分类器训练过程-寻找最小损失的阈值">基分类器训练过程: 寻找最小损失的阈值</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl">    <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">create_stump</span><span class="p">(</span><span class="n">data_matrix</span><span class="p">,</span> <span class="n">labels</span><span class="p">,</span> <span class="n">data_weights</span><span class="p">,</span> <span class="n">step_number</span><span class="o">=</span><span class="mi">10</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">        :param: data_matrix: 测试集, 样本按行排列
+</span></span></span><span class="line"><span class="cl"><span class="s2">        :param: labels: 标注
+</span></span></span><span class="line"><span class="cl"><span class="s2">        :param: data_weights: 训练集样本权重
+</span></span></span><span class="line"><span class="cl"><span class="s2">        :param: step_number: 迭代次数, 亦即设置阈值每一步的步长
+</span></span></span><span class="line"><span class="cl"><span class="s2">        :return: stump: 决策树桩, 用dict实现
+</span></span></span><span class="line"><span class="cl"><span class="s2">        :return: return_prediction: 预测的标注值
+</span></span></span><span class="line"><span class="cl"><span class="s2">        :return: min_error: 最小损失函数值
+</span></span></span><span class="line"><span class="cl"><span class="s2">        决策树桩训练函数
+</span></span></span><span class="line"><span class="cl"><span class="s2">        输入: 训练集, 训练集权重, 迭代次数
+</span></span></span><span class="line"><span class="cl"><span class="s2">        输出: 决策树桩, 输出值, 最小损失
+</span></span></span><span class="line"><span class="cl"><span class="s2">        &#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">m</span><span class="p">,</span> <span class="n">n</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="n">data_matrix</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">stump</span> <span class="o">=</span> <span class="p">{}</span>
+</span></span><span class="line"><span class="cl">        <span class="n">return_prediction</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">m</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">        <span class="n">min_error</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">inf</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">        <span class="c1"># 遍历特征</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">            <span class="n">min_value</span> <span class="o">=</span> <span class="n">data_matrix</span><span class="p">[:,</span> <span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">            <span class="n">max_value</span> <span class="o">=</span> <span class="n">data_matrix</span><span class="p">[:,</span> <span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">            <span class="n">step_size</span> <span class="o">=</span> <span class="p">(</span><span class="n">max_value</span> <span class="o">-</span> <span class="n">min_value</span><span class="p">)</span> <span class="o">/</span> <span class="nb">float</span><span class="p">(</span><span class="n">step_number</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="c1"># 按步长设定阈值</span>
+</span></span><span class="line"><span class="cl">            <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">step_number</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">                <span class="k">for</span> <span class="n">rule</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;lt&#39;</span><span class="p">,</span> <span class="s1">&#39;gt&#39;</span><span class="p">]:</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">threshold</span> <span class="o">=</span> <span class="n">min_value</span> <span class="o">+</span> <span class="n">j</span> <span class="o">*</span> <span class="n">step_size</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">prediction</span> <span class="o">=</span> <span class="n">stump_classifier</span><span class="p">(</span><span class="n">data_matrix</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">threshold</span><span class="p">,</span> <span class="n">rule</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">                    <span class="c1"># is_error用来存放是否错误的标记, 即I(prediction = labels)</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">is_error</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="n">m</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">is_error</span><span class="p">[</span><span class="n">prediction</span> <span class="o">==</span> <span class="n">labels</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl">                    <span class="c1"># 损失乘以归一化的权重</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">weighted_error</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">data_weights</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">is_error</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">                    <span class="k">if</span> <span class="n">weighted_error</span> <span class="o">&lt;</span> <span class="n">min_error</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">                        <span class="n">min_error</span> <span class="o">=</span> <span class="n">weighted_error</span>
+</span></span><span class="line"><span class="cl">                        <span class="n">return_prediction</span> <span class="o">=</span> <span class="n">prediction</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">                        <span class="n">stump</span><span class="p">[</span><span class="s1">&#39;feature_index&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">i</span>
+</span></span><span class="line"><span class="cl">                        <span class="n">stump</span><span class="p">[</span><span class="s1">&#39;threshold&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">threshold</span>
+</span></span><span class="line"><span class="cl">                        <span class="n">stump</span><span class="p">[</span><span class="s1">&#39;rule&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">rule</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">stump</span><span class="p">,</span> <span class="n">return_prediction</span><span class="p">,</span> <span class="n">min_error</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="集成分类器数据结构">集成分类器数据结构</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl">    <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+</span></span><span class="line"><span class="cl">    <span class="k">class</span> <span class="nc">Model</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">        :return: model_weights: np数组,弱分类器权重
+</span></span></span><span class="line"><span class="cl"><span class="s2">        :return: model_list: weak model list, 其中每个弱分类器用dict实现
+</span></span></span><span class="line"><span class="cl"><span class="s2">        &#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">10</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">            <span class="bp">self</span><span class="o">.</span><span class="n">model_weights</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">size</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">            <span class="bp">self</span><span class="o">.</span><span class="n">model_list</span> <span class="o">=</span> <span class="p">[]</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="adaboost训练集成分类器">Adaboost训练集成分类器</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl">    <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">adaboost_train</span><span class="p">(</span><span class="n">data_matrix</span><span class="p">,</span> <span class="n">labels</span><span class="p">,</span> <span class="n">iteration</span><span class="o">=</span><span class="mi">40</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">        :param: data_matrix: (m,n) np数组, 训练集, 样本按行排列
+</span></span></span><span class="line"><span class="cl"><span class="s2">        :param: labels: (m,1) np数组 标注
+</span></span></span><span class="line"><span class="cl"><span class="s2">        :param: iteration: int 弱分类器个数
+</span></span></span><span class="line"><span class="cl"><span class="s2">        输入训练集和弱分类器个数, 输出模型
+</span></span></span><span class="line"><span class="cl"><span class="s2">        &#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">number</span> <span class="o">=</span> <span class="n">data_matrix</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">        <span class="n">data_weights</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="n">number</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span> <span class="o">/</span> <span class="n">number</span>        <span class="c1"># 初始化训练集权重为1/number</span>
+</span></span><span class="line"><span class="cl">        <span class="n">m</span> <span class="o">=</span> <span class="n">Model</span><span class="p">(</span><span class="n">iteration</span><span class="p">)</span>                                <span class="c1"># 初始化模型权重为0</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">iteration</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">            <span class="n">stump</span><span class="p">,</span> <span class="n">predictions</span><span class="p">,</span> <span class="n">weighted_error</span> <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="n">create_stump</span><span class="p">(</span><span class="n">data_matrix</span><span class="p">,</span> <span class="n">labels</span><span class="p">,</span> <span class="n">data_weights</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="n">m</span><span class="o">.</span><span class="n">model_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">stump</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="n">m</span><span class="o">.</span><span class="n">model_weights</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">log</span><span class="p">((</span><span class="mf">1.0</span> <span class="o">-</span> <span class="n">weighted_error</span><span class="p">)</span> <span class="o">/</span> <span class="nb">max</span><span class="p">(</span><span class="n">weighted_error</span><span class="p">,</span> <span class="mf">1e-16</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">            <span class="n">data_weights</span> <span class="o">=</span> <span class="n">data_weights</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mf">1.0</span> <span class="o">*</span> <span class="n">m</span><span class="o">.</span><span class="n">model_weights</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="n">labels</span> <span class="o">*</span> <span class="n">predictions</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="n">data_weights</span> <span class="o">=</span> <span class="n">data_weights</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">data_weights</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">m</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="集成分类器">集成分类器</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl">    <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">adaboost_classify</span><span class="p">(</span><span class="n">input_matrix</span><span class="p">,</span> <span class="n">m</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">        :param: data_matrix: (m,n) np数组,测试集, 样本按行排列
+</span></span></span><span class="line"><span class="cl"><span class="s2">        :param: m: 模型
+</span></span></span><span class="line"><span class="cl"><span class="s2">        :return: models_output: (m,1) np数组,强分类器输出值
+</span></span></span><span class="line"><span class="cl"><span class="s2">        ensemble model, 输入训练集, 返回输出结果
+</span></span></span><span class="line"><span class="cl"><span class="s2">        &#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">models_output</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">input_matrix</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="mi">1</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">m</span><span class="o">.</span><span class="n">model_list</span><span class="p">)):</span>
+</span></span><span class="line"><span class="cl">            <span class="n">model_prediction</span> <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="n">stump_classifier</span><span class="p">(</span><span class="n">input_matrix</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                                                   <span class="n">m</span><span class="o">.</span><span class="n">model_list</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="s1">&#39;feature_index&#39;</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">                                                   <span class="n">m</span><span class="o">.</span><span class="n">model_list</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="s1">&#39;threshold&#39;</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">                                                   <span class="n">m</span><span class="o">.</span><span class="n">model_list</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="s1">&#39;rule&#39;</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl">            <span class="n">models_output</span> <span class="o">+=</span> <span class="n">m</span><span class="o">.</span><span class="n">model_weights</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="n">model_prediction</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">models_output</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="分类器测试函数">分类器测试函数</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl">    <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">adaboost_test</span><span class="p">(</span><span class="n">data_matrix</span><span class="p">,</span> <span class="n">labels</span><span class="p">,</span> <span class="n">m</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">        :param: data_matrix: 测试集, 样本按行排列
+</span></span></span><span class="line"><span class="cl"><span class="s2">        :param: labels: 标注
+</span></span></span><span class="line"><span class="cl"><span class="s2">        输入测试集和模型, 输出模型参数, 输出结果和正确率, 返回输出结果
+</span></span></span><span class="line"><span class="cl"><span class="s2">        &#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">models_output</span> <span class="o">=</span> <span class="n">adaboost_classify</span><span class="p">(</span><span class="n">data_matrix</span><span class="p">,</span> <span class="n">m</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">i_vec</span> <span class="o">=</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sign</span><span class="p">(</span><span class="n">models_output</span><span class="p">)</span> <span class="o">==</span> <span class="n">labels</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">error_rate</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">count_nonzero</span><span class="p">(</span><span class="n">i_vec</span><span class="p">)</span> <span class="o">/</span> <span class="nb">float</span><span class="p">(</span><span class="n">data_matrix</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span> <span class="s1">&#39;model weights:&#39;</span><span class="o">+</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">m</span><span class="o">.</span><span class="n">model_weights</span><span class="p">,</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">+</span><span class="s1">&#39;models_output:&#39;</span><span class="o">+</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">models_output</span><span class="p">,</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">+</span><span class="s1">&#39;error     rate: &#39;</span><span class="p">,</span> <span class="n">error_rate</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">models_output</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="保存模型参数到json文件">保存模型参数到json文件</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl">    <span class="kn">import</span> <span class="nn">json</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">save_model</span><span class="p">(</span><span class="n">m</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="n">weights_json</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">m</span><span class="o">.</span><span class="n">model_weights</span><span class="o">.</span><span class="n">tolist</span><span class="p">(),</span> <span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">separators</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">,</span> <span class="s1">&#39;: &#39;</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">        <span class="n">models_json</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">m</span><span class="o">.</span><span class="n">model_list</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">separators</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">,</span> <span class="s1">&#39;: &#39;</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&#34;model/model_weights.json&#34;</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">fp</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="n">fp</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">weights_json</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&#34;model/model_list.json&#34;</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">fp</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="n">fp</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">models_json</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">load_model</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&#34;model/model_weights.json&#34;</span><span class="p">)</span> <span class="k">as</span> <span class="n">fp</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="n">weights_json</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">fp</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl">            <span class="n">weights_list</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">weights_json</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="n">size</span> <span class="o">=</span> <span class="n">weights_list</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">            <span class="n">model</span> <span class="o">=</span> <span class="n">ab</span><span class="o">.</span><span class="n">Model</span><span class="p">(</span><span class="n">size</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="n">model</span><span class="o">.</span><span class="n">model_weights</span> <span class="o">=</span> <span class="n">weights_list</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&#34;model/model_list.json&#34;</span><span class="p">)</span> <span class="k">as</span> <span class="n">fp</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="n">model_list</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">fp</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl">            <span class="n">model</span><span class="o">.</span><span class="n">model_list</span> <span class="o">=</span> <span class="n">model_list</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">model</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="测试用例">测试用例</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl">    <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+</span></span><span class="line"><span class="cl">    <span class="kn">import</span> <span class="nn">adaboost</span> <span class="k">as</span> <span class="nn">ab</span>     <span class="c1"># adaboost训练脚本</span>
+</span></span><span class="line"><span class="cl">    <span class="kn">import</span> <span class="nn">test_toolkit</span> <span class="k">as</span> <span class="nn">tt</span> <span class="c1"># 测试用工具包, 主要用于数据预处理(未展示)</span>
+</span></span><span class="line"><span class="cl">    <span class="kn">import</span> <span class="nn">plot_roc</span> <span class="k">as</span> <span class="nn">plot</span>   <span class="c1"># 绘制ROC曲线, 评估模型优劣(未展示)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1"># 载入数据</span>
+</span></span><span class="line"><span class="cl">    <span class="n">data_matrix</span> <span class="o">=</span> <span class="n">tt</span><span class="o">.</span><span class="n">load_data</span><span class="p">(</span><span class="s1">&#39;test_data/horseColicTest2.txt&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="c1"># 预处理, 测试集/训练集分为8:2</span>
+</span></span><span class="line"><span class="cl">    <span class="n">train_matrix</span><span class="p">,</span> <span class="n">cv_matrix</span><span class="p">,</span> <span class="n">test_matrix</span> <span class="o">=</span> <span class="n">tt</span><span class="o">.</span><span class="n">split_data</span><span class="p">(</span><span class="n">data_matrix</span><span class="p">,</span> <span class="p">(</span><span class="mf">0.8</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">    <span class="n">train_matrix_x</span><span class="p">,</span> <span class="n">class_vector</span> <span class="o">=</span> <span class="n">tt</span><span class="o">.</span><span class="n">separate_x_y</span><span class="p">(</span><span class="n">train_matrix</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="mf">1.</span> <span class="n">自己训练</span><span class="o">-</span>
+</span></span><span class="line"><span class="cl">    <span class="n">m</span> <span class="o">=</span> <span class="n">ab</span><span class="o">.</span><span class="n">adaboost_train</span><span class="p">(</span><span class="n">train_matrix_x</span><span class="p">,</span> <span class="n">class_vector</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="o">--</span><span class="mf">2.</span> <span class="n">载入预训练</span><span class="o">-</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># m = load_model()</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="o">-</span><span class="n">测试模型泛化</span>
+</span></span><span class="line"><span class="cl">    <span class="n">test_matrix_x</span><span class="p">,</span> <span class="n">test_labels</span> <span class="o">=</span> <span class="n">tt</span><span class="o">.</span><span class="n">separate_x_y</span><span class="p">(</span><span class="n">test_matrix</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">results</span> <span class="o">=</span> <span class="n">ab</span><span class="o">.</span><span class="n">adaboost_test</span><span class="p">(</span><span class="n">test_matrix_x</span><span class="p">,</span> <span class="n">test_labels</span><span class="p">,</span> <span class="n">m</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="c1"># 绘制ROC曲线</span>
+</span></span><span class="line"><span class="cl">    <span class="n">plot</span><span class="o">.</span><span class="n">plot_roc</span><span class="p">(</span><span class="n">results</span><span class="p">,</span> <span class="n">test_labels</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="c1"># 保存模型</span>
+</span></span><span class="line"><span class="cl">    <span class="n">save_model</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="训练结果">训练结果</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">models_output</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl"><span class="p">[[</span> <span class="mf">1.</span> <span class="o">-</span><span class="mf">1.</span>  <span class="mf">1.</span>  <span class="mf">1.</span> <span class="o">-</span><span class="mf">1.</span> <span class="o">-</span><span class="mf">1.</span>  <span class="mf">1.</span>  <span class="mf">1.</span>  <span class="mf">1.</span>  <span class="mf">1.</span>  <span class="mf">1.</span>  <span class="mf">1.</span>  <span class="mf">1.</span>  <span class="mf">1.</span><span class="p">]]</span> 
+</span></span><span class="line"><span class="cl"><span class="n">labels</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl"><span class="p">[[</span> <span class="mf">1.</span> <span class="o">-</span><span class="mf">1.</span>  <span class="mf">1.</span>  <span class="mf">1.</span> <span class="o">-</span><span class="mf">1.</span> <span class="o">-</span><span class="mf">1.</span>  <span class="mf">1.</span>  <span class="mf">1.</span>  <span class="mf">1.</span>  <span class="mf">1.</span>  <span class="mf">1.</span>  <span class="mf">1.</span>  <span class="mf">1.</span>  <span class="mf">1.</span><span class="p">]]</span> 
+</span></span><span class="line"><span class="cl"><span class="n">error</span> <span class="n">rate</span><span class="p">:</span>  <span class="mf">0.0</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/ppt_10.png"
+        data-srcset="http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/ppt_10.png, http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/ppt_10.png 1.5x, http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/ppt_10.png 2x"
+        data-sizes="auto"
+        alt="http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/ppt_10.png"
+        title="http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/ppt_10.png" /></p>
+<p>AUC曲线完美, 准确率也是100%.在如此数据缺失, 且特征多的情况下还能达到这么高的效果, 显示了adaboost的强大</p>
+<h2 id="22-caffe简介">2.2 caffe简介</h2>
+<p>Caffe，全称Convolution Architecture For Feature Extractioncaffe是一个清晰，可读性高，快速的深度学习框架。</p>
+<ol>
+<li>使用MNIST手写字体数据集训练Lenet</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nb">cd</span> <span class="nv">$CAFFE_ROOT</span>
+</span></span><span class="line"><span class="cl">./data/mnist/get_mnist.sh
+</span></span><span class="line"><span class="cl">./examples/mnist/create_mnist.sh
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>该脚本会下载好训练集和测试集并在<code>./examples/mnist/</code>下生成两个lmdb文件.</p>
+<p>caffe生成的神经网络是通过prototxt文件定义的, 其中涉及每一层的参数, caffe可以通过这些参数自动生成对应的层并组合成卷积神经网络. 其中Lenet的prototxt的卷积层定义如下:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">layer {
+</span></span><span class="line"><span class="cl">  name: &#34;conv1&#34;
+</span></span><span class="line"><span class="cl">  type: &#34;Convolution&#34;
+</span></span><span class="line"><span class="cl">  param { lr_mult: 1 }
+</span></span><span class="line"><span class="cl">  param { lr_mult: 2 }
+</span></span><span class="line"><span class="cl">  convolution_param {
+</span></span><span class="line"><span class="cl">    num_output: 20
+</span></span><span class="line"><span class="cl">    kernel_size: 5
+</span></span><span class="line"><span class="cl">    stride: 1
+</span></span><span class="line"><span class="cl">    weight_filler {
+</span></span><span class="line"><span class="cl">      type: &#34;xavier&#34;
+</span></span><span class="line"><span class="cl">    }
+</span></span><span class="line"><span class="cl">    bias_filler {
+</span></span><span class="line"><span class="cl">      type: &#34;constant&#34;
+</span></span><span class="line"><span class="cl">    }
+</span></span><span class="line"><span class="cl">  }
+</span></span><span class="line"><span class="cl">  bottom: &#34;data&#34;
+</span></span><span class="line"><span class="cl">  top: &#34;conv1&#34;
+</span></span><span class="line"><span class="cl">}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>简单介绍下重要参数含义:</p>
+<ul>
+<li><code>num_output</code>: 输出层维度</li>
+<li><code>kernel_size</code>: 卷积核大小</li>
+<li><code>stride</code>: 卷积层步长</li>
+</ul>
+<p>其他训练通用参数定义在lenet_solver.prototxt中:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl"># The train/test net protocol buffer definition
+</span></span><span class="line"><span class="cl">net: &#34;examples/mnist/lenet_train_test.prototxt&#34;
+</span></span><span class="line"><span class="cl">test_iter: 100
+</span></span><span class="line"><span class="cl"># Carry out testing every 500 training iterations.
+</span></span><span class="line"><span class="cl">test_interval: 500
+</span></span><span class="line"><span class="cl"># The base learning rate, momentum and the weight decay of the network.
+</span></span><span class="line"><span class="cl">base_lr: 0.01
+</span></span><span class="line"><span class="cl">momentum: 0.9
+</span></span><span class="line"><span class="cl">weight_decay: 0.0005
+</span></span><span class="line"><span class="cl"># 学习率
+</span></span><span class="line"><span class="cl">lr_policy: &#34;inv&#34;
+</span></span><span class="line"><span class="cl">gamma: 0.0001
+</span></span><span class="line"><span class="cl">power: 0.75
+</span></span><span class="line"><span class="cl"># Display every 100 iterations
+</span></span><span class="line"><span class="cl">display: 100
+</span></span><span class="line"><span class="cl"># 最大迭代次数
+</span></span><span class="line"><span class="cl">max_iter: 5000
+</span></span><span class="line"><span class="cl"># 5000次迭代之后保存模型快照
+</span></span><span class="line"><span class="cl">snapshot: 5000
+</span></span><span class="line"><span class="cl">snapshot_prefix: &#34;examples/mnist/lenet&#34;
+</span></span><span class="line"><span class="cl"># 使用CPU模式
+</span></span><span class="line"><span class="cl">solver_mode: CPU
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>运行完毕之后显示</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">I0126 17:32:32.171516 18290 solver.cpp:246] Iteration 10000, loss = 0.00453533
+</span></span><span class="line"><span class="cl">I0126 17:32:32.171550 18290 solver.cpp:264] Iteration 10000, Testing net (#0)
+</span></span><span class="line"><span class="cl">I0126 17:32:40.498195 18290 solver.cpp:315]     Test net output #0: accuracy = 0.9903
+</span></span><span class="line"><span class="cl">I0126 17:32:40.498236 18290 solver.cpp:315]     Test net output #1: loss = 0.0309918 (* 1 = 0.0309918 loss)
+</span></span><span class="line"><span class="cl">I0126 17:32:40.498245 18290 solver.cpp:251] Optimization Done.
+</span></span><span class="line"><span class="cl">I0126 17:32:40.498249 18290 caffe.cpp:121] Optimization Done.
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>说明准确率达到了99.03%, 损失函数下降到了0.00453533.</p>
+<ol start="2">
+<li>使用Faster R-CNN进行物体识别</li>
+</ol>
+<p>使用了在VOC2006数据集上预训练的模型, 运行demo如下:
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="http://img.blog.csdn.net/20150916135931842"
+        data-srcset="http://img.blog.csdn.net/20150916135931842, http://img.blog.csdn.net/20150916135931842 1.5x, http://img.blog.csdn.net/20150916135931842 2x"
+        data-sizes="auto"
+        alt="http://img.blog.csdn.net/20150916135931842"
+        title="http://img.blog.csdn.net/20150916135931842" /></p>
+<h1 id="3-demo展示">3. Demo展示</h1>
+<blockquote>
+<p>完成一篇署名博客，博客内容至少包括课程学习心得总结、通过commit/pr等说明自己的功劳和苦劳、提供自己的版本库URL并附上安装运行方法和Demo过程截图、其他重要事项等。</p>
+</blockquote>
+<p><a href="https://coding.net/u/xiaoxuan1123/p/np2016/git" target="_blank" rel="noopener noreffer ">项目版本库</a></p>
+<p>为了将sklearn集成到BloodTestReportOCR中, 还将训练好的模型保存为<code>age.pkl</code>和<code>gender.pkl</code>并在<code>view.py</code>中调用</p>
+<ol>
+<li>保存模型</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># 保存预训练模型</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">sklearn.externals</span> <span class="kn">import</span> <span class="n">joblib</span>
+</span></span><span class="line"><span class="cl"><span class="n">joblib</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span> <span class="s1">&#39;gender.pkl&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 其他代码</span>
+</span></span><span class="line"><span class="cl"><span class="n">joblib</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span> <span class="s1">&#39;age.pkl&#39;</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ol start="2">
+<li>调用保存的预训练模型预测</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># 在view.py中调用预训练的模型</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">sklearn.externals</span> <span class="kn">import</span> <span class="n">joblib</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 载入模型</span>
+</span></span><span class="line"><span class="cl"><span class="n">age_clf</span> <span class="o">=</span> <span class="n">joblib</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;age.pkl&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">gender_clf</span> <span class="o">=</span> <span class="n">joblib</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;gender.pkl&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 预测函数</span>
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">predict</span><span class="p">(</span><span class="n">arr</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># 根据预训练的模型分别从原始数据中选取不同的特征</span>
+</span></span><span class="line"><span class="cl">    <span class="n">age_vector</span> <span class="o">=</span> <span class="p">[</span><span class="n">arr</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">18</span><span class="p">,</span> <span class="mi">17</span><span class="p">]]</span>
+</span></span><span class="line"><span class="cl">    <span class="n">gender_vector</span> <span class="o">=</span> <span class="p">[</span><span class="n">arr</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">13</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">17</span><span class="p">]]</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># 按照选取的特征预测</span>
+</span></span><span class="line"><span class="cl">    <span class="n">gender</span> <span class="o">=</span> <span class="n">gender_clf</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">gender_vector</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">age</span> <span class="o">=</span> <span class="n">age_clf</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">age_vector</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">gender</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">age</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="31-安装">3.1 安装</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 安装numpy,</span>
+</span></span><span class="line"><span class="cl">sudo apt-get install python-numpy <span class="c1"># http://www.numpy.org/</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 安装opencv</span>
+</span></span><span class="line"><span class="cl">sudo apt-get install python-opencv <span class="c1"># http://opencv.org/</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">##安装OCR和预处理相关依赖</span>
+</span></span><span class="line"><span class="cl">sudo apt-get install tesseract-ocr
+</span></span><span class="line"><span class="cl">sudo pip install pytesseract
+</span></span><span class="line"><span class="cl">sudo apt-get install python-tk
+</span></span><span class="line"><span class="cl">sudo pip install pillow
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 安装Flask框架、mongo</span>
+</span></span><span class="line"><span class="cl">sudo pip install Flask
+</span></span><span class="line"><span class="cl">sudo apt-get install mongodb <span class="c1"># 如果找不到可以先sudo apt-get update</span>
+</span></span><span class="line"><span class="cl">sudo service mongodb started
+</span></span><span class="line"><span class="cl">sudo pip install pymongo
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 用sklearn进行预测需要的框架</span>
+</span></span><span class="line"><span class="cl">sudo apt-get install cython python-scipy
+</span></span><span class="line"><span class="cl">pip install -U scikit-learn
+</span></span><span class="line"><span class="cl">pip install pandas
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="32-运行">3.2 运行</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">cd  BloodTestReportOCR
+</span></span><span class="line"><span class="cl">python view.py # upload图像,在浏览器打开http://yourip:8080
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>提交图片:
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/ppt_1.png"
+        data-srcset="http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/ppt_1.png, http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/ppt_1.png 1.5x, http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/ppt_1.png 2x"
+        data-sizes="auto"
+        alt="http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/ppt_1.png"
+        title="http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/ppt_1.png" /></p>
+<p>生成报告:
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/ppt_2.png"
+        data-srcset="http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/ppt_2.png, http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/ppt_2.png 1.5x, http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/ppt_2.png 2x"
+        data-sizes="auto"
+        alt="http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/ppt_2.png"
+        title="http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/ppt_2.png" /></p>
+<p>预测性别年龄:
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/ppt_3.png"
+        data-srcset="http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/ppt_3.png, http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/ppt_3.png 1.5x, http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/ppt_3.png 2x"
+        data-sizes="auto"
+        alt="http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/ppt_3.png"
+        title="http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/ppt_3.png" /></p>
+<h1 id="4-课程学习心得总结">4. 课程学习心得总结</h1>
+<p>本次课程学习了以下知识</p>
+<ol>
+<li>​课程项目A1a：神经网络实现手写字符识别系统</li>
+</ol>
+<ul>
+<li>学习了基本前后端输入图片进行检测的原理</li>
+<li>学习了具有一个隐含层的最简单神经网络的构造: 前向传播, 反向传播的原理</li>
+</ul>
+<ol start="2">
+<li>课程项目A2：血常规检验报告的图像OCR识别</li>
+</ol>
+<ul>
+<li>学习了使用github合作项目的流程: 提交pull request, 从源版本库fetch最新版本, merge
+不同分支</li>
+</ul>
+<ol start="3">
+<li>课程项目A3：根据血常规检验的各项数据预测年龄和性别</li>
+</ol>
+<ul>
+<li>学习了使用sklearn进行预测</li>
+<li>学习了最基本的数据清洗: 归一化, 标准化, 缺失值填充</li>
+<li>学习了pandas数据处理包的使用</li>
+<li>学习了numpy的使用</li>
+</ul>
+<ol start="4">
+<li>Presentation</li>
+</ol>
+<ul>
+<li>学习了如何使用python编写adaboost, 如何评估模型</li>
+<li>学习了如何调用caffe, 订制神经网络</li>
+</ul>
+<p>本课程学习到了很多知识,对我自己而言, 以python和机器学习的理论知识为主. 孟宁老师也是一个很有风度的老师, 在课堂上和同学们交流, 观点鲜明, 善于抓住每个同学分享知识的重点, 理清楚来龙去脉之后再与其他同学分享, 效果拔群. 感谢孟宁老师给我们带来有如此丰富内容的课程.</p></div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2017-01-05</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/2017-01-05-np2016/index.md" target="_blank">Read Markdown</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="http://xxuan.cc/2017-01-05-np2016/" data-title="2016秋 网络程序设计 课程学习心得总结"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="http://xxuan.cc/2017-01-05-np2016/"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="http://xxuan.cc/2017-01-05-np2016/" data-title="2016秋 网络程序设计 课程学习心得总结"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="http://xxuan.cc/2017-01-05-np2016/" data-title="2016秋 网络程序设计 课程学习心得总结"><i data-svg-src="/lib/simple-icons/icons/line.min.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="http://xxuan.cc/2017-01-05-np2016/" data-title="2016秋 网络程序设计 课程学习心得总结"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/2016-08-26-expectation-maximization/" class="prev" rel="prev" title="EM算法"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>EM算法</a>
+            <a href="/2017-01-11-algo-sum/" class="next" rel="next" title="算法总结">算法总结<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+<div id="comments"><div id="disqus_thread" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://disqus.com/?ref_noscript">Disqus</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.102.2">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2016 - 2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">xiaoxuan</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/cookieconsent/cookieconsent.min.css"><script type="text/javascript" src="https://xxuan-cc.disqus.com/embed.js" defer></script><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/mhchem.min.js"></script><script type="text/javascript" src="/lib/cookieconsent/cookieconsent.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{},"cookieconsent":{"content":{"dismiss":"Got it!","link":"Learn more","message":"This website uses Cookies to improve your experience."},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":50,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

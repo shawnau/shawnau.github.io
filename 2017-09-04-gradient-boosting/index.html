@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>梯度提升(Gradient Boosting) - Laniakea</title><meta name="Description" content="xxuan&#39;s blog"><meta property="og:title" content="梯度提升(Gradient Boosting)" />
+<meta property="og:description" content="
+自己写的老物了, 整理一下发出来, 可能会修改" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://xxuan.cc/2017-09-04-gradient-boosting/" /><meta property="og:image" content="http://xxuan.cc/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2017-09-04T22:05:06+00:00" />
+<meta property="article:modified_time" content="2017-09-04T22:05:06+00:00" /><meta property="og:site_name" content="xxuan.cc" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="http://xxuan.cc/logo.png"/>
+
+<meta name="twitter:title" content="梯度提升(Gradient Boosting)"/>
+<meta name="twitter:description" content="
+自己写的老物了, 整理一下发出来, 可能会修改"/>
+<meta name="application-name" content="Laniakea">
+<meta name="apple-mobile-web-app-title" content="Laniakea"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://xxuan.cc/2017-09-04-gradient-boosting/" /><link rel="prev" href="http://xxuan.cc/2017-08-20-python-functional-programming/" /><link rel="next" href="http://xxuan.cc/2017-09-21-numpy/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" href="/lib/animate/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "梯度提升(Gradient Boosting)",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/xxuan.cc\/2017-09-04-gradient-boosting\/"
+        },"genre": "posts","keywords": "gbdt","wordcount":  1453 ,
+        "url": "http:\/\/xxuan.cc\/2017-09-04-gradient-boosting\/","datePublished": "2017-09-04T22:05:06+00:00","dateModified": "2017-09-04T22:05:06+00:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "xiaoxuan"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Laniakea">Laniakea</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/" title="存档脑细胞"> 文章 </a><a class="menu-item" href="/playground/" title="玩耍算法题的地方"> 练习场 </a><a class="menu-item" href="/code/" title="存放大概率过期的代码"> 码农 </a><a class="menu-item" href="/tags/" title="标签"> Tags </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Laniakea">Laniakea</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="存档脑细胞">文章</a><a class="menu-item" href="/playground/" title="玩耍算法题的地方">练习场</a><a class="menu-item" href="/code/" title="存放大概率过期的代码">码农</a><a class="menu-item" href="/tags/" title="标签">Tags</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">梯度提升(Gradient Boosting)</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>xiaoxuan</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2017-09-04">2017-09-04</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;1453 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;3 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="true">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#1-任意损失函数的boosting">1. 任意损失函数的Boosting</a></li>
+        <li><a href="#2-gradient-boosting">2. Gradient Boosting</a></li>
+        <li><a href="#3-gbdt回归算法">3. GBDT回归算法</a></li>
+        <li><a href="#4-gbdt分类算法">4. GBDT分类算法</a></li>
+        <li><a href="#5-正则化">5. 正则化</a></li>
+        <li><a href="#6-一些其他内容">6. 一些其他内容</a></li>
+      </ul>
+    </li>
+    <li><a href="#xgboost">XGBoost</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/50782598_p0.png"
+        data-srcset="http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/50782598_p0.png, http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/50782598_p0.png 1.5x, http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/50782598_p0.png 2x"
+        data-sizes="auto"
+        alt="http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/50782598_p0.png"
+        title="http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/50782598_p0.png" /></p>
+<p>自己写的老物了, 整理一下发出来, 可能会修改</p>
+<h3 id="1-任意损失函数的boosting">1. 任意损失函数的Boosting</h3>
+<p>损失函数的一般表示是:
+$$ L(y_i, f(x_i)) $$</p>
+<p>考虑使用前向分步算法求解一个任意损失函数:</p>
+<p>$$ (\beta_m, \gamma_m) = arg\min\limits_{\beta, \gamma} \sum\limits_{i=1}^N L(y_i, f_{m-1}(x_i) + \beta b(x_i;\gamma)) \tag{4.1}$$</p>
+<p>既然 $\beta b(x_i;\gamma)$ 和 $f_{m-1}(x_i)$ 相比是等价无穷小量, 使用 <strong>泰勒级数</strong> 在 $f_{m-1}(x_i)$ 附近展开:</p>
+<p>$$ L \approx \frac{1}{N} \sum\limits_{i=1}^N L(y_i, f_{m-1}(x_i)) + \beta \sum\limits_{i=1}^N \left. { \frac{\partial L(y_i, s)}{\partial s} } \right |_{s=f_{m-1}(x_i)} b(x_i;\gamma) \tag{4.2}$$</p>
+<p>为 (2) 添加正则化项防止 $b(x_i;\gamma)$ 变得太大, 既然我们已经有了 $\beta$ 去调整这个项的大小了:</p>
+<p>$$\begin{aligned} L &amp; \approx \frac{1}{N} \sum\limits_{i=1}^N L(y_i, f_{m-1}(x_i)) + \frac{\beta}{2} \sum\limits_{i=1}^N \left. { 2 \frac{\partial L(y_i, s)}{\partial s} } \right |_{s=f_{m-1}(x_i)} b(x_i;\gamma) + b^2(x_i;\gamma) \\ \text{(Strip the constants)} &amp; = \beta \sum\limits_{i=1}^N 2 \frac{\partial L}{\partial s} b(x_i;\gamma) + b^2(x_i;\gamma) \\ &amp; = \beta \sum\limits_{i=1}^N (b(x_i;\gamma) + \frac{\partial L}{\partial s})^2 - (\frac{\partial L}{\partial s} )^2 \end{aligned}\tag{4.3}$$</p>
+<blockquote>
+<p>参考了林轩田的机器学习技法MOOC</p>
+</blockquote>
+<h3 id="2-gradient-boosting">2. Gradient Boosting</h3>
+<p>现在可以最小化损失函数:</p>
+<ol>
+<li>求解 $b(x_i;\gamma)$.
+从 (3) 可知: $$\gamma_m = arg\min\limits_\gamma \beta \sum\limits_{i=1}^N \left(b(x_i;\gamma) + \left. { \frac{\partial L(y_i, s)}{\partial s} } \right |_{s=f_{m-1}(x_i)} \right)^2$$</li>
+</ol>
+<p>也就是在每一步 $m$ 中, 利用损失函数的梯度 $-\frac{\partial L(y_i, s)}{\partial s}$ 训练基分类器 $b(x_i;\gamma_m)$. 这就是为什么它被称为梯度提升算法</p>
+<p>$$ \text{fit } b(x_i;\gamma_m) = - \left. { \frac{\partial L(y_i, s)}{\partial s} } \right |_{s=f_{m-1}(x_i)}$$
+2. 求解 $\beta$ $$\beta_m = arg\min\limits_\beta \sum\limits_{i=1}^N L(y_i, f_{m-1}(x_i) + \beta b(x_i;\gamma_m))$$ 既然我们已经有了 $y_i$, $f_{m-1}(x_i)$ 和 $b(x_i;\gamma_m)$, 那原问题就变成了一个简单的一维变量最优化问题, 那就很容易解决了整个算法的思想很简单, 最常用的基分类器是决策树, 称为gradient boosting decision tree (GBDT)</p>
+<h3 id="3-gbdt回归算法">3. GBDT回归算法</h3>
+<p>基分类器是CART回归树</p>
+<ul>
+<li>输入: 训练集${\displaystyle {(x_{i},y_{i})}_{i=1}^{n},}$可导损失函数${\displaystyle L(y,F(x)),}$基分类器个数/迭代个数$M$</li>
+<li>输出: 集成回归器$ F_M(x) $</li>
+</ul>
+<ol>
+<li>初始化 $$ F_0(x) = \underset{\gamma}{\arg\min} \sum_{i=1}^n L(y_i, \gamma) $$</li>
+<li>对m个基分类器/回归器 1. 计算损失函数对每个样本的一阶导数近似: $$ r_{im} = -\left[\frac{\partial L(y_i, F(x_i))}{\partial F(x_i)}\right]_{F(x)=F_{m-1}(x)} \quad {i=1, \ldots, n}$$</li>
+<li>使用${(x_i, r_{im})}_{i=1}^n$训练下一个回归树 $${\displaystyle h_{m}(x)=\sum _{j=1}^{J_{m}}c_{jm}I(x\in R_{jm}),}$$</li>
+<li>用一维线性搜索最优化基分类器在每个区间的输出$$ c_{mj} = \underbrace{arg; min}_{c}\sum\limits_{x_i \in R_{tj}} L(y_i,f_{m-1}(x_i) +c) $$ 其中$R_{tj}, j =1,2,&hellip;, J$, $J$为叶子节点的数量</li>
+<li>更新强学习器 $$ F_{M}(x) = f_{m-1}(x) + \sum\limits_{j=1}^{J}c_{mj}I(x \in R_{tj}) $$</li>
+</ol>
+<h3 id="4-gbdt分类算法">4. GBDT分类算法</h3>
+<ol>
+<li>二分类算法
+定义预测模型 $$ p(x)=\frac{e^{F(x)}}{e^{F(x)}+e^{-F(x)}} $$ $$ F(x)=\frac{1}{2}log(\frac{p(x)}{1-p(x)}) $$
+预测时将$F(x)$转换成$p(x)$, 然后比较大小. 在此之上定义对数损失函数(MLE损失)</li>
+<li>多分类算法
+类似于Softmax $$ p_k(x) = \frac{\exp(f_k(x))} { \sum\limits_{l=1}^{K} exp(f_l(x))} $$ $$ F_k(x) = log(p_k(x)) - \frac{1}{K} \sum\limits_{i=1}^K log(p_i(x))$$ 损失函数为: $$ L(y, f(x)) = - \sum\limits_{k=1}^{K}y_klog;p_k(x) $$ 集合上两式，我们可以计算出第t轮的第i个样本对应类别k的负梯度误差为: $$ r_{tik} = -\bigg[\frac{\partial L(y, f(x_i)))}{\partial f(x_i)}\bigg]_{f_k(x) = f_{k, t-1};; (x)} = y_{il} - p_{k, t-1}(x_i) $$
+过程:</li>
+<li>初始化先验分布为均匀分布$ F_k(x) = 1/K $</li>
+<li>对 $t = 1, 2, \cdots, T$ a. 对每个label, 计算$p_k(x)$ b. 对每个label, 计算损失函数$f_{l, t}$在每个样本$i$处的一阶导数 c. 分别拟合一阶导数, 更新$F_k(x)$</li>
+</ol>
+<h3 id="5-正则化">5. 正则化</h3>
+<ol>
+<li>Shrinkage
+$$ f_{k}(x) = f_{k-1}(x) + \nu h_k(x) $$采用步长$0&lt; \upsilon &lt;1$降低每个模型的贡献, 往往伴随着$M$的增加, 即缩减每个基分类器的贡献, 同时使用更多的基分类器, 降低过拟合</li>
+<li>Stochastic gradient boosting 类似于Bagging的手段, 每棵树生成的时候都使用一部分训练数据</li>
+<li>Number of observations in leaves 在停止条件里加入叶节点的样本数量, 小于等于就停止</li>
+<li>Penalize Complexity of Tree</li>
+</ol>
+<h3 id="6-一些其他内容">6. 一些其他内容</h3>
+<ol>
+<li>DART(Dropout Addictive Regression Tree): 为了解决Boosting过程中, 首先产生的树拥有更大的贡献, 采取类似于Dropout的方法: 每次新加一棵树，这棵树要拟合的并不是之前全部树ensemble后的残差，而是随机抽取的一些树ensemble；同时新加的树结果要规范化一下.</li>
+</ol>
+<h2 id="xgboost">XGBoost</h2>
+<p>两篇文章已经介绍得很好了:</p>
+<ol>
+<li><a href="https://www.zybuluo.com/yxd/note/611571#gbdt%e7%ae%97%e6%b3%95%e5%8e%9f%e7%90%86%e6%b7%b1%e5%85%a5%e8%a7%a3%e6%9e%90" target="_blank" rel="noopener noreffer ">关于特征选择: GBDT算法原理深入解析</a></li>
+<li><a href="https://www.zybuluo.com/yxd/note/614495" target="_blank" rel="noopener noreffer ">关于特征重要度: Tree ensemble算法的特征重要度计算</a></li>
+</ol>
+<p>一句话, 在子树中, 某一个特征的重要度就是所有使用该特征分裂的节点的损失的减少值, 亦即:$$ Gain= - \frac12 \left[ \frac{(G_L+G_R)^2}{H_L+H_R+\lambda} - \frac{G_L^2}{H_L+\lambda} - \frac{G_R^2}{H_R+\lambda} \right] - \gamma $$对某个特征求gain之和, 再对所有基分类器求算术平均值即可得到特征重要度.</p>
+<blockquote>
+<p><a href="http://www.cnblogs.com/pinard/p/6140514.html" target="_blank" rel="noopener noreffer ">梯度提升树(GBDT)原理小结</a></p>
+</blockquote></div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2017-09-04</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/2017-09-04-gradient-boosting/index.md" target="_blank">Read Markdown</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="http://xxuan.cc/2017-09-04-gradient-boosting/" data-title="梯度提升(Gradient Boosting)" data-hashtags="gbdt"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="http://xxuan.cc/2017-09-04-gradient-boosting/" data-hashtag="gbdt"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="http://xxuan.cc/2017-09-04-gradient-boosting/" data-title="梯度提升(Gradient Boosting)"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="http://xxuan.cc/2017-09-04-gradient-boosting/" data-title="梯度提升(Gradient Boosting)"><i data-svg-src="/lib/simple-icons/icons/line.min.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="http://xxuan.cc/2017-09-04-gradient-boosting/" data-title="梯度提升(Gradient Boosting)"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/gbdt/">gbdt</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/2017-08-20-python-functional-programming/" class="prev" rel="prev" title="Python核心编程笔记2 函数式编程"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>Python核心编程笔记2 函数式编程</a>
+            <a href="/2017-09-21-numpy/" class="next" rel="next" title="Python数据分析笔记1 numpy">Python数据分析笔记1 numpy<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+<div id="comments"><div id="disqus_thread" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://disqus.com/?ref_noscript">Disqus</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.102.2">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2016 - 2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">xiaoxuan</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/cookieconsent/cookieconsent.min.css"><script type="text/javascript" src="https://xxuan-cc.disqus.com/embed.js" defer></script><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/mhchem.min.js"></script><script type="text/javascript" src="/lib/cookieconsent/cookieconsent.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{},"cookieconsent":{"content":{"dismiss":"Got it!","link":"Learn more","message":"This website uses Cookies to improve your experience."},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":50,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

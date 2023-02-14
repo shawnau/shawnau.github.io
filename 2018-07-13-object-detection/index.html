@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>目标检测综述-从RCNN到Mask-RCNN - Laniakea</title><meta name="Description" content="xxuan&#39;s blog"><meta property="og:title" content="目标检测综述-从RCNN到Mask-RCNN" />
+<meta property="og:description" content="存货, 介绍了RCNN系列的发展历史以及基本理念" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://xxuan.cc/2018-07-13-object-detection/" /><meta property="og:image" content="http://xxuan.cc/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2018-07-13T18:06:56+00:00" />
+<meta property="article:modified_time" content="2018-07-13T18:06:56+00:00" /><meta property="og:site_name" content="xxuan.cc" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="http://xxuan.cc/logo.png"/>
+
+<meta name="twitter:title" content="目标检测综述-从RCNN到Mask-RCNN"/>
+<meta name="twitter:description" content="存货, 介绍了RCNN系列的发展历史以及基本理念"/>
+<meta name="application-name" content="Laniakea">
+<meta name="apple-mobile-web-app-title" content="Laniakea"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://xxuan.cc/2018-07-13-object-detection/" /><link rel="prev" href="http://xxuan.cc/2018-07-13-image-classification/" /><link rel="next" href="http://xxuan.cc/2018-07-13-semantic-segmentation/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" href="/lib/animate/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "目标检测综述-从RCNN到Mask-RCNN",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/xxuan.cc\/2018-07-13-object-detection\/"
+        },"genre": "posts","keywords": "RCNN, FPN","wordcount":  2915 ,
+        "url": "http:\/\/xxuan.cc\/2018-07-13-object-detection\/","datePublished": "2018-07-13T18:06:56+00:00","dateModified": "2018-07-13T18:06:56+00:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "xiaoxuan"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Laniakea">Laniakea</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/" title="存档脑细胞"> 文章 </a><a class="menu-item" href="/playground/" title="玩耍算法题的地方"> 练习场 </a><a class="menu-item" href="/code/" title="存放大概率过期的代码"> 码农 </a><a class="menu-item" href="/tags/" title="标签"> Tags </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Laniakea">Laniakea</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="存档脑细胞">文章</a><a class="menu-item" href="/playground/" title="玩耍算法题的地方">练习场</a><a class="menu-item" href="/code/" title="存放大概率过期的代码">码农</a><a class="menu-item" href="/tags/" title="标签">Tags</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">目标检测综述-从RCNN到Mask-RCNN</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>xiaoxuan</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2018-07-13">2018-07-13</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;2915 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;6 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="true">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#rcnn">RCNN</a>
+      <ul>
+        <li><a href="#预测">预测</a></li>
+        <li><a href="#训练">训练</a></li>
+        <li><a href="#备注">备注</a></li>
+      </ul>
+    </li>
+    <li><a href="#sppnet">SPPNet</a></li>
+    <li><a href="#fast-rcnn">Fast RCNN</a>
+      <ul>
+        <li><a href="#预测-1">预测</a></li>
+        <li><a href="#训练-1">训练</a></li>
+        <li><a href="#notes">Notes</a></li>
+      </ul>
+    </li>
+    <li><a href="#faster-rcnn">Faster RCNN</a>
+      <ul>
+        <li><a href="#rpn">RPN</a></li>
+        <li><a href="#notes-1">Notes</a></li>
+      </ul>
+    </li>
+    <li><a href="#feature-pyramid-network">Feature Pyramid Network</a></li>
+    <li><a href="#retinanet">RetinaNet</a></li>
+    <li><a href="#yolo">YOLO</a></li>
+    <li><a href="#ssd">SSD</a></li>
+    <li><a href="#mask-rcnn">Mask RCNN</a></li>
+    <li><a href="#detnetsota">DetNet(SOTA)</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><p>存货, 介绍了RCNN系列的发展历史以及基本理念</p>
+<h2 id="rcnn">RCNN</h2>
+<h3 id="预测">预测</h3>
+<p><a href="https://arxiv.org/abs/1311.2524" target="_blank" rel="noopener noreffer ">Rich feature hierarchies for accurate object detection and semantic segmentation</a>(2013)</p>
+<ol>
+<li>
+<p><strong>Selective Search</strong> 生成大约2000个 <strong>Region Proposals</strong>, 这是category-independent的, 也就是只有object/background之分</p>
+</li>
+<li>
+<p>特征提取:</p>
+<ol>
+<li>将Region Proposals切割的图片缩放(crop/warp) 到固定尺寸(227*227)</li>
+<li>通过(<strong>Alexnet</strong>) 生成4096维特征向量</li>
+</ol>
+</li>
+<li>
+<p>对每一类:</p>
+<ol>
+<li>通过$k$个SVM(二分类), 输出属于各个类的score</li>
+<li>给出score和proposal之后, 对每一类用<strong>non-maximum suppresion</strong> over a <strong>learned</strong> threshold来去重</li>
+</ol>
+</li>
+<li>
+<p>通过训练好的LR模型<strong>Bounding Box Regression</strong>对proposal进行精修</p>
+</li>
+</ol>
+<h3 id="训练">训练</h3>
+<ol>
+<li>载入ILSVRC2012上预训练的Alexnet</li>
+<li>训练(Fine-Tune)CNN:
+<ol>
+<li>数据: region proposals切割好的图片</li>
+<li>模型: 将网络最后一层改为$R^{N+1}$层, 代表了N+1(背景)类</li>
+<li><strong>IoU &gt; 0.5</strong>是正样本, 否则是负样本(第N+1类)</li>
+<li>优化: SGD, batch大小为128, 每个batch中正负样本比为1/3, 学习率为预训练的1/10</li>
+</ol>
+</li>
+<li>训练 SVM:
+<ol>
+<li>正样本: <strong>Ground Truth</strong> 通过CNN的特征向量</li>
+<li>负样本: <strong>IoU &lt; 0.3</strong> 的proposal通过CNN的特征向量</li>
+</ol>
+</li>
+<li>训练LR进行Bounding Box Regression
+<ol>
+<li>输入: CNN输出的4096维向量</li>
+<li>正样本: 计算出bbox delta</li>
+</ol>
+</li>
+</ol>
+<h3 id="备注">备注</h3>
+<p>Q: 为何不用Fine-tune的时候的CNN直接检测物体类别? 最后一层不就是softmax分类器吗?
+A: 因为准确率低, 为了获得充足的样本训练CNN, IoU阈值(&gt;0.5)取得比较低, 检测出来的物体往往不包含整个样本. 将提取出来的特征给SVM并用更严格的策略(Ground Truth为正样本, &lt;0.3为负样本, 其他丢弃, 这是验证集测试mAP出来的结果)来判断包括物体的bbox, 效果更好. 因为SVM适合小样本训练.</p>
+<p>Q: 什么是Bounding Box Regression?
+A: 有四个模型, 两个是回归坐标的, 两个是回归长宽的. 输入是CNN提取Regional Proposals的特征向量, 输出是四种model要回归的目标中的一个:
+$$
+\begin{aligned}
+\hat G_x &amp;= P_w d_x(P) + P_x \\
+\hat G_y &amp;= P_h d_y(P) + P_y \\
+\hat G_w &amp;= P_w \exp(d_w(P)) \\
+\hat G_h &amp;= P_h \exp(d_h(P)) \\
+\end{aligned}
+$$</p>
+<p>Q: 什么是Hard negative mining?
+A: <a href="https://www.zhihu.com/question/46292829" target="_blank" rel="noopener noreffer ">rcnn中的Hard negative mining方法是如何实现的</a></p>
+<h2 id="sppnet">SPPNet</h2>
+<p><a href="https://arxiv.org/abs/1406.4729" target="_blank" rel="noopener noreffer ">Spatial Pyramid Pooling in Deep Convolutional Networks for Visual Recognition</a>(2014/6)
+SPPNet主要做了两件事:</p>
+<ol>
+<li>
+<p>从特征图上裁剪ROI</p>
+<ol>
+<li>在RCNN里, 通过Selective Search生成2000个Region Proposals, 然后crop/warp, 再喂进CNN, 太慢</li>
+<li>在SPPNet里, 将整张图片喂进CNN, 然后从特征图上直接裁剪出ROI. 这样只需要一次前向传播, 比之前要2000次快得多</li>
+</ol>
+</li>
+<li>
+<p>提出Spatial Pyramid Pooling Layer(SPP Layer)解决了把不同尺度的feature map转换为一个尺度的方案, 不再需要crop/warp了:</p>
+<ol>
+<li>将feature map按不同维度划分并max pooling</li>
+<li>拼接各个维度的输出, 产生固定维度的输出</li>
+</ol>
+</li>
+<li>
+<p>训练上, 由于可以输入任何尺寸的图片, 所以是分几个阶段用不同分辨率的图训练的. 其他细节看<a href="https://zhuanlan.zhihu.com/p/27485018" target="_blank" rel="noopener noreffer ">这篇专栏</a>吧&hellip;.</p>
+</li>
+</ol>
+<h2 id="fast-rcnn">Fast RCNN</h2>
+<p><a href="https://arxiv.org/abs/1504.08083" target="_blank" rel="noopener noreffer ">Fast R-CNN</a>(2015/4)</p>
+<h3 id="预测-1">预测</h3>
+<ol>
+<li><strong>Selective Search</strong> 生成大约2000个 <strong>Region Proposals</strong>, 和RCNN一样</li>
+<li>特征提取:
+<ol>
+<li>将图片输入CNN, 得到特征图</li>
+<li>用<strong>Region Proposals</strong>直接从特征图上得到切割过的特征</li>
+<li>使用<strong>ROI pooling layer</strong>得到特征向量, 所以从Fast RCNN开始, 训练和预测对图片的尺寸没有要求了</li>
+</ol>
+</li>
+<li>特征向量 -&gt; FC1 -&gt; SoftMax Probability ($K+1$)</li>
+<li>特征向量 -&gt; FC2 -&gt; bbox offsets ($4 \times K$)</li>
+<li>对每一类用nms得到最终结果</li>
+</ol>
+<h3 id="训练-1">训练</h3>
+<ol>
+<li>预训练CNN (Imagenet):
+<ol>
+<li>将最后一层pooling layer换成ROI pooling layer</li>
+<li>将最后一个全连接层换成两个并行的全连接层FC1, FC2</li>
+<li>网络需要同时输入图片和ROI</li>
+</ol>
+</li>
+<li>同时训练bbox regressor和softmax分类器
+<ol>
+<li>bbox regressor用Smooth L1损失函数</li>
+<li>Softmax for probability</li>
+<li>将两个损失相加之后回传</li>
+</ol>
+</li>
+<li>一个Mini-Batch中重采样正负样本:
+<ol>
+<li>一个batch包含两张图</li>
+<li>每张图贡献64个ROI, 一共128个</li>
+<li>正样本: IoU&gt;0.5</li>
+<li>负样本: IoU $\in$ [0.1, 0.5) (<strong>hard negative mining</strong>)</li>
+</ol>
+</li>
+</ol>
+<h3 id="notes">Notes</h3>
+<ol>
+<li>ROI pooling: 其实就是单层SPP layer, 详细机制参考<a href="https://blog.deepsense.ai/region-of-interest-pooling-explained/" target="_blank" rel="noopener noreffer ">region-of-interest-pooling-explained</a></li>
+<li><a href="https://zhuanlan.zhihu.com/p/24780433" target="_blank" rel="noopener noreffer ">原始图片中的ROI如何映射到到feature map?</a>这坑挺深的</li>
+</ol>
+<h2 id="faster-rcnn">Faster RCNN</h2>
+<p><a href="https://arxiv.org/abs/1506.01497" target="_blank" rel="noopener noreffer ">Faster R-CNN: Towards Real-Time Object Detection</a>(2015/6)
+核心是把Selective Search交给了RPN做, 而RPN和fast rcnn是可以合并的</p>
+<h3 id="rpn">RPN</h3>
+<p><a href="https://www.quora.com/How-does-the-region-proposal-network-RPN-in-Faster-R-CNN-work" target="_blank" rel="noopener noreffer ">https://www.quora.com/How-does-the-region-proposal-network-RPN-in-Faster-R-CNN-work</a></p>
+<ol>
+<li>输入: CNN产生的固定尺寸的特征图</li>
+<li>第一层: $n \times n$ 卷积层, 输出256维特征向量. ($3 \times 3$ in the paper)</li>
+<li>两个并行的分支:
+<ol>
+<li>$cls$ 分支: $(2k, H, W)$ 每个像素位置产生$2k$个anchor boxes, 其中k为不同比例/尺寸的anchor数目</li>
+<li>$reg$分支: $(4k, H, W)$每个像素位置产生$4k$个delta, bbox regression</li>
+</ol>
+</li>
+<li>RPN&rsquo;s loss function:
+$$
+L(p_i, t_i) = \frac{1}{N_{cls}} \sum\limits_{i} L_{cls}(p_i, p^{\star}_{i}) + \lambda \frac{1}{N_{reg}} \sum\limits_{i} p_{i}^{\star}L_{reg}(t_i, t^{\star}_{i})
+$$
+<ul>
+<li>$i$: index of anchor in a mini-batch</li>
+<li>$p_i$: predicted probability of foreground</li>
+<li>$p^*_i$: grund truth. 1 for postive, 0 for negative</li>
+<li>$t_i$: bbox regression offset</li>
+<li>$L_{cls}$: log loss</li>
+<li>$L_{reg}$: Smooth L1 loss</li>
+</ul>
+</li>
+</ol>
+<h3 id="notes-1">Notes</h3>
+<ol>
+<li>后续RPN产生的ROIs扔进fast rcnn即可, RPN和RCNN共享backbone, 训练过程和细节不表, 见<a href="https://zhuanlan.zhihu.com/p/24916624" target="_blank" rel="noopener noreffer ">Faster R-CNN</a></li>
+<li>有关RPN的细节见<a href="https://www.zhihu.com/question/42205480/answer/155759667" target="_blank" rel="noopener noreffer ">faster rcnn中rpn的anchor，sliding windows，proposals</a></li>
+</ol>
+<h2 id="feature-pyramid-network">Feature Pyramid Network</h2>
+<p><a href="https://arxiv.org/abs/1612.03144" target="_blank" rel="noopener noreffer ">Feature Pyramid Networks for Object Detection</a>(2016/11)
+核心是Lateral Block. 解决了位置精度和语义信息的冲突问题:</p>
+<ol>
+<li>越靠近输入的特征图语义信息越少, 但是位置信息越精确(特征图大)</li>
+<li>越远离输入的特征图语义信息越强, 但是位置信息越弱(各种卷积, pooling)</li>
+</ol>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/fpn.png"
+        data-srcset="http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/fpn.png, http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/fpn.png 1.5x, http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/fpn.png 2x"
+        data-sizes="auto"
+        alt="http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/fpn.png"
+        title="fpn" /></p>
+<ol start="4">
+<li>左边是resnet的四层<code>stage</code>输出的特征图, 简称C2, C3, C4, C5</li>
+<li>右边是P层, 每个P层通过上一层P层的upscale和相邻C层的smooth(统一通道数)之后相加得到. 每层通道数都是256, 其中最高层P4直接由C5 smooth而来.</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">LateralBlock</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Feature Pyramid LateralBlock
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">c_planes</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">        c_planes: channels of the C layer to smooth
+</span></span></span><span class="line"><span class="cl"><span class="s2">        &#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">super</span><span class="p">(</span><span class="n">LateralBlock</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">lateral</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Conv2d</span><span class="p">(</span><span class="n">c_planes</span><span class="p">,</span> <span class="mi">256</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">smooth</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Conv2d</span><span class="p">(</span><span class="mi">256</span><span class="p">,</span> <span class="mi">256</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">p</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">        :param c: c layer before conv 1x1
+</span></span></span><span class="line"><span class="cl"><span class="s2">        :param p: p layer before upsample
+</span></span></span><span class="line"><span class="cl"><span class="s2">        :return: conv3x3( conv1x1(c) + upsample(p) )
+</span></span></span><span class="line"><span class="cl"><span class="s2">        &#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">H</span><span class="p">,</span> <span class="n">W</span> <span class="o">=</span> <span class="n">c</span><span class="o">.</span><span class="n">size</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">        <span class="n">c</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">lateral</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">p</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">upsample</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">scale_factor</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;nearest&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="c1"># p = F.upsample(p, size=(H, W), mode=&#39;bilinear&#39;)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">p</span> <span class="o">=</span> <span class="n">p</span><span class="p">[:,</span> <span class="p">:,</span> <span class="p">:</span><span class="n">H</span><span class="p">,</span> <span class="p">:</span><span class="n">W</span><span class="p">]</span> <span class="o">+</span> <span class="n">c</span>
+</span></span><span class="line"><span class="cl">        <span class="n">p</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">smooth</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">p</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="retinanet">RetinaNet</h2>
+<p><a href="https://arxiv.org/abs/1708.02002" target="_blank" rel="noopener noreffer ">Focal Loss for Dense Object Detection</a>: 对正负样本不平衡的深入挖掘</p>
+<h2 id="yolo">YOLO</h2>
+<p><a href="https://zhuanlan.zhihu.com/p/24916786" target="_blank" rel="noopener noreffer ">人家讲的很好了, 懒得复制粘贴了</a>
+简单说几点</p>
+<ol>
+<li>直接在7x7的特征图上输出每个格子的检测/分类结果, 每个格子输出两个proposal$(C_x, C_y, w, h, score, \vec c)$, 这个score相当于RPN的score, $\vec c$是一个one-hot的类概率向量.</li>
+<li>这个输出是先拉平之后经过<strong>fc层</strong>再还原成7x7的! 如此简单粗暴, 惊不惊喜, 意不意外? PANet有更优雅的做法, 分出一个branch来指导. 但总之有fc层会对速度影响挺大的.</li>
+<li>这么多loss混在一起, 需要给予不同的权重防止某一种dominate. 有/没有object的权重是不同的(这个有没有需要用iou去判断)</li>
+<li>小box的损失应该比大box大, 设计损失函数的时候直接用长宽的根号差来处理&hellip;</li>
+</ol>
+<p>嗯, 这种把所有损失一锅端的方法非常粗暴</p>
+<h2 id="ssd">SSD</h2>
+<ol>
+<li>这玩意就是个class-specified RPN.</li>
+<li>SSD取了backbone不同阶段的特征图, 大概当时FPN还没横空出世吧?</li>
+</ol>
+<p><a href="https://www.zhihu.com/question/50910763" target="_blank" rel="noopener noreffer ">比较一下这两兄弟</a></p>
+<h2 id="mask-rcnn">Mask RCNN</h2>
+<p>详见blog中关于mask-rcnn的文章&hellip;懒得再复制粘贴了</p>
+<h2 id="detnetsota">DetNet(SOTA)</h2>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/detnet1.png"
+        data-srcset="http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/detnet1.png, http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/detnet1.png 1.5x, http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/detnet1.png 2x"
+        data-sizes="auto"
+        alt="http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/detnet1.png"
+        title="http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/detnet1.png" />
+<a href="https://link.zhihu.com/?target=https%3A//arxiv.org/abs/1804.06215" target="_blank" rel="noopener noreffer ">DetNet: A Backbone network for Object Detection</a>[ECCV18]
+主要是对ResNet50的魔改</p>
+<ol>
+<li>加入了空洞卷积</li>
+<li>唔 为了防止越卷越小加入了一些1x1卷积(似乎?</li>
+</ol>
+<p>没有看到特别有趣的insight&hellip;</p></div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2018-07-13</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/2018-07-13-object-detection/index.md" target="_blank">Read Markdown</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="http://xxuan.cc/2018-07-13-object-detection/" data-title="目标检测综述-从RCNN到Mask-RCNN" data-hashtags="RCNN,FPN"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="http://xxuan.cc/2018-07-13-object-detection/" data-hashtag="RCNN"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="http://xxuan.cc/2018-07-13-object-detection/" data-title="目标检测综述-从RCNN到Mask-RCNN"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="http://xxuan.cc/2018-07-13-object-detection/" data-title="目标检测综述-从RCNN到Mask-RCNN"><i data-svg-src="/lib/simple-icons/icons/line.min.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="http://xxuan.cc/2018-07-13-object-detection/" data-title="目标检测综述-从RCNN到Mask-RCNN"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/rcnn/">RCNN</a>,&nbsp;<a href="/tags/fpn/">FPN</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/2018-07-13-image-classification/" class="prev" rel="prev" title="图像识别综述-从Inception到ResNet"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>图像识别综述-从Inception到ResNet</a>
+            <a href="/2018-07-13-semantic-segmentation/" class="next" rel="next" title="语义分割综述">语义分割综述<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+<div id="comments"><div id="disqus_thread" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://disqus.com/?ref_noscript">Disqus</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.102.2">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2016 - 2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">xiaoxuan</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/cookieconsent/cookieconsent.min.css"><script type="text/javascript" src="https://xxuan-cc.disqus.com/embed.js" defer></script><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/mhchem.min.js"></script><script type="text/javascript" src="/lib/cookieconsent/cookieconsent.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{},"cookieconsent":{"content":{"dismiss":"Got it!","link":"Learn more","message":"This website uses Cookies to improve your experience."},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":50,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

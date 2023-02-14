@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>决策树 - Laniakea</title><meta name="Description" content="xxuan&#39;s blog"><meta property="og:title" content="决策树" />
+<meta property="og:description" content="决策树的小结" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://xxuan.cc/2017-03-26-decision-tree/" /><meta property="og:image" content="http://xxuan.cc/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2017-03-27T00:29:14+00:00" />
+<meta property="article:modified_time" content="2017-03-27T00:29:14+00:00" /><meta property="og:site_name" content="xxuan.cc" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="http://xxuan.cc/logo.png"/>
+
+<meta name="twitter:title" content="决策树"/>
+<meta name="twitter:description" content="决策树的小结"/>
+<meta name="application-name" content="Laniakea">
+<meta name="apple-mobile-web-app-title" content="Laniakea"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://xxuan.cc/2017-03-26-decision-tree/" /><link rel="prev" href="http://xxuan.cc/2017-03-24-adaboost/" /><link rel="next" href="http://xxuan.cc/2017-03-27-logistic-regression/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" href="/lib/animate/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "决策树",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/xxuan.cc\/2017-03-26-decision-tree\/"
+        },"genre": "posts","keywords": "decision tree, machine learning","wordcount":  2079 ,
+        "url": "http:\/\/xxuan.cc\/2017-03-26-decision-tree\/","datePublished": "2017-03-27T00:29:14+00:00","dateModified": "2017-03-27T00:29:14+00:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "xiaoxuan"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Laniakea">Laniakea</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/" title="存档脑细胞"> 文章 </a><a class="menu-item" href="/playground/" title="玩耍算法题的地方"> 练习场 </a><a class="menu-item" href="/code/" title="存放大概率过期的代码"> 码农 </a><a class="menu-item" href="/tags/" title="标签"> Tags </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Laniakea">Laniakea</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="存档脑细胞">文章</a><a class="menu-item" href="/playground/" title="玩耍算法题的地方">练习场</a><a class="menu-item" href="/code/" title="存放大概率过期的代码">码农</a><a class="menu-item" href="/tags/" title="标签">Tags</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">决策树</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>xiaoxuan</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2017-03-27">2017-03-27</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;2079 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;5 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="true">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#第一部分-熵-条件熵和信息增益">第一部分: 熵, 条件熵和信息增益</a>
+      <ul>
+        <li><a href="#1-熵">1. 熵</a></li>
+        <li><a href="#2-条件熵">2. 条件熵</a></li>
+        <li><a href="#3-一个例子">3. 一个例子</a></li>
+        <li><a href="#4-信息增益">4. 信息增益</a></li>
+        <li><a href="#5-信息增益比">5. 信息增益比</a></li>
+      </ul>
+    </li>
+    <li><a href="#第二部分-id3和c45算法">第二部分: ID3和C4.5算法</a>
+      <ul>
+        <li><a href="#1-id3">1. ID3</a></li>
+        <li><a href="#2-c45">2. C4.5</a></li>
+      </ul>
+    </li>
+    <li><a href="#第三部分-cart">第三部分: CART</a>
+      <ul>
+        <li><a href="#1-回归树">1. 回归树</a></li>
+        <li><a href="#2-分类树">2. 分类树</a></li>
+      </ul>
+    </li>
+    <li><a href="#第四部分-剪枝">第四部分: 剪枝</a>
+      <ul>
+        <li><a href="#1-id3c45的剪枝">1. ID3/C4.5的剪枝</a></li>
+        <li><a href="#2-cart的剪枝">2. CART的剪枝</a></li>
+      </ul>
+    </li>
+    <li><a href="#第五部分-连续与缺失值处理">第五部分: 连续与缺失值处理</a>
+      <ul>
+        <li><a href="#1-连续值-连续特征离散化">1. 连续值: 连续特征离散化</a></li>
+        <li><a href="#2-缺失值">2. 缺失值</a></li>
+      </ul>
+    </li>
+    <li><a href="#第六部分-多变量决策树">第六部分: 多变量决策树</a></li>
+    <li><a href="#第七部分-python实现">第七部分: python实现</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><p>决策树的小结</p>
+<h2 id="第一部分-熵-条件熵和信息增益">第一部分: 熵, 条件熵和信息增益</h2>
+<h3 id="1-熵">1. 熵</h3>
+<ol>
+<li>熵的定义和变量的概率分布有关, 和变量本身的值无关, 定义如下:
+$$ H(X) = - \sum\limits_{i=1}^{n} p_i log p_i \\
+\text{其中} P(X=x_i) = p_i, i= 1,2,\cdots, n$$</li>
+<li>$H(X)$的一个主要特点是$x$的分布越平均, 熵越大, 因此熵代表了分布的混乱程度</li>
+<li>另外, 对数底一般取2或e, 其单位为bit或nat</li>
+</ol>
+<h3 id="2-条件熵">2. 条件熵</h3>
+<ol>
+<li>假设两个随机变量$(X, Y)$的联合概率分布为$$P(X=x_i, Y=y_j) = p_{ij} \\ |X| = n, |Y| = m$$</li>
+<li>根据贝叶斯公式, $Y$对于$X$的条件概率为$$ P(Y = y_j | X=x_i) = \frac{P(X=x_i, Y=y_j)}{P(X=x_i)} = \frac{p_{ij}}{p_i}$$</li>
+<li>那么在给定$X= x_i$的条件下$Y$的条件概率分布的熵为
+$$
+\begin{align}
+H(Y | X=x_i) &amp; = - \sum\limits_{j=1}^{m} P(Y = y_j | X=x_i) log P(Y = y_j | X=x_i) \\
+&amp; =  - \sum\limits_{j=1}^{m} \frac{p_{ij}}{p_i}log \frac{p_{ij}}{p_i}
+\end{align}
+$$</li>
+<li>最后, $H(Y | X=x_i)$对于$X$的数学期望就是$Y$对于$X$的条件熵:
+$$ H(Y | X) =  \sum\limits_{i=1}^{n} p_i H(Y | X=x_i)$$</li>
+</ol>
+<h3 id="3-一个例子">3. 一个例子</h3>
+<p>条件熵的概念, 可以通过例子理解</p>
+<ul>
+<li>假设$X$是某位长者前去魔都的概率分布, 去是1, 不去是0
+$$P(X=1) = 0.5, P(X=0) = 0.5$$</li>
+<li>假设$Y$是魔都天气的概率分布, 1是晴, 0是雨
+$$P(Y=1) = 0.5, P(X=0) = 0.5$$</li>
+<li>也就是说, 去不去看心情, 天气好不好看老天. 然而
+$$ P(Y=1 |X=1 ) = 1 \\ P(Y=1 |X=0 ) = 0 \\ P(Y=0 |X=1 ) = 0 \\  P(Y=0 |X=0 ) = 1$$
+也就是说主席一来, 天气晴朗, 主席一走, 立马下雨</li>
+<li>那么求一下$Y$的条件概率分布的熵
+$$H(Y | X=1) = - (\frac{P_{11}}{P_{1}} log \frac{P_{11}}{P_{1}} + \frac{P_{01}}{P_{1}} log \frac{P_{01}}{P_{1}}) = -2 \\
+H(Y | X=不去) = - (\frac{P_{10}}{P_{0}} log \frac{P_{10}}{P_{0}} + \frac{P_{00}}{P_{0}} log \frac{P_{00}}{P_{0}}) = -2
+$$</li>
+<li>最后得到条件熵 $$ H(Y | X) =p_1 H(Y | X=1) + p_0H(Y | X=0) = -2$$</li>
+<li>总结一下, $H(X) = H(Y) = 1$, 然而$H(Y | X) = -2$, 也就是在主席到来的约束下, $Y$的条件熵下降了, 也就是天气分布的不确定性下降了, 可见主席来不来对天气好坏是有很大影响的</li>
+</ul>
+<h3 id="4-信息增益">4. 信息增益</h3>
+<p>信息增益表示得知特征$X$的信息而使得类Y的信息的不确定性减少的程度.
+拿之前的例子来说, 选择主席是否来这个特征对天气数据集的信息增益为
+$$ g(Y, X) = H(Y) - H(Y|X) = 1 - (-2) = 3$$</p>
+<p>决策树的特征选择基础就是建立在选择最大信息增益的特征上的.</p>
+<h3 id="5-信息增益比">5. 信息增益比</h3>
+<p>信息增益的一个缺点是决策树会偏向于选择取值较多的特征. 例如假设每个$X$的取值对应于独一无二的值(item_id类型的数据)有:</p>
+<p>$$
+\begin{align}
+H(Y | X=x_i) &amp; = - \sum\limits_{j=1}^{m} P(Y = y_j | X=x_i) log P(Y = y_j | X=x_i) \\
+&amp; = - \sum\limits_{j=1}^{m} \frac{p_{ij}}{p_i}log \frac{p_{ij}}{p_i} \\
+&amp; = - \frac{1/N}{1/N}log \frac{1/N}{1/N} = 0
+\end{align}
+$$</p>
+<p>$$ H(Y | X) =  \sum\limits_{i=1}^{n} p_i H(Y | X=x_i) = 0 $$
+条件熵降到了0, 显然信息增益是最大的. 但这样的分类毫无意义, 属于极端过拟合, 为了解决这个问题, 引入信息增益比.</p>
+<p>首先由于$X$的划分行为, 导致数据集label$Y$的熵增加了(每一类内部的熵减少了)</p>
+<p>$$ H_X(Y) = - \sum\limits^{n}_{i=1} P(X = x_i) log P(X = x_i) $$</p>
+<p>$$ g_R(Y, X) = \frac{H(Y) - H(Y|X)}{H_X(Y)} $$</p>
+<p>这样一来使用之前的例子, $ H_X(Y) = - n \times \frac{1}{n} log \frac{1}{n} = - log \frac{1}{n} $, $n$越大, 分得越细, 信息增益的分母越大, 信息增益比越小.</p>
+<h2 id="第二部分-id3和c45算法">第二部分: ID3和C4.5算法</h2>
+<h3 id="1-id3">1. ID3</h3>
+<p>Input: Train set $S$, feature set $A$, tolerance $\epsilon$
+Output: Decision Tree $T$</p>
+<ol>
+<li>If $s_i \in C_j$ for all $i$: $label = c_k$, return T</li>
+<li>If $A = \varnothing$: $label=c_j: \max(|c_j|)$, return T</li>
+<li>Else: calculate $g(S, A_i)$ for all $i$, choose $A_g$ in which $g = argmax(g(S, A_i))$</li>
+<li>If $g(S, A_g) &lt; \epsilon$: $label= c_j: \max(|c_j|)$, return T</li>
+<li>Else: Split $S$ into $S_i$ for each $a_i$ in $A_g$,  $label_i= c_j: \max(|c_j|), c_j \in S_i$, return T</li>
+<li>For each $a_i$ as a node, train set = $S_i$, feature set = $A - A_g$, run (1) ~ (5) recursively, return $T_i$</li>
+</ol>
+<h3 id="2-c45">2. C4.5</h3>
+<p>使用 信息增益率替代信息增益. 但信息增益率倾向于选择特征取值较少的, 故用<strong>启发式算法</strong>: 先选择信息增益高于平均水平的特征,再从中选择信息增益率最高的</p>
+<h2 id="第三部分-cart">第三部分: CART</h2>
+<h3 id="1-回归树">1. 回归树</h3>
+<ol>
+<li>训练集:
+$$D = \lbrace (X^{(1)}, y^{(1)}), (X^{(2)}, y^{(2)}), \cdots, (X^{(N)}, y^{(N)})  \rbrace \\ X = (x_1, x_2, \cdots, x_n)$$</li>
+<li>损失函数: 平方损失函数
+$$\sum\limits_i (y^{(i)} - f(X^{(i)}))^2$$</li>
+<li>划分手段: 对于第$f$个维度的特征$X_f$的某个值$v$(<strong>假设特征的值都是离散值</strong>), 将所有样本划分为两部分:
+$$ R_1(f, v) = \lbrace X | X_f \leq v  \rbrace \\ R_2(f, v) = \lbrace X | X_f &gt; v  \rbrace $$</li>
+<li>搜索最佳特征$f$和值$v$
+$$ \min\limits_{f, v}[\sum\limits_{X^{(i)} \in R_1} (y^{(i)} - \hat c_1 ) + \sum\limits_{X^{(i)} \in R_2} (y^{(i)} - \hat c_2 )] $$
+其中$\hat c_1, \hat c_2$是划分区域内部所有样本的$y^{(i)}$的均值, 这样使得平方误差最小.</li>
+</ol>
+<h3 id="2-分类树">2. 分类树</h3>
+<ol>
+<li>基尼指数: 从数据集中随机抽取两个样本, 其数据标记不一样的概率.</li>
+<li>假设$y$有$K$个类, 每个类有$C_k$个样本, 样本容量为|D|, 基尼指数被定义为:
+$$ \begin{align}
+Gini(p) &amp; = \sum\limits^{K}_{i = 1} p_i(1-p_i)  \\
+&amp; = 1 -  \sum\limits^{K}_{i = 1}p_i^2 \\
+&amp; = 1 -  \sum\limits^{K}_{i = 1} (\frac{|C_i|}{D})^2
+\end{align}
+$$</li>
+<li>和条件熵一样, 当数据集$D$被某一特征$A$按照是否取某一个值a的规则分割为两个集合$D_1, D_2$时, &ldquo;条件基尼指数&quot;为:
+$$ Gini(D, A) =  \frac{|D_1|}{|D|}Gini(D_1) + \frac{|D_2|}{|D|}Gini(D_2) $$</li>
+<li>CART分类树的构造规则和ID3类似, 选择条件基尼指数最大的特征递归构造</li>
+</ol>
+<h2 id="第四部分-剪枝">第四部分: 剪枝</h2>
+<h3 id="1-id3c45的剪枝">1. ID3/C4.5的剪枝</h3>
+<p>损失函数为:
+$$ C_{\alpha}(T) = \sum\limits_{t=1}^{|T|} N_t H_t(T) + \alpha|T| $$
+其中$N_t$代表第$t$个叶结点的容量, $H_t(T)$代表第$t$个叶结点的熵, 而$\alpha$即为正则化参数</p>
+<h3 id="2-cart的剪枝">2. CART的剪枝</h3>
+<ol>
+<li>预剪枝: 比较剪枝前后在验证集上的精度来决定是否剪枝</li>
+<li>后剪枝: 自下而上替换节点, 欠拟合风险小, 泛化能力优于预剪枝</li>
+</ol>
+<h2 id="第五部分-连续与缺失值处理">第五部分: 连续与缺失值处理</h2>
+<h3 id="1-连续值-连续特征离散化">1. 连续值: 连续特征离散化</h3>
+<p>二分法(bi-partition), C4.5使用</p>
+<ol>
+<li>对特征值排序:{啊,吖,阿,( ⊙ o ⊙ )啊！}</li>
+<li>取两个样本的中点作为分割点, 一共有n-1个分割点, 找到使得信息增益/率最大的分割点, 作为二分类特征处理</li>
+<li>与离散特征不同, 连续特征使用过的还可以继续使用</li>
+</ol>
+<h3 id="2-缺失值">2. 缺失值</h3>
+<ol>
+<li>对每个特征, 只取不缺失的行, 假设占总行数的比例为$\rho$</li>
+<li>改变信息增益计算方法: 在信息增益上乘以系数$\rho$即可</li>
+</ol>
+<h2 id="第六部分-多变量决策树">第六部分: 多变量决策树</h2>
+<p>使用特征的线性组合作为新的特征, 可以做到斜划分</p>
+<h2 id="第七部分-python实现">第七部分: python实现</h2>
+<p><a href="https://github.com/shawnau/machine%5c_learning/tree/master/Decision%5c_Tree" target="_blank" rel="noopener noreffer ">源代码</a>, 注释施工中</p></div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2017-03-27</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/2017-03-26-decision-tree/index.md" target="_blank">Read Markdown</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="http://xxuan.cc/2017-03-26-decision-tree/" data-title="决策树" data-hashtags="decision tree,machine learning"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="http://xxuan.cc/2017-03-26-decision-tree/" data-hashtag="decision tree"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="http://xxuan.cc/2017-03-26-decision-tree/" data-title="决策树"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="http://xxuan.cc/2017-03-26-decision-tree/" data-title="决策树"><i data-svg-src="/lib/simple-icons/icons/line.min.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="http://xxuan.cc/2017-03-26-decision-tree/" data-title="决策树"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/decision-tree/">decision tree</a>,&nbsp;<a href="/tags/machine-learning/">machine learning</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/2017-03-24-adaboost/" class="prev" rel="prev" title="Adaboost算法 &#43; python实现"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>Adaboost算法 + python实现</a>
+            <a href="/2017-03-27-logistic-regression/" class="next" rel="next" title="Logistic Regression, Softmax与最大熵">Logistic Regression, Softmax与最大熵<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+<div id="comments"><div id="disqus_thread" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://disqus.com/?ref_noscript">Disqus</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.102.2">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2016 - 2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">xiaoxuan</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/cookieconsent/cookieconsent.min.css"><script type="text/javascript" src="https://xxuan-cc.disqus.com/embed.js" defer></script><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/mhchem.min.js"></script><script type="text/javascript" src="/lib/cookieconsent/cookieconsent.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{},"cookieconsent":{"content":{"dismiss":"Got it!","link":"Learn more","message":"This website uses Cookies to improve your experience."},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":50,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

@@ -1,0 +1,80 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>统计学习方法 - Tag - Laniakea</title>
+        <link>http://xxuan.cc/tags/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/</link>
+        <description>统计学习方法 - Tag - Laniakea</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>shawn_au@outlook.com (xiaoxuan)</managingEditor>
+            <webMaster>shawn_au@outlook.com (xiaoxuan)</webMaster><lastBuildDate>Fri, 26 Aug 2016 21:01:12 &#43;0000</lastBuildDate><atom:link href="http://xxuan.cc/tags/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/" rel="self" type="application/rss+xml" /><item>
+    <title>EM算法</title>
+    <link>http://xxuan.cc/2016-08-26-expectation-maximization/</link>
+    <pubDate>Fri, 26 Aug 2016 21:01:12 &#43;0000</pubDate>
+    <author>xiaoxuan</author>
+    <guid>http://xxuan.cc/2016-08-26-expectation-maximization/</guid>
+    <description><![CDATA[<p>Expectation Maximization Algorithm</p>]]></description>
+</item>
+<item>
+    <title>Boosting(3)- Gradient Boosting</title>
+    <link>http://xxuan.cc/2016-06-24-gradient-boosting/</link>
+    <pubDate>Thu, 23 Jun 2016 22:47:00 &#43;0000</pubDate>
+    <author>xiaoxuan</author>
+    <guid>http://xxuan.cc/2016-06-24-gradient-boosting/</guid>
+    <description><![CDATA[<p>梯度提升算法简介</p>]]></description>
+</item>
+<item>
+    <title>Boosting(2) - Adaboost and Forward Stagewise</title>
+    <link>http://xxuan.cc/2016-06-22-forward-stagewise-algorithm/</link>
+    <pubDate>Wed, 22 Jun 2016 06:30:37 &#43;0000</pubDate>
+    <author>xiaoxuan</author>
+    <guid>http://xxuan.cc/2016-06-22-forward-stagewise-algorithm/</guid>
+    <description><![CDATA[<p>Boosting理论基础: 和前向分步算法的等价性</p>]]></description>
+</item>
+<item>
+    <title>Boosting(1) - AdaBoost</title>
+    <link>http://xxuan.cc/2016-06-06-adaboost/</link>
+    <pubDate>Mon, 06 Jun 2016 06:50:16 &#43;0000</pubDate>
+    <author>xiaoxuan</author>
+    <guid>http://xxuan.cc/2016-06-06-adaboost/</guid>
+    <description><![CDATA[<p>Adaptive Boosting 算法</p>]]></description>
+</item>
+<item>
+    <title>决策树 (Decision Tree)</title>
+    <link>http://xxuan.cc/2016-05-22-decision-tree/</link>
+    <pubDate>Sun, 22 May 2016 07:41:08 &#43;0000</pubDate>
+    <author>xiaoxuan</author>
+    <guid>http://xxuan.cc/2016-05-22-decision-tree/</guid>
+    <description><![CDATA[<p>决策树</p>]]></description>
+</item>
+<item>
+    <title>Support Vector Machine(3)-SMO</title>
+    <link>http://xxuan.cc/2016-05-14-smo/</link>
+    <pubDate>Sat, 14 May 2016 13:33:33 &#43;0000</pubDate>
+    <author>xiaoxuan</author>
+    <guid>http://xxuan.cc/2016-05-14-smo/</guid>
+    <description><![CDATA[<p>序列最小化算法</p>]]></description>
+</item>
+<item>
+    <title>Support Vector Machine(2.2)-Solving dual problem for soft margin maximization</title>
+    <link>http://xxuan.cc/2016-05-12-svm2_2/</link>
+    <pubDate>Thu, 12 May 2016 13:33:33 &#43;0000</pubDate>
+    <author>xiaoxuan</author>
+    <guid>http://xxuan.cc/2016-05-12-svm2_2/</guid>
+    <description><![CDATA[<p>SVM之软间隔最大化</p>]]></description>
+</item>
+<item>
+    <title>Support Vector Machine(2.1)-Solving dual problem for hard margin maximization</title>
+    <link>http://xxuan.cc/2016-05-12-svm2_1/</link>
+    <pubDate>Thu, 12 May 2016 06:57:41 &#43;0000</pubDate>
+    <author>xiaoxuan</author>
+    <guid>http://xxuan.cc/2016-05-12-svm2_1/</guid>
+    <description><![CDATA[<p>SVM之硬间隔最大化</p>]]></description>
+</item>
+<item>
+    <title>Support Vector Machine(1) - Hard margin maximization</title>
+    <link>http://xxuan.cc/2016-05-11-svm/</link>
+    <pubDate>Wed, 11 May 2016 15:36:18 &#43;0000</pubDate>
+    <author>xiaoxuan</author>
+    <guid>http://xxuan.cc/2016-05-11-svm/</guid>
+    <description><![CDATA[<p>支持向量机</p>]]></description>
+</item>
+</channel>
+</rss>

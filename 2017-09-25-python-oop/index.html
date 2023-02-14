@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>Python核心编程笔记3 面向对象编程 - Laniakea</title><meta name="Description" content="xxuan&#39;s blog"><meta property="og:title" content="Python核心编程笔记3 面向对象编程" />
+<meta property="og:description" content="
+python有很好的OOP特性, 自由度也非常大" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://xxuan.cc/2017-09-25-python-oop/" /><meta property="og:image" content="http://xxuan.cc/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2017-09-25T16:54:18+00:00" />
+<meta property="article:modified_time" content="2017-09-25T16:54:18+00:00" /><meta property="og:site_name" content="xxuan.cc" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="http://xxuan.cc/logo.png"/>
+
+<meta name="twitter:title" content="Python核心编程笔记3 面向对象编程"/>
+<meta name="twitter:description" content="
+python有很好的OOP特性, 自由度也非常大"/>
+<meta name="application-name" content="Laniakea">
+<meta name="apple-mobile-web-app-title" content="Laniakea"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://xxuan.cc/2017-09-25-python-oop/" /><link rel="prev" href="http://xxuan.cc/2017-09-21-numpy/" /><link rel="next" href="http://xxuan.cc/2017-09-26-python-thread/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" href="/lib/animate/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Python核心编程笔记3 面向对象编程",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/xxuan.cc\/2017-09-25-python-oop\/"
+        },"genre": "posts","keywords": "python","wordcount":  1951 ,
+        "url": "http:\/\/xxuan.cc\/2017-09-25-python-oop\/","datePublished": "2017-09-25T16:54:18+00:00","dateModified": "2017-09-25T16:54:18+00:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "xiaoxuan"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Laniakea">Laniakea</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/" title="存档脑细胞"> 文章 </a><a class="menu-item" href="/playground/" title="玩耍算法题的地方"> 练习场 </a><a class="menu-item" href="/code/" title="存放大概率过期的代码"> 码农 </a><a class="menu-item" href="/tags/" title="标签"> Tags </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Laniakea">Laniakea</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="存档脑细胞">文章</a><a class="menu-item" href="/playground/" title="玩耍算法题的地方">练习场</a><a class="menu-item" href="/code/" title="存放大概率过期的代码">码农</a><a class="menu-item" href="/tags/" title="标签">Tags</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Python核心编程笔记3 面向对象编程</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>xiaoxuan</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2017-09-25">2017-09-25</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;1951 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;4 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="true">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#命名规则">命名规则</a></li>
+    <li><a href="#类属性class-attribute">类属性(class attribute)</a>
+      <ul>
+        <li><a href="#类的数据属性">类的数据属性</a></li>
+        <li><a href="#方法与绑定-静态方法和类方法">方法与绑定: 静态方法和类方法</a></li>
+        <li><a href="#特殊类属性">特殊类属性</a></li>
+      </ul>
+    </li>
+    <li><a href="#实例instance">实例(instance)</a>
+      <ul>
+        <li><a href="#初始化">初始化</a></li>
+        <li><a href="#实例属性-vs-类属性">实例属性 vs 类属性</a></li>
+      </ul>
+    </li>
+    <li><a href="#子类和派生">子类和派生</a>
+      <ul>
+        <li><a href="#继承">继承</a></li>
+        <li><a href="#built-in类型的派生">built-in类型的派生</a></li>
+        <li><a href="#多重继承的mro问题">多重继承的MRO问题</a></li>
+      </ul>
+    </li>
+    <li><a href="#类和实例的内建函数">类和实例的内建函数</a>
+      <ul>
+        <li><a href="#基本方法">基本方法</a></li>
+        <li><a href="#用魔法方法定制类">用魔法方法定制类</a></li>
+        <li><a href="#私有化">私有化</a></li>
+      </ul>
+    </li>
+    <li><a href="#高级特性">高级特性</a>
+      <ul>
+        <li><a href="#__slot__类属性"><code>__slot__</code>类属性</a></li>
+        <li><a href="#描述符">描述符</a></li>
+        <li><a href="#元类和__metaclass__">元类和<code>__metaclass__</code></a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/64495434_p0.jpg"
+        data-srcset="http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/64495434_p0.jpg, http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/64495434_p0.jpg 1.5x, http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/64495434_p0.jpg 2x"
+        data-sizes="auto"
+        alt="http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/64495434_p0.jpg"
+        title="http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/64495434_p0.jpg" />
+python有很好的OOP特性, 自由度也非常大</p>
+<h2 id="命名规则">命名规则</h2>
+<ol>
+<li>小驼峰命名法(camel case), 适用于变量名: <code>varFirst</code>, <code>verSecond</code></li>
+<li>大驼峰命名法, 适用于类名: <code>PersonFirst</code>, <code>PersonSecond</code></li>
+<li>下划线命名法, 适用于函数/方法名: <code>var_first</code>, <code>var_second</code></li>
+</ol>
+<h2 id="类属性class-attribute">类属性(class attribute)</h2>
+<h3 id="类的数据属性">类的数据属性</h3>
+<p>相当于static修饰的变量</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">class C(object):
+</span></span><span class="line"><span class="cl">    foo = 100
+</span></span><span class="line"><span class="cl">&gt;&gt;&gt; print(C.foo)
+</span></span><span class="line"><span class="cl">&gt;&gt;&gt; 100
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="方法与绑定-静态方法和类方法">方法与绑定: 静态方法和类方法</h3>
+<p>没有实例, 方法是不能被调用的.</p>
+<p>但有两个特殊例子: 类方法(classmethod)和静态方法(staticmethod)
+有关如何使用这两个方法, 参考<a href="https://stackoverflow.com/questions/12179271/" target="_blank" rel="noopener noreffer ">stackoverflow上的这篇文章</a>, 在这里总结一下:</p>
+<ol>
+<li>类方法可以被子类继承, 静态方法不可以.</li>
+<li>由于python不支持重载, 类方法的一大用处是作为工厂函数, 但静态方法就不可以, 因为如果是派生类, 静态方法会构造出基类, 而类方法可以构造出派生类.</li>
+<li>类方法和实例方法一样, 需要将类作为第一个隐式参数传入方法:</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="nd">@classmethod</span>
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>此处类作为了第一个参数, 它由解释器传给方法, 类不需要特别地命名, 多数人使用<code>cls</code>作为变量名字</p>
+<blockquote>
+<p>@classmethod means: when this method is called, we pass the class as the first argument instead of the instance of that class (as we normally do with methods). This means you can use the class and its properties inside that method rather than a particular instance.</p>
+</blockquote>
+<hr>
+<blockquote>
+<p>@staticmethod means: when this method is called, we don&rsquo;t pass an instance of the class to it (as we normally do with methods). This means you can put a function inside a class but you can&rsquo;t access the instance of that class (this is useful when your method does not use the instance).</p>
+</blockquote>
+<h3 id="特殊类属性">特殊类属性</h3>
+<table>
+<thead>
+<tr>
+<th>特殊属性</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>__class__</code></td>
+<td>(实例的)类</td>
+</tr>
+<tr>
+<td><code>__name__</code></td>
+<td>类名</td>
+</tr>
+<tr>
+<td><code>__doc__</code></td>
+<td>文档字符串</td>
+</tr>
+<tr>
+<td><code>__bases__</code></td>
+<td>所有父类构成的元组</td>
+</tr>
+<tr>
+<td><code>__dict__</code></td>
+<td>类的属性</td>
+</tr>
+</tbody>
+</table>
+<h2 id="实例instance">实例(instance)</h2>
+<h3 id="初始化">初始化</h3>
+<ol>
+<li><code>__init__</code>方法用于初始化实例, 返回<code>None</code></li>
+<li><code>__new__</code>用于对内建类型进行派生</li>
+<li><code>__del__</code>是解构函数, 一般不要去手动实现</li>
+</ol>
+<h3 id="实例属性-vs-类属性">实例属性 vs 类属性</h3>
+<p>python能够在运行时直接创建实例属性, 但要小心会被类属性覆盖(Override)</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="k">class</span> <span class="nc">Foo</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl"><span class="o">...</span>     <span class="n">x</span> <span class="o">=</span> <span class="mf">1.5</span>  <span class="c1"># 类属性</span>
+</span></span><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="n">foo</span> <span class="o">=</span> <span class="n">Foo</span><span class="p">()</span>  <span class="c1"># 创建实例</span>
+</span></span><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="n">foo</span><span class="o">.</span><span class="n">x</span>        <span class="c1"># 因为不存在实例属性, 此处调用类属性</span>
+</span></span><span class="line"><span class="cl"><span class="mf">1.5</span>
+</span></span><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="n">foo</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="mf">1.7</span>  <span class="c1"># 在运行时直接创建实例属性</span>
+</span></span><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="n">foo</span><span class="o">.</span><span class="n">x</span>
+</span></span><span class="line"><span class="cl"><span class="mf">1.7</span>
+</span></span><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="n">Foo</span><span class="o">.</span><span class="n">x</span>        <span class="c1"># 类属性没变</span>
+</span></span><span class="line"><span class="cl"><span class="mf">1.5</span>
+</span></span><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="k">del</span> <span class="n">foo</span><span class="o">.</span><span class="n">x</span>    <span class="c1"># 删除实例属性</span>
+</span></span><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="n">foo</span><span class="o">.</span><span class="n">x</span>        <span class="c1"># 类属性重见天日</span>
+</span></span><span class="line"><span class="cl"><span class="mf">1.5</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>此外, 如果类属性是可变对象, 通过实例属性修改类属性是很危险的</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="k">class</span> <span class="nc">Foo</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl"><span class="o">...</span>     <span class="n">x</span> <span class="o">=</span> <span class="p">{</span><span class="mi">2003</span><span class="p">:</span> <span class="s1">&#39;poe2&#39;</span><span class="p">}</span>  <span class="c1"># 类属性</span>
+</span></span><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="n">foo</span> <span class="o">=</span> <span class="n">Foo</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="n">foo</span><span class="o">.</span><span class="n">x</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span><span class="mi">2003</span><span class="p">:</span> <span class="s1">&#39;poe2&#39;</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="n">foo</span><span class="o">.</span><span class="n">x</span><span class="p">[</span><span class="mi">2004</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;valid patch&#39;</span>  <span class="c1"># 添加一个key</span>
+</span></span><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="n">foo</span><span class="o">.</span><span class="n">x</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span><span class="mi">2003</span><span class="p">:</span> <span class="s1">&#39;poe2&#39;</span><span class="p">,</span> <span class="mi">2004</span><span class="p">:</span> <span class="s1">&#39;valid patch&#39;</span><span class="p">}</span>  <span class="c1"># 生效</span>
+</span></span><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="n">Foo</span><span class="o">.</span><span class="n">x</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span><span class="mi">2003</span><span class="p">:</span> <span class="s1">&#39;poe2&#39;</span><span class="p">,</span> <span class="mi">2004</span><span class="p">:</span> <span class="s1">&#39;valid patch&#39;</span><span class="p">}</span>  <span class="c1"># 类属性也变了</span>
+</span></span><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="k">del</span> <span class="n">foo</span><span class="o">.</span><span class="n">x</span>
+</span></span><span class="line"><span class="cl"><span class="ne">AttributeError</span><span class="p">:</span> <span class="n">x</span>  <span class="c1"># 没有覆盖所以无法删除</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="子类和派生">子类和派生</h2>
+<h3 id="继承">继承</h3>
+<p>派生类会继承基类的所有属性, 无论是数据属性还是方法属性. 如果出现了同名属性, 会发生覆盖:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">P</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;foo from P&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">C</span><span class="p">(</span><span class="n">P</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;foo from C&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="n">c</span> <span class="o">=</span> <span class="n">C</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="n">c</span><span class="o">.</span><span class="n">foo</span><span class="p">()</span>  <span class="c1"># 调用派生类的foo</span>
+</span></span><span class="line"><span class="cl"><span class="n">foo</span> <span class="kn">from</span> <span class="nn">C</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>在类的继承中, 子类需要调用父类被覆盖的同名方法怎么办呢? 我们不希望复制父类中的代码, 可以用子类的实例启动父类的方法, 需要传入<code>self</code>参数:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&gt;&gt;&gt; P.foo(c) # 通过传入派生类实例来调用基类的foo
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>对于<code>__init__</code>而言,  派生类方法会覆盖基类方法的构造函数, 因此需要在派生类中手动调用.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Inherited</span><span class="p">(</span><span class="n">Base</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">inhData</span><span class="p">,</span> <span class="n">bseData</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Base</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">bseData</span><span class="p">)</span>  <span class="c1"># 派生类调用基类方法</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span> <span class="n">inhData</span> <span class="o">=</span> <span class="n">inhData</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>此时如果继承关系复杂, 还可以使用<code>super()</code>帮你处理好父类</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Inherited</span><span class="p">(</span><span class="n">Base</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">inhData</span><span class="p">,</span> <span class="n">bseData</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">super</span><span class="p">(</span><span class="n">Inherited</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">bseData</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span> <span class="n">inhData</span> <span class="o">=</span> <span class="n">inhData</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="built-in类型的派生">built-in类型的派生</h3>
+<p>待补充</p>
+<h3 id="多重继承的mro问题">多重继承的MRO问题</h3>
+<p>现在python的MRO(Method Resolution Order)搜索采用广度优先</p>
+<h2 id="类和实例的内建函数">类和实例的内建函数</h2>
+<h3 id="基本方法">基本方法</h3>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>issubclass(sub, sup)</code></td>
+<td>sub是sup的子类:True</td>
+</tr>
+<tr>
+<td><code>isinstance(obj, cls)</code></td>
+<td>obj是cls或者其子类的一个实例</td>
+</tr>
+</tbody>
+</table>
+<h3 id="用魔法方法定制类">用魔法方法定制类</h3>
+<p>有关Magic Method的列表, 自行谷歌吧</p>
+<h3 id="私有化">私有化</h3>
+<p>python没有c++中的private关键字, 使用双下划线法&rsquo;混淆&rsquo;属性:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">C</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">__num</span> <span class="o">=</span> <span class="mi">0</span>  <span class="c1"># 解释器重命名为self._C__num</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>这么做的主要原因是保护变量不与父类的名空间冲突, 子类中的代码就可以安全使用</p>
+<h2 id="高级特性">高级特性</h2>
+<h3 id="__slot__类属性"><code>__slot__</code>类属性</h3>
+<p><code>__dict__</code>跟踪了所有属性, <code>inst.foo</code>和<code>inst.__dict__['foo']</code>等价. 如果某一个类的实例太多, 那么<code>__dict__</code>会占据太多空间, 可以用<code>__slot__</code>代替. 其为一可迭代对象, 用户不再可以任意动态增加实例属性</p>
+<h3 id="描述符">描述符</h3>
+<p>待补充</p>
+<h3 id="元类和__metaclass__">元类和<code>__metaclass__</code></h3>
+<p>基于python中万物皆为类的概念, 元类也是一个类, 而它的实例是其他的类:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">C</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">pass</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">CC</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="k">pass</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="nb">type</span><span class="p">(</span><span class="n">C</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="o">&lt;</span><span class="nb">type</span> <span class="s1">&#39;type&#39;</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="nb">type</span><span class="p">(</span><span class="n">CC</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="o">&lt;</span><span class="nb">type</span> <span class="s1">&#39;classobj&#39;</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="kn">import</span> <span class="nn">types</span>
+</span></span><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="nb">type</span><span class="p">(</span><span class="n">CC</span><span class="p">)</span> <span class="ow">is</span> <span class="n">types</span><span class="o">.</span><span class="n">ClassType</span>  <span class="c1"># CC是元类ClassType</span>
+</span></span><span class="line"><span class="cl"><span class="kc">True</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>在执行类定义的时候, 解释器必须要知道这个类的正确的元类, 首先寻找类属性的<code>__metaclass__</code>, 如果此属性存在, 就把这个属性赋值给此类作为它的元类. 如果没有定义, 会继续向上查找.</p>
+<p>元类一般用于创建类. 元类初始化时通常传递三个参数: <strong>类名</strong>, <strong>从基类继承数据的元组</strong>和<strong>类的属性字典</strong></p>
+<p>以下是一个元类应用, 它在创建类时显示时间标签.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">time</span> <span class="kn">import</span> <span class="n">ctime</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">MetaC</span><span class="p">(</span><span class="nb">type</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">bases</span><span class="p">,</span> <span class="n">attrd</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">super</span><span class="p">(</span><span class="n">MetaC</span><span class="p">,</span> <span class="bp">cls</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">bases</span><span class="p">,</span> <span class="n">attrd</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%s</span><span class="s1"> created at </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">ctime</span><span class="p">()))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Foo</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">__metaclass__</span> <span class="o">=</span> <span class="n">MetaC</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;instantiated class </span><span class="si">%s</span><span class="s1"> at </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span> <span class="n">ctime</span><span class="p">()))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="n">f</span> <span class="o">=</span> <span class="n">Foo</span><span class="p">()</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>脚本输出</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">Foo created at Mon Sep 25 16:48:37 2017
+</span></span><span class="line"><span class="cl">instantiated class Foo at Mon Sep 25 16:48:37 2017
+</span></span></code></pre></td></tr></table>
+</div>
+</div></div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2017-09-25</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/2017-09-25-python-oop/index.md" target="_blank">Read Markdown</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="http://xxuan.cc/2017-09-25-python-oop/" data-title="Python核心编程笔记3 面向对象编程" data-hashtags="python"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="http://xxuan.cc/2017-09-25-python-oop/" data-hashtag="python"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="http://xxuan.cc/2017-09-25-python-oop/" data-title="Python核心编程笔记3 面向对象编程"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="http://xxuan.cc/2017-09-25-python-oop/" data-title="Python核心编程笔记3 面向对象编程"><i data-svg-src="/lib/simple-icons/icons/line.min.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="http://xxuan.cc/2017-09-25-python-oop/" data-title="Python核心编程笔记3 面向对象编程"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/python/">python</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/2017-09-21-numpy/" class="prev" rel="prev" title="Python数据分析笔记1 numpy"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>Python数据分析笔记1 numpy</a>
+            <a href="/2017-09-26-python-thread/" class="next" rel="next" title="Python核心编程笔记4 多线程">Python核心编程笔记4 多线程<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+<div id="comments"><div id="disqus_thread" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://disqus.com/?ref_noscript">Disqus</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.102.2">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2016 - 2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">xiaoxuan</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/cookieconsent/cookieconsent.min.css"><script type="text/javascript" src="https://xxuan-cc.disqus.com/embed.js" defer></script><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/mhchem.min.js"></script><script type="text/javascript" src="/lib/cookieconsent/cookieconsent.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{},"cookieconsent":{"content":{"dismiss":"Got it!","link":"Learn more","message":"This website uses Cookies to improve your experience."},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":50,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

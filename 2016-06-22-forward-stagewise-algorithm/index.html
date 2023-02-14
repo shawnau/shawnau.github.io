@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>Boosting(2) - Adaboost and Forward Stagewise - Laniakea</title><meta name="Description" content="xxuan&#39;s blog"><meta property="og:title" content="Boosting(2) - Adaboost and Forward Stagewise" />
+<meta property="og:description" content="Boosting理论基础: 和前向分步算法的等价性" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://xxuan.cc/2016-06-22-forward-stagewise-algorithm/" /><meta property="og:image" content="http://xxuan.cc/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2016-06-22T06:30:37+00:00" />
+<meta property="article:modified_time" content="2016-06-22T06:30:37+00:00" /><meta property="og:site_name" content="xxuan.cc" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="http://xxuan.cc/logo.png"/>
+
+<meta name="twitter:title" content="Boosting(2) - Adaboost and Forward Stagewise"/>
+<meta name="twitter:description" content="Boosting理论基础: 和前向分步算法的等价性"/>
+<meta name="application-name" content="Laniakea">
+<meta name="apple-mobile-web-app-title" content="Laniakea"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://xxuan.cc/2016-06-22-forward-stagewise-algorithm/" /><link rel="prev" href="http://xxuan.cc/2016-06-06-adaboost/" /><link rel="next" href="http://xxuan.cc/2016-06-24-gradient-boosting/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" href="/lib/animate/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Boosting(2) - Adaboost and Forward Stagewise",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/xxuan.cc\/2016-06-22-forward-stagewise-algorithm\/"
+        },"genre": "posts","keywords": "machine learning, 统计学习方法, boosting","wordcount":  476 ,
+        "url": "http:\/\/xxuan.cc\/2016-06-22-forward-stagewise-algorithm\/","datePublished": "2016-06-22T06:30:37+00:00","dateModified": "2016-06-22T06:30:37+00:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "xiaoxuan"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Laniakea">Laniakea</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/" title="存档脑细胞"> 文章 </a><a class="menu-item" href="/playground/" title="玩耍算法题的地方"> 练习场 </a><a class="menu-item" href="/code/" title="存放大概率过期的代码"> 码农 </a><a class="menu-item" href="/tags/" title="标签"> Tags </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Laniakea">Laniakea</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="存档脑细胞">文章</a><a class="menu-item" href="/playground/" title="玩耍算法题的地方">练习场</a><a class="menu-item" href="/code/" title="存放大概率过期的代码">码农</a><a class="menu-item" href="/tags/" title="标签">Tags</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Boosting(2) - Adaboost and Forward Stagewise</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>xiaoxuan</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2016-06-22">2016-06-22</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;476 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;One minute&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="true">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#forward-stagewise">Forward stagewise</a></li>
+        <li><a href="#equivalence-of-adaboost-and-forward-stagewise">Equivalence of adaboost and Forward stagewise</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><p>Boosting理论基础: 和前向分步算法的等价性</p>
+<h3 id="forward-stagewise">Forward stagewise</h3>
+<p>Consider an <strong>additive model</strong> like adaboost:
+$$
+f(x) = \sum\limits_{m=1}^M \beta_m b(x; \gamma_m)
+$$
+in which $b(x; \gamma_m)$ is the base model, $\gamma_m$ is the model&rsquo;s parameters, $\beta_m$ is it&rsquo;s coefficient.</p>
+<p>To minimim the loss function, we have the <strong>forward stagewise algorithm</strong>, which <strong>minimize one model &amp; coefficient at a time</strong>, that is, take the models already trained as constant, that&rsquo;s the core concept of this algorithm:</p>
+<p>Input: Training data $T = \lbrace (x^{(1)}, y^{(1)}), (x^{(2)}, y^{(2)}), \cdots,  (x^{(N)}, y^{(N)}) \rbrace$, lost function$L(y, f(x))$ and base model $b(x; \gamma)$
+Output: additive model $f(x)$</p>
+<ol>
+<li>Initialize $f_0(x) = 0$</li>
+<li>For $m = 1,2,\cdots,M$:
+(1) Minimize loss function:
+$$  (\beta_m, \gamma_m) = arg\min\limits_{\beta, \gamma} \sum\limits_{i=1}^N L(y^{(i)}, f_{m-1}(x^{(i)}) + \beta b(x^{(i)};\gamma)) $$
+(2) Update $f(x)$:
+$$ f_m(x) = f_{m-1}(x) + \beta_m b(x^{(i)};\gamma_m)$$</li>
+<li>Get additive model:
+$$ f(x) = \sum\limits_{m=1}^M \beta_m b(x; \gamma_m) $$</li>
+</ol>
+<hr>
+<h3 id="equivalence-of-adaboost-and-forward-stagewise">Equivalence of adaboost and Forward stagewise</h3>
+<p>When using <strong>additive model &amp; exponential loss function</strong>, forward stagewise algorithm is equivalent to adaboost. Here is the proof:</p>
+<p>Assume the <strong>exponential loss function</strong> is:
+$$ L(y, f(x)) = exp(-yf(x)) $$
+In the $m$th iteration, we have:
+$$
+f_m(x) = f_{m-1}(x) + \alpha_mG_m(x), \\
+\text{in which } f_{m-1}(x) = \sum\limits_{m=1}^{M-1} \alpha_mG_m(x)
+$$
+To minimize
+$$\begin{align}
+(\alpha_m, G_m) &amp; = arg\min\limits_{\alpha, G} \sum\limits_{i=1}^N exp \left\lbrace -y^{(i)}(f_{m-1}(x^{(i)}) + \alpha_m G_m(x^{(i)}))\right\rbrace \\
+&amp; = arg\min\limits_{\alpha, G} \sum\limits_{i=1}^N w_{mi} exp \left\lbrace -y^{(i)} \alpha_m G_m(x^{(i)}) \right\rbrace
+\end{align}
+$$
+in which $w_{mi} = exp(-y^{(i)} f_{m-1}(x^{(i)}))$, it depends on neither $\alpha$ nor $G$.</p>
+<p>To prove the $\alpha_m^*, G_m^*$ achieved here is exatly the $\alpha_m, G_m$ in adaboost:</p>
+<ol>
+<li>For any $\alpha &gt; 0$, $G_m^*(x)$ which maximize the loss function is the one who has the minimum error rate:
+$$
+G_m^*(x) =  arg\min\limits_{G} \sum\limits_{i=1}^N w_{mi} I(y^{(i)} \neq G(x^{(i)}))
+$$
+That&rsquo;s exatly what we train the base model to do, so $G_m^*(x) = G_m(x)$</li>
+<li>Then calculate $\alpha_m$
+$$\begin{align}
+L(\alpha, G_m) &amp; =  \sum\limits_{i=1}^N w_{mi} exp \left\lbrace -y^{(i)} \alpha G_m(x^{(i)}) \right\rbrace \\
+&amp; = e^{-\alpha} \sum\limits_{=} w_{mi}  + e^{\alpha} \sum\limits_{\neq} w_{mi} \\
+&amp; = e^{-\alpha} \sum\limits w_{mi} - e^{-\alpha} \sum\limits_{\neq} w_{mi} + e^{\alpha} \sum\limits_{\neq} w_{mi} \\
+&amp; = (e^{\alpha} - e^{-\alpha}) \sum\limits_{\neq} w_{mi} + e^{-\alpha} \sum\limits w_{mi}
+\end{align} $$
+in which $\sum\limits_{\neq}$ is abbreviation for $\sum\limits_{y^{(i)} \neq G(x^{(i)})}$, $\sum$ is abbreviation for $\sum\limits_{i=1}^N$
+Let the partial derivative=0, we have:
+$$\frac {\partial L(\alpha, G_m)} {\partial \alpha} = (e^{\alpha} + e^{-\alpha}) \sum\limits_{\neq} w_{mi} - e^{-\alpha} \sum\limits w_{mi} = 0$$
+s.t. $$(e^{\alpha} + e^{-\alpha}) \frac{\sum\limits_{\neq} w_{mi}}{\sum\limits w_{mi}} - e^{-\alpha}  = 0$$
+s.t. $$(e^{\alpha} + e^{-\alpha}) \epsilon_m - e^{-\alpha}  = 0$$
+s.t. $$ \alpha^* = \frac{1}{2}ln \frac{1-\epsilon_m}{\epsilon_m} $$
+in which $\epsilon_m = \frac{\sum\limits_{\neq} w_{mi}}{\sum\limits w_{mi}}$, which is the error rate of $G_m^*(x)$</li>
+</ol>
+<p>Finally we could see that the $(\alpha_m, G_m)$ we get here is exatly the same as in adaboost.</p></div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2016-06-22</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/2016-06-22-forward-stagewise-algorithm/index.md" target="_blank">Read Markdown</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="http://xxuan.cc/2016-06-22-forward-stagewise-algorithm/" data-title="Boosting(2) - Adaboost and Forward Stagewise" data-hashtags="machine learning,统计学习方法,boosting"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="http://xxuan.cc/2016-06-22-forward-stagewise-algorithm/" data-hashtag="machine learning"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="http://xxuan.cc/2016-06-22-forward-stagewise-algorithm/" data-title="Boosting(2) - Adaboost and Forward Stagewise"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="http://xxuan.cc/2016-06-22-forward-stagewise-algorithm/" data-title="Boosting(2) - Adaboost and Forward Stagewise"><i data-svg-src="/lib/simple-icons/icons/line.min.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="http://xxuan.cc/2016-06-22-forward-stagewise-algorithm/" data-title="Boosting(2) - Adaboost and Forward Stagewise"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/machine-learning/">machine learning</a>,&nbsp;<a href="/tags/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/">统计学习方法</a>,&nbsp;<a href="/tags/boosting/">boosting</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/2016-06-06-adaboost/" class="prev" rel="prev" title="Boosting(1) - AdaBoost"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>Boosting(1) - AdaBoost</a>
+            <a href="/2016-06-24-gradient-boosting/" class="next" rel="next" title="Boosting(3)- Gradient Boosting">Boosting(3)- Gradient Boosting<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+<div id="comments"><div id="disqus_thread" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://disqus.com/?ref_noscript">Disqus</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.102.2">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2016 - 2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">xiaoxuan</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/cookieconsent/cookieconsent.min.css"><script type="text/javascript" src="https://xxuan-cc.disqus.com/embed.js" defer></script><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/mhchem.min.js"></script><script type="text/javascript" src="/lib/cookieconsent/cookieconsent.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{},"cookieconsent":{"content":{"dismiss":"Got it!","link":"Learn more","message":"This website uses Cookies to improve your experience."},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":50,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

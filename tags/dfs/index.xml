@@ -1,144 +1,40 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
-<rss version="2.0" 
-  xmlns:content="http://purl.org/rss/1.0/modules/content/" 
-  xmlns:dc="http://purl.org/dc/elements/1.1/" 
-  xmlns:atom="http://www.w3.org/2005/Atom" 
-  xmlns:sy="http://purl.org/rss/1.0/modules/syndication/" 
-  xmlns:media="http://search.yahoo.com/mrss/">
-  <channel>
-    <title>dfs on Laniakea</title>
-    <link>/tags/dfs/</link>
-    <description>Recent content in dfs on Laniakea</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>en</language>
-    <managingEditor>xxuan@mail.ustc.edu.cn (Xuan)</managingEditor>
-    <webMaster>xxuan@mail.ustc.edu.cn (Xuan)</webMaster>
-    <copyright>&amp;copy;{year}, All Rights Reserved</copyright>
-    <lastBuildDate>Fri, 21 Feb 2020 22:13:35 +0800</lastBuildDate>
-    
-        <atom:link href="/tags/dfs/index.xml" rel="self" type="application/rss+xml" />
-    
-    
-    
-
-      
-      <item>
-        <title>Word Break 2</title>
-        <link>/playground/word-break-2/</link>
-        <pubDate>Fri, 21 Feb 2020 22:13:35 +0800</pubDate>
-        <author>xxuan@mail.ustc.edu.cn (Xuan)</author>
-        <atom:modified>Fri, 21 Feb 2020 22:13:35 +0800</atom:modified>
-        <guid>/playground/word-break-2/</guid>
-        <description></description>
-        
-        <dc:creator>Xuan</dc:creator>
-        
-        
-        
-        
-          
-            
-              <category>dynamic programming</category>
-            
-          
-            
-              <category>backtracking</category>
-            
-          
-            
-              <category>dfs</category>
-            
-          
-        
-        
-          
-            
-              <category>string</category>
-            
-          
-        
-        
-      </item>
-      
-      <item>
-        <title>Palindrome Partitioning</title>
-        <link>/playground/palindrome-partitioning/</link>
-        <pubDate>Thu, 20 Feb 2020 16:06:21 +0800</pubDate>
-        <author>xxuan@mail.ustc.edu.cn (Xuan)</author>
-        <atom:modified>Thu, 20 Feb 2020 16:06:21 +0800</atom:modified>
-        <guid>/playground/palindrome-partitioning/</guid>
-        <description></description>
-        
-        <dc:creator>Xuan</dc:creator>
-        
-        
-        
-        
-          
-            
-              <category>backtracking</category>
-            
-          
-            
-              <category>dfs</category>
-            
-          
-        
-        
-          
-            
-              <category>string</category>
-            
-          
-        
-        
-          
-            
-              <category>palindromic</category>
-            
-          
-        
-      </item>
-      
-      <item>
-        <title>Unique Paths 3</title>
-        <link>/playground/unique-paths-3/</link>
-        <pubDate>Sat, 15 Feb 2020 20:50:53 +0800</pubDate>
-        <author>xxuan@mail.ustc.edu.cn (Xuan)</author>
-        <atom:modified>Sat, 15 Feb 2020 20:50:53 +0800</atom:modified>
-        <guid>/playground/unique-paths-3/</guid>
-        <description>&lt;p&gt;Walk over all grids without duplicate, with obstacles&lt;/p&gt;</description>
-        
-        <dc:creator>Xuan</dc:creator>
-        
-        
-        
-        
-          
-            
-              <category>backtracking</category>
-            
-          
-            
-              <category>dfs</category>
-            
-          
-        
-        
-          
-            
-              <category>path</category>
-            
-          
-            
-              <category>grid</category>
-            
-          
-        
-        
-      </item>
-      
-
-    
-  </channel>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>dfs - Tag - Laniakea</title>
+        <link>http://xxuan.cc/tags/dfs/</link>
+        <description>dfs - Tag - Laniakea</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>shawn_au@outlook.com (xiaoxuan)</managingEditor>
+            <webMaster>shawn_au@outlook.com (xiaoxuan)</webMaster><lastBuildDate>Thu, 08 Sep 2022 23:21:00 &#43;0800</lastBuildDate><atom:link href="http://xxuan.cc/tags/dfs/" rel="self" type="application/rss+xml" /><item>
+    <title>岛屿问题</title>
+    <link>http://xxuan.cc/playground/islands/</link>
+    <pubDate>Thu, 08 Sep 2022 23:21:00 &#43;0800</pubDate>
+    <author>xiaoxuan</author>
+    <guid>http://xxuan.cc/playground/islands/</guid>
+    <description><![CDATA[总结了一些01矩阵组成的岛屿问题. 基本上可以通过dfs解决, 但也可以用并查集处理. 其中200是我做的第一道并查集题, 印象很深 200 岛屿数量: 最基]]></description>
+</item>
+<item>
+    <title>Word Break 2</title>
+    <link>http://xxuan.cc/playground/word-break-2/</link>
+    <pubDate>Fri, 21 Feb 2020 22:13:35 &#43;0800</pubDate>
+    <author>xiaoxuan</author>
+    <guid>http://xxuan.cc/playground/word-break-2/</guid>
+    <description><![CDATA[]]></description>
+</item>
+<item>
+    <title>Palindrome Partitioning</title>
+    <link>http://xxuan.cc/playground/palindrome-partitioning/</link>
+    <pubDate>Thu, 20 Feb 2020 16:06:21 &#43;0800</pubDate>
+    <author>xiaoxuan</author>
+    <guid>http://xxuan.cc/playground/palindrome-partitioning/</guid>
+    <description><![CDATA[]]></description>
+</item>
+<item>
+    <title>Unique Paths 3</title>
+    <link>http://xxuan.cc/playground/unique-paths-3/</link>
+    <pubDate>Sat, 15 Feb 2020 20:50:53 &#43;0800</pubDate>
+    <author>xiaoxuan</author>
+    <guid>http://xxuan.cc/playground/unique-paths-3/</guid>
+    <description><![CDATA[<p>Walk over all grids without duplicate, with obstacles</p>]]></description>
+</item>
+</channel>
 </rss>

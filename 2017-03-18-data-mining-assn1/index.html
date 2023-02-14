@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>存档-数据挖掘作业 - Laniakea</title><meta name="Description" content="xxuan&#39;s blog"><meta property="og:title" content="存档-数据挖掘作业" />
+<meta property="og:description" content="挺有意思的, 存在blog里参考, 以后说不定用得上. 不过这个作业应该有点历史了, 出处未考" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://xxuan.cc/2017-03-18-data-mining-assn1/" /><meta property="og:image" content="http://xxuan.cc/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2017-03-18T11:14:50+00:00" />
+<meta property="article:modified_time" content="2017-03-18T11:14:50+00:00" /><meta property="og:site_name" content="xxuan.cc" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="http://xxuan.cc/logo.png"/>
+
+<meta name="twitter:title" content="存档-数据挖掘作业"/>
+<meta name="twitter:description" content="挺有意思的, 存在blog里参考, 以后说不定用得上. 不过这个作业应该有点历史了, 出处未考"/>
+<meta name="application-name" content="Laniakea">
+<meta name="apple-mobile-web-app-title" content="Laniakea"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://xxuan.cc/2017-03-18-data-mining-assn1/" /><link rel="prev" href="http://xxuan.cc/2017-01-11-algo-sum/" /><link rel="next" href="http://xxuan.cc/2017-03-22-naive-bayes/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" href="/lib/animate/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "存档-数据挖掘作业",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/xxuan.cc\/2017-03-18-data-mining-assn1\/"
+        },"genre": "posts","wordcount":  2368 ,
+        "url": "http:\/\/xxuan.cc\/2017-03-18-data-mining-assn1\/","datePublished": "2017-03-18T11:14:50+00:00","dateModified": "2017-03-18T11:14:50+00:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "xiaoxuan"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Laniakea">Laniakea</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/" title="存档脑细胞"> 文章 </a><a class="menu-item" href="/playground/" title="玩耍算法题的地方"> 练习场 </a><a class="menu-item" href="/code/" title="存放大概率过期的代码"> 码农 </a><a class="menu-item" href="/tags/" title="标签"> Tags </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Laniakea">Laniakea</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="存档脑细胞">文章</a><a class="menu-item" href="/playground/" title="玩耍算法题的地方">练习场</a><a class="menu-item" href="/code/" title="存放大概率过期的代码">码农</a><a class="menu-item" href="/tags/" title="标签">Tags</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">存档-数据挖掘作业</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>xiaoxuan</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2017-03-18">2017-03-18</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;2368 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;5 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="true">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#question-1">Question 1</a></li>
+    <li><a href="#question-2">Question 2</a></li>
+    <li><a href="#question-3">Question 3</a></li>
+    <li><a href="#question-4">Question 4</a></li>
+    <li><a href="#question-5">Question 5</a></li>
+    <li><a href="#question-6">Question 6</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#question-1-1">Question 1</a></li>
+    <li><a href="#question-2-1">Question 2</a></li>
+    <li><a href="#question-3-1">Question 3</a></li>
+    <li><a href="#question-4-1">Question 4</a></li>
+    <li><a href="#question-5-1">Question 5</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><p>挺有意思的, 存在blog里参考, 以后说不定用得上. 不过这个作业应该有点历史了, 出处未考</p>
+<h1 id="ustc-spring-2017-data-mining-assignment-1">USTC Spring 2017: Data Mining Assignment 1</h1>
+<p>SA16225220</p>
+<h2 id="question-1">Question 1</h2>
+<p>Classify the following attributes as binary, discrete, or continuous. Also classify them as qualitative (nominal or ordinal) or quantitative (interval or ratio). Some cases may have more than one interpretation, so briefly indicate your reasoning if you think there may be some ambiguity.
+<strong>Example</strong>: Age in years. <strong>Answer</strong>: Discrete, quantitative, ratio</p>
+<ol>
+<li>Speed of a vehicle measured in mph.</li>
+</ol>
+<ul>
+<li>Continuous</li>
+<li>Quantitiative</li>
+<li>Ratio</li>
+</ul>
+<p><strong>Explanation</strong>: It possesses a meaningful (unique and non-arbitrary) zero value. 0 mph means motionless, 2 mph is twice as fast as 1 mph.</p>
+<ol start="2">
+<li>Altitude of a region.</li>
+</ol>
+<ul>
+<li>Continuous</li>
+<li>Quantitiative</li>
+<li>Interval</li>
+</ul>
+<p><strong>Explanation</strong>: Zero altitude is not fixed, it&rsquo;s defined relatively so I&rsquo;d rather take it as interval, which means at an autitude of 20m doesn&rsquo;t mean it&rsquo;s twice as tall as 10m.</p>
+<ol start="3">
+<li>Intensity of rain as indicated using the values: no rain, intermittent rain, incessant rain.</li>
+</ol>
+<ul>
+<li>Discrete</li>
+<li>Qualitative</li>
+<li>Ordinal</li>
+</ul>
+<p><strong>Explanation</strong>: These 3 values are comparable.</p>
+<ol start="4">
+<li>Brightness as measured by a light meter.</li>
+</ol>
+<ul>
+<li>Continuous</li>
+<li>Quantitiative</li>
+<li>Ratio</li>
+</ul>
+<p><strong>Explanation</strong>: When measured as lumen, 0 lumen means pure darkness, so it possesses a meaningful (unique and non-arbitrary) zero value.</p>
+<ol start="5">
+<li>Barcode number printed on each item in a supermarket.</li>
+</ol>
+<ul>
+<li>Discrete</li>
+<li>Qualitative</li>
+<li>Nominal</li>
+</ul>
+<p><strong>Explanation</strong>: Not comparable numbers</p>
+<p>注: 主要是nominal, ordinal, interval 和 ratio四个measurements的比较, 其中ratio在零点有意义, interval在零点无意义所以只可相比, 没有倍数关系. 例如 20摄氏度不比10摄氏度热两倍, 但是用开尔文就可以, 所以摄氏度是interval, 开尔文是ratio</p>
+<h2 id="question-2">Question 2</h2>
+<p>The population for a clinical study has 500 Asian, 1000 Hispanic and 500 Native American people. What is good way of sampling this population to ensure that the distribution of various sub- populations is maintained if only 100 samples have to be chosen? Give the distribution of the various sub-populations in the final sample.</p>
+<p><strong>Answer:</strong></p>
+<ul>
+<li>Asian: 25</li>
+<li>Hispanic: 50</li>
+<li>Native American: 25</li>
+</ul>
+<p>注: 没啥好说的, 按比例分配样本</p>
+<h2 id="question-3">Question 3</h2>
+<p>Justify your answers for the following:</p>
+<ol>
+<li>Is the Jaccard coefficient for two binary strings (i.e., string of 0s and 1s) always greater than or equal to their cosine similarity?</li>
+</ol>
+<p><strong>Answer:</strong>
+Assuming 2 strings could be represented as $A = (a_1, a_2, \cdots, a_n)$, $B = (b_1, b_2, \cdots, b_n)$, in which $a, b \in \lbrace 0, 1\rbrace$, then we have:</p>
+<p>$$ J(A, B) = \frac{M_{11}}{M_{01}+M_{10}+M_{11}} = \frac{A \cdot B}{n}$$</p>
+<p>$$cos\theta  =\frac{A \cdot B}{|A||B|} \geq  \frac{A \cdot B}{\sqrt{n}\sqrt{n}} = \frac{A \cdot B}{n}$$</p>
+<p>So
+$$cos\theta \geq J(A, B)$$
+So it&rsquo;s <strong>WRONG</strong></p>
+<p>注: 一个意义不太大的不等式证明, 主要是介绍了二分类下的Jaccard coefficient</p>
+<ol start="2">
+<li>The cosine measure can range between [-1,1]. Give an example of a type of data for which the cosine measure will always be non-negative.</li>
+</ol>
+<p><strong>Answer:</strong>
+Since
+$$cos\theta  =\frac{A \cdot B}{|A||B|}$$</p>
+<p>Let $A$ &amp; $B$ be the opposite direction, such as
+$$ A = -B $$
+then we could always have non-negative value -1:
+$$ cos\theta  =\frac{A \cdot (-A)}{|A||-A|} = -1 $$</p>
+<p>注: 只要两个向量夹角是钝角就行了. 高中知识.</p>
+<h2 id="question-4">Question 4</h2>
+<p>The similarity between two undirected graphs G1 and G2 that have the same n vertices can be defined using:
+$$ S(G_1, G_2) = \frac{\sum_i min(deg(v_i \in G_1), deg(v_i \in G_2))}{2 \times max(|G_1|, |G_2|)} $$
+where $deg(v ∈ G)$ indicates the degree of a vertex $v$ in graph $G$ and $|G|$ indicates the number of edges in $G$.
+If $S(G1, G2) = 1$, are the two graphs equivalent? Provide an example to justify your answer.</p>
+<p><strong>Answer:</strong>
+<strong>No.</strong> Example:
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/QQ20170317-233923@2x.png"
+        data-srcset="http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/QQ20170317-233923@2x.png, http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/QQ20170317-233923@2x.png 1.5x, http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/QQ20170317-233923@2x.png 2x"
+        data-sizes="auto"
+        alt="http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/QQ20170317-233923@2x.png"
+        title="http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/QQ20170317-233923@2x.png" />
+Same degree for each vertex, same number of edges in each graph, $S(G_1, G_2) = \frac{12}{12} = 1$, but the two graphs are not equivalent.</p>
+<p>注: 每个顶点的度数相同, 边也相同那么这里的相似度就是1, 但两个图并不一定一样. 只要举个反例就行了.</p>
+<h2 id="question-5">Question 5</h2>
+<p>For every item i in a grocery store, a set $s_i$ is used to represent the IDs of transactions in which $i$ is purchased. Assume that the data set to be analyzed contains hundreds of thousands of such transactions.</p>
+<ol>
+<li>In order to analyze the proximity between any two of these sets $s_i$ and $s_j$, which measure, Jaccard or Hamming, would be more appropriate and why ?</li>
+</ol>
+<p><strong>Answer:</strong> Since we want to find the similarity between 2 sets, <strong>Jaccard coefficient</strong> is more preferable.</p>
+<ol start="2">
+<li>In order to analyze the proximity between any two of these sets $s_i$ and $s_j$ for items i and j that are often brought together (example: milk, bread), which measure, Jaccard or Hamming, would be more appropriate and why ?</li>
+</ol>
+<p><strong>Answer:</strong> Since item $i$ and $j$ that are often brought together, they have high similarity, then we should focus on the difference between these 2 sets. So <strong>Hamming distance</strong> is more preferable.</p>
+<p>注: Jaccard主要关心相似度, Hamming主要关注不同, 知道这点这题就没什么了. 注意这两者的适用背景即可.</p>
+<h2 id="question-6">Question 6</h2>
+<p>For the data set described below, give an example of the types of data mining questions that can be asked (one for each classification, clustering, association rule mining, and anomaly detection task) and the description of the data matrix (what are the rows and columns). If necessary, briefly explain the features that need to be constructed. Note that, depending on your data-mining question, the row and column definitions may be different.</p>
+<blockquote>
+<p>A clinical dataset containing various measures like temperature, blood pressure, blood glucose and heart rate for each patient during every visit, along with the diagnosis information.</p>
+</blockquote>
+<p><strong>Answer:</strong></p>
+<table>
+<thead>
+<tr>
+<th>DM Task: Classification of disease</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Question</strong>: Which disease does the patient have?</td>
+</tr>
+<tr>
+<td><strong>Row</strong>: The body measures of a patient.</td>
+</tr>
+<tr>
+<td><strong>Column</strong>: Temperature, blood pressure, blood glucose,  heart rate, etc. for each patient.</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>DM Task: Clustering similar patients</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Question</strong>: What are the patients with similar disease?</td>
+</tr>
+<tr>
+<td><strong>Row</strong>: A patient&rsquo;s diagnosis information.</td>
+</tr>
+<tr>
+<td><strong>Column</strong>: Temperature, blood pressure, blood glucose,  heart rate, etc. for each patient.</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>DM Task: Association rule mining</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Question</strong>: What are the diseases tend to appear together? For example, high blood pressure and heart attack.</td>
+</tr>
+<tr>
+<td><strong>Row</strong>: A patient&rsquo;s diagnosis information.</td>
+</tr>
+<tr>
+<td><strong>Column</strong>: Diagnosis information, especially the disease names.</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>DM Task: Anomaly detection</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Question</strong>: Is the patient&rsquo;s body measures mistaken? For example, mistaken by typo during input, like temperature = 50℃</td>
+</tr>
+<tr>
+<td><strong>Row</strong>: The body measures of a patient.</td>
+</tr>
+<tr>
+<td><strong>Column</strong>: Temperature, blood pressure, blood glucose,  heart rate, etc. for each patient.</td>
+</tr>
+</tbody>
+</table>
+<p>注: 主要是举点数据挖掘例子</p>
+<hr>
+<h1 id="ustc-spring-2017-data-mining-homework-2">USTC Spring 2017: Data Mining Homework 2</h1>
+<h2 id="question-1-1">Question 1</h2>
+<p>[30 points: 5 for each part] Consider the training examples shown in Table 1 for a binary classification problem.</p>
+<ul>
+<li>
+<p><strong>(a)</strong> Compute the Entropy for the overall collection of training examples.
+<strong>Answer:</strong>
+$$\begin{align} H(Class) &amp;=  -\sum_{C0,C1} (P_{C0}logP_{C0} + P_{C1}logP_{C1}) \\ &amp; =  -(0.5log0.5 + 0.5log0.5) \\ &amp;= 1
+\end{align}$$</p>
+</li>
+<li>
+<p><strong>(b)</strong> Compute the Entropy for the Movie ID attribute.
+<strong>Answer:</strong>
+Each Movie ID has its distinct number of ID, so apparently it has no contribution to the infomation gain of Class, so $$H(Class | Movie ID) = 0$$</p>
+</li>
+<li>
+<p><strong>(c)</strong> Compute the Entropy for the Format attribute.
+<strong>Answer:</strong>
+$$\begin{align}
+&amp; H(Class | Format = DVD) \\
+&amp;=  -\sum_{C0,C1} (P_{C0, DVD}logP_{C0, DVD} + P_{C1, DVD}logP_{C1, DVD}) \\
+&amp; =  -(\frac{6}{8}log\frac{6}{8} + \frac{2}{8}log\frac{2}{8}) \\
+&amp;= 0.8112
+\end{align}$$
+$$\begin{align}
+&amp; H(Class | Format = Online) \\
+&amp;=  -\sum_{C0,C1} (P_{C0, Online}logP_{C0, DVD} + P_{C1, Online}logP_{C1, Online}) \\
+&amp; =  -(\frac{4}{12}log\frac{4}{12} + \frac{8}{12}log\frac{8}{12}) \\
+&amp;= 0.9182
+\end{align}$$
+$$
+\begin{align}
+&amp; H(Class|Format)\\
+&amp; = P_{DVD}H(Class | DVD) + P_{Online}H(Class | Online) \\
+&amp; = \frac{8}{20} \times 0.8112 + \frac{12}{20} \times 0.9182 \\
+&amp; = 0.8754
+\end{align}
+$$</p>
+</li>
+<li>
+<p><strong>(d)</strong> Compute the Entropy for the Movie Category attribute using multiway split.
+<strong>Answer:</strong>
+$$\begin{align}
+&amp; H(Class | Entertainment) \\
+&amp;=  -\sum_{C0,C1} (P_{C0, En}logP_{C0, En} + P_{C1, En}logP_{C1, En}) \\
+&amp; =  -(\frac{1}{4}log\frac{1}{4} + \frac{3}{4}log\frac{3}{4}) \\
+&amp;= 0.8112
+\end{align}$$
+Similarly,
+$$
+H(Class | Comedy) = 0.5435 \\
+H(Class | Documentation) = 0.8112
+$$
+So
+$$
+\begin{align}
+&amp; H(Class| Movie Category)\\
+&amp; = P_{En}H(Class | En) + P_{Com}H(Class | Com) + P_{Doc}H(Class | Doc)\\
+&amp; = 0.2 \times 0.81125 + 0.4 \times 0.5435+ 0.4 \times 0.81125 \\
+&amp; = 0.7042
+\end{align}
+$$</p>
+</li>
+<li>
+<p><strong>(e)</strong> Which of the three attributes has the lowest Entropy?
+<strong>Answer:</strong> Movie ID which is 0</p>
+</li>
+<li>
+<p><strong>(f)</strong> Which of the three attributes will you use for splitting at the root node? Briefly explain your choice.
+<strong>Answer:</strong>
+As for infomation gain,
+$$\begin{align}
+H(Class) -  H(Class|Movie ID) &amp; = 1 \\
+H(Class) -  H(Class|Format) &amp; = 1 - 0.8754 = 0.125 \\
+H(Class) -  H(Class|Movie Category) &amp; = 1 - 0.7042 = 0.296 \end{align}
+$$
+Choose Movie Category is better because it has more info gain, although Movie ID has the most infomation gain (1), but it has overfitting.</p>
+</li>
+</ul>
+<p>注: 关于条件熵和信息增益, 参考<a href="http://xxuan.me/2016-05-22-decision-tree.html" target="_blank" rel="noopener noreffer ">之前的blog</a></p>
+<h2 id="question-2-1">Question 2</h2>
+<p>[19 points: 6+5+8] Consider the decision tree shown in Figure 1, and the corresponding training and test sets in Tables 2 and 3 respectively.</p>
+<ul>
+<li>
+<p><strong>(a)</strong> Estimate the generalization error rate of the tree using both the optimistic approach and the pessimistic approach. While computing the error with pessimistic approach, to account for model complexity, use a penalty value of 2 to each leaf node.
+<strong>Answer:</strong>
+Optimistic error rate: 0
+Pessimistic error rate:
+$$ ErrorRate = \frac {e(T) + \Omega(T)}{N_t} = \frac{0 + 6 \times 2}{15} = 0.8$$</p>
+</li>
+<li>
+<p><strong>(b)</strong> Compute the error rate of the tree on the test set shown in Table 3
+<strong>Answer:</strong>
+Since (0,0,0,0) and (0,0,0,1) are wrong,
+$$ ErrorRate = \frac{4+3}{15} = 0.47$$</p>
+</li>
+<li>
+<p><strong>(c)</strong> Comment on the behaviour of training and test set errors with respect to model complex- ity. Comment on the utility of incorporating model complexity in building a predictive model.
+<strong>Answer:</strong></p>
+<ul>
+<li>With model complexity increasing, the performance of the model will increase on the training set but decrease on the testing set</li>
+<li>Pruning the data through pessimistic error rate will get a better performance on testing set, as well as a simpler model, less computing complexity.</li>
+</ul>
+</li>
+</ul>
+<p>注: 关于剪枝的判断, 主要是叶节点个数(复杂度)和分类错误率</p>
+<h2 id="question-3-1">Question 3</h2>
+<p>[20 points: 10 for each part] Given the data sets shown in Figure 2, explain how the decision tree and k-nearest neighbor (k-NN) classifiers would perform on these data sets.</p>
+<p><strong>Answer:</strong></p>
+<ol>
+<li>Decision tree: Discriminating  attributes and noise attributes make decision tree prone to overfitting</li>
+<li>k-NN: If k is too big, it will label the central samples as A rather than B, which is the right label.</li>
+</ol>
+<h2 id="question-4-1">Question 4</h2>
+<p>[16 points: 4 for each part] Consider the problem of predicting if a given person is a defaulted borrower (DB) based on the attribute values:</p>
+<ul>
+<li>Home Owner = Yes, No</li>
+<li>Marital Status = Single, Married, Divorced</li>
+<li>Annual Income = Low, Medium, High</li>
+<li>Currently Employed = Yes, No</li>
+</ul>
+<p>Suppose a rule-based classifier produces the following rules:</p>
+<ul>
+<li>Home Owner = Yes → DB=Yes</li>
+<li>Marital Status = Single → DB = Yes</li>
+<li>Annual Income = Low → DB = Yes</li>
+<li>Annual Income = High, Currently Employed = No → DB = Yes</li>
+<li>Annual Income = Medium, Currently Employed = Yes → DB = No</li>
+<li>Home Owner = No, Marital Status = Married → DB = No</li>
+<li>Home Owner = No, Marital Status = Single → DB = Yes</li>
+</ul>
+<p>Answer the following questions. Make sure to provide a brief explanation or an example to illustrate the answer.</p>
+<ul>
+<li><strong>(a)</strong> Are the rules mutually exclusive ?
+<strong>Answer:</strong> No. Example: Home Owner = No, Marital Status = Single, Annual Income = Low/High → DB = Yes</li>
+<li><strong>(b)</strong> Is the rule set exhaustive ?
+<strong>Answer:</strong> No. There is no rule for Marital Status = Divorced</li>
+<li><strong>(c)</strong> Is ordering needed for this set of rules ?
+<strong>Answer:</strong> Better have an order to avoid conflict: Home Owner, Marital Status, Annual Income, Currently Employed</li>
+<li><strong>(d)</strong> Do you need a default class for the rule set ?
+<strong>Answer:</strong> Yes, since it&rsquo;s not set exhaustive.</li>
+</ul>
+<p>注: 基于规则的方法</p>
+<h2 id="question-5-1">Question 5</h2>
+<p>[15 points] Consider the problem of predicting whether a movie is popular given the following attributes: Format (DVD/Online), Movie Category (Comedy/Documentaries), Release Year, Number of world-class stars, Director, Language, Expense of Production and Length. If you had to choose between RIPPER and a k-nearest neighbor classifier, which would you prefer and why? Briefly explain why the other one may not work so well?</p>
+<p><strong>Answer:</strong>
+I&rsquo;d prefer RIPPER.</p>
+<ul>
+<li>RIPPER is a rule based method. It has a good performance on noisy and unbalanced data. Apparently the number of popular films is far less than the non-popular ones so the training set would be unbalanced as well as noisy.</li>
+<li>Since the attributes has different types and the number of attributes is relatively big, using k-NN would couse overfitting on the training set if its popularity is not large enough, or even fail to have reasonable cluster if the feature space is too sparse. (like empty cluster, etc.)</li>
+</ul></div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2017-03-18</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/2017-03-18-data-mining-assn1/index.md" target="_blank">Read Markdown</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="http://xxuan.cc/2017-03-18-data-mining-assn1/" data-title="存档-数据挖掘作业"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="http://xxuan.cc/2017-03-18-data-mining-assn1/"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="http://xxuan.cc/2017-03-18-data-mining-assn1/" data-title="存档-数据挖掘作业"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="http://xxuan.cc/2017-03-18-data-mining-assn1/" data-title="存档-数据挖掘作业"><i data-svg-src="/lib/simple-icons/icons/line.min.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="http://xxuan.cc/2017-03-18-data-mining-assn1/" data-title="存档-数据挖掘作业"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/2017-01-11-algo-sum/" class="prev" rel="prev" title="算法总结"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>算法总结</a>
+            <a href="/2017-03-22-naive-bayes/" class="next" rel="next" title="朴素贝叶斯">朴素贝叶斯<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+<div id="comments"><div id="disqus_thread" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://disqus.com/?ref_noscript">Disqus</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.102.2">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2016 - 2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">xiaoxuan</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/cookieconsent/cookieconsent.min.css"><script type="text/javascript" src="https://xxuan-cc.disqus.com/embed.js" defer></script><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/mhchem.min.js"></script><script type="text/javascript" src="/lib/cookieconsent/cookieconsent.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{},"cookieconsent":{"content":{"dismiss":"Got it!","link":"Learn more","message":"This website uses Cookies to improve your experience."},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":50,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

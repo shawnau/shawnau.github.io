@@ -1,0 +1,25 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>pandas - Tag - Laniakea</title>
+        <link>http://xxuan.cc/tags/pandas/</link>
+        <description>pandas - Tag - Laniakea</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>shawn_au@outlook.com (xiaoxuan)</managingEditor>
+            <webMaster>shawn_au@outlook.com (xiaoxuan)</webMaster><lastBuildDate>Fri, 29 Sep 2017 00:30:14 &#43;0000</lastBuildDate><atom:link href="http://xxuan.cc/tags/pandas/" rel="self" type="application/rss+xml" /><item>
+    <title>Python数据分析笔记2 pandas基础</title>
+    <link>http://xxuan.cc/code/2017-09-28-pandas/</link>
+    <pubDate>Fri, 29 Sep 2017 00:30:14 &#43;0000</pubDate>
+    <author>xiaoxuan</author>
+    <guid>http://xxuan.cc/code/2017-09-28-pandas/</guid>
+    <description><![CDATA[<p>
+全面翻新的pandas介绍, 篇幅较长, 请善用右下角目录!</p>]]></description>
+</item>
+<item>
+    <title>pandas速查</title>
+    <link>http://xxuan.cc/code/2017-03-29-pandas-10min/</link>
+    <pubDate>Wed, 29 Mar 2017 18:07:25 &#43;0000</pubDate>
+    <author>xiaoxuan</author>
+    <guid>http://xxuan.cc/code/2017-03-29-pandas-10min/</guid>
+    <description><![CDATA[<p>pandas, python栈的数据处理最强package, 没有之一(?</p>]]></description>
+</item>
+</channel>
+</rss>

@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>EM算法 - Laniakea</title><meta name="Description" content="xxuan&#39;s blog"><meta property="og:title" content="EM算法" />
+<meta property="og:description" content="Expectation Maximization Algorithm" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://xxuan.cc/2016-08-26-expectation-maximization/" /><meta property="og:image" content="http://xxuan.cc/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2016-08-26T21:01:12+00:00" />
+<meta property="article:modified_time" content="2016-08-26T21:01:12+00:00" /><meta property="og:site_name" content="xxuan.cc" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="http://xxuan.cc/logo.png"/>
+
+<meta name="twitter:title" content="EM算法"/>
+<meta name="twitter:description" content="Expectation Maximization Algorithm"/>
+<meta name="application-name" content="Laniakea">
+<meta name="apple-mobile-web-app-title" content="Laniakea"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://xxuan.cc/2016-08-26-expectation-maximization/" /><link rel="prev" href="http://xxuan.cc/2016-06-24-gradient-boosting/" /><link rel="next" href="http://xxuan.cc/2017-01-05-np2016/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" href="/lib/animate/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "EM算法",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/xxuan.cc\/2016-08-26-expectation-maximization\/"
+        },"genre": "posts","keywords": "machine learning, EM算法, 统计学习方法","wordcount":  2097 ,
+        "url": "http:\/\/xxuan.cc\/2016-08-26-expectation-maximization\/","datePublished": "2016-08-26T21:01:12+00:00","dateModified": "2016-08-26T21:01:12+00:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "xiaoxuan"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Laniakea">Laniakea</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/" title="存档脑细胞"> 文章 </a><a class="menu-item" href="/playground/" title="玩耍算法题的地方"> 练习场 </a><a class="menu-item" href="/code/" title="存放大概率过期的代码"> 码农 </a><a class="menu-item" href="/tags/" title="标签"> Tags </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Laniakea">Laniakea</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="存档脑细胞">文章</a><a class="menu-item" href="/playground/" title="玩耍算法题的地方">练习场</a><a class="menu-item" href="/code/" title="存放大概率过期的代码">码农</a><a class="menu-item" href="/tags/" title="标签">Tags</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">EM算法</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>xiaoxuan</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2016-08-26">2016-08-26</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;2097 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;5 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="true">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#1-三硬币模型">1. 三硬币模型</a></li>
+        <li><a href="#2-em算法">2. EM算法</a>
+          <ul>
+            <li><a href="#21-模型推广">2.1 模型推广</a></li>
+            <li><a href="#22-q函数的推导">2.2 Q函数的推导</a></li>
+            <li><a href="#23-q函数的定义">2.3 Q函数的定义</a></li>
+            <li><a href="#24-em算法">2.4 EM算法</a></li>
+          </ul>
+        </li>
+        <li><a href="#3-利用em算法求解三硬币模型">3. 利用EM算法求解三硬币模型</a>
+          <ul>
+            <li><a href="#31-e步">3.1 E步</a></li>
+            <li><a href="#32-m步">3.2 M步</a></li>
+          </ul>
+        </li>
+        <li><a href="#4-小结">4. 小结</a></li>
+        <li><a href="#5-reference">5. Reference</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><p>Expectation Maximization Algorithm</p>
+<h3 id="1-三硬币模型">1. 三硬币模型</h3>
+<p>假设有三枚硬币A, B, C, 这些硬币正面出现的概率是$p_a$, $p_b$, $p_c$.
+进行如下掷硬币试验:</p>
+<ol>
+<li>掷硬币A</li>
+<li>若A为正面则选择B, 否则选择C</li>
+<li>掷选出的硬币, 记录结果, 正面记作1, 反面记作0</li>
+<li>独立重复n次1~3
+假设只能观测到结果, 不能观察A的情况,如何估计$p_a$, $p_b$, $p_c$?</li>
+</ol>
+<p>三硬币模型中, 每一次掷硬币的过程可以写作
+$$
+\begin{align}
+P(y | \theta) &amp; = \sum\limits_z P(y, z | \theta) = \sum\limits_z  P(y|z,\theta) P(z |\theta) \\
+&amp; = p_a p_b^y (1 - p_b)^{1-y} + (1 - p_a) p_c^y (1-p_c)^{1 - y}
+\end{align}
+$$
+其中 $\theta = (p_a, p_b, p_c)$, y为观测结果, z为掷硬币A的结果(即隐变量).
+推广到掷n次硬币, 观测序列为$Y = (y_1, y_2, \cdots y_n)^T$的似然函数(likelihood function)为
+$$
+\begin{align}
+P(Y | \theta) &amp; = \prod_{j=1}^n  P(y_j | \theta) = \prod_{j=1}^n\sum\limits_z  P(y_j, z | \theta)\\
+&amp;= \prod_{j=1}^n \left\lbrace P(y_j, z=1 | \theta) + P(y_j, z=0 | \theta) \right\rbrace \\
+&amp; = \prod_{j=1}^n [p_a p_b^{y_j} (1 - p_b)^{1-y_j} + (1 - p_a) p_c^{y_j} (1-p_c)^{1 - y_j}]
+\end{align}
+$$</p>
+<p>使用极大似然估计(MLE)来估计参数:
+$$
+\hat \theta = arg\max\limits_{\theta} logP(Y | \theta)
+$$
+该问题没有解析解, 只能通过迭代求解, 而EM算法就是用于迭代求解该问题的方法之一. 因此EM算法就是含有隐变量的概率模型参数的极大似然估计</p>
+<hr>
+<h3 id="2-em算法">2. EM算法</h3>
+<h4 id="21-模型推广">2.1 模型推广</h4>
+<p>将未观测到的硬币A序列推广为任意隐变量序列$Z = (z_1, z_2, \cdots z_n)^T$, 其中$z$为隐变量. 目标是极大化观测序列$Y = (y_1, y_2, \cdots y_n)^T$关于参数$\theta$的对数似然函数, 即极大化
+$$
+\begin{align}
+L(\theta) &amp;= log  P(Y | \theta) = log \sum\limits_Z P(Y, Z | \theta) \\
+&amp;= log \sum\limits_Z  [ P(Y|Z,\theta) P(Z |\theta) ]
+\end{align}
+\tag{2.1}
+$$
+注意到式中需要对隐变量序列的所有可能求和, 但是隐变量往往是未知的, 且求和之后的函数难以处理, 因此直接极大化会遇到困难.</p>
+<hr>
+<h4 id="22-q函数的推导">2.2 Q函数的推导</h4>
+<p>假设使用迭代算法估计 $\theta$ , 其中第 $i$ 次迭代得到的参数估计值为$\theta_i$, 使用其估计得到的似然函数必然小于 $L(\theta)$, 设法取其下界:</p>
+<p>利用Jenson不等式, 对于譬如log一类的凹函数(concave function)有:
+$$
+f(\sum\limits_i a_i x_i) \ge \sum\limits_i a_i f(x_i)
+\text{ ,in which} \sum\limits_i a_i = 1
+$$</p>
+<p>故</p>
+<p>$$
+\begin{align}
+L(\theta) - L(\theta_i) &amp;= log \sum\limits_z  [ P(Y|Z,\theta) P(Z |\theta) ] - log  P(Y | \theta_i) \\
+&amp;= log \sum\limits_Z P(Z|Y,\theta_i ) \frac {P(Y|Z,\theta) P(Z |\theta)}{P(Z|Y,\theta_i)} - log  P(Y | \theta_i) \\
+&amp;\ge \sum\limits_Z P(Z|Y,\theta_i ) log\frac {P(Y|Z,\theta) P(Z |\theta)}{P(Z|Y,\theta_i)} - log  P(Y | \theta_i) \\
+&amp;= \sum\limits_Z P(Z|Y,\theta_i ) log \frac {P(Y|Z,\theta) P(Z |\theta)}{P(Z|Y,\theta_i) P(Y|\theta_i)}
+\end{align}
+$$
+其中第二行推导利用了$\sum\limits_Z P(Z|Y,\theta_i ) = 1$ 的性质, 而第四行把$log  P(Y | \theta_i)$ 化为 $\left\lbrace \sum\limits_Z P(Z|Y,\theta_i )\right\rbrace log  P(Y | \theta_i)$ 以便和前一项合并.</p>
+<p>由此可得 $L(\theta)$ 的下界:
+$$
+B(\theta, \theta_i) = L(\theta_i) + \sum\limits_Z P(Z|Y,\theta_i ) log \frac {P(Y|Z,\theta) P(Z |\theta)}{P(Z|Y,\theta_i) P(Y|\theta_i)}
+\tag{2.2}
+$$
+易知 $B(\theta_i, \theta_i) = L(\theta_i)$, 对任意$\theta_{i+1}$, 若有$B(\theta_{i+1}, \theta_i) &gt; B(\theta_i, \theta_i)$, 则:
+$$
+L(\theta_{i+1}) \ge B(\theta_{i+1}, \theta_i) &gt; B(\theta_i, \theta_i) = L(\theta_i)
+\tag{2.3}
+$$
+由(2.3)可知, 为了取尽量大的$L(\theta_{i+1})$, 就需要取其尽量大的下界$B(\theta_{i+1}, \theta_i)$. 省略和 $\theta$ 无关的变量, 有:
+$$
+\begin{align}
+\theta_{i+1} &amp;= arg\max\limits_\theta B(\theta, \theta_i) \\
+&amp;= arg\max\limits_\theta \sum\limits_Z P(Z|Y,\theta_i ) log  P(Y, Z | \theta) \\
+&amp;= arg\max\limits_\theta Q(\theta, \theta_i)
+\end{align}
+$$
+由此可知, EM算法是通过不断求解下界的极大化逼近求解对数似然函数极大值的算法, 但并不能求得全局极大值.</p>
+<hr>
+<h4 id="23-q函数的定义">2.3 Q函数的定义</h4>
+<p>$$
+\begin{align}
+Q(\theta, \theta_i) &amp;= E_Z [log  P(Y, Z | \theta) | Y, \theta_i]\\
+&amp;= \sum\limits_Z P(Z|Y,\theta_i ) log  P(Y, Z | \theta)
+\end{align}
+\tag{2.4}
+$$
+完全观测数据的对数似然函数 $log  P(Y, Z | \theta)$ 在给定观测数据 $Y$ 和当前估计参数 $\theta_i$ 下, 对隐变量序列 $Z$ 的条件概率分布 $P(Z|Y,\theta_i )$ 的期望称为Q函数.</p>
+<hr>
+<h4 id="24-em算法">2.4 EM算法</h4>
+<p>输入: 观测变量$Y$, 隐变量取值范围$Z$, 条件分布$P(Z|Y,\theta_i )$, 联合分布 $P(Y, Z | \theta)$
+输出: 模型参数$\theta$</p>
+<p>(1) 初始化$\theta_0$
+(2) E步: 在第 $i$ 步计算出的参数为 $\theta_i$, 第 $i+1$ 步, 计算
+$$
+\begin{align}
+Q(\theta, \theta_i) &amp;= E_Z [log  P(Y, Z | \theta) | Y, \theta_i]\\
+&amp;= \sum\limits_Z P(Z|Y,\theta_i ) log  P(Y, Z | \theta)
+\end{align}
+$$
+(3) M步: 最大化$Q(\theta, \theta_i)$, 得到 $\theta_{i+1} = arg\max\limits_\theta Q(\theta, \theta_i)$
+(4) 重复(2), (3)两步, 直到 $\theta$ 收敛</p>
+<p>简而言之, EM算法的E步: 从观测序列 $Y$ 和估计参数 $\theta_i$ 计算出隐变量序列的概率分布 $P(Z|Y,\theta_i )$ ,对每个观测序列 $Z$, 求出 $log  P(Y, Z | \theta)$ 的期望, 此时这是个仅含有 $\theta$ 的函数.</p>
+<p>M步: 最大化$Q(\theta, \theta_i)$, 得到 $\theta_{i+1} = arg\max\limits_\theta Q(\theta, \theta_i)$</p>
+<hr>
+<h3 id="3-利用em算法求解三硬币模型">3. 利用EM算法求解三硬币模型</h3>
+<p>计算需要的参数:
+$Y = (1, 1, 0, 1, 0, 0, 1, 0, 1, 1)^T$
+$Z = \lbrace 1, 0 \rbrace$
+$\theta = (p_a, p_b, p_c)$</p>
+<h4 id="31-e步">3.1 E步</h4>
+<p>对于单步实验:
+$$
+\begin{align}
+P(z=1 | y_j,\theta_i ) &amp;= \frac {P(y_j, z=1 | \theta_i)} {P(y_j | \theta_i)} \text{ (Bayes公式) } \\
+&amp;= \frac {P(y_j, z=1 | \theta_i)} {P(y_j, z=1 | \theta_i) + P(y_j, z=0 | \theta_i)} \\
+&amp;= \frac {p_a p_b^{y_j} (1 - p_b)^{1-y_j}} {p_a p_b^{y_j} (1 - p_b)^{1-y_j} + (1 - p_a) p_c^{y_j} (1-p_c)^{1 - y_j}} \\
+&amp;= \mu_j^{(i)}
+\end{align}
+$$</p>
+<p>$P(z=0 | y_j,\theta_i ) = 1 - P(z=1 | y_j,\theta_i ) = 1 - \mu_j^{(i)}$</p>
+<p>$$
+\begin{align}
+&amp;Q(\theta, \theta_i) \\
+&amp;= E_Z [log  P(Y, Z | \theta) | Y, \theta_i] \\
+&amp;= \sum\limits_j E_z [logP(y_j, z|\theta) | y_j, \theta_i] \\
+&amp;= \sum\limits_j \sum\limits_z P(z|y_j,\theta_i ) log  P(y_i, z | \theta) \\
+&amp;=  \sum\limits_j [\mu_j^{(i)} logP(y_j, z_j=1 | \theta) + (1 - \mu_j^{(i)})logP(y_j, z_j=0 | \theta)] \\
+&amp;= \sum\limits_j \left\lbrace \mu_j^{(i)} log [p_a p_b^{y_j} (1 - p_b)^{1-y_j}] + (1 - \mu_j^{(i)})log[(1 - p_a) p_c^{y_j} (1-p_c)^{1 - y_j}] \right\rbrace
+\end{align}
+$$
+注: 对于以上推导的1-2步, 由于Q函数是概率的期望值, 对于单步重复试验, 整个序列的期望值可以由单步实验的期望值相加取得.</p>
+<h4 id="32-m步">3.2 M步</h4>
+<p>其中 $\mu_j^{(i)}$ 中包含了第 $i$ 次迭代得到的估计参数, 最优化 $Q(\theta, \theta_i)$ 之后得到新的参数, 即 $\theta_{i+1}$ . 优化手段直接求导并令导数等于零(过程略):</p>
+<p>$$
+p_a^{(i+1)} = \frac {\partial Q} {\partial p_a} = \frac {1}{n} \sum\limits_{j=1}^n \mu_j^{(i)} \\
+p_b^{(i+1)} = \frac {\partial Q} {\partial p_b} = \frac{\sum\limits_{j=1}^n \mu_j^{(i)} y_j} {\sum\limits_{j=1}^n \mu_j^{(i)}} \\
+p_c^{(i+1)} = \frac {\partial Q} {\partial p_c} = \frac{\sum\limits_{j=1}^n(1 - \mu_j^{(i)}) y_j} {\sum\limits_{j=1}^n (1 - \mu_j^{(i)})}
+$$
+依次使用以上三式迭代, 直到收敛即可</p>
+<hr>
+<h3 id="4-小结">4. 小结</h3>
+<p>EM算法是对极大似然估计的自然推广.</p>
+<ul>
+<li>对于没有隐变量的参数估计, 直接使用最大似然估计即可.</li>
+<li>对含有隐变量的参数估计:
+<ol>
+<li>首先先验地估计一组参数$\theta_i$</li>
+<li>因为不知道隐变量的分布情况, 所以先根据$\theta_i$, 使用Bayes公式求出隐变量的概率分布$P(z|y,\theta_i )$</li>
+<li>根据该分布求出完全数据的对数似然函数$log  P(y, z | \theta)$的期望, 该期望即为Q函数.</li>
+<li>最大化Q函数, 等价于最大化似然函数的下界.</li>
+<li>获得新的 $\theta_{i+1}$ 并进行迭代, 相当于提升了似然函数的值</li>
+</ol>
+</li>
+</ul>
+<hr>
+<h3 id="5-reference">5. Reference</h3>
+<p><a href="http://ai.stanford.edu/~chuongdo/papers/em%5c_tutorial.pdf" target="_blank" rel="noopener noreffer ">What is the expectation maximization algorithm?</a>
+<a href="https://www.amazon.cn/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95-%E6%9D%8E%E8%88%AA/dp/B007TSFMTA/ref=sr%5c_1%5c_1?ie=UTF8&amp;qid=1466746855&amp;sr=8-1&amp;keywords=%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95" target="_blank" rel="noopener noreffer ">统计学习方法</a></p>
+<blockquote>
+<p>Written with <a href="https://stackedit.io/" target="_blank" rel="noopener noreffer ">StackEdit</a>.</p>
+</blockquote></div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2016-08-26</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/2016-08-26-expectation-maximization/index.md" target="_blank">Read Markdown</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="http://xxuan.cc/2016-08-26-expectation-maximization/" data-title="EM算法" data-hashtags="machine learning,EM算法,统计学习方法"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="http://xxuan.cc/2016-08-26-expectation-maximization/" data-hashtag="machine learning"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="http://xxuan.cc/2016-08-26-expectation-maximization/" data-title="EM算法"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="http://xxuan.cc/2016-08-26-expectation-maximization/" data-title="EM算法"><i data-svg-src="/lib/simple-icons/icons/line.min.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="http://xxuan.cc/2016-08-26-expectation-maximization/" data-title="EM算法"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/machine-learning/">machine learning</a>,&nbsp;<a href="/tags/em%E7%AE%97%E6%B3%95/">EM算法</a>,&nbsp;<a href="/tags/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/">统计学习方法</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/2016-06-24-gradient-boosting/" class="prev" rel="prev" title="Boosting(3)- Gradient Boosting"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>Boosting(3)- Gradient Boosting</a>
+            <a href="/2017-01-05-np2016/" class="next" rel="next" title="2016秋 网络程序设计 课程学习心得总结">2016秋 网络程序设计 课程学习心得总结<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+<div id="comments"><div id="disqus_thread" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://disqus.com/?ref_noscript">Disqus</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.102.2">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2016 - 2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">xiaoxuan</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/cookieconsent/cookieconsent.min.css"><script type="text/javascript" src="https://xxuan-cc.disqus.com/embed.js" defer></script><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/mhchem.min.js"></script><script type="text/javascript" src="/lib/cookieconsent/cookieconsent.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{},"cookieconsent":{"content":{"dismiss":"Got it!","link":"Learn more","message":"This website uses Cookies to improve your experience."},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":50,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

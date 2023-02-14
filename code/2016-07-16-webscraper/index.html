@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>基于selenium&#43;phantomJS的动态网页抓取 - Laniakea</title><meta name="Description" content="xxuan&#39;s blog"><meta property="og:title" content="基于selenium&#43;phantomJS的动态网页抓取" />
+<meta property="og:description" content="源代码: https://github.com/shawnau/ustcsse_scraper" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://xxuan.cc/code/2016-07-16-webscraper/" /><meta property="og:image" content="http://xxuan.cc/logo.png"/><meta property="article:section" content="code" />
+<meta property="article:published_time" content="2016-07-16T12:26:35+00:00" />
+<meta property="article:modified_time" content="2016-07-16T12:26:35+00:00" /><meta property="og:site_name" content="xxuan.cc" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="http://xxuan.cc/logo.png"/>
+
+<meta name="twitter:title" content="基于selenium&#43;phantomJS的动态网页抓取"/>
+<meta name="twitter:description" content="源代码: https://github.com/shawnau/ustcsse_scraper"/>
+<meta name="application-name" content="Laniakea">
+<meta name="apple-mobile-web-app-title" content="Laniakea"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://xxuan.cc/code/2016-07-16-webscraper/" /><link rel="prev" href="http://xxuan.cc/code/2016-06-28-spark-tutorial/" /><link rel="next" href="http://xxuan.cc/code/2016-07-17-bilibili-scraper/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" href="/lib/animate/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "基于selenium+phantomJS的动态网页抓取",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/xxuan.cc\/code\/2016-07-16-webscraper\/"
+        },"genre": "code","keywords": "python, 爬虫","wordcount":  3391 ,
+        "url": "http:\/\/xxuan.cc\/code\/2016-07-16-webscraper\/","datePublished": "2016-07-16T12:26:35+00:00","dateModified": "2016-07-16T12:26:35+00:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "xiaoxuan"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Laniakea">Laniakea</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/" title="存档脑细胞"> 文章 </a><a class="menu-item" href="/playground/" title="玩耍算法题的地方"> 练习场 </a><a class="menu-item" href="/code/" title="存放大概率过期的代码"> 码农 </a><a class="menu-item" href="/tags/" title="标签"> Tags </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Laniakea">Laniakea</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="存档脑细胞">文章</a><a class="menu-item" href="/playground/" title="玩耍算法题的地方">练习场</a><a class="menu-item" href="/code/" title="存放大概率过期的代码">码农</a><a class="menu-item" href="/tags/" title="标签">Tags</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="page single special"><h1 class="single-title animate__animated animate__pulse animate__faster">基于selenium&#43;phantomJS的动态网页抓取</h1><div class="content" id="content"><p>源代码: <a href="https://github.com/shawnau/ustcsse_scraper" target="_blank" rel="noopener noreffer ">https://github.com/shawnau/ustcsse_scraper</a></p>
+<h2 id="0-准备工作">0. 准备工作</h2>
+<p>首先介绍下需要安装的组件：</p>
+<ul>
+<li>selenium, 自动化测试工具, 本文会通过它操纵phantomJS, 使得爬虫能做出模仿普通用户的操作, 基于python的selenium指南请参考<a href="http://selenium-python.readthedocs.io/index.html" target="_blank" rel="noopener noreffer ">官方文档</a>, 本文将会较重度地使用selenium.</li>
+<li>phantomJS, 简单说这就是个可以静默运行的浏览器模拟器, 具体安装事项请看<a href="http://phantomjs.org/documentation/" target="_blank" rel="noopener noreffer ">官方文档</a>, 这篇文章并不会过多地使用它</li>
+<li>beautifulsoup, 做过静态网页爬虫的朋友应该都很熟悉了. 同样, 这篇文章并不会过多地使用它, 因为需要爬的是动态网页, 只把它作为简单的html分析器使用</li>
+<li>Firefox, 主要是使用<a href="https://addons.mozilla.org/en-US/firefox/addon/firepath/" target="_blank" rel="noopener noreffer ">FirePath</a>和<a href="https://addons.mozilla.org/en-US/firefox/addon/httpfox/" target="_blank" rel="noopener noreffer ">HttpFox</a>插件来分析网页, 关于xPath, 详见<a href="http://www.w3school.com.cn/xpath/" target="_blank" rel="noopener noreffer ">xPath教程</a>, 本文并不要求掌握.</li>
+</ul>
+<p>除此之外, 本文默认读者具备最基础的python(2.7)知识和正则表达式知识.有关python和正则表达式的知识详见: <a href="https://docs.python.org/2/tutorial/" target="_blank" rel="noopener noreffer ">The Python Tutorial</a>, <a href="http://deerchao.net/tutorials/regex/regex.htm" target="_blank" rel="noopener noreffer ">正则表达式30分钟入门教程</a>, <a href="https://developers.google.com/edu/python/regular-expressions" target="_blank" rel="noopener noreffer ">Python Regular Expressions</a>, <a href="https://docs.python.org/2/library/re.html" target="_blank" rel="noopener noreffer ">re module的官方文档</a></p>
+<h2 id="1-模拟登录并保存cookies">1. 模拟登录并保存cookies</h2>
+<h3 id="11-使用selenium打开网页">1.1 使用selenium打开网页</h3>
+<p>首先看一下我们需要爬取的网站: <a href="http://mis.sse.ustc.edu.cn/" target="_blank" rel="noopener noreffer ">http://mis.sse.ustc.edu.cn/</a>
+(恩..教务网..a little private for my 1st web scraper lol)
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/Screen%20Shot%202016-07-16%20at%2010.44.26%20AM.png"
+        data-srcset="http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/Screen%20Shot%202016-07-16%20at%2010.44.26%20AM.png, http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/Screen%20Shot%202016-07-16%20at%2010.44.26%20AM.png 1.5x, http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/Screen%20Shot%202016-07-16%20at%2010.44.26%20AM.png 2x"
+        data-sizes="auto"
+        alt="http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/Screen%20Shot%202016-07-16%20at%2010.44.26%20AM.png"
+        title="homepage" />
+观察源代码
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/Screen%20Shot%202016-07-16%20at%2010.41.45%20AM.png"
+        data-srcset="http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/Screen%20Shot%202016-07-16%20at%2010.41.45%20AM.png, http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/Screen%20Shot%202016-07-16%20at%2010.41.45%20AM.png 1.5x, http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/Screen%20Shot%202016-07-16%20at%2010.41.45%20AM.png 2x"
+        data-sizes="auto"
+        alt="http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/Screen%20Shot%202016-07-16%20at%2010.41.45%20AM.png"
+        title="sourcecode" /></p>
+<p>万幸的是没有验证码. 不幸的是登录界面是javascript渲染出来的, 连input标签都找不到, 传统的直接通过requests包进行post操作登录将会遇到困难, 因此我们使用selenium来操作phantomJS登录.
+首先通过selenium启动phantomJS:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">selenium</span> <span class="kn">import</span> <span class="n">webdriver</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">selenium.webdriver.common.desired_capabilities</span> <span class="kn">import</span> <span class="n">DesiredCapabilities</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># set phantomJS&#39;s agent to Firefox</span>
+</span></span><span class="line"><span class="cl"><span class="n">dcap</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">DesiredCapabilities</span><span class="o">.</span><span class="n">PHANTOMJS</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">dcap</span><span class="p">[</span><span class="s2">&#34;phantomjs.page.settings.userAgent&#34;</span><span class="p">]</span> <span class="o">=</span> \
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;Mozilla/5.0 (Macintosh; Intel Mac OS X 10.9; rv:25.0) Gecko/20100101 Firefox/25.0 &#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># system path you need to config by yourself</span>
+</span></span><span class="line"><span class="cl"><span class="n">phantomjsPath</span> <span class="o">=</span> <span class="s2">&#34;/Users/Shawn/Downloads/phantomjs-2.1.1-macosx/bin/phantomjs&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">driver</span> <span class="o">=</span> <span class="n">webdriver</span><span class="o">.</span><span class="n">PhantomJS</span><span class="p">(</span><span class="n">executable_path</span><span class="o">=</span><span class="n">phantomjsPath</span><span class="p">,</span> <span class="n">desired_capabilities</span><span class="o">=</span><span class="n">dcap</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>第一部分对<code>dcap</code>的配置是为了改变user-agent, &ldquo;伪装&quot;成网页需要的浏览器访问. 这里通过<code>desired_capabilities</code>告诉selenium, 模拟的是OS X10.9下的Firefox 25.0,
+第二部分是指出了PhantomJS的可执行文件位置, 根据系统的不同需要自行找到phantomJS的文件地址, 并通过<code>executable_path</code>告诉selenium.
+最后一行执行完毕之后driver就启动了, 这时driver相当于启动了一个浏览器窗口. 接着我们用这个浏览器登录, 这里使用了<code>get()</code>方法</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">login_url</span> <span class="o">=</span> <span class="s2">&#34;http://mis.sse.ustc.edu.cn/&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">driver</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">login_url</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>此时相当于往浏览器输入地址, 打开登录界面.</p>
+<h3 id="12-使用xpath找到需要的元素">1.2 使用xpath找到需要的元素</h3>
+<p>接下来我们需要让selenium找到填写账户和密码的文本框, 填写完毕之后再点击登录. 所有这些元素都可以通过强大的xPath找到. 首先使用火狐的firePath找到元素对应的xPath. 右键登录的文本框, 点击inspect in firepath:
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/Screen%20Shot%202016-07-16%20at%2011.03.06%20AM.png"
+        data-srcset="http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/Screen%20Shot%202016-07-16%20at%2011.03.06%20AM.png, http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/Screen%20Shot%202016-07-16%20at%2011.03.06%20AM.png 1.5x, http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/Screen%20Shot%202016-07-16%20at%2011.03.06%20AM.png 2x"
+        data-sizes="auto"
+        alt="http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/Screen%20Shot%202016-07-16%20at%2011.03.06%20AM.png"
+        title="xpath" />
+复制找到的xPath, 同理找到其他两个元素, 保存下来:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">idXpath</span> <span class="o">=</span> <span class="s2">&#34;.//*[@id=&#39;winLogin_sfLogin_txtUserLoginID&#39;]&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">pwXpath</span> <span class="o">=</span> <span class="s2">&#34;.//*[@id=&#39;winLogin_sfLogin_txtPassword&#39;]&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">loginXpath</span> <span class="o">=</span> <span class="s2">&#34;.//*[@id=&#39;ext-gen5&#39;]&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>下面就是填写表单登录了. 但是由于js渲染需要时间, 若脚本一打开就填写有可能还没渲染出来, selenium找不到, 因此需要使用selenium为我们准备的<code>WebDriverWait</code>方法</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">wait</span> <span class="o">=</span> <span class="n">WebDriverWait</span><span class="p">(</span><span class="n">driver</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">wait</span><span class="o">.</span><span class="n">until</span><span class="p">(</span><span class="n">EC</span><span class="o">.</span><span class="n">presence_of_element_located</span><span class="p">((</span><span class="n">By</span><span class="o">.</span><span class="n">XPATH</span><span class="p">,</span> <span class="n">idXpath</span><span class="p">)))</span>
+</span></span><span class="line"><span class="cl"><span class="n">wait</span><span class="o">.</span><span class="n">until</span><span class="p">(</span><span class="n">EC</span><span class="o">.</span><span class="n">presence_of_element_located</span><span class="p">((</span><span class="n">By</span><span class="o">.</span><span class="n">XPATH</span><span class="p">,</span> <span class="n">pwXpath</span><span class="p">)))</span>
+</span></span><span class="line"><span class="cl"><span class="n">wait</span><span class="o">.</span><span class="n">until</span><span class="p">(</span><span class="n">EC</span><span class="o">.</span><span class="n">element_to_be_clickable</span><span class="p">((</span><span class="n">By</span><span class="o">.</span><span class="n">XPATH</span><span class="p">,</span> <span class="n">loginXpath</span><span class="p">)))</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>以上三条的意思是让我们的driver一直等到找到了填写账号和密码的文本框, 并且登录按钮可以点击的时候. 如果等10秒还找不到的话, 就raise exception, 报异常了.</p>
+<p>接下来就可以填写账户密码, 并点击登录按钮了</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">driver</span><span class="o">.</span><span class="n">find_element_by_xpath</span><span class="p">(</span><span class="n">idXpath</span><span class="p">)</span><span class="o">.</span><span class="n">send_keys</span><span class="p">(</span><span class="n">username</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">driver</span><span class="o">.</span><span class="n">find_element_by_xpath</span><span class="p">(</span><span class="n">pwXpath</span><span class="p">)</span><span class="o">.</span><span class="n">send_keys</span><span class="p">(</span><span class="n">password</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">driver</span><span class="o">.</span><span class="n">find_element_by_xpath</span><span class="p">(</span><span class="n">loginXpath</span><span class="p">)</span><span class="o">.</span><span class="n">click</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Login Success!&#34;</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>首先通过<code>find_element_by_xpath</code>方法找到对应的元素, 再通过<code>send_keys()</code>和  <code>click()</code>方法填写表单和点击按钮.</p>
+<h3 id="13-登陆完毕后保存cookies备用">1.3 登陆完毕后保存cookies备用</h3>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/Screen%20Shot%202016-07-16%20at%2011.22.12%20AM.png"
+        data-srcset="http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/Screen%20Shot%202016-07-16%20at%2011.22.12%20AM.png, http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/Screen%20Shot%202016-07-16%20at%2011.22.12%20AM.png 1.5x, http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/Screen%20Shot%202016-07-16%20at%2011.22.12%20AM.png 2x"
+        data-sizes="auto"
+        alt="http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/Screen%20Shot%202016-07-16%20at%2011.22.12%20AM.png"
+        title="loginpage" />
+登录完毕之后, 可以看见网页已被重定向到了http://mis.sse.ustc.edu.cn/homepage/StuDefault.aspx, 那么怎样确认网页已经被重定向了呢? 我们故技重施, 在这个页面随意找一个之前登录页面没有的元素, 让selenium等到他出现就是了</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">redirectXpath</span> <span class="o">=</span> <span class="s2">&#34;.//*[@id=&#39;RegionPanel1_UpRegion_ContentPanel1_content&#39;]/table/tbody/tr/td[2]&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">wait</span><span class="o">.</span><span class="n">until</span><span class="p">(</span><span class="n">EC</span><span class="o">.</span><span class="n">presence_of_element_located</span><span class="p">((</span><span class="n">By</span><span class="o">.</span><span class="n">XPATH</span><span class="p">,</span> <span class="n">redirectXpath</span><span class="p">)))</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>完成这些之后, 当爬虫下次登录的时候可以用这次的cookies, 做到免输入直接登录. 这就要求我们把本次登录的cookies保存下来. 虽然selenium对取得cookies有极为方便的方法<code>get_cookies()</code>, 但遗憾的是phantomJS对cookies的格式支持不是那么完善, 直接取用会报错. 因此我们需要定义函数手动整理好cookies的格式并将其保存在一个js文件里, 当下次driver启动的时候可以通过<code>execute_script()</code> 方法直接调用:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">save_cookies</span><span class="p">(</span><span class="n">driver</span><span class="p">,</span> <span class="n">file_path</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># The format could vary</span>
+</span></span><span class="line"><span class="cl">    <span class="n">LINE</span> <span class="o">=</span> <span class="s2">&#34;document.cookie = &#39;</span><span class="si">{name}</span><span class="s2">=</span><span class="si">{value}</span><span class="s2">; path=</span><span class="si">{path}</span><span class="s2">; domain=</span><span class="si">{domain}</span><span class="s2">&#39;;</span><span class="se">\n</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">file_path</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">fd</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="n">cookie</span> <span class="ow">in</span> <span class="n">driver</span><span class="o">.</span><span class="n">get_cookies</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">            <span class="n">fd</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">LINE</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="o">**</span><span class="n">cookie</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">load_cookies</span><span class="p">(</span><span class="n">driver</span><span class="p">,</span> <span class="n">file_path</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">file_path</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">fd</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">driver</span><span class="o">.</span><span class="n">execute_script</span><span class="p">(</span><span class="n">fd</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>通过以上方法, 辅以完善的报错机制, 我们可以把以上登录步骤封装成一个函数, 其完成登录之后就把cookies保存到文件之中, 以便其后的爬虫直接通过cookies登录.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">login</span><span class="p">(</span><span class="n">login_url</span><span class="p">,</span> <span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">driver</span> <span class="o">=</span> <span class="n">webdriver</span><span class="o">.</span><span class="n">PhantomJS</span><span class="p">(</span><span class="n">executable_path</span><span class="o">=</span><span class="n">phantomjsPath</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                                 <span class="n">desired_capabilities</span><span class="o">=</span><span class="n">dcap</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">try</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">driver</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">login_url</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">wait</span> <span class="o">=</span> <span class="n">WebDriverWait</span><span class="p">(</span><span class="n">driver</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">wait</span><span class="o">.</span><span class="n">until</span><span class="p">(</span><span class="n">EC</span><span class="o">.</span><span class="n">presence_of_element_located</span><span class="p">((</span><span class="n">By</span><span class="o">.</span><span class="n">XPATH</span><span class="p">,</span> <span class="n">idXpath</span><span class="p">)))</span>
+</span></span><span class="line"><span class="cl">        <span class="n">wait</span><span class="o">.</span><span class="n">until</span><span class="p">(</span><span class="n">EC</span><span class="o">.</span><span class="n">presence_of_element_located</span><span class="p">((</span><span class="n">By</span><span class="o">.</span><span class="n">XPATH</span><span class="p">,</span> <span class="n">pwXpath</span><span class="p">)))</span>
+</span></span><span class="line"><span class="cl">        <span class="n">wait</span><span class="o">.</span><span class="n">until</span><span class="p">(</span><span class="n">EC</span><span class="o">.</span><span class="n">element_to_be_clickable</span><span class="p">((</span><span class="n">By</span><span class="o">.</span><span class="n">XPATH</span><span class="p">,</span> <span class="n">loginXpath</span><span class="p">)))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="n">driver</span><span class="o">.</span><span class="n">find_element_by_xpath</span><span class="p">(</span><span class="n">idXpath</span><span class="p">)</span><span class="o">.</span><span class="n">send_keys</span><span class="p">(</span><span class="n">username</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">driver</span><span class="o">.</span><span class="n">find_element_by_xpath</span><span class="p">(</span><span class="n">pwXpath</span><span class="p">)</span><span class="o">.</span><span class="n">send_keys</span><span class="p">(</span><span class="n">password</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">driver</span><span class="o">.</span><span class="n">find_element_by_xpath</span><span class="p">(</span><span class="n">loginXpath</span><span class="p">)</span><span class="o">.</span><span class="n">click</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Login Success!&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="n">wait</span><span class="o">.</span><span class="n">until</span><span class="p">(</span><span class="n">EC</span><span class="o">.</span><span class="n">presence_of_element_located</span><span class="p">((</span><span class="n">By</span><span class="o">.</span><span class="n">XPATH</span><span class="p">,</span> <span class="n">redirectXpath</span><span class="p">)))</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Current url is: &#34;</span> <span class="o">+</span> <span class="n">driver</span><span class="o">.</span><span class="n">current_url</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Current cookies are: &#34;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">driver</span><span class="o">.</span><span class="n">get_cookies</span><span class="p">()))</span>
+</span></span><span class="line"><span class="cl">        <span class="n">save_cookies</span><span class="p">(</span><span class="n">driver</span><span class="p">,</span> <span class="sa">r</span><span class="s1">&#39;cookies.js&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">ex</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Login failed!&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="n">ex</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">finally</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">driver</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><code>driver.close()</code> 方法相当于关闭了浏览器, 每次打开浏览器时都要记得最后关闭它. 本文之后还会定义一个 <code>logout()</code> 函数用于退出, 其机制和 <code>login()</code>  类似, 并使用了预存的cookies, 详见源代码.</p>
+<hr>
+<p>Selenium除了可以操作phantomJS之外, 还可以操作其他浏览器, 比如Firefox, Chrome等等, 在debug的时候这些浏览器会自动打开并进行模拟, 因此可以获得更清晰的模拟过程. 在debug我们的phantomJS遇到问题时, 也可以用其他浏览器代替, 来观察是哪个细节出错了. 关于其他浏览器请看官方文档的<a href="http://selenium-python.readthedocs.io/api.html" target="_blank" rel="noopener noreffer ">WebDriver API</a>一节, 其安装是很容易的, 使用也只需要一行来代替我们之前使用phantomJS的方法, 例如: <code>driver.Firefox()</code></p>
+<h2 id="2-爬取动态网页内容">2. 爬取动态网页内容</h2>
+<h3 id="21-使用cookies自动登录">2.1 使用cookies自动登录</h3>
+<p>有了cookies, 我们的爬虫就可以畅游教务网了. 使用cookies登录的方法很简单</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">scrape_url</span> <span class="o">=</span> <span class="s2">&#34;http://mis.sse.ustc.edu.cn/homepage/StuDefault.aspx&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">driver</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">login_url</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">driver</span><span class="o">.</span><span class="n">delete_all_cookies</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="n">load_cookies</span><span class="p">(</span><span class="n">driver</span><span class="p">,</span> <span class="sa">r</span><span class="s1">&#39;cookies.js&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">driver</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">scrape_url</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>首先登录主页, 然后使用 <code>delete_all_cookies()</code> 清空自己的cookies, 再载入预先保存的cookies, 然后直接访问要去的地址, 比如 <code>scrape_url</code> 这个子域名. 之所以先登录再访问而不是直接访问是因为cookies的域名必须和driver原先的域名一致, 不然会报错, 因此先登录主页初始化一下域名.
+封装一下:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">scraper</span><span class="p">(</span><span class="n">login_url</span><span class="p">,</span> <span class="n">scrape_url</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">driver</span> <span class="o">=</span> <span class="n">webdriver</span><span class="o">.</span><span class="n">PhantomJS</span><span class="p">(</span><span class="n">executable_path</span><span class="o">=</span><span class="n">phantomjsPath</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                                 <span class="n">desired_capabilities</span><span class="o">=</span><span class="n">dcap</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">try</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">driver</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">login_url</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">driver</span><span class="o">.</span><span class="n">delete_all_cookies</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">        <span class="n">load_cookies</span><span class="p">(</span><span class="n">driver</span><span class="p">,</span> <span class="sa">r</span><span class="s1">&#39;cookies.js&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">driver</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">scrape_url</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="n">driver</span><span class="o">.</span><span class="n">current_url</span> <span class="o">==</span> <span class="n">login_url</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="k">raise</span> <span class="ne">NameError</span><span class="p">(</span><span class="s1">&#39;Redirect failed!&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Scraper login through cookie success!&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;scrapping...&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="c1"># Do anything here! Scrape!</span>
+</span></span><span class="line"><span class="cl">    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">ex</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Scraper login through cookie failed!&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="n">ex</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">finally</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">logout</span><span class="p">(</span><span class="n">driver</span><span class="p">,</span> <span class="n">login_url</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>有了这个函数, 我们就可以使用它的driver任意爬取数据了.</p>
+<h3 id="22-爬取通知">2.2 爬取通知</h3>
+<p>找一找主页有什么可以爬取的? 从通知下手: 点击最新通知右下角的那个more, 转移到一个包含通知的新网页. 新网页似乎是嵌入在某个窗口中的. 我们用httpfox检查一下, 是不是能直接打开这个地址. 回到主页, 打开httpfox, 点击more之前按start检测, 点击完后再按stop停止:</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/Screen%20Shot%202016-07-16%20at%2012.02.54%20PM.png"
+        data-srcset="http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/Screen%20Shot%202016-07-16%20at%2012.02.54%20PM.png, http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/Screen%20Shot%202016-07-16%20at%2012.02.54%20PM.png 1.5x, http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/Screen%20Shot%202016-07-16%20at%2012.02.54%20PM.png 2x"
+        data-sizes="auto"
+        alt="http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/Screen%20Shot%202016-07-16%20at%2012.02.54%20PM.png"
+        title="httpfox" /></p>
+<p>果然, 在第一条下就发现了它的地址:
+<a href="http://mis.sse.ustc.edu.cn/Base/NoticeInfo/ListView.aspx" target="_blank" rel="noopener noreffer ">http://mis.sse.ustc.edu.cn/Base/NoticeInfo/ListView.aspx</a></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/Screen%20Shot%202016-07-16%20at%2012.06.16%20PM.png"
+        data-srcset="http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/Screen%20Shot%202016-07-16%20at%2012.06.16%20PM.png, http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/Screen%20Shot%202016-07-16%20at%2012.06.16%20PM.png 1.5x, http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/Screen%20Shot%202016-07-16%20at%2012.06.16%20PM.png 2x"
+        data-sizes="auto"
+        alt="http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/Screen%20Shot%202016-07-16%20at%2012.06.16%20PM.png"
+        title="subwindow" /></p>
+<p>打开这个地址, 正是我们要找的窗口. 接下来就可以使用 <code>driver.get()</code> 打开此地址并爬取通知了. 这里的做法是先用xPath选中整个列表, 把列表信息以html的形式保存下来, 然后用正则表达式匹配其中的链接, 获得所有链接之后一页一页地爬取</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">re</span>
+</span></span><span class="line"><span class="cl"><span class="n">infoXpath</span> <span class="o">=</span> <span class="s2">&#34;.//*[@id=&#39;ext-gen51&#39;]&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">elem</span> <span class="o">=</span> <span class="n">driver</span><span class="o">.</span><span class="n">find_element_by_xpath</span><span class="p">(</span><span class="n">infoXpath</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">table_source</span> <span class="o">=</span> <span class="n">elem</span><span class="o">.</span><span class="n">get_attribute</span><span class="p">(</span><span class="s1">&#39;innerHTML&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">reg</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="s2">&#34;/Base/NoticeInfo/ViewNotice\.aspx\?ID=[-a-z0-9]+&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">link_list</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="n">reg</span><span class="p">,</span> <span class="n">table_source</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>selenium对每个找到的元素, 都可以使用 <code>get_attribute('innerHTML')</code> 方法来获得其完整的html代码. 接着观察一下链接的形式, 发现很容易通过正则表达式提取. 提取完毕后在debug模式下我们可以得到 <code>link_list</code> 的内容:</p>
+<pre><code>/Base/NoticeInfo/ViewNotice.aspx?ID=65494f34-8f5c-4183-aa09-153c55a2e842
+/Base/NoticeInfo/ViewNotice.aspx?ID=de4b8355-0466-4c0c-8cec-6b152471f0da
+/Base/NoticeInfo/ViewNotice.aspx?ID=223acddd-9f5a-48e5-8e3d-151d0737750b
+</code></pre>
+<p>找到链接之后就可以循环提取链接, 把它和域名拼接起来, 使用beautifulsoup保存</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># 设置保存地址</span>
+</span></span><span class="line"><span class="cl"><span class="n">savePath</span> <span class="o">=</span> <span class="s2">&#34;/Users/Shawn/Documents/webscraper/data/&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">link</span> <span class="ow">in</span> <span class="n">link_list</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">page_link</span> <span class="o">=</span> <span class="n">login_url</span> <span class="o">+</span> <span class="n">link</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># 取得链接内容的源代码</span>
+</span></span><span class="line"><span class="cl">    <span class="n">driver</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">page_link</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">pagesource</span> <span class="o">=</span> <span class="n">driver</span><span class="o">.</span><span class="n">page_source</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># 用beautifulsoup解析页面内容并提取标题</span>
+</span></span><span class="line"><span class="cl">    <span class="kn">from</span> <span class="nn">bs4</span> <span class="kn">import</span> <span class="n">BeautifulSoup</span>
+</span></span><span class="line"><span class="cl">    <span class="n">bsObj</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">pagesource</span><span class="p">,</span> <span class="s2">&#34;html.parser&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">title</span> <span class="o">=</span> <span class="n">bsObj</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&#34;span&#34;</span><span class="p">,</span> <span class="p">{</span><span class="s2">&#34;id&#34;</span><span class="p">:</span> <span class="s2">&#34;lblNoticeName&#34;</span><span class="p">})</span><span class="o">.</span><span class="n">get_text</span><span class="p">()</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># 保存到本地, 文件名就是标题名</span>
+</span></span><span class="line"><span class="cl">    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">savePath</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">title</span><span class="p">)</span><span class="o">+</span><span class="s2">&#34;.html&#34;</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">fd</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">fd</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">bsObj</span><span class="o">.</span><span class="n">get_text</span><span class="p">()</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>最后封装成 <code>rule()</code> 函数嵌入到 <code>scraper()</code> 的 # Do anything here! Scrape! 注释那一行中, 详见源代码.
+再看一下保存的文件:</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/filesaved.png"
+        data-srcset="http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/filesaved.png, http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/filesaved.png 1.5x, http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/filesaved.png 2x"
+        data-sizes="auto"
+        alt="http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/filesaved.png"
+        title="savedfiles" /></p>
+<p>格式似乎还没有整理完毕, 文字和css分离了</p>
+<h2 id="3-小结">3. 小结</h2>
+<p>通过登录, 保存cookies, 爬取网页的过程, 本文介绍了怎样利用selenium+phantomJS操作动态网页. 爬虫的不足之处以及还可以进一步探索的内容有:</p>
+<ol>
+<li>批量保存文件时将渲染之后的网页源代码保存</li>
+<li>代码重用性: 在不改变框架的情况下, 如何利用该脚本爬取其他网页</li>
+<li>如果有验证码, 如何手动登录之后获取cookies再传递给爬虫自动登录, 乃至自动识别验证码</li>
+<li>如何提高速度: 使用多线程并发的技术同时爬取不同页面</li>
+</ol>
+<p>以上内容将在未来进一步完善, 感谢阅读!</p>
+<blockquote>
+<p>Written with <a href="https://stackedit.io/" target="_blank" rel="noopener noreffer ">StackEdit</a>.</p>
+</blockquote></div><div id="comments"><div id="disqus_thread" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://disqus.com/?ref_noscript">Disqus</a>.
+            </noscript></div></div></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.102.2">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2016 - 2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">xiaoxuan</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/cookieconsent/cookieconsent.min.css"><script type="text/javascript" src="https://xxuan-cc.disqus.com/embed.js" defer></script><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/mhchem.min.js"></script><script type="text/javascript" src="/lib/cookieconsent/cookieconsent.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{},"cookieconsent":{"content":{"dismiss":"Got it!","link":"Learn more","message":"This website uses Cookies to improve your experience."},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":50,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

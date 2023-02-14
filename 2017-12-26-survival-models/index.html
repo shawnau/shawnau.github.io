@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>Survival Models - Laniakea</title><meta name="Description" content="xxuan&#39;s blog"><meta property="og:title" content="Survival Models" />
+<meta property="og:description" content="
+生存模型(Survival Models)属于General Linear Model, 被广泛用于Censored Data的建模, 譬如用户流失预测. 这里介绍下最基本的生存模型以及在Censored Data上的MLE估计" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://xxuan.cc/2017-12-26-survival-models/" /><meta property="og:image" content="http://xxuan.cc/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2017-12-26T19:21:27+00:00" />
+<meta property="article:modified_time" content="2017-12-26T19:21:27+00:00" /><meta property="og:site_name" content="xxuan.cc" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="http://xxuan.cc/logo.png"/>
+
+<meta name="twitter:title" content="Survival Models"/>
+<meta name="twitter:description" content="
+生存模型(Survival Models)属于General Linear Model, 被广泛用于Censored Data的建模, 譬如用户流失预测. 这里介绍下最基本的生存模型以及在Censored Data上的MLE估计"/>
+<meta name="application-name" content="Laniakea">
+<meta name="apple-mobile-web-app-title" content="Laniakea"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://xxuan.cc/2017-12-26-survival-models/" /><link rel="prev" href="http://xxuan.cc/2017-09-27-python-extend/" /><link rel="next" href="http://xxuan.cc/2017-12-30-binarytreetraverse/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" href="/lib/animate/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Survival Models",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/xxuan.cc\/2017-12-26-survival-models\/"
+        },"genre": "posts","keywords": "stat, GLM","wordcount":  614 ,
+        "url": "http:\/\/xxuan.cc\/2017-12-26-survival-models\/","datePublished": "2017-12-26T19:21:27+00:00","dateModified": "2017-12-26T19:21:27+00:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "xiaoxuan"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Laniakea">Laniakea</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/" title="存档脑细胞"> 文章 </a><a class="menu-item" href="/playground/" title="玩耍算法题的地方"> 练习场 </a><a class="menu-item" href="/code/" title="存放大概率过期的代码"> 码农 </a><a class="menu-item" href="/tags/" title="标签"> Tags </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Laniakea">Laniakea</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="存档脑细胞">文章</a><a class="menu-item" href="/playground/" title="玩耍算法题的地方">练习场</a><a class="menu-item" href="/code/" title="存放大概率过期的代码">码农</a><a class="menu-item" href="/tags/" title="标签">Tags</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Survival Models</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>xiaoxuan</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2017-12-26">2017-12-26</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;614 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;2 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="true">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#survival-function">Survival Function</a></li>
+    <li><a href="#harzard-function">Harzard Function</a>
+      <ul>
+        <li><a href="#example-21">Example 2.1</a></li>
+        <li><a href="#expectation-of-life">Expectation of Life</a></li>
+      </ul>
+    </li>
+    <li><a href="#censoring-and-the-likelihood-function">Censoring and the likelihood function</a>
+      <ul>
+        <li><a href="#censoring-type">Censoring Type</a></li>
+        <li><a href="#likelihood-of-censoring-model">Likelihood of censoring model</a></li>
+        <li><a href="#example-31">Example 3.1</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/58319465_p0.jpg"
+        data-srcset="http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/58319465_p0.jpg, http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/58319465_p0.jpg 1.5x, http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/58319465_p0.jpg 2x"
+        data-sizes="auto"
+        alt="http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/58319465_p0.jpg"
+        title="http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/58319465_p0.jpg" />
+生存模型(Survival Models)属于General Linear Model, 被广泛用于Censored Data的建模, 譬如用户流失预测. 这里介绍下最基本的生存模型以及在Censored Data上的MLE估计</p>
+<h2 id="survival-function">Survival Function</h2>
+<p>Assume $T$ is a continuous random variable indicates the death occurrence time, we have:</p>
+<p>$$
+F(t) = P\lbrace T &lt; t\rbrace = \int_0^t f(t) dt
+\tag{1.1}
+$$</p>
+<p>Then the <strong>Survival Function</strong> should be:</p>
+<p>$$
+S(t) = P\lbrace  T &gt; t\rbrace = 1 - F(t) = \int_t^\infty f(t) dt
+\tag{1.2}
+$$</p>
+<h2 id="harzard-function">Harzard Function</h2>
+<p>An alternative way to characterization the distribution is given by <strong>harzard function</strong>, or <em>instantaneous rate of occurrence of the event</em>:</p>
+<p>$$
+\begin{align}
+\lambda(t) &amp;= \lim_{dt \to 0} \frac{P\lbrace t \le T &lt; t + dt | T \ge t\rbrace}{dt} \\
+&amp;= \lim_{dt \to 0} \frac{P\lbrace t \le T &lt; t + dt \rbrace}{P \lbrace T \ge t\rbrace dt} \\
+&amp;= \lim_{dt \to 0} \frac{f(t)dt}{S(t) dt} \\
+&amp;= \frac{f(t)}{S(t)}
+\end{align}
+\tag{2.1}
+$$</p>
+<p>Given $(1.2)$ we have $\frac{d}{dt} S(t) = -f(t)$, so $(2.1)$ has another form</p>
+<p>$$
+\lambda(t) = -\frac{d}{dt} log S(t)
+\tag{2.2}
+$$</p>
+<p>We could derive survival function from harzard function as well:</p>
+<p>$$
+S(t) = exp\lbrace  - \int_0^t \lambda(x)dx \rbrace = exp\lbrace  -\Lambda(t) \rbrace
+\tag{2.3}
+$$</p>
+<p>In which $\Lambda(t) = \int_0^t \lambda(x)dx$,  called <em>cumulative hazard</em></p>
+<hr>
+<h3 id="example-21">Example 2.1</h3>
+<p>Here we&rsquo;re modeling a constant risk over time:
+$$
+\lambda(t) = \lambda
+$$
+From $(2.2)$, we could solve corresponding survival function and pdf
+$$
+\begin{align}
+S(t) &amp;= exp\lbrace  - \int_0^t \lambda(x)dx \rbrace = e^{-\lambda t} \\
+f(t) &amp;= \lambda e^{-\lambda t}
+\end{align}
+$$
+That is exactly an <strong>exponential distribution</strong></p>
+<hr>
+<h3 id="expectation-of-life">Expectation of Life</h3>
+<p>Given $S(t)$ or $\lambda(t)$, it&rsquo;s easy to denote expected value of $T$
+$$
+\mu = \int_0^\infty tf(t)dt =\int_0^\infty S(t)dt
+$$</p>
+<h2 id="censoring-and-the-likelihood-function">Censoring and the likelihood function</h2>
+<h3 id="censoring-type">Censoring Type</h3>
+<ol>
+<li><em>Type I</em>
+Typically 2 types of observatioin:
+<ul>
+<li>A sample of $n$ units is followed for a fixed time $\tau$</li>
+<li>Generalization, <em>fixed censoring</em>: each unit has a fixed time $\tau_i$</li>
+</ul>
+</li>
+</ol>
+<p>In cases above, number of deaths is a random variable.</p>
+<ol start="2">
+<li><em>Type II</em></li>
+</ol>
+<ul>
+<li>A sample of $n$ units is followed as long as necessary until $d$ units have experienced the event</li>
+<li>Generalization, <em>random censoring</em>: Each unit has:
+<ul>
+<li>Censoring time $C_i$</li>
+<li>Potential lifetime $T_i$</li>
+<li>Observe time $Y_i = min\lbrace  C_i, T_i\rbrace$</li>
+<li>Indicator $d_i, \delta_i$ tells us whether the observation is terminated by death or censoring</li>
+</ul>
+</li>
+</ul>
+<h3 id="likelihood-of-censoring-model">Likelihood of censoring model</h3>
+<ol>
+<li>
+<p>Unit died at $t_i$. Since we know it is dead while survives till $t_i$, we have:
+$$
+L_i = f(t_i) = S(t_i)\lambda(t_i)
+\tag{3.1}
+$$</p>
+</li>
+<li>
+<p>Unit still alive at $t_i$. We only know it survives till $t_i$
+$$
+L_i = f(t_i) = S(t_i)
+\tag{3.2}
+$$</p>
+</li>
+</ol>
+<p>Given 2 conditions above, we have:
+$$
+L = \prod\limits_{i=1}^{n}L_i = \prod\limits_{i} \lambda(t_i)^{d_i}S(t_i)
+\tag{3.3}
+$$
+Taking logs, considering $(2.3)$, we have:
+$$
+log L = \sum\limits_{i=1}^{n} \lbrace  d_ilog\lambda(t_i) - \Lambda(t_i) \rbrace
+\tag{3.4}
+$$</p>
+<hr>
+<h3 id="example-31">Example 3.1</h3>
+<p>Considering exponential distribution $\lambda(t) = \lambda$, from$(3.4)$, we have
+$$
+log L = \sum\limits_{i=1}^{n} \lbrace  d_ilog\lambda - \lambda t_i \rbrace
+$$</p>
+<p>We could estimate $\lambda$ using MLE:</p>
+<p>Let $D=\sum d_i$ denotes the total number of deaths, $T = \sum t_i$ denotes total number of observation time:</p>
+<p>$$
+\begin{align}
+log L &amp;= Dlog\lambda - T\lambda \\
+\frac{\partial}{\partial \lambda} L &amp;= \frac{D}{\lambda} - T
+\end{align}
+$$</p>
+<p>Letting $\frac{\partial}{\partial \lambda} L = 0$ we get the estimation of $\lambda$</p>
+<p>$$
+\hat \lambda = \frac{D}{T}
+$$</p>
+<hr>
+<blockquote>
+<p><a href="http://data.princeton.edu/wws509/notes/c7.pdf" target="_blank" rel="noopener noreffer ">Reference</a></p>
+</blockquote></div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2017-12-26</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/2017-12-26-survival-models/index.md" target="_blank">Read Markdown</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="http://xxuan.cc/2017-12-26-survival-models/" data-title="Survival Models" data-hashtags="stat,GLM"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="http://xxuan.cc/2017-12-26-survival-models/" data-hashtag="stat"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="http://xxuan.cc/2017-12-26-survival-models/" data-title="Survival Models"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="http://xxuan.cc/2017-12-26-survival-models/" data-title="Survival Models"><i data-svg-src="/lib/simple-icons/icons/line.min.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="http://xxuan.cc/2017-12-26-survival-models/" data-title="Survival Models"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/stat/">stat</a>,&nbsp;<a href="/tags/glm/">GLM</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/2017-09-27-python-extend/" class="prev" rel="prev" title="Python核心编程笔记5 扩展Python"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>Python核心编程笔记5 扩展Python</a>
+            <a href="/2017-12-30-binarytreetraverse/" class="next" rel="next" title="Binary Tree Traverse">Binary Tree Traverse<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+<div id="comments"><div id="disqus_thread" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://disqus.com/?ref_noscript">Disqus</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.102.2">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2016 - 2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">xiaoxuan</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/cookieconsent/cookieconsent.min.css"><script type="text/javascript" src="https://xxuan-cc.disqus.com/embed.js" defer></script><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/mhchem.min.js"></script><script type="text/javascript" src="/lib/cookieconsent/cookieconsent.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{},"cookieconsent":{"content":{"dismiss":"Got it!","link":"Learn more","message":"This website uses Cookies to improve your experience."},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":50,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

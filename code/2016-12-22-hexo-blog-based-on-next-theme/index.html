@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>Github Page &#43; Hexo &#43; next主题 blog网站的搭建 - Laniakea</title><meta name="Description" content="xxuan&#39;s blog"><meta property="og:title" content="Github Page &#43; Hexo &#43; next主题 blog网站的搭建" />
+<meta property="og:description" content="简单介绍一下本站的建立过程" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://xxuan.cc/code/2016-12-22-hexo-blog-based-on-next-theme/" /><meta property="og:image" content="http://xxuan.cc/logo.png"/><meta property="article:section" content="code" />
+<meta property="article:published_time" content="2016-12-22T15:40:00+00:00" />
+<meta property="article:modified_time" content="2016-12-22T15:40:00+00:00" /><meta property="og:site_name" content="xxuan.cc" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="http://xxuan.cc/logo.png"/>
+
+<meta name="twitter:title" content="Github Page &#43; Hexo &#43; next主题 blog网站的搭建"/>
+<meta name="twitter:description" content="简单介绍一下本站的建立过程"/>
+<meta name="application-name" content="Laniakea">
+<meta name="apple-mobile-web-app-title" content="Laniakea"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://xxuan.cc/code/2016-12-22-hexo-blog-based-on-next-theme/" /><link rel="prev" href="http://xxuan.cc/code/2016-12-22-jupyter-notebooks/" /><link rel="next" href="http://xxuan.cc/code/2016-12-26-yolo-darknet/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" href="/lib/animate/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Github Page + Hexo + next主题 blog网站的搭建",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/xxuan.cc\/code\/2016-12-22-hexo-blog-based-on-next-theme\/"
+        },"genre": "code","keywords": "blog, hexo","wordcount":  1029 ,
+        "url": "http:\/\/xxuan.cc\/code\/2016-12-22-hexo-blog-based-on-next-theme\/","datePublished": "2016-12-22T15:40:00+00:00","dateModified": "2016-12-22T15:40:00+00:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "xiaoxuan"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Laniakea">Laniakea</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/" title="存档脑细胞"> 文章 </a><a class="menu-item" href="/playground/" title="玩耍算法题的地方"> 练习场 </a><a class="menu-item" href="/code/" title="存放大概率过期的代码"> 码农 </a><a class="menu-item" href="/tags/" title="标签"> Tags </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Laniakea">Laniakea</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="存档脑细胞">文章</a><a class="menu-item" href="/playground/" title="玩耍算法题的地方">练习场</a><a class="menu-item" href="/code/" title="存放大概率过期的代码">码农</a><a class="menu-item" href="/tags/" title="标签">Tags</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="page single special"><h1 class="single-title animate__animated animate__pulse animate__faster">Github Page &#43; Hexo &#43; next主题 blog网站的搭建</h1><div class="content" id="content"><p>简单介绍一下本站的建立过程</p>
+<h2 id="部署hexo">部署Hexo</h2>
+<p>系统: Ubuntu 16.04 LTS</p>
+<h3 id="0-安装git略">0. 安装Git(略)</h3>
+<h3 id="1-安装-nodejs">1. 安装 Node.js</h3>
+<p>最好使用nvm来安装Node.js</p>
+<ul>
+<li>方法一: cURL:</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">$ curl https://raw.githubusercontent.com/creationix/nvm/master/install.sh | sh
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>方法二: Wget:</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">$ wget -qO- https://raw.githubusercontent.com/creationix/nvm/master/install.sh | sh
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>安装完毕之后重启终端, 执行:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">$ nvm install stable
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="2-安装hexo并建站">2. 安装Hexo并建站</h3>
+<ol>
+<li>安装hexo. <a href="https://hexo.io/docs/" target="_blank" rel="noopener noreffer ">官方文档</a></li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">$ npm install -g hexo-cli
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ol start="2">
+<li>初始化blog目录, 目录名为<code>&lt;folder&gt;</code>, 可以任选</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">$ hexo init &lt;folder&gt;
+</span></span><span class="line"><span class="cl">$ cd &lt;folder&gt;
+</span></span><span class="line"><span class="cl">$ npm install
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ol start="3">
+<li>这样建站部分就完毕了, 可以看到如下的目录结构</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">.
+</span></span><span class="line"><span class="cl">├── _config.yml
+</span></span><span class="line"><span class="cl">├── package.json
+</span></span><span class="line"><span class="cl">├── scaffolds
+</span></span><span class="line"><span class="cl">├── source
+</span></span><span class="line"><span class="cl">|   ├── _drafts
+</span></span><span class="line"><span class="cl">|   └── _posts
+</span></span><span class="line"><span class="cl">└── themes
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ol start="4">
+<li>简单介绍一下主要部分的作用</li>
+</ol>
+<ul>
+<li><code>_config.yml</code>: 站点配置文件, 所有主要配置都需要在这里说明</li>
+<li><code>source/_posts</code>: 所有写好的markdown文件都会保存在这里</li>
+<li><code>themes</code>: blog主题存放地址, 一般使用git来对主题进行版本控制</li>
+</ul>
+<h2 id="安装next主题">安装next主题</h2>
+<ul>
+<li><a href="http://theme-next.iissnan.com" target="_blank" rel="noopener noreffer ">项目主页</a></li>
+<li><strong>安装</strong>: 首先确保在blog的根目录<code>&lt;folder&gt;</code>下, 执行:</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">$ git clone https://github.com/iissnan/hexo-theme-next themes/next
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li><strong>使用</strong>: 打开站点配置文件<code>_config.yml</code>, 更改<code>theme</code>关键字的值为<code>next</code>, 修改后显示为: <code>theme: next</code></li>
+<li><strong>配置</strong>: 在<code>themes/next</code>目录下也有一个叫<code>_config.yml</code>的文件, 为了与站点配置文件区分开来, 称之为主题配置文件. 有关主题配置的详细信息见项目主页</li>
+</ul>
+<h2 id="部署到github上">部署到github上</h2>
+<ol>
+<li>除了部署到github, hexo还支持Heroku, Rsync, OpenShift等平台 详见<a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener noreffer ">官方文档</a>, 本文只介绍怎样部署到github上</li>
+<li>为了将hexo生成的静态网页及时部署到github上, 需要以下配置:</li>
+</ol>
+<ul>
+<li>安装<code>hexo-deployer-git</code>:</li>
+<li>首先确保在blog的根目录<code>&lt;folder&gt;</code>下, 执行:<br>
+<code>$ npm install hexo-deployer-git --save</code></li>
+<li>修改站点配置文件的以下关键词:</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">deploy:
+</span></span><span class="line"><span class="cl">  type: git
+</span></span><span class="line"><span class="cl">  repo: &lt;repository url&gt;
+</span></span><span class="line"><span class="cl">  branch: [branch]
+</span></span><span class="line"><span class="cl">  message: [message]
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li><code>repo</code>是github上的repo地址, 一般使用<code>&lt;你的github用户名&gt;.github.io</code>这样的格式</li>
+<li><code>branch</code>是分支, 一般选择master</li>
+<li><code>message </code>是每次commit的时候默认填写的信息,可以注释掉他, 使用默认格式</li>
+</ul>
+<h2 id="使用">使用</h2>
+<p>首先确保在blog的根目录<code>&lt;folder&gt;</code>下</p>
+<ol>
+<li>写文章: <code>$ hexo new helloworld</code>, 此时会在<code>source/_posts/</code>下生成一个文件名为<code>helloworld.md</code>的文档, 直接编辑该文档即可</li>
+<li>渲染: <code>$ hexo g</code>, 此时会生成渲染好的文章, 在<code>public</code>目录下</li>
+<li>测试: <code>$ hexo s</code>, 此时打开<code>http://localhost:4000</code> 可以预览效果</li>
+<li>部署: <code>$ hexo d</code>, 会将文章部署到github上</li>
+<li>绑定域名(只需要执行一次): 在repo的setting下启用GitHub Pages即可</li>
+</ol>
+<h2 id="tricks">Tricks</h2>
+<p>未完待续</p></div><div id="comments"><div id="disqus_thread" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://disqus.com/?ref_noscript">Disqus</a>.
+            </noscript></div></div></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.102.2">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2016 - 2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">xiaoxuan</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/cookieconsent/cookieconsent.min.css"><script type="text/javascript" src="https://xxuan-cc.disqus.com/embed.js" defer></script><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/mhchem.min.js"></script><script type="text/javascript" src="/lib/cookieconsent/cookieconsent.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{},"cookieconsent":{"content":{"dismiss":"Got it!","link":"Learn more","message":"This website uses Cookies to improve your experience."},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":50,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

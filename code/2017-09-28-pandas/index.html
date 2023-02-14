@@ -1,0 +1,1354 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>Python数据分析笔记2 pandas基础 - Laniakea</title><meta name="Description" content="xxuan&#39;s blog"><meta property="og:title" content="Python数据分析笔记2 pandas基础" />
+<meta property="og:description" content="
+全面翻新的pandas介绍, 篇幅较长, 请善用右下角目录!" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://xxuan.cc/code/2017-09-28-pandas/" /><meta property="og:image" content="http://xxuan.cc/logo.png"/><meta property="article:section" content="code" />
+<meta property="article:published_time" content="2017-09-29T00:30:14+00:00" />
+<meta property="article:modified_time" content="2017-09-29T00:30:14+00:00" /><meta property="og:site_name" content="xxuan.cc" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="http://xxuan.cc/logo.png"/>
+
+<meta name="twitter:title" content="Python数据分析笔记2 pandas基础"/>
+<meta name="twitter:description" content="
+全面翻新的pandas介绍, 篇幅较长, 请善用右下角目录!"/>
+<meta name="application-name" content="Laniakea">
+<meta name="apple-mobile-web-app-title" content="Laniakea"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://xxuan.cc/code/2017-09-28-pandas/" /><link rel="prev" href="http://xxuan.cc/code/2017-03-29-seaborn/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" href="/lib/animate/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Python数据分析笔记2 pandas基础",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/xxuan.cc\/code\/2017-09-28-pandas\/"
+        },"genre": "code","keywords": "pandas, python-data-analysis","wordcount":  383 ,
+        "url": "http:\/\/xxuan.cc\/code\/2017-09-28-pandas\/","datePublished": "2017-09-29T00:30:14+00:00","dateModified": "2017-09-29T00:30:14+00:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "xiaoxuan"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Laniakea">Laniakea</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/" title="存档脑细胞"> 文章 </a><a class="menu-item" href="/playground/" title="玩耍算法题的地方"> 练习场 </a><a class="menu-item" href="/code/" title="存放大概率过期的代码"> 码农 </a><a class="menu-item" href="/tags/" title="标签"> Tags </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Laniakea">Laniakea</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="存档脑细胞">文章</a><a class="menu-item" href="/playground/" title="玩耍算法题的地方">练习场</a><a class="menu-item" href="/code/" title="存放大概率过期的代码">码农</a><a class="menu-item" href="/tags/" title="标签">Tags</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="page single special"><h1 class="single-title animate__animated animate__pulse animate__faster">Python数据分析笔记2 pandas基础</h1><div class="content" id="content"><p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/65138347_p0.png"
+        data-srcset="http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/65138347_p0.png, http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/65138347_p0.png 1.5x, http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/65138347_p0.png 2x"
+        data-sizes="auto"
+        alt="http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/65138347_p0.png"
+        title="http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/65138347_p0.png" />
+全面翻新的pandas介绍, 篇幅较长, 请善用右下角目录!</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="数据结构">数据结构</h2>
+<h3 id="series">Series</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">Series</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">copy</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="p">,</span> <span class="n">fastpath</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li><code>data</code>: 可遍历序列数据</li>
+<li><code>index</code>: 索引, hsahable即可. 默认为从0开始的range</li>
+<li><code>dtype</code>: <code>numpy.dtype</code>数据类型</li>
+<li><code>copy</code>: 是否为data的副本(默认为视图, 对它的改动会直接反映到data上)</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># 数组初始化</span>
+</span></span><span class="line"><span class="cl"><span class="n">s</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="mi">4</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;d&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 字典初始化</span>
+</span></span><span class="line"><span class="cl"><span class="n">s</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">({</span><span class="s1">&#39;d&#39;</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">:</span><span class="mi">7</span><span class="p">,</span> <span class="s1">&#39;a&#39;</span><span class="p">:</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">:</span><span class="mi">3</span><span class="p">})</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>a   -5
+b    7
+c    3
+d    4
+dtype: int64
+</code></pre>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># 转换为numpy数组</span>
+</span></span><span class="line"><span class="cl"><span class="n">s</span><span class="o">.</span><span class="n">values</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>array([-5,  7,  3,  4])
+</code></pre>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># 取出索引</span>
+</span></span><span class="line"><span class="cl"><span class="n">s</span><span class="o">.</span><span class="n">index</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>Index(['a', 'b', 'c', 'd'], dtype='object')
+</code></pre>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># name属性: Series的name会自动继承于DataFrame的列名, Index的name会自动继承于Series的索引名</span>
+</span></span><span class="line"><span class="cl"><span class="n">s</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;population&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="n">s</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;state&#39;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="dataframe">DataFrame</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">copy</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li><code>data</code>: 初始化方式和Series相似, 可以传入二维数组或者字典(key作为列名, value是等长数组)</li>
+<li><code>columns</code>: 列名. 字符串列表</li>
+</ul>
+<p>其他参数和Series相似</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># 初始化</span>
+</span></span><span class="line"><span class="cl"><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">16</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">)),</span> 
+</span></span><span class="line"><span class="cl">                  <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;ohio&#39;</span><span class="p">,</span><span class="s1">&#39;colorado&#39;</span><span class="p">,</span> <span class="s1">&#39;utah&#39;</span><span class="p">,</span> <span class="s1">&#39;new york&#39;</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">                 <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;one&#39;</span><span class="p">,</span> <span class="s1">&#39;two&#39;</span><span class="p">,</span> <span class="s1">&#39;three&#39;</span><span class="p">,</span> <span class="s1">&#39;four&#39;</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl"><span class="n">df</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div><style>
+    .dataframe thead tr:only-child th {
+        text-align: right;
+    }
+<pre><code>.dataframe thead th {
+    text-align: left;
+}
+
+.dataframe tbody tr th {
+    vertical-align: top;
+}&lt;/style&gt;&lt;table border=&quot;1&quot; class=&quot;dataframe&quot;&gt;&lt;thead&gt;&lt;tr style=&quot;text-align: right;&quot;&gt;&lt;th&gt;&lt;/th&gt;&lt;th&gt;one&lt;/th&gt;&lt;th&gt;two&lt;/th&gt;&lt;th&gt;three&lt;/th&gt;&lt;th&gt;four&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody&gt;&lt;tr&gt;&lt;th&gt;ohio&lt;/th&gt;&lt;td&gt;0&lt;/td&gt;&lt;td&gt;1&lt;/td&gt;&lt;td&gt;2&lt;/td&gt;&lt;td&gt;3&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;th&gt;colorado&lt;/th&gt;&lt;td&gt;4&lt;/td&gt;&lt;td&gt;5&lt;/td&gt;&lt;td&gt;6&lt;/td&gt;&lt;td&gt;7&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;th&gt;utah&lt;/th&gt;&lt;td&gt;8&lt;/td&gt;&lt;td&gt;9&lt;/td&gt;&lt;td&gt;10&lt;/td&gt;&lt;td&gt;11&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;th&gt;new york&lt;/th&gt;&lt;td&gt;12&lt;/td&gt;&lt;td&gt;13&lt;/td&gt;&lt;td&gt;14&lt;/td&gt;&lt;td&gt;15&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/div&gt;
+</code></pre>
+<h3 id="索引对象">索引对象</h3>
+<ol>
+<li>索引对象是不可改变的</li>
+<li>索引的方法类似于集合操作: 包括diff, intersection, union, isin, drop, unique等</li>
+</ol>
+<h2 id="基本功能">基本功能</h2>
+<h3 id="reindex">reindex()</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">DataFrame</span><span class="o">.</span><span class="n">reindex</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li><code>index</code>: 重排的索引顺序</li>
+<li><code>columns</code>: 重排的列顺序(DataFrame独有)</li>
+<li><code>method</code>: 插值选项</li>
+<li><code>fill_value</code>: 插值时用于填充的值</li>
+<li><code>limit</code>: 最大填充量</li>
+<li><code>level</code>: 层次索引的层级</li>
+<li><code>copy</code>: 拷贝副本</li>
+</ul>
+<h3 id="drop">drop()</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">DataFrame</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">labels</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">level</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">errors</span><span class="o">=</span><span class="s1">&#39;raise&#39;</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li><code>labels</code>: index列表或者column列表, 取决于axis是&rsquo;index&rsquo;还是&rsquo;columns'</li>
+<li><code>axis</code>: 按行/列删除</li>
+<li><code>level</code>: 层次索引的层次</li>
+<li><code>inplace</code>: 就地删除</li>
+</ul>
+<h3 id="索引">索引</h3>
+<h4 id="series的索引">Series的索引</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># 取元素</span>
+</span></span><span class="line"><span class="cl"><span class="n">s</span><span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">]</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>-5
+</code></pre>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># 切片, 注意切片是闭区间, 和数组不同</span>
+</span></span><span class="line"><span class="cl"><span class="n">s</span><span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">:</span><span class="s1">&#39;c&#39;</span><span class="p">]</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>state
+a   -5
+b    7
+c    3
+Name: population, dtype: int64
+</code></pre>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># 花式索引</span>
+</span></span><span class="line"><span class="cl"><span class="n">s</span><span class="p">[[</span><span class="s1">&#39;c&#39;</span><span class="p">,</span> <span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">]]</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>state
+c    3
+a   -5
+b    7
+Name: population, dtype: int64
+</code></pre>
+<h4 id="dataframe的索引">DataFrame的索引</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># 取列</span>
+</span></span><span class="line"><span class="cl"><span class="n">df</span><span class="p">[</span><span class="s1">&#39;two&#39;</span><span class="p">]</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>ohio         1
+colorado     5
+utah         9
+new york    13
+Name: two, dtype: int64
+</code></pre>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># 取多列</span>
+</span></span><span class="line"><span class="cl"><span class="n">df</span><span class="p">[[</span><span class="s1">&#39;three&#39;</span><span class="p">,</span> <span class="s1">&#39;one&#39;</span><span class="p">]]</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div><style>
+    .dataframe thead tr:only-child th {
+        text-align: right;
+    }
+<pre><code>.dataframe thead th {
+    text-align: left;
+}
+
+.dataframe tbody tr th {
+    vertical-align: top;
+}&lt;/style&gt;&lt;table border=&quot;1&quot; class=&quot;dataframe&quot;&gt;&lt;thead&gt;&lt;tr style=&quot;text-align: right;&quot;&gt;&lt;th&gt;&lt;/th&gt;&lt;th&gt;three&lt;/th&gt;&lt;th&gt;one&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody&gt;&lt;tr&gt;&lt;th&gt;ohio&lt;/th&gt;&lt;td&gt;2&lt;/td&gt;&lt;td&gt;0&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;th&gt;colorado&lt;/th&gt;&lt;td&gt;6&lt;/td&gt;&lt;td&gt;4&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;th&gt;utah&lt;/th&gt;&lt;td&gt;10&lt;/td&gt;&lt;td&gt;8&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;th&gt;new york&lt;/th&gt;&lt;td&gt;14&lt;/td&gt;&lt;td&gt;12&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/div&gt;
+</code></pre>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># 按行切片</span>
+</span></span><span class="line"><span class="cl"><span class="n">df</span><span class="p">[:</span><span class="mi">2</span><span class="p">]</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div><style>
+    .dataframe thead tr:only-child th {
+        text-align: right;
+    }
+<pre><code>.dataframe thead th {
+    text-align: left;
+}
+
+.dataframe tbody tr th {
+    vertical-align: top;
+}&lt;/style&gt;&lt;table border=&quot;1&quot; class=&quot;dataframe&quot;&gt;&lt;thead&gt;&lt;tr style=&quot;text-align: right;&quot;&gt;&lt;th&gt;&lt;/th&gt;&lt;th&gt;one&lt;/th&gt;&lt;th&gt;two&lt;/th&gt;&lt;th&gt;three&lt;/th&gt;&lt;th&gt;four&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody&gt;&lt;tr&gt;&lt;th&gt;ohio&lt;/th&gt;&lt;td&gt;0&lt;/td&gt;&lt;td&gt;1&lt;/td&gt;&lt;td&gt;2&lt;/td&gt;&lt;td&gt;3&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;th&gt;colorado&lt;/th&gt;&lt;td&gt;4&lt;/td&gt;&lt;td&gt;5&lt;/td&gt;&lt;td&gt;6&lt;/td&gt;&lt;td&gt;7&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/div&gt;
+</code></pre>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># 掩码</span>
+</span></span><span class="line"><span class="cl"><span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;three&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">5</span><span class="p">]</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div><style>
+    .dataframe thead tr:only-child th {
+        text-align: right;
+    }
+<pre><code>.dataframe thead th {
+    text-align: left;
+}
+
+.dataframe tbody tr th {
+    vertical-align: top;
+}&lt;/style&gt;&lt;table border=&quot;1&quot; class=&quot;dataframe&quot;&gt;&lt;thead&gt;&lt;tr style=&quot;text-align: right;&quot;&gt;&lt;th&gt;&lt;/th&gt;&lt;th&gt;one&lt;/th&gt;&lt;th&gt;two&lt;/th&gt;&lt;th&gt;three&lt;/th&gt;&lt;th&gt;four&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody&gt;&lt;tr&gt;&lt;th&gt;colorado&lt;/th&gt;&lt;td&gt;4&lt;/td&gt;&lt;td&gt;5&lt;/td&gt;&lt;td&gt;6&lt;/td&gt;&lt;td&gt;7&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;th&gt;utah&lt;/th&gt;&lt;td&gt;8&lt;/td&gt;&lt;td&gt;9&lt;/td&gt;&lt;td&gt;10&lt;/td&gt;&lt;td&gt;11&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;th&gt;new york&lt;/th&gt;&lt;td&gt;12&lt;/td&gt;&lt;td&gt;13&lt;/td&gt;&lt;td&gt;14&lt;/td&gt;&lt;td&gt;15&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/div&gt;
+</code></pre>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># 索引切片</span>
+</span></span><span class="line"><span class="cl"><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">&#39;colorado&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;three&#39;</span><span class="p">,</span> <span class="s1">&#39;one&#39;</span><span class="p">]]</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>three    6
+one      4
+Name: colorado, dtype: int64
+</code></pre>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># 数值索引切片</span>
+</span></span><span class="line"><span class="cl"><span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">:</span><span class="mi">3</span><span class="p">]</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div><style>
+    .dataframe thead tr:only-child th {
+        text-align: right;
+    }
+<pre><code>.dataframe thead th {
+    text-align: left;
+}
+
+.dataframe tbody tr th {
+    vertical-align: top;
+}&lt;/style&gt;&lt;table border=&quot;1&quot; class=&quot;dataframe&quot;&gt;&lt;thead&gt;&lt;tr style=&quot;text-align: right;&quot;&gt;&lt;th&gt;&lt;/th&gt;&lt;th&gt;two&lt;/th&gt;&lt;th&gt;three&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody&gt;&lt;tr&gt;&lt;th&gt;ohio&lt;/th&gt;&lt;td&gt;1&lt;/td&gt;&lt;td&gt;2&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;th&gt;colorado&lt;/th&gt;&lt;td&gt;5&lt;/td&gt;&lt;td&gt;6&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/div&gt;
+</code></pre>
+<h3 id="算数计算和数据对齐-add-sub-etc">算数计算和数据对齐: add(), sub(), etc.</h3>
+<h4 id="series之间和dataframe之间的运算">Series之间和DataFrame之间的运算</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># 初始化</span>
+</span></span><span class="line"><span class="cl"><span class="n">s1</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="mf">7.3</span><span class="p">,</span> <span class="o">-</span><span class="mf">2.5</span><span class="p">,</span> <span class="mf">3.4</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">],</span> 
+</span></span><span class="line"><span class="cl">               <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">,</span> <span class="s1">&#39;d&#39;</span><span class="p">,</span> <span class="s1">&#39;e&#39;</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl"><span class="n">s2</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="o">-</span><span class="mf">2.1</span><span class="p">,</span> <span class="mf">3.6</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.5</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mf">3.1</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">               <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">,</span> <span class="s1">&#39;e&#39;</span><span class="p">,</span> <span class="s1">&#39;f&#39;</span><span class="p">,</span> <span class="s1">&#39;g&#39;</span><span class="p">])</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">s1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">s2</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>a    7.3
+c   -2.5
+d    3.4
+e    1.5
+dtype: float64
+a   -2.1
+c    3.6
+e   -1.5
+f    4.0
+g    3.1
+dtype: float64
+</code></pre>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># 加法会自动对齐索引, 不重叠的索引会引入nan</span>
+</span></span><span class="line"><span class="cl"><span class="n">s1</span> <span class="o">+</span> <span class="n">s2</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>a    5.2
+c    1.1
+d    NaN
+e    0.0
+f    NaN
+g    NaN
+dtype: float64
+</code></pre>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># 使用fill_value参数可以指定不重叠部分的默认填充值</span>
+</span></span><span class="line"><span class="cl"><span class="n">s1</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">s2</span><span class="p">,</span> <span class="n">fill_value</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>a    5.2
+c    1.1
+d    3.4
+e    0.0
+f    4.0
+g    3.1
+dtype: float64
+</code></pre>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">s1</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">s2</span><span class="p">,</span> <span class="n">fill_value</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>a    5.2
+c    1.1
+d    4.4
+e    0.0
+f    5.0
+g    4.1
+dtype: float64
+</code></pre>
+<h4 id="dataframe和series的运算">DataFrame和Series的运算</h4>
+<p>DataFrame和Series做加减法时, 会将Series的索引匹配到DataFrame的列, 然后沿着行一直向下广播</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">12.</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">)),</span>
+</span></span><span class="line"><span class="cl">                     <span class="n">columns</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="s1">&#39;bde&#39;</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">                     <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Utah&#39;</span><span class="p">,</span> <span class="s1">&#39;Ohio&#39;</span><span class="p">,</span> <span class="s1">&#39;Texas&#39;</span><span class="p">,</span> <span class="s1">&#39;Oregon&#39;</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl"><span class="n">s1</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">&#39;Utah&#39;</span><span class="p">]</span>  <span class="c1"># 一行</span>
+</span></span><span class="line"><span class="cl"><span class="n">s2</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="s1">&#39;d&#39;</span><span class="p">]</span>  <span class="c1"># 一列</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">s1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">s2</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>          b     d     e
+Utah    0.0   1.0   2.0
+Ohio    3.0   4.0   5.0
+Texas   6.0   7.0   8.0
+Oregon  9.0  10.0  11.0
+b    0.0
+d    1.0
+e    2.0
+Name: Utah, dtype: float64
+Utah       1.0
+Ohio       4.0
+Texas      7.0
+Oregon    10.0
+Name: d, dtype: float64
+</code></pre>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># 匹配某一列, 然后沿着每一列广播</span>
+</span></span><span class="line"><span class="cl"><span class="n">df</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="n">s2</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="s1">&#39;index&#39;</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div><style>
+    .dataframe thead tr:only-child th {
+        text-align: right;
+    }
+<pre><code>.dataframe thead th {
+    text-align: left;
+}
+
+.dataframe tbody tr th {
+    vertical-align: top;
+}&lt;/style&gt;&lt;table border=&quot;1&quot; class=&quot;dataframe&quot;&gt;&lt;thead&gt;&lt;tr style=&quot;text-align: right;&quot;&gt;&lt;th&gt;&lt;/th&gt;&lt;th&gt;b&lt;/th&gt;&lt;th&gt;d&lt;/th&gt;&lt;th&gt;e&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody&gt;&lt;tr&gt;&lt;th&gt;Utah&lt;/th&gt;&lt;td&gt;-1.0&lt;/td&gt;&lt;td&gt;0.0&lt;/td&gt;&lt;td&gt;1.0&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;th&gt;Ohio&lt;/th&gt;&lt;td&gt;-1.0&lt;/td&gt;&lt;td&gt;0.0&lt;/td&gt;&lt;td&gt;1.0&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;th&gt;Texas&lt;/th&gt;&lt;td&gt;-1.0&lt;/td&gt;&lt;td&gt;0.0&lt;/td&gt;&lt;td&gt;1.0&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;th&gt;Oregon&lt;/th&gt;&lt;td&gt;-1.0&lt;/td&gt;&lt;td&gt;0.0&lt;/td&gt;&lt;td&gt;1.0&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/div&gt;
+</code></pre>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># 匹配某一行, 然后沿着每一行传播</span>
+</span></span><span class="line"><span class="cl"><span class="n">df</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="n">s1</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="s1">&#39;columns&#39;</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div><style>
+    .dataframe thead tr:only-child th {
+        text-align: right;
+    }
+<pre><code>.dataframe thead th {
+    text-align: left;
+}
+
+.dataframe tbody tr th {
+    vertical-align: top;
+}&lt;/style&gt;&lt;table border=&quot;1&quot; class=&quot;dataframe&quot;&gt;&lt;thead&gt;&lt;tr style=&quot;text-align: right;&quot;&gt;&lt;th&gt;&lt;/th&gt;&lt;th&gt;b&lt;/th&gt;&lt;th&gt;d&lt;/th&gt;&lt;th&gt;e&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody&gt;&lt;tr&gt;&lt;th&gt;Utah&lt;/th&gt;&lt;td&gt;0.0&lt;/td&gt;&lt;td&gt;0.0&lt;/td&gt;&lt;td&gt;0.0&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;th&gt;Ohio&lt;/th&gt;&lt;td&gt;3.0&lt;/td&gt;&lt;td&gt;3.0&lt;/td&gt;&lt;td&gt;3.0&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;th&gt;Texas&lt;/th&gt;&lt;td&gt;6.0&lt;/td&gt;&lt;td&gt;6.0&lt;/td&gt;&lt;td&gt;6.0&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;th&gt;Oregon&lt;/th&gt;&lt;td&gt;9.0&lt;/td&gt;&lt;td&gt;9.0&lt;/td&gt;&lt;td&gt;9.0&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/div&gt;
+</code></pre>
+<h3 id="函数和映射-apply">函数和映射: apply()</h3>
+<p>apply可以作用到每个元素, 或者应用到各行各列形成的一维数组上</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="n">columns</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="s1">&#39;bde&#39;</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">                     <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Utah&#39;</span><span class="p">,</span> <span class="s1">&#39;Ohio&#39;</span><span class="p">,</span> <span class="s1">&#39;Texas&#39;</span><span class="p">,</span> <span class="s1">&#39;Oregon&#39;</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl"><span class="n">df</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div><style>
+    .dataframe thead tr:only-child th {
+        text-align: right;
+    }
+<pre><code>.dataframe thead th {
+    text-align: left;
+}
+
+.dataframe tbody tr th {
+    vertical-align: top;
+}&lt;/style&gt;&lt;table border=&quot;1&quot; class=&quot;dataframe&quot;&gt;&lt;thead&gt;&lt;tr style=&quot;text-align: right;&quot;&gt;&lt;th&gt;&lt;/th&gt;&lt;th&gt;b&lt;/th&gt;&lt;th&gt;d&lt;/th&gt;&lt;th&gt;e&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody&gt;&lt;tr&gt;&lt;th&gt;Utah&lt;/th&gt;&lt;td&gt;-0.183165&lt;/td&gt;&lt;td&gt;0.160413&lt;/td&gt;&lt;td&gt;-0.774075&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;th&gt;Ohio&lt;/th&gt;&lt;td&gt;2.241114&lt;/td&gt;&lt;td&gt;0.928337&lt;/td&gt;&lt;td&gt;0.035367&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;th&gt;Texas&lt;/th&gt;&lt;td&gt;0.811800&lt;/td&gt;&lt;td&gt;-1.106693&lt;/td&gt;&lt;td&gt;-0.355058&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;th&gt;Oregon&lt;/th&gt;&lt;td&gt;0.394904&lt;/td&gt;&lt;td&gt;1.499819&lt;/td&gt;&lt;td&gt;-0.235244&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/div&gt;
+</code></pre>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">f</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">max</span><span class="p">()</span> <span class="o">-</span> <span class="n">x</span><span class="o">.</span><span class="n">min</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 作用到一列形成的一维数组(默认)</span>
+</span></span><span class="line"><span class="cl"><span class="n">df</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="s1">&#39;index&#39;</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>b    2.424278
+d    2.606512
+e    0.809443
+dtype: float64
+</code></pre>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># 作用到一行形成的一维数组</span>
+</span></span><span class="line"><span class="cl"><span class="n">df</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="s1">&#39;columns&#39;</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>Utah      0.934488
+Ohio      2.205746
+Texas     1.918493
+Oregon    1.735063
+dtype: float64
+</code></pre>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># 作用到每个元素. map是属于Series的</span>
+</span></span><span class="line"><span class="cl"><span class="n">f</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="s2">&#34;</span><span class="si">%.2f</span><span class="s2">&#34;</span> <span class="o">%</span> <span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">df</span><span class="o">.</span><span class="n">applymap</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div><style>
+    .dataframe thead tr:only-child th {
+        text-align: right;
+    }
+<pre><code>.dataframe thead th {
+    text-align: left;
+}
+
+.dataframe tbody tr th {
+    vertical-align: top;
+}&lt;/style&gt;&lt;table border=&quot;1&quot; class=&quot;dataframe&quot;&gt;&lt;thead&gt;&lt;tr style=&quot;text-align: right;&quot;&gt;&lt;th&gt;&lt;/th&gt;&lt;th&gt;b&lt;/th&gt;&lt;th&gt;d&lt;/th&gt;&lt;th&gt;e&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody&gt;&lt;tr&gt;&lt;th&gt;Utah&lt;/th&gt;&lt;td&gt;-0.18&lt;/td&gt;&lt;td&gt;0.16&lt;/td&gt;&lt;td&gt;-0.77&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;th&gt;Ohio&lt;/th&gt;&lt;td&gt;2.24&lt;/td&gt;&lt;td&gt;0.93&lt;/td&gt;&lt;td&gt;0.04&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;th&gt;Texas&lt;/th&gt;&lt;td&gt;0.81&lt;/td&gt;&lt;td&gt;-1.11&lt;/td&gt;&lt;td&gt;-0.36&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;th&gt;Oregon&lt;/th&gt;&lt;td&gt;0.39&lt;/td&gt;&lt;td&gt;1.50&lt;/td&gt;&lt;td&gt;-0.24&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/div&gt;
+</code></pre>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># 形成多个统计值</span>
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="n">x</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">x</span><span class="o">.</span><span class="n">max</span><span class="p">()],</span> <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;min&#39;</span><span class="p">,</span> <span class="s1">&#39;max&#39;</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 沿着索引统计每一列</span>
+</span></span><span class="line"><span class="cl"><span class="n">df</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="s1">&#39;index&#39;</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div><style>
+    .dataframe thead tr:only-child th {
+        text-align: right;
+    }
+<pre><code>.dataframe thead th {
+    text-align: left;
+}
+
+.dataframe tbody tr th {
+    vertical-align: top;
+}&lt;/style&gt;&lt;table border=&quot;1&quot; class=&quot;dataframe&quot;&gt;&lt;thead&gt;&lt;tr style=&quot;text-align: right;&quot;&gt;&lt;th&gt;&lt;/th&gt;&lt;th&gt;b&lt;/th&gt;&lt;th&gt;d&lt;/th&gt;&lt;th&gt;e&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody&gt;&lt;tr&gt;&lt;th&gt;min&lt;/th&gt;&lt;td&gt;-0.183165&lt;/td&gt;&lt;td&gt;-1.106693&lt;/td&gt;&lt;td&gt;-0.774075&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;th&gt;max&lt;/th&gt;&lt;td&gt;2.241114&lt;/td&gt;&lt;td&gt;1.499819&lt;/td&gt;&lt;td&gt;0.035367&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/div&gt;
+</code></pre>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># 沿着列统计每一行</span>
+</span></span><span class="line"><span class="cl"><span class="n">df</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="s1">&#39;columns&#39;</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div><style>
+    .dataframe thead tr:only-child th {
+        text-align: right;
+    }
+<pre><code>.dataframe thead th {
+    text-align: left;
+}
+
+.dataframe tbody tr th {
+    vertical-align: top;
+}&lt;/style&gt;&lt;table border=&quot;1&quot; class=&quot;dataframe&quot;&gt;&lt;thead&gt;&lt;tr style=&quot;text-align: right;&quot;&gt;&lt;th&gt;&lt;/th&gt;&lt;th&gt;min&lt;/th&gt;&lt;th&gt;max&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody&gt;&lt;tr&gt;&lt;th&gt;Utah&lt;/th&gt;&lt;td&gt;-0.774075&lt;/td&gt;&lt;td&gt;0.160413&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;th&gt;Ohio&lt;/th&gt;&lt;td&gt;0.035367&lt;/td&gt;&lt;td&gt;2.241114&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;th&gt;Texas&lt;/th&gt;&lt;td&gt;-1.106693&lt;/td&gt;&lt;td&gt;0.811800&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;th&gt;Oregon&lt;/th&gt;&lt;td&gt;-0.235244&lt;/td&gt;&lt;td&gt;1.499819&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/div&gt;
+</code></pre>
+<h3 id="排序">排序</h3>
+<h4 id="按索引排序-sort_index">按索引排序: sort_index()</h4>
+<p>默认是按升序排列, 参数ascending可以改为降序</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># Series按索引排序</span>
+</span></span><span class="line"><span class="cl"><span class="n">s</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">),</span> <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;d&#39;</span><span class="p">,</span> <span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl"><span class="n">s</span><span class="o">.</span><span class="n">sort_index</span><span class="p">()</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>a    1
+b    2
+c    3
+d    0
+dtype: int64
+</code></pre>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># DataFrame按索引和列排序. 通过axis参数选择按索引还是列排序</span>
+</span></span><span class="line"><span class="cl"><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">8</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">)),</span>
+</span></span><span class="line"><span class="cl">                     <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;three&#39;</span><span class="p">,</span> <span class="s1">&#39;one&#39;</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">                     <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;d&#39;</span><span class="p">,</span> <span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 按索引排序(默认)</span>
+</span></span><span class="line"><span class="cl"><span class="n">df</span><span class="o">.</span><span class="n">sort_index</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s1">&#39;index&#39;</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div><style>
+    .dataframe thead tr:only-child th {
+        text-align: right;
+    }
+<pre><code>.dataframe thead th {
+    text-align: left;
+}
+
+.dataframe tbody tr th {
+    vertical-align: top;
+}&lt;/style&gt;&lt;table border=&quot;1&quot; class=&quot;dataframe&quot;&gt;&lt;thead&gt;&lt;tr style=&quot;text-align: right;&quot;&gt;&lt;th&gt;&lt;/th&gt;&lt;th&gt;d&lt;/th&gt;&lt;th&gt;a&lt;/th&gt;&lt;th&gt;b&lt;/th&gt;&lt;th&gt;c&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody&gt;&lt;tr&gt;&lt;th&gt;one&lt;/th&gt;&lt;td&gt;4&lt;/td&gt;&lt;td&gt;5&lt;/td&gt;&lt;td&gt;6&lt;/td&gt;&lt;td&gt;7&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;th&gt;three&lt;/th&gt;&lt;td&gt;0&lt;/td&gt;&lt;td&gt;1&lt;/td&gt;&lt;td&gt;2&lt;/td&gt;&lt;td&gt;3&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/div&gt;
+</code></pre>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># 按列排序</span>
+</span></span><span class="line"><span class="cl"><span class="n">df</span><span class="o">.</span><span class="n">sort_index</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s1">&#39;columns&#39;</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div><style>
+    .dataframe thead tr:only-child th {
+        text-align: right;
+    }
+<pre><code>.dataframe thead th {
+    text-align: left;
+}
+
+.dataframe tbody tr th {
+    vertical-align: top;
+}&lt;/style&gt;&lt;table border=&quot;1&quot; class=&quot;dataframe&quot;&gt;&lt;thead&gt;&lt;tr style=&quot;text-align: right;&quot;&gt;&lt;th&gt;&lt;/th&gt;&lt;th&gt;a&lt;/th&gt;&lt;th&gt;b&lt;/th&gt;&lt;th&gt;c&lt;/th&gt;&lt;th&gt;d&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody&gt;&lt;tr&gt;&lt;th&gt;three&lt;/th&gt;&lt;td&gt;1&lt;/td&gt;&lt;td&gt;2&lt;/td&gt;&lt;td&gt;3&lt;/td&gt;&lt;td&gt;0&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;th&gt;one&lt;/th&gt;&lt;td&gt;5&lt;/td&gt;&lt;td&gt;6&lt;/td&gt;&lt;td&gt;7&lt;/td&gt;&lt;td&gt;4&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/div&gt;
+</code></pre>
+<h4 id="按值排序-sort_values">按值排序: sort_values()</h4>
+<ol>
+<li>通过by选择某一列</li>
+<li>NaN会排在最后</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># Series按值排序</span>
+</span></span><span class="line"><span class="cl"><span class="n">s</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="mi">4</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl"><span class="n">s</span><span class="o">.</span><span class="n">sort_values</span><span class="p">()</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>2   -3.0
+3    2.0
+0    4.0
+1    NaN
+dtype: float64
+</code></pre>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># DataFrame按值排序, 通过by参数选择列</span>
+</span></span><span class="line"><span class="cl"><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;b&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="s1">&#39;a&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]})</span>
+</span></span><span class="line"><span class="cl"><span class="n">df</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">])</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div><style>
+    .dataframe thead tr:only-child th {
+        text-align: right;
+    }
+<pre><code>.dataframe thead th {
+    text-align: left;
+}
+
+.dataframe tbody tr th {
+    vertical-align: top;
+}&lt;/style&gt;&lt;table border=&quot;1&quot; class=&quot;dataframe&quot;&gt;&lt;thead&gt;&lt;tr style=&quot;text-align: right;&quot;&gt;&lt;th&gt;&lt;/th&gt;&lt;th&gt;a&lt;/th&gt;&lt;th&gt;b&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody&gt;&lt;tr&gt;&lt;th&gt;2&lt;/th&gt;&lt;td&gt;0&lt;/td&gt;&lt;td&gt;-3&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;th&gt;0&lt;/th&gt;&lt;td&gt;0&lt;/td&gt;&lt;td&gt;4&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;th&gt;3&lt;/th&gt;&lt;td&gt;1&lt;/td&gt;&lt;td&gt;2&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;th&gt;1&lt;/th&gt;&lt;td&gt;1&lt;/td&gt;&lt;td&gt;7&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/div&gt;
+</code></pre>
+<h4 id="排名-rank">排名: rank()</h4>
+<ol>
+<li>通过axis参数选择按索引还是列排名</li>
+<li>通过method选择排名方法</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># DataFrame按值rank, 通过axis参数选择按索引还是列计算排名</span>
+</span></span><span class="line"><span class="cl"><span class="n">df</span><span class="o">.</span><span class="n">rank</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;first&#39;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="s1">&#39;index&#39;</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div><style>
+    .dataframe thead tr:only-child th {
+        text-align: right;
+    }
+<pre><code>.dataframe thead th {
+    text-align: left;
+}
+
+.dataframe tbody tr th {
+    vertical-align: top;
+}&lt;/style&gt;&lt;table border=&quot;1&quot; class=&quot;dataframe&quot;&gt;&lt;thead&gt;&lt;tr style=&quot;text-align: right;&quot;&gt;&lt;th&gt;&lt;/th&gt;&lt;th&gt;a&lt;/th&gt;&lt;th&gt;b&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody&gt;&lt;tr&gt;&lt;th&gt;0&lt;/th&gt;&lt;td&gt;1.0&lt;/td&gt;&lt;td&gt;3.0&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;th&gt;1&lt;/th&gt;&lt;td&gt;3.0&lt;/td&gt;&lt;td&gt;4.0&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;th&gt;2&lt;/th&gt;&lt;td&gt;2.0&lt;/td&gt;&lt;td&gt;1.0&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;th&gt;3&lt;/th&gt;&lt;td&gt;4.0&lt;/td&gt;&lt;td&gt;2.0&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/div&gt;
+</code></pre>
+<h2 id="汇总和计算描述统计">汇总和计算描述统计</h2>
+<h3 id="求和-sum">求和: Sum()</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">sum(axis=None, skipna=None, level=None, numeric_only=None, **kwargs)
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li><code>axis</code>: 沿着索引还是列求和</li>
+<li><code>skipna</code>: 是否排除NaN. 若不排除, 只要有NaN, 和就为NaN</li>
+<li><code>level</code>: 层次索引的层次</li>
+</ul>
+<p>其他平均数, 中位数, 方差, 标准差等方法类似</p>
+<h3 id="相关系数和协方差">相关系数和协方差</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">corr(method=&#39;pearson&#39;, min_periods=1)
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li><code>method</code> : {‘pearson’, ‘kendall’, ‘spearman’}, 协方差计算公式</li>
+<li><code>min_periods</code> : 可选, 最小样本数</li>
+</ul>
+<p>两个Series的相关系数和协方差的计算, 满足:</p>
+<ol>
+<li>按索引对齐</li>
+<li>索引重叠</li>
+<li>非NaN</li>
+</ol>
+<p>DataFrame的协方差和相关系数会直接返回协方差矩阵:</p>
+<blockquote>
+<p>Compute pairwise correlation of columns, excluding NA/null values</p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># 按列配对计算协方差</span>
+</span></span><span class="line"><span class="cl"><span class="n">df</span><span class="o">.</span><span class="n">corr</span><span class="p">()</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div><style>
+    .dataframe thead tr:only-child th {
+        text-align: right;
+    }
+<pre><code>.dataframe thead th {
+    text-align: left;
+}
+
+.dataframe tbody tr th {
+    vertical-align: top;
+}&lt;/style&gt;&lt;table border=&quot;1&quot; class=&quot;dataframe&quot;&gt;&lt;thead&gt;&lt;tr style=&quot;text-align: right;&quot;&gt;&lt;th&gt;&lt;/th&gt;&lt;th&gt;a&lt;/th&gt;&lt;th&gt;b&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody&gt;&lt;tr&gt;&lt;th&gt;a&lt;/th&gt;&lt;td&gt;1.000000&lt;/td&gt;&lt;td&gt;0.549442&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;th&gt;b&lt;/th&gt;&lt;td&gt;0.549442&lt;/td&gt;&lt;td&gt;1.000000&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/div&gt;
+</code></pre>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># 计算b列与df中每一列的协方差</span>
+</span></span><span class="line"><span class="cl"><span class="n">df</span><span class="o">.</span><span class="n">corrwith</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">b</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>a    0.549442
+b    1.000000
+dtype: float64
+</code></pre>
+<h3 id="unique-value_counts和isin">unique, value_counts和isin</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">Series.unique()
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>返回Series的唯一值序列</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">Series.value_counts(normalize=False, sort=True, ascending=False, bins=None, dropna=True)
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li><code>normalize</code>: 用频率替换频度</li>
+<li><code>sort</code>: 按频率排序</li>
+<li><code>ascending</code>: 升/降序排列, 默认是降序</li>
+<li><code>bins</code>: 自动划分阈值, 将数值类数据分为bins块</li>
+<li><code>dropna</code>: 去掉NaN</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">s</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="mi">7</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">9</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl"><span class="n">s</span><span class="o">.</span><span class="n">value_counts</span><span class="p">(</span><span class="n">bins</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>(1.992, 5.5]    5
+(5.5, 9.0]      4
+dtype: int64
+</code></pre>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">DataFrame.isin(values)
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li><code>values</code>: 数值列表
+返回masked DataFrame, 在<code>values</code>中的为True, 否则为False</li>
+</ul>
+<ol>
+<li>当values为序列时, 很显然</li>
+<li>当values为字典时, DataFrame的列匹配key, 值匹配value</li>
+<li>当values为DataFrame时, 相当于掩码, 见以下例子</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;A&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="s1">&#39;B&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;f&#39;</span><span class="p">]})</span>
+</span></span><span class="line"><span class="cl"><span class="n">other</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;A&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="s1">&#39;B&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;e&#39;</span><span class="p">,</span> <span class="s1">&#39;f&#39;</span><span class="p">,</span> <span class="s1">&#39;f&#39;</span><span class="p">,</span> <span class="s1">&#39;e&#39;</span><span class="p">]})</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">other</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>   A  B
+0  1  a
+1  2  b
+2  3  f
+   A  B
+0  1  e
+1  3  f
+2  3  f
+3  2  e
+</code></pre>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">df</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">other</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div><style>
+    .dataframe thead tr:only-child th {
+        text-align: right;
+    }
+<pre><code>.dataframe thead th {
+    text-align: left;
+}
+
+.dataframe tbody tr th {
+    vertical-align: top;
+}&lt;/style&gt;&lt;table border=&quot;1&quot; class=&quot;dataframe&quot;&gt;&lt;thead&gt;&lt;tr style=&quot;text-align: right;&quot;&gt;&lt;th&gt;&lt;/th&gt;&lt;th&gt;A&lt;/th&gt;&lt;th&gt;B&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody&gt;&lt;tr&gt;&lt;th&gt;0&lt;/th&gt;&lt;td&gt;True&lt;/td&gt;&lt;td&gt;False&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;th&gt;1&lt;/th&gt;&lt;td&gt;False&lt;/td&gt;&lt;td&gt;False&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;th&gt;2&lt;/th&gt;&lt;td&gt;True&lt;/td&gt;&lt;td&gt;True&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/div&gt;
+</code></pre>
+<h2 id="处理缺失数据">处理缺失数据</h2>
+<h3 id="dropna">dropna()</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">DataFrame.dropna(axis=0, how=&#39;any&#39;, thresh=None, subset=None, inplace=False)
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li><code>axis</code>: {&lsquo;index&rsquo;, &lsquo;columns&rsquo;}, 丢掉含有NaN的行/列, 默认为行</li>
+<li><code>how</code>: {‘any’, ‘all’}, 只要有NaN就丢弃还是全NaN才丢弃</li>
+<li><code>thresh</code>: 大于等于多少个NaN就丢弃</li>
+<li><code>subset</code>: 如果丢弃行, 这就是一个列名的列表, 处于这个列表中的列才会计入NaN</li>
+<li><code>inplace</code>: 就地丢弃</li>
+</ul>
+<h3 id="fillna">fillna()</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">DataFrame.fillna(value=None, method=None, axis=None, inplace=False, limit=None, downcast=None, **kwargs)
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>参数不解释了, 只提一下value还可以是dict, Series, 乃至DataFrame, 填充方式与掩码相似</p>
+<h2 id="层次化索引">层次化索引</h2>
+<p>index是可以使用多组数组的, 代表了不同层次的索引</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># 初始化层次索引</span>
+</span></span><span class="line"><span class="cl"><span class="n">s</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">10</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">              <span class="n">index</span><span class="o">=</span><span class="p">[[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span><span class="s1">&#39;a&#39;</span><span class="p">,</span><span class="s1">&#39;a&#39;</span><span class="p">,</span><span class="s1">&#39;b&#39;</span><span class="p">,</span><span class="s1">&#39;b&#39;</span><span class="p">,</span><span class="s1">&#39;b&#39;</span><span class="p">,</span><span class="s1">&#39;c&#39;</span><span class="p">,</span><span class="s1">&#39;c&#39;</span><span class="p">,</span><span class="s1">&#39;d&#39;</span><span class="p">,</span><span class="s1">&#39;d&#39;</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">                    <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">                    <span class="p">[</span><span class="mi">9</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">7</span><span class="p">]])</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>a  1  9    0.320638
+   2  8   -0.666312
+   3  7   -0.549029
+b  1  9   -0.375222
+   2  8    0.942717
+   3  7    0.588951
+c  1  9    2.538862
+   2  8   -1.635290
+d  2  8   -1.602510
+   3  7    0.187961
+dtype: float64
+</code></pre>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># 索引属于MultiIndex类</span>
+</span></span><span class="line"><span class="cl"><span class="n">s</span><span class="o">.</span><span class="n">index</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>MultiIndex(levels=[['a', 'b', 'c', 'd'], [1, 2, 3], [7, 8, 9]],
+           labels=[[0, 0, 0, 1, 1, 1, 2, 2, 3, 3], [0, 1, 2, 0, 1, 2, 0, 1, 1, 2], [2, 1, 0, 2, 1, 0, 2, 1, 1, 0]])
+</code></pre>
+<h3 id="层次化索引方式">层次化索引方式</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">s</span><span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">]</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>1  9    0.320638
+2  8   -0.666312
+3  7   -0.549029
+dtype: float64
+</code></pre>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">s</span><span class="p">[</span><span class="s1">&#39;b&#39;</span><span class="p">:</span><span class="s1">&#39;c&#39;</span><span class="p">]</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>b  1  9   -0.375222
+   2  8    0.942717
+   3  7    0.588951
+c  1  9    2.538862
+   2  8   -1.635290
+dtype: float64
+</code></pre>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">s</span><span class="p">[[</span><span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;d&#39;</span><span class="p">]]</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>b  1  9   -0.375222
+   2  8    0.942717
+   3  7    0.588951
+d  2  8   -1.602510
+   3  7    0.187961
+dtype: float64
+</code></pre>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># 这里代表了第一层和第二层索引, 而不是行和列</span>
+</span></span><span class="line"><span class="cl"><span class="n">s</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">]</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>a  8   -0.666312
+b  8    0.942717
+c  8   -1.635290
+d  8   -1.602510
+dtype: float64
+</code></pre>
+<h3 id="转化为dataframe-unstack">转化为DataFrame: unstack()</h3>
+<p>将最内层的索引变成新的列名, 形成新的DataFrame</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># 拆分</span>
+</span></span><span class="line"><span class="cl"><span class="n">s</span><span class="o">.</span><span class="n">unstack</span><span class="p">()</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div><style>
+    .dataframe thead tr:only-child th {
+        text-align: right;
+    }
+<pre><code>.dataframe thead th {
+    text-align: left;
+}
+
+.dataframe tbody tr th {
+    vertical-align: top;
+}&lt;/style&gt;&lt;table border=&quot;1&quot; class=&quot;dataframe&quot;&gt;&lt;thead&gt;&lt;tr style=&quot;text-align: right;&quot;&gt;&lt;th&gt;&lt;/th&gt;&lt;th&gt;&lt;/th&gt;&lt;th&gt;7&lt;/th&gt;&lt;th&gt;8&lt;/th&gt;&lt;th&gt;9&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody&gt;&lt;tr&gt;&lt;th rowspan=&quot;3&quot; valign=&quot;top&quot;&gt;a&lt;/th&gt;&lt;th&gt;1&lt;/th&gt;&lt;td&gt;NaN&lt;/td&gt;&lt;td&gt;NaN&lt;/td&gt;&lt;td&gt;0.320638&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;th&gt;2&lt;/th&gt;&lt;td&gt;NaN&lt;/td&gt;&lt;td&gt;-0.666312&lt;/td&gt;&lt;td&gt;NaN&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;th&gt;3&lt;/th&gt;&lt;td&gt;-0.549029&lt;/td&gt;&lt;td&gt;NaN&lt;/td&gt;&lt;td&gt;NaN&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;th rowspan=&quot;3&quot; valign=&quot;top&quot;&gt;b&lt;/th&gt;&lt;th&gt;1&lt;/th&gt;&lt;td&gt;NaN&lt;/td&gt;&lt;td&gt;NaN&lt;/td&gt;&lt;td&gt;-0.375222&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;th&gt;2&lt;/th&gt;&lt;td&gt;NaN&lt;/td&gt;&lt;td&gt;0.942717&lt;/td&gt;&lt;td&gt;NaN&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;th&gt;3&lt;/th&gt;&lt;td&gt;0.588951&lt;/td&gt;&lt;td&gt;NaN&lt;/td&gt;&lt;td&gt;NaN&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;th rowspan=&quot;2&quot; valign=&quot;top&quot;&gt;c&lt;/th&gt;&lt;th&gt;1&lt;/th&gt;&lt;td&gt;NaN&lt;/td&gt;&lt;td&gt;NaN&lt;/td&gt;&lt;td&gt;2.538862&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;th&gt;2&lt;/th&gt;&lt;td&gt;NaN&lt;/td&gt;&lt;td&gt;-1.635290&lt;/td&gt;&lt;td&gt;NaN&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;th rowspan=&quot;2&quot; valign=&quot;top&quot;&gt;d&lt;/th&gt;&lt;th&gt;2&lt;/th&gt;&lt;td&gt;NaN&lt;/td&gt;&lt;td&gt;-1.602510&lt;/td&gt;&lt;td&gt;NaN&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;th&gt;3&lt;/th&gt;&lt;td&gt;0.187961&lt;/td&gt;&lt;td&gt;NaN&lt;/td&gt;&lt;td&gt;NaN&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/div&gt;
+</code></pre>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># 聚合</span>
+</span></span><span class="line"><span class="cl"><span class="n">s</span><span class="o">.</span><span class="n">unstack</span><span class="p">()</span><span class="o">.</span><span class="n">stack</span><span class="p">()</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>a  1  9    0.320638
+   2  8   -0.666312
+   3  7   -0.549029
+b  1  9   -0.375222
+   2  8    0.942717
+   3  7    0.588951
+c  1  9    2.538862
+   2  8   -1.635290
+d  2  8   -1.602510
+   3  7    0.187961
+dtype: float64
+</code></pre>
+<h3 id="重排层次顺序-swaplevel">重排层次顺序: swaplevel()</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl"># 交换两个index的层次顺序
+</span></span><span class="line"><span class="cl">swaplevel(indexName1, indexName2)
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="根据级别汇总统计">根据级别汇总统计</h3>
+<p>参考<code>Sum()</code>的<code>level</code>参数</p>
+<h3 id="使用dataframe的列">使用DataFrame的列</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># 初始化并命名索引</span>
+</span></span><span class="line"><span class="cl"><span class="n">df</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">unstack</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">names</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;index1&#39;</span><span class="p">,</span> <span class="s1">&#39;index2&#39;</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="n">df</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div><style>
+    .dataframe thead tr:only-child th {
+        text-align: right;
+    }
+<pre><code>.dataframe thead th {
+    text-align: left;
+}
+
+.dataframe tbody tr th {
+    vertical-align: top;
+}&lt;/style&gt;&lt;table border=&quot;1&quot; class=&quot;dataframe&quot;&gt;&lt;thead&gt;&lt;tr style=&quot;text-align: right;&quot;&gt;&lt;th&gt;&lt;/th&gt;&lt;th&gt;&lt;/th&gt;&lt;th&gt;7&lt;/th&gt;&lt;th&gt;8&lt;/th&gt;&lt;th&gt;9&lt;/th&gt;&lt;/tr&gt;&lt;tr&gt;&lt;th&gt;index1&lt;/th&gt;&lt;th&gt;index2&lt;/th&gt;&lt;th&gt;&lt;/th&gt;&lt;th&gt;&lt;/th&gt;&lt;th&gt;&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody&gt;&lt;tr&gt;&lt;th rowspan=&quot;3&quot; valign=&quot;top&quot;&gt;a&lt;/th&gt;&lt;th&gt;1&lt;/th&gt;&lt;td&gt;NaN&lt;/td&gt;&lt;td&gt;NaN&lt;/td&gt;&lt;td&gt;0.320638&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;th&gt;2&lt;/th&gt;&lt;td&gt;NaN&lt;/td&gt;&lt;td&gt;-0.666312&lt;/td&gt;&lt;td&gt;NaN&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;th&gt;3&lt;/th&gt;&lt;td&gt;-0.549029&lt;/td&gt;&lt;td&gt;NaN&lt;/td&gt;&lt;td&gt;NaN&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;th rowspan=&quot;3&quot; valign=&quot;top&quot;&gt;b&lt;/th&gt;&lt;th&gt;1&lt;/th&gt;&lt;td&gt;NaN&lt;/td&gt;&lt;td&gt;NaN&lt;/td&gt;&lt;td&gt;-0.375222&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;th&gt;2&lt;/th&gt;&lt;td&gt;NaN&lt;/td&gt;&lt;td&gt;0.942717&lt;/td&gt;&lt;td&gt;NaN&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;th&gt;3&lt;/th&gt;&lt;td&gt;0.588951&lt;/td&gt;&lt;td&gt;NaN&lt;/td&gt;&lt;td&gt;NaN&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;th rowspan=&quot;2&quot; valign=&quot;top&quot;&gt;c&lt;/th&gt;&lt;th&gt;1&lt;/th&gt;&lt;td&gt;NaN&lt;/td&gt;&lt;td&gt;NaN&lt;/td&gt;&lt;td&gt;2.538862&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;th&gt;2&lt;/th&gt;&lt;td&gt;NaN&lt;/td&gt;&lt;td&gt;-1.635290&lt;/td&gt;&lt;td&gt;NaN&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;th rowspan=&quot;2&quot; valign=&quot;top&quot;&gt;d&lt;/th&gt;&lt;th&gt;2&lt;/th&gt;&lt;td&gt;NaN&lt;/td&gt;&lt;td&gt;-1.602510&lt;/td&gt;&lt;td&gt;NaN&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;th&gt;3&lt;/th&gt;&lt;td&gt;0.187961&lt;/td&gt;&lt;td&gt;NaN&lt;/td&gt;&lt;td&gt;NaN&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/div&gt;
+</code></pre>
+<h4 id="将列转换为索引-set_index">将列转换为索引: set_index()</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># 把7,8两列变成索引</span>
+</span></span><span class="line"><span class="cl"><span class="n">df</span><span class="o">.</span><span class="n">set_index</span><span class="p">([</span><span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">])</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div><style>
+    .dataframe thead tr:only-child th {
+        text-align: right;
+    }
+<pre><code>.dataframe thead th {
+    text-align: left;
+}
+
+.dataframe tbody tr th {
+    vertical-align: top;
+}&lt;/style&gt;&lt;table border=&quot;1&quot; class=&quot;dataframe&quot;&gt;&lt;thead&gt;&lt;tr style=&quot;text-align: right;&quot;&gt;&lt;th&gt;&lt;/th&gt;&lt;th&gt;&lt;/th&gt;&lt;th&gt;9&lt;/th&gt;&lt;/tr&gt;&lt;tr&gt;&lt;th&gt;7&lt;/th&gt;&lt;th&gt;8&lt;/th&gt;&lt;th&gt;&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody&gt;&lt;tr&gt;&lt;th rowspan=&quot;2&quot; valign=&quot;top&quot;&gt;NaN&lt;/th&gt;&lt;th&gt;NaN&lt;/th&gt;&lt;td&gt;0.320638&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;th&gt;-0.666312&lt;/th&gt;&lt;td&gt;NaN&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;th&gt;-0.549029&lt;/th&gt;&lt;th&gt;NaN&lt;/th&gt;&lt;td&gt;NaN&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;th rowspan=&quot;2&quot; valign=&quot;top&quot;&gt;NaN&lt;/th&gt;&lt;th&gt;NaN&lt;/th&gt;&lt;td&gt;-0.375222&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;th&gt;0.942717&lt;/th&gt;&lt;td&gt;NaN&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;th&gt;0.588951&lt;/th&gt;&lt;th&gt;NaN&lt;/th&gt;&lt;td&gt;NaN&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;th rowspan=&quot;3&quot; valign=&quot;top&quot;&gt;NaN&lt;/th&gt;&lt;th&gt;NaN&lt;/th&gt;&lt;td&gt;2.538862&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;th&gt;-1.635290&lt;/th&gt;&lt;td&gt;NaN&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;th&gt;-1.602510&lt;/th&gt;&lt;td&gt;NaN&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;th&gt;0.187961&lt;/th&gt;&lt;th&gt;NaN&lt;/th&gt;&lt;td&gt;NaN&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/div&gt;
+</code></pre>
+<h4 id="将索引转换为列-reset_index">将索引转换为列: reset_index()</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># 把&#39;index1&#39;, &#39;index2&#39;两个索引变成列</span>
+</span></span><span class="line"><span class="cl"><span class="n">df</span><span class="o">.</span><span class="n">reset_index</span><span class="p">([</span><span class="s1">&#39;index1&#39;</span><span class="p">,</span> <span class="s1">&#39;index2&#39;</span><span class="p">])</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div><style>
+    .dataframe thead tr:only-child th {
+        text-align: right;
+    }
+<pre><code>.dataframe thead th {
+    text-align: left;
+}
+
+.dataframe tbody tr th {
+    vertical-align: top;
+}&lt;/style&gt;&lt;table border=&quot;1&quot; class=&quot;dataframe&quot;&gt;&lt;thead&gt;&lt;tr style=&quot;text-align: right;&quot;&gt;&lt;th&gt;&lt;/th&gt;&lt;th&gt;index1&lt;/th&gt;&lt;th&gt;index2&lt;/th&gt;&lt;th&gt;7&lt;/th&gt;&lt;th&gt;8&lt;/th&gt;&lt;th&gt;9&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody&gt;&lt;tr&gt;&lt;th&gt;0&lt;/th&gt;&lt;td&gt;a&lt;/td&gt;&lt;td&gt;1&lt;/td&gt;&lt;td&gt;NaN&lt;/td&gt;&lt;td&gt;NaN&lt;/td&gt;&lt;td&gt;0.320638&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;th&gt;1&lt;/th&gt;&lt;td&gt;a&lt;/td&gt;&lt;td&gt;2&lt;/td&gt;&lt;td&gt;NaN&lt;/td&gt;&lt;td&gt;-0.666312&lt;/td&gt;&lt;td&gt;NaN&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;th&gt;2&lt;/th&gt;&lt;td&gt;a&lt;/td&gt;&lt;td&gt;3&lt;/td&gt;&lt;td&gt;-0.549029&lt;/td&gt;&lt;td&gt;NaN&lt;/td&gt;&lt;td&gt;NaN&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;th&gt;3&lt;/th&gt;&lt;td&gt;b&lt;/td&gt;&lt;td&gt;1&lt;/td&gt;&lt;td&gt;NaN&lt;/td&gt;&lt;td&gt;NaN&lt;/td&gt;&lt;td&gt;-0.375222&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;th&gt;4&lt;/th&gt;&lt;td&gt;b&lt;/td&gt;&lt;td&gt;2&lt;/td&gt;&lt;td&gt;NaN&lt;/td&gt;&lt;td&gt;0.942717&lt;/td&gt;&lt;td&gt;NaN&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;th&gt;5&lt;/th&gt;&lt;td&gt;b&lt;/td&gt;&lt;td&gt;3&lt;/td&gt;&lt;td&gt;0.588951&lt;/td&gt;&lt;td&gt;NaN&lt;/td&gt;&lt;td&gt;NaN&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;th&gt;6&lt;/th&gt;&lt;td&gt;c&lt;/td&gt;&lt;td&gt;1&lt;/td&gt;&lt;td&gt;NaN&lt;/td&gt;&lt;td&gt;NaN&lt;/td&gt;&lt;td&gt;2.538862&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;th&gt;7&lt;/th&gt;&lt;td&gt;c&lt;/td&gt;&lt;td&gt;2&lt;/td&gt;&lt;td&gt;NaN&lt;/td&gt;&lt;td&gt;-1.635290&lt;/td&gt;&lt;td&gt;NaN&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;th&gt;8&lt;/th&gt;&lt;td&gt;d&lt;/td&gt;&lt;td&gt;2&lt;/td&gt;&lt;td&gt;NaN&lt;/td&gt;&lt;td&gt;-1.602510&lt;/td&gt;&lt;td&gt;NaN&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;th&gt;9&lt;/th&gt;&lt;td&gt;d&lt;/td&gt;&lt;td&gt;3&lt;/td&gt;&lt;td&gt;0.187961&lt;/td&gt;&lt;td&gt;NaN&lt;/td&gt;&lt;td&gt;NaN&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/div&gt;
+</code></pre>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"></code></pre></td></tr></table>
+</div>
+</div></div><div id="comments"><div id="disqus_thread" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://disqus.com/?ref_noscript">Disqus</a>.
+            </noscript></div></div></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.102.2">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2016 - 2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">xiaoxuan</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/cookieconsent/cookieconsent.min.css"><script type="text/javascript" src="https://xxuan-cc.disqus.com/embed.js" defer></script><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/mhchem.min.js"></script><script type="text/javascript" src="/lib/cookieconsent/cookieconsent.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{},"cookieconsent":{"content":{"dismiss":"Got it!","link":"Learn more","message":"This website uses Cookies to improve your experience."},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":50,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

@@ -1,0 +1,16 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>CS105x - Tag - Laniakea</title>
+        <link>http://xxuan.cc/tags/cs105x/</link>
+        <description>CS105x - Tag - Laniakea</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>shawn_au@outlook.com (xiaoxuan)</managingEditor>
+            <webMaster>shawn_au@outlook.com (xiaoxuan)</webMaster><lastBuildDate>Tue, 28 Jun 2016 04:15:50 &#43;0000</lastBuildDate><atom:link href="http://xxuan.cc/tags/cs105x/" rel="self" type="application/rss+xml" /><item>
+    <title>Spark Tutorial - Learning Apache Spark</title>
+    <link>http://xxuan.cc/code/2016-06-28-spark-tutorial/</link>
+    <pubDate>Tue, 28 Jun 2016 04:15:50 &#43;0000</pubDate>
+    <author>xiaoxuan</author>
+    <guid>http://xxuan.cc/code/2016-06-28-spark-tutorial/</guid>
+    <description><![CDATA[<p>Spark简介</p>]]></description>
+</item>
+</channel>
+</rss>

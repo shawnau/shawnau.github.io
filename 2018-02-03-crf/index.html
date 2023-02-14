@@ -1,0 +1,822 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>对数线性模型, MEMM与CRF - Laniakea</title><meta name="Description" content="xxuan&#39;s blog"><meta property="og:title" content="对数线性模型, MEMM与CRF" />
+<meta property="og:description" content="
+
+你的PGM也会和Steins Gate的世界线一样收束吗?
+
+可能是有史以来公式最多的文章. 敲到吐血" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://xxuan.cc/2018-02-03-crf/" /><meta property="og:image" content="http://xxuan.cc/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2018-02-03T19:03:23+00:00" />
+<meta property="article:modified_time" content="2018-02-03T19:03:23+00:00" /><meta property="og:site_name" content="xxuan.cc" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="http://xxuan.cc/logo.png"/>
+
+<meta name="twitter:title" content="对数线性模型, MEMM与CRF"/>
+<meta name="twitter:description" content="
+
+你的PGM也会和Steins Gate的世界线一样收束吗?
+
+可能是有史以来公式最多的文章. 敲到吐血"/>
+<meta name="application-name" content="Laniakea">
+<meta name="apple-mobile-web-app-title" content="Laniakea"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://xxuan.cc/2018-02-03-crf/" /><link rel="prev" href="http://xxuan.cc/2018-02-03-hmm/" /><link rel="next" href="http://xxuan.cc/2018-07-13-image-classification/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" href="/lib/animate/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "对数线性模型, MEMM与CRF",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/xxuan.cc\/2018-02-03-crf\/"
+        },"genre": "posts","keywords": "MEMM, CRF, PGM, NLP","wordcount":  4575 ,
+        "url": "http:\/\/xxuan.cc\/2018-02-03-crf\/","datePublished": "2018-02-03T19:03:23+00:00","dateModified": "2018-02-03T19:03:23+00:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "xiaoxuan"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Laniakea">Laniakea</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/" title="存档脑细胞"> 文章 </a><a class="menu-item" href="/playground/" title="玩耍算法题的地方"> 练习场 </a><a class="menu-item" href="/code/" title="存放大概率过期的代码"> 码农 </a><a class="menu-item" href="/tags/" title="标签"> Tags </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Laniakea">Laniakea</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="存档脑细胞">文章</a><a class="menu-item" href="/playground/" title="玩耍算法题的地方">练习场</a><a class="menu-item" href="/code/" title="存放大概率过期的代码">码农</a><a class="menu-item" href="/tags/" title="标签">Tags</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">对数线性模型, MEMM与CRF</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>xiaoxuan</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2018-02-03">2018-02-03</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;4575 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;10 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="true">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#序">序</a></li>
+    <li><a href="#log-linear-models">Log-Linear Models</a>
+      <ul>
+        <li><a href="#符号表">符号表</a></li>
+        <li><a href="#定义">定义</a></li>
+        <li><a href="#预测">预测</a></li>
+        <li><a href="#学习">学习</a></li>
+        <li><a href="#案例-logistic-regression">案例: Logistic Regression</a></li>
+      </ul>
+    </li>
+    <li><a href="#memm">MEMM</a>
+      <ul>
+        <li><a href="#定义-1">定义</a></li>
+        <li><a href="#学习-1">学习</a></li>
+        <li><a href="#预测decode">预测(Decode)</a></li>
+        <li><a href="#memm与hmm">MEMM与HMM</a></li>
+      </ul>
+    </li>
+    <li><a href="#crf">CRF</a>
+      <ul>
+        <li><a href="#定义-2">定义</a></li>
+        <li><a href="#概率计算">概率计算</a>
+          <ul>
+            <li><a href="#非规范化概率的计算">非规范化概率的计算</a></li>
+            <li><a href="#规范化因子的计算-前向算法">规范化因子的计算: 前向算法</a></li>
+          </ul>
+        </li>
+        <li><a href="#decode-viterbi算法">Decode: Viterbi算法</a></li>
+      </ul>
+    </li>
+    <li><a href="#appendix-crf的计算">Appendix: CRF的计算</a>
+      <ul>
+        <li><a href="#概率计算-1">概率计算</a></li>
+        <li><a href="#decode">Decode</a></li>
+      </ul>
+    </li>
+    <li><a href="#reference">Reference</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/13010631_p0_master1200.jpg"
+        data-srcset="http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/13010631_p0_master1200.jpg, http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/13010631_p0_master1200.jpg 1.5x, http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/13010631_p0_master1200.jpg 2x"
+        data-sizes="auto"
+        alt="http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/13010631_p0_master1200.jpg"
+        title="http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/13010631_p0_master1200.jpg" /></p>
+<blockquote>
+<p>你的PGM也会和Steins Gate的世界线一样收束吗?</p>
+</blockquote>
+<p>可能是有史以来公式最多的文章. 敲到吐血</p>
+<h2 id="序">序</h2>
+<p>设输入是$x$, 输出是$y$, HMM刻画的是联合概率分布$P(x, y | \lambda)$, 因此是生成模型, 可以同时进行推断$P(y|x, \lambda)$和解码$P(x|y, \lambda)$. 而CRF刻画的是条件概率分布$P(y|x, \lambda)$, 是判别模型</p>
+<h2 id="log-linear-models">Log-Linear Models</h2>
+<h3 id="符号表">符号表</h3>
+<table>
+<thead>
+<tr>
+<th>符号</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$x \in \mathcal X$</td>
+<td>input/feature</td>
+</tr>
+<tr>
+<td>$y \in \mathcal Y$</td>
+<td>output/label</td>
+</tr>
+<tr>
+<td>$\vec{\phi}(x, y): \mathcal X \times \mathcal Y \rightarrow R^d$</td>
+<td>特征函数, 将$(x, y)$映射为$R^d$维特征向量</td>
+</tr>
+<tr>
+<td>$\vec{w} \in R^d$</td>
+<td>weights for $\vec \phi$</td>
+</tr>
+</tbody>
+</table>
+<h3 id="定义">定义</h3>
+<p>Log Linear Models take the following form:</p>
+<p>$$
+\begin{align}
+P(y|x; \vec w) &amp;= \frac{1}{Z} \exp(\vec w \cdot \vec \phi(x, y)) \\
+Z &amp;= \sum\limits_{y_i \in \mathcal Y} \exp(\vec w \cdot \vec \phi(x, y_i))
+\end{align}
+\tag{1.1}
+$$
+其中$Z$是归一化常数, 使得输出构成概率分布. 这是条件概率, 因此是判别模型.
+$\vec w \times \vec \phi$代表了给定$x$之后$y$的&rsquo;可能性&rsquo;, 而模型的核心就是特征函数$\vec \phi$.</p>
+<ol>
+<li>$\vec \phi$实际上是不同的特征函数, 每个特征函数匹配不同pattern并score, 赋予模型<strong>分辨能力</strong>. 例如在logistic regression中:
+$$\vec \phi_k(\vec x, y) =  \begin{cases}
+x_k, &amp; \text{y=1} \\
+0, &amp; \text{y=0}
+\end{cases} $$
+特征函数赋予模型二分类能力(不论$\vec x$如何, 只要出现了不同的$y$, 模型就要区分出来)</li>
+<li>$\vec w$让模型对$\vec \phi$ 的每个特征给予不同的权重, 赋予模型<strong>判断特征权重</strong>的能力</li>
+<li>使用指数控制其非负</li>
+<li>使用$Z$归一化之后就转化成了概率分布.</li>
+</ol>
+<h3 id="预测">预测</h3>
+<p>给定一组容量为$n$的样本$S = \lbrace (x_i, y_i) \rbrace^{n}_{i=1}$, 使用Log Linear Model计算其<strong>对数似然</strong>
+$$
+\begin{align}
+\log P(S | \vec w) = \log L(\vec w) &amp;= \log \prod\limits_{i=1}^n P(y_i|x_i; \vec w) \\
+&amp;= \sum\limits_{i=1}^n \log P(y_i|x_i; \vec w)
+\end{align}
+\tag{1.2}
+$$</p>
+<h3 id="学习">学习</h3>
+<p>使用最大似然估计参数$\vec w$
+$$
+\vec w^{*} = \arg \max\limits_{\vec w \in R^d} \sum\limits_{i=1}^n \log P(y_i|x_i; \vec w)
+$$
+常用的优化手段有梯度下降(负对数似然), 其中梯度计算方式如下:</p>
+<p>$$
+\begin{align}
+\frac{\partial \log L(\vec w)}{\partial \vec w} &amp;= \frac{\partial}{\partial \vec w} \sum\limits_{i=1}^n \log P(y_i|x_i; \vec w) \\
+&amp;= \frac{\partial}{\partial \vec w}  \sum\limits_{i=1}^n \log \frac{\exp(\vec w \cdot \vec \phi(x_i, y_i))}{\sum\limits_{y_j \in \mathcal Y} \exp(\vec w \cdot \vec \phi(x, y_j))} \\
+&amp;= \sum\limits_{i=1}^n \vec \phi(x_i, y_i) - \sum\limits_{i=1}^n \sum\limits_{y_j \in \mathcal Y} P(y_j|x_i; \vec w) \vec \phi(x_i, y_j)
+\end{align}
+\tag{1.3}
+$$</p>
+<p><strong>正则化</strong>是优化模型性能的重要方式, L2正则项为$\frac{1}{2} ||\vec w||^2$, 损失函数变为$\log L(\vec w) + \frac{1}{2} ||\vec w||^2$即可</p>
+<h3 id="案例-logistic-regression">案例: Logistic Regression</h3>
+<p>定义:
+$$
+\begin{align}
+\vec x &amp;\in R^n \\
+y &amp;\in \lbrace 0, 1 \rbrace \\
+\vec \phi_k(\vec x, y) &amp;=
+\begin{cases}
+x_k, &amp; \text{y=1} \\
+0, &amp; \text{y=0}
+\end{cases}
+\end{align}
+\tag{e.0}
+$$
+由定义$(1.1)$求出条件概率
+$$
+P(y|\vec x; \vec w) = \frac{\exp(\vec w \cdot \vec \phi(\vec x, y))}{\exp(\vec w \cdot \vec \phi(\vec x, 1)) + 1}
+\tag{e.1}
+$$</p>
+<p>由$(1.2)$可知对数似然
+$$
+\begin{align}
+\log L(\vec w) &amp;= \sum\limits_{i=1}^n \log p(y_i|x_i; \vec w) \\
+&amp;= \sum\limits_{i=1}^n \log \frac{\exp(\vec w \cdot \vec \phi(x_i, y_i))}{\exp(\vec w \cdot \vec \phi(x_i, 1)) + \exp(\vec w \cdot \vec \phi(x_i, 0))} \\
+&amp;= \sum\limits_{i=1}^n \log \frac{\exp(\vec w \cdot \vec \phi(x_i, y_i))}{\exp(\vec w \cdot \vec x_i) + 1} \\
+&amp;= \sum\limits_{i=1}^n [\vec w \cdot \vec \phi(x_i, y_i) - \log (\exp(\vec w \cdot \vec x_i) + 1)]
+\end{align}
+\tag{e.2}
+$$
+由$(1.3)$求出梯度
+$$
+\begin{align}
+\frac{\partial \log L(\vec w)}{\partial \vec w}  &amp;= \frac{\partial}{\partial \vec w} \sum\limits_{i=1}^n [\vec w \cdot \vec \phi(x_i, y_i) - \log (\exp(\vec w \cdot \vec x_i) + 1)] \\
+&amp;= \sum\limits_{i=1}^n [\vec \phi(x_i, y_i) - \frac{\exp(\vec w \cdot \vec x_i) \vec x_i}{\exp(\vec w \cdot \vec x_i) + 1}] \\
+&amp;= \sum\limits_{i=1}^n [\vec \phi(x_i, y_i) - P(1|\vec x_i; \vec w) \vec x_i]
+\end{align}
+\tag{e.3}
+$$
+事实上, 当$y \in \lbrace 0, 1 \rbrace$时, $(e.0)$中的特征函数可以简化为$\vec \phi(\vec x, y) = y \vec x$, $(e.2)$, $(e.3)$可以进一步简化, 但当$y$为其他取值时不通用, 因此没有扔进去算</p>
+<h2 id="memm">MEMM</h2>
+<p>把log linear models推广到序列上, 就有了MEMM</p>
+<table>
+<thead>
+<tr>
+<th>符号</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$x \in \mathcal X$</td>
+<td>input, for example the $j$’th word in a sentence</td>
+</tr>
+<tr>
+<td>$\vec x = (x_1,x_2, \cdots, x_T)$</td>
+<td>input sequence</td>
+</tr>
+<tr>
+<td>$s^i \in \mathcal S, 1 \leq i \leq \lvert \mathcal S \rvert$</td>
+<td>state or output, like tag of a word</td>
+</tr>
+<tr>
+<td>$\vec s = (s_1,s_2, \cdots, s_T)$</td>
+<td>state sequence</td>
+</tr>
+<tr>
+<td>$\vec \phi(x, y): \mathcal X \times \mathcal Y \rightarrow R^d$</td>
+<td>特征函数, 将$(x, y)$映射为$R^d$维特征向量</td>
+</tr>
+<tr>
+<td>${\vec w} \in R^d$</td>
+<td>weights for $\vec \phi$</td>
+</tr>
+</tbody>
+</table>
+<h3 id="定义-1">定义</h3>
+<p>MEMM的结构中, 状态链是马尔科夫链, 符合<strong>局部Markov性</strong>, 而transition和emission矩阵由<strong>特征函数</strong>刻画. 整个模型刻画了条件概率分布:
+$$
+\begin{align}
+P((s_1,s_2, \cdots, s_T)|\vec x)
+&amp;= \prod\limits_{i=1}^{T} P(s_i | (s_1,s_2, \cdots, s_{i-1}), \vec x) \\
+&amp;= \prod\limits_{i=1}^{T} P(s_i | s_{i-1}, \vec x)
+\end{align}
+\tag{2.1}
+$$
+其中</p>
+<ol>
+<li>第一步使用了<a href="https://en.wikipedia.org/wiki/Chain_rule_%28probability%29" target="_blank" rel="noopener noreffer ">chain rule of conditional probabilities</a>, 可以把联合概率拆分为条件概率:
+$$
+\begin{align}
+P(A_n, \cdots, A_1) &amp;= P(A_n | A_{n-1}, \cdots, A_1) P(A_{n-1}, \cdots, A_1) \\
+P(A_4, A_3, A_2, A_1) &amp;= P(A_4|A_3, A_2, A_1) P(A_3|A_2, A_1) P(A_2|A_1)
+\end{align}
+$$</li>
+<li>第2步使用了independence assumption:
+$$P(s_i|s_{i-1}, s_{i-2}, \cdots, s_1) = P(s_i|s_{i-1})$$</li>
+</ol>
+<p>为了计算$(2.1)$, 我们使用Log Linear Model刻画输出与输入/上一个输出之间的条件概率:
+$$
+P(s_i | s_{i-1}, \vec x; \vec w) = \frac{\exp \Bigl ( \vec w \cdot \vec \phi \bigl (  \vec x, i, s_{i-1}, s_i \bigr ) \Bigr )}{\sum\limits_{s&rsquo; \in \mathcal S} \exp \Bigl ( \vec w \cdot \vec \phi \bigl ( \vec x, i, s_{i-1}, s&rsquo; \bigr ) \Bigr )}
+\tag{2.2}
+$$</p>
+<p>对于$ \vec \phi \bigl ( \vec x, i, s_{i-1}, s_i \bigr )$, 有:</p>
+<ol>
+<li>$\vec x = (x_1, \cdots, x_T)$是整个输入序列</li>
+<li>$i$是输出序号</li>
+<li>$s_{i-1}$是上一次输出</li>
+<li>$s_i$是输出</li>
+</ol>
+<h3 id="学习-1">学习</h3>
+<p>获取$(x_1,x_2, \cdots, x_T)$和$(s_1,s_2, \cdots, s_T)$之后, 学习可以使用最大似然, 参考$(1.2)$和$(1.3)$</p>
+<h3 id="预测decode">预测(Decode)</h3>
+<p>和Log Linear Models中的预测不同, 前者只需给定输入预测输出的概率分布即可, 但MEMM给定输入之后可以刻画$|\mathcal S|^T$种输出, 找到条件概率最大的输出序列就成为了一个任务:
+$$
+\arg \max\limits_{(s_1\cdots s_T)} P\bigl ((s_1,s_2, \cdots, s_T)|\vec x \bigr )
+$$
+这和HMM的Viterbi算法如出一辙. 使用动态规划解决:</p>
+<p>$$
+\begin{align}
+\pi[i, s] &amp;= \max\limits_{s_1 \cdots s_{i-1}} P \bigl ( (s_1, s_2, \cdots, s_{i}=s) | \vec x \bigr ) \\
+&amp;= \max\limits_{s_1 \cdots s_{i-1}} P\bigl ( (s_i=s|s_{i-1}, \vec x) \bigr)P \bigl ( (s_1, s_2, \cdots, s_{i-1}) |\vec x \bigr ) \\
+&amp;= \max\limits_{s_1 \cdots s_{i-1}} P\bigl ( (s_i=s|s_{i-1}, \vec x) \prod\limits_{j=1}^{i-1} P\bigl ( (s_j|s_{j-1}, \vec x)
+\end{align}
+\tag{2.3}
+$$</p>
+<p>递推式为
+$$
+\pi[i, s] = \max\limits_{s&rsquo; \in \mathcal S} \pi[i-1, s&rsquo;] \cdot P(s_{i-1}=s&rsquo; | s_i=s, \vec x)
+\tag{2.4}
+$$</p>
+<h3 id="memm与hmm">MEMM与HMM</h3>
+<p>在计算transition &amp; emission概率时, HMM和MEMM分别使用如下模型:
+$$
+\begin{align}
+P(s_i|s_{i-1})P(x_i|s_i) &amp;= A_{s_{i-1}s_i}B_{s_i}(o_i)\\
+P(s_i | s_{i-1}, \vec x) &amp;= \frac{\exp \Bigl ( \vec w \cdot \vec \phi \bigl (  \vec x, i, s_{i-1}, s_i \bigr ) \Bigr )}{\sum\limits_{s&rsquo; \in \mathcal S} \exp \Bigl ( \vec w \cdot \vec \phi \bigl ( \vec x, i, s_{i-1}, s&rsquo; \bigr ) \Bigr )}
+\end{align}
+$$
+MEMM的关键优势在于使用特征函数$\vec\phi$可以捕捉更多信息.</p>
+<ul>
+<li>HMM中$A \in R^{|\mathcal S| \times |\mathcal S|}$, $B \in R^{|\mathcal S| \times |\mathcal O|}$均为二维矩阵, 用来刻画transition和emission</li>
+<li>MEMM中特征函数$\vec\phi \in R^{|\mathcal X| \times T \times |\mathcal S| \times |\mathcal S|}$, 捕捉特征的能力远强于HMM.</li>
+</ul>
+<blockquote>
+<p>For example, the transition probability can be sensitive to any word in the input sequence $x_1 \cdots x_T$. In addition, it is very easy to introduce features that are sensitive to spelling features (e.g., prefixes or suffixes) of the current word $x_i$, or of the surrounding words. These features are useful in many NLP applications, and are difficult to incorporate within HMMs in a clean way.</p>
+</blockquote>
+<p>并且, HMM刻画的是联合概率分布(joint probability), MEMM刻画的是条件概率分布(conditional probability), 后者往往有更高的precision</p>
+<h2 id="crf">CRF</h2>
+<h3 id="定义-2">定义</h3>
+<p>条件随机场的任务依然是刻画序列的条件概率$P(\vec s | \vec x)$:
+$$
+P(\vec s | \vec x; \vec w) = \frac{\exp \Bigl (\vec w \cdot \vec \Phi(\vec x, \vec s) \Bigr)}{\sum\limits_{\vec s&rsquo; \in \mathcal S^T} \exp \Bigl (\vec w \cdot \vec \Phi(\vec x, \vec s&rsquo;) \Bigr)}
+\tag{3.1}
+$$
+然而这里的特征函数是直接建立在整个输入序列对输出序列的.</p>
+<blockquote>
+<p>feature vector maps an entire input sequence $\vec x$ paired with an entire state sequence $\vec s$ to some $d$-dimensional feature vector.
+$$
+\vec \Phi(\vec x, \vec s) = \vec x \times \vec s \rightarrow R^d
+$$</p>
+</blockquote>
+<p>但由于局部Markov性, 特征函数可以通过简单的方式进行分解
+$$
+\begin{align}
+\vec \Phi(\vec x, \vec s) &amp;=  \sum\limits_{i=1}^T \vec \phi \bigl ( s_{i-1}, s_i, \vec x, i \bigr )
+\end{align}
+\tag{3.2}
+$$
+这里的$\phi \bigl ( s_{i-1}, s_i, \vec x, i \bigr )$和MEMM中的一致.</p>
+<h3 id="概率计算">概率计算</h3>
+<p>由于CRF是序列对序列的, 计算概率的过程比较复杂</p>
+<h4 id="非规范化概率的计算">非规范化概率的计算</h4>
+<p>非规范化概率的表示
+$$
+\begin{align}
+\hat P(\vec s | \vec x; \vec w) &amp;= \exp \Bigl (\vec w \cdot \vec \Phi(\vec x, \vec s) \Bigr) \\
+&amp;= \exp  \Bigl ( \vec w \cdot \sum\limits_{i=1}^T [ \vec t(s_{i-1}, s_i, \vec x, i) + \vec e(s_i, \vec x, i) ] \Bigr ) \\
+&amp;= \exp  \Bigl ( \sum\limits_{k=1}^{|\vec t|}  \sum\limits_{i=1}^T  \lambda_k t_k(s_{i-1}, s_i, \vec x, i) + \sum\limits_{k=1}^{|\vec e|}  \sum\limits_{i=1}^T \mu_k e_k(s_i, \vec x, i)  \Bigr )
+\end{align}
+\tag{3.3}
+$$
+其中$\vec t, \vec e$分别是transition和emission特征, transition定义在边上, 依赖于当前和前一个位置, emission定义在节点上, 依赖于当前位置. $\lambda, \mu$分别是他们的权重, CRF完全由$\lambda, t, \mu, e$定义.</p>
+<p>假设转移矩阵和位置及输入无关, 可以这样刻画transition和emission:
+$$
+\begin{align}
+t[i][j] &amp;= \lambda t(s^i, s^j) &amp; s^i, s^j \in \mathcal S \\
+e[i][j] &amp;= \mu e(x_i, s^j) &amp; x_i \in \vec x, s^j \in \mathcal S
+\end{align}
+$$</p>
+<p>为了处理边界条件, 定义起点为$s_0$, 终点为$s_{-1}$, 即
+$$
+\vec s = (s_0, s_1, \cdots, s_T, s_{-1})
+$$</p>
+<h4 id="规范化因子的计算-前向算法">规范化因子的计算: 前向算法</h4>
+<p>$(3.1)$分母是全局规范化因子, 涉及计算$\mathcal S^T$条路径的非规范化概率之和, 这和HMM中计算$P(O|\lambda)$时需要对所有状态求和是一致的, 都可以使用前向/后向算法解决.</p>
+<p>举个例子, 假设$\mathcal S \in {a, b}$
+$$
+\begin{align}
+\alpha_1(a) = \hat P \bigl ( (s_0),s_1=a |(x_1) \bigr ) &amp;=
+\exp \bigl ( t(0, a) + e(a, x_1) \bigr ) \\
+\alpha_1(b) = \hat P \bigl ( (s_0),s_1=b |(x_1) \bigr ) &amp;=
+\exp \bigl ( t(0, b) + e(b, x_1) \bigr ) \\
+\end{align}
+\tag{3.4}
+$$
+而
+$$
+\begin{align}
+\alpha_2(a) &amp;= \hat P \bigl ( (s_0, s_1), s_2=a |(x_1, x_2) \bigr ) \\
+&amp;= \exp \bigl ( t(0, a) + e(a, x_1) + t(a, a) + e(a, x_2) \bigr ) \\
+&amp;+ \exp \bigl ( t(0, b) + e(b, x_1) + t(b, a) + e(a, x_2) \bigr ) \\
+&amp;= \alpha_1(a) \cdot \exp \bigl ( t(a, a) + e(a, x_2) \bigr ) \\
+&amp;+ \alpha_1(b) \cdot \exp \bigl ( t(b, a) + e(a, x_2) \bigr )
+\end{align}
+\tag{3.5}
+$$
+由$(3.4)$和$(3.5)$可以归纳出递推式
+$$
+\alpha_{t+1}(s^i) = \sum\limits_{j = 1}^{|\mathcal S|} \alpha_{t}(s^j) \cdot \exp\bigl (t(s^j, s^i) + e(s^i, x_{t+1}) \bigr )
+\tag{3.6}
+$$
+或
+$$
+\alpha_{t+1}(s^i) = \sum\limits_{j = 1}^{|\mathcal S|} \exp \bigl ( \log \alpha_{t}(s^j) + t(s^j, s^i) + e(s^i, x_{t+1}) \bigr )
+\tag{3.7}
+$$
+或
+$$
+\beta_{t+1}(s^i) = \log \sum\limits_{j = 1}^{|\mathcal S|} \exp \bigl ( \beta_{t}(s^j) + t(s^j, s^i) + e(s^i, x_{t+1}) \bigr )
+\tag{3.8}
+$$
+其中$\beta_t(s^i) = \log \alpha_t(s^i) = \log \hat P \bigl ( s_t=s^i |(x_1 \cdots x_t) \bigr )$</p>
+<h3 id="decode-viterbi算法">Decode: Viterbi算法</h3>
+<p>给定$\vec x$, 求$\arg \max\limits_{\vec s \in \mathcal S^T} P(\vec s | \vec x; \vec w)$</p>
+<p>$$
+\begin{align}
+\arg \max\limits_{\vec s \in \mathcal S^T} P(\vec s | \vec x; \vec w) &amp;= \arg \max\limits_{\vec s \in \mathcal S^T} \frac{\exp \Bigl (\vec w \cdot \vec \Phi(\vec x, \vec s) \Bigr)}{\sum\limits_{\vec s&rsquo; \in \mathcal S^T} \exp \Bigl (\vec w \cdot \vec \Phi(\vec x, \vec s&rsquo;) \Bigr)} \\
+&amp;= \arg \max\limits_{\vec s \in \mathcal S^T} \vec w \cdot \vec \Phi(\vec x, \vec s) \\
+&amp;= \arg \max\limits_{\vec s \in \mathcal S^T} \vec w \cdot \sum\limits_{i=1}^T \vec \phi \bigl ( \vec x, i, s_{i-1}, s_i \bigr ) \\
+&amp;= \arg \max\limits_{\vec s \in \mathcal S^T} \sum\limits_{k=1}^{|\vec t|}  \sum\limits_{i=1}^T  \lambda_k t_k(s_{i-1}, s_i, \vec x, i) + \sum\limits_{k=1}^{|\vec e|}  \sum\limits_{i=1}^T \mu_k e_k(s_i, \vec x, i)
+\end{align}
+$$</p>
+<p>依然是求$t + s$的最大带权路径. 使用Viterbi算法解决:</p>
+<ol>
+<li>初始化
+$$
+\delta_1(s^i) = t(s_0, s_1=s^i) \\
+\phi_1(s_1) = 0
+\tag{3.9.1}
+$$</li>
+<li>递推. 对$t=[2, T]$:
+$$
+\delta_t(s^i) = \max\limits_{1 \leq j \leq |\mathcal S|} [\delta_{t-1}(s^j) + t(s^j, s^i)] + e(s^i, x_t) \\
+\phi_t(q_i) = arg\max\limits_{1 \leq j \leq |\mathcal S|} [\delta_{t-1}(s^j) + t(s^j, s^i)]
+\tag{3.9.2}
+$$</li>
+<li>终止
+$$
+P = \max\limits_{1 \leq i \leq |\mathcal S|} \delta_T(s^i) \\
+I_T = arg\max\limits_{1 \leq i \leq |\mathcal S|} \delta_T(s^i)
+\tag{3.9.3}
+$$</li>
+<li>逆推最优状态序列. 对$t=T-1, T-2, \cdots, 1$
+$$
+I_t = \phi_{t+1}(I_{t+1})
+\tag{3.9.4}
+$$</li>
+</ol>
+<p>其中
+$$
+\delta_t(s^i)=\max\limits_{(s_1 \cdots s_{t-1})} P \left ((s_1 \cdots s_{t-1}), s_t=s^i | \vec x; \vec w \right )
+\tag{3.9.5}
+$$</p>
+<h2 id="appendix-crf的计算">Appendix: CRF的计算</h2>
+<blockquote>
+<p>使用矩(跃)阵(迁)运(引)算(擎)加速, 并充分利用broadcast简化代码, 降低可读性(</p>
+</blockquote>
+<h3 id="概率计算-1">概率计算</h3>
+<p>注意$\vec s = (s_0, s_1, \cdots, s_T, s_{-1})$, $|\mathcal S|$包括起点和终点</p>
+<p>数据结构
+$$
+\begin{align}
+\vec \beta_t(s) &amp;=
+\begin{bmatrix}
+\beta_t(s^1) \\
+\vdots \\
+\beta_t(s^{|\mathcal S|})
+\end{bmatrix} \in R^{|\mathcal S|}\\
+T &amp;=
+\begin{bmatrix}
+t(s^1, s^1) &amp; \cdots &amp; e(s^1, s^{|\mathcal S|}) \\
+\vdots &amp; \ddots &amp; \vdots \\
+t(s^{|\mathcal S|}, s^1) &amp; \cdots &amp; e(s^{|\mathcal S|}, s^{|\mathcal S|})
+\end{bmatrix} \in R^{|\mathcal S| \times |\mathcal S|} \\
+E &amp;=
+\begin{bmatrix}
+e(s^1, x_{1}) &amp; \cdots &amp; e(s^1, x_{T}) \\
+\vdots &amp; \ddots &amp; \vdots \\
+e(s^{|\mathcal S|}, x_{1}) &amp; \cdots &amp; e(s^{|\mathcal S|}, x_{T})
+\end{bmatrix} \in R^{|\mathcal S| \times T}
+\end{align}
+\tag{a.1}
+$$
+那么根据$(3.8)$
+$$
+\begin{align}
+\beta_{t+1}(s^i) &amp;=  \log \sum\limits_{j = 1}^{|\mathcal S|} \exp \left (
+\begin{bmatrix}
+\beta_t(s^1) \\
+\vdots \\
+\beta_t(s^{|\mathcal S|})
+\end{bmatrix} +
+\begin{bmatrix}
+t(s^1, s^i) \\
+\vdots \\
+t(s^{|\mathcal S|}, s^i)
+\end{bmatrix} +
+\begin{bmatrix}
+e(s^i, x_{t+1}) \\
+\vdots \\
+e(s^i, x_{t+1})
+\end{bmatrix} \right ) \\
+&amp;= \log \sum\limits_{j = 1}^{|\mathcal S|} \exp \left (\vec \beta_t(s) + T[:, i] + E[i, t+1]\right ) \\
+\end{align}
+\tag{e.1}
+$$
+再根据广播(broadcasting)运算, 不难得到
+$$
+\begin{align}
+\vec \beta_{t+1}^T(s) &amp;=
+\log \sum\limits_{j = 1}^{|\mathcal S|} \exp \left (\vec \beta_t(s) + T + E^T[:, t+1] \right )
+\end{align}
+\tag{e.2}
+$$</p>
+<p>在$(e.1)$中, $E[i, t+1]$被广播到$\vec \beta_t(s) + T[:, i]$的每一行
+在$(e.2)$中, $\vec \beta_t(s)$被广播到$T$的每一列, $E^T[:, t+1]$被广播到T的每一行, 最后逐列求<code>log_sum_exp</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">neg_log_likelihood</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">s</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    计算非规范化概率, 然后调用_forward_algo计算规范化因子, 返回负对数概率
+</span></span></span><span class="line"><span class="cl"><span class="s2">    :param x: input, words encoded in a sentence
+</span></span></span><span class="line"><span class="cl"><span class="s2">    :param s: output, tag sequence to calculate probability
+</span></span></span><span class="line"><span class="cl"><span class="s2">    :return: negative log probability of given tag sequence
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">score</span> <span class="o">=</span> <span class="n">autograd</span><span class="o">.</span><span class="n">Variable</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">FloatTensor</span><span class="p">([</span><span class="mi">0</span><span class="p">]))</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># 添加起点和终点</span>
+</span></span><span class="line"><span class="cl">    <span class="n">s</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">cat</span><span class="p">([</span><span class="n">torch</span><span class="o">.</span><span class="n">LongTensor</span><span class="p">([</span><span class="mi">0</span><span class="p">]),</span>
+</span></span><span class="line"><span class="cl">                   <span class="n">s</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                   <span class="n">torch</span><span class="o">.</span><span class="n">LongTensor</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">num_label</span><span class="o">-</span><span class="mi">1</span><span class="p">])])</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># emission直接用lstm求出来</span>
+</span></span><span class="line"><span class="cl">    <span class="n">emits</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_lstm_forward</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">emits</span><span class="p">)):</span>
+</span></span><span class="line"><span class="cl">        <span class="n">score</span> <span class="o">=</span> <span class="n">score</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">trans</span><span class="p">[</span><span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">],</span> <span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span> <span class="o">+</span> <span class="n">emits</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]]</span>
+</span></span><span class="line"><span class="cl">    <span class="n">score</span> <span class="o">=</span> <span class="n">score</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">trans</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">s</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">]]</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># 计算规范化因子</span>
+</span></span><span class="line"><span class="cl">    <span class="n">forward_score</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_forward_algo</span><span class="p">(</span><span class="n">emits</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">forward_score</span> <span class="o">-</span> <span class="n">score</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">_forward_algo</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">emits</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    前向算法, 计算规范化因子, 涉及计算$\mathcal S^T$条路径的非规范化概率之和
+</span></span></span><span class="line"><span class="cl"><span class="s2">    :param emits: emit scores for each word
+</span></span></span><span class="line"><span class="cl"><span class="s2">                  Tensor(n, m), n = words in the sentence; m = num_label
+</span></span></span><span class="line"><span class="cl"><span class="s2">    :return: Tensor(1, 1), Z(s) used to normalize probability
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">beta_init</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">FloatTensor</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">num_label</span><span class="p">)</span><span class="o">.</span><span class="n">fill_</span><span class="p">(</span><span class="o">-</span><span class="mf">10000.</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">beta_init</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.</span>                        <span class="c1"># init start tag</span>
+</span></span><span class="line"><span class="cl">    <span class="n">beta_t</span> <span class="o">=</span> <span class="n">autograd</span><span class="o">.</span><span class="n">Variable</span><span class="p">(</span><span class="n">init_alphas</span><span class="p">)</span>  <span class="c1"># track grad</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># 利用e.2式</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">emit_t</span> <span class="ow">in</span> <span class="n">emits</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">sum_score</span> <span class="o">=</span> <span class="n">beta_t</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">trans</span> <span class="o">+</span> <span class="n">emit_t</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">beta_t</span> <span class="o">=</span> <span class="n">log_sum_exp</span><span class="p">(</span><span class="n">sum_score</span><span class="p">)</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">terminal_var</span> <span class="o">=</span> <span class="n">beta_t</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">trans</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Z</span> <span class="o">=</span> <span class="n">log_sum_exp</span><span class="p">(</span><span class="n">terminal_var</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">Z</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="decode">Decode</h3>
+<p>假设
+$$
+\vec \delta_t =
+\begin{bmatrix}
+\delta_t(s^1) \\
+\vdots \\
+\delta_t(s^{|\mathcal S|})
+\end{bmatrix}
+\tag{e.3}
+$$
+参考$(a.1)$</p>
+<ol>
+<li>For $t \in [0, T-1]$
+$$\vec \delta_{t+1} = \max(\vec \delta_t + T)^T + E[:, t+1] \tag{e.4}$$</li>
+<li>$t=T$, 这一步没有$E$
+$$\vec \delta_{t+1} = \max(\vec \delta_t + T)^T \tag{e.5}$$</li>
+</ol>
+<p>其中$\max$函数取函数每一列的最大值.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">_viterbi_decode</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">emits</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">        Decode the tag sequence with highest un-normalized log-probability(max_score)
+</span></span></span><span class="line"><span class="cl"><span class="s2">        :param emits: emit scores for each word
+</span></span></span><span class="line"><span class="cl"><span class="s2">        :return: max_score: un-normalized log-probability(max_score)
+</span></span></span><span class="line"><span class="cl"><span class="s2">                 tag_seq: tag sequence with highest max_score
+</span></span></span><span class="line"><span class="cl"><span class="s2">        &#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">backpointers</span> <span class="o">=</span> <span class="p">[]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="c1"># Initialize the viterbi variables in log space</span>
+</span></span><span class="line"><span class="cl">        <span class="n">init_vvars</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">FloatTensor</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">num_label</span><span class="p">)</span><span class="o">.</span><span class="n">fill_</span><span class="p">(</span><span class="o">-</span><span class="mf">10000.</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">init_vvars</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="c1"># forward_var at step i holds the viterbi variables for step i-1</span>
+</span></span><span class="line"><span class="cl">        <span class="c1"># actually no need to calculate grad for decoding</span>
+</span></span><span class="line"><span class="cl">        <span class="n">forward_var</span> <span class="o">=</span> <span class="n">autograd</span><span class="o">.</span><span class="n">Variable</span><span class="p">(</span><span class="n">init_vvars</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="n">emit_t</span> <span class="ow">in</span> <span class="n">emits</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="c1"># bptrs_t holds the backpointers for this step</span>
+</span></span><span class="line"><span class="cl">            <span class="c1"># viterbivars_t holds the viterbi variables for this step</span>
+</span></span><span class="line"><span class="cl">            <span class="n">next_step_score</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">trans</span> <span class="o">+</span> <span class="n">forward_var</span>
+</span></span><span class="line"><span class="cl">            <span class="n">viterbivars_t</span><span class="p">,</span> <span class="n">bptrs_t</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">next_step_score</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="n">forward_var</span> <span class="o">=</span> <span class="n">viterbivars_t</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="n">emit_t</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="n">backpointers</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">bptrs_t</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">numpy</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="c1"># Transition to end tag. We won&#39;t add terminal_var into packpointers</span>
+</span></span><span class="line"><span class="cl">        <span class="n">terminal_var</span> <span class="o">=</span> <span class="n">forward_var</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">trans</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">max_score</span><span class="p">,</span> <span class="n">best_tag</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">terminal_var</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">best_tag</span> <span class="o">=</span> <span class="n">best_tag</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="c1"># Follow the back pointers to decode the best path.</span>
+</span></span><span class="line"><span class="cl">        <span class="n">tag_seq</span> <span class="o">=</span> <span class="p">[</span><span class="n">best_tag</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="n">bptrs_t</span> <span class="ow">in</span> <span class="nb">reversed</span><span class="p">(</span><span class="n">backpointers</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">            <span class="n">best_tag</span> <span class="o">=</span> <span class="n">bptrs_t</span><span class="p">[</span><span class="n">best_tag</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">            <span class="n">tag_seq</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">best_tag</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="c1"># Pop off the start tag (we dont want to return that to the caller)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">start</span> <span class="o">=</span> <span class="n">tag_seq</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">        <span class="k">assert</span> <span class="n">start</span> <span class="o">==</span> <span class="mi">0</span>  <span class="c1"># Sanity check</span>
+</span></span><span class="line"><span class="cl">        <span class="n">tag_seq</span><span class="o">.</span><span class="n">reverse</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">max_score</span><span class="p">,</span> <span class="n">tag_seq</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="reference">Reference</h2>
+<ol>
+<li>&lt;统计学习方法&gt; 李航</li>
+<li><a href="http://www.cs.columbia.edu/~mcollins/notes-spring2013.html" target="_blank" rel="noopener noreffer ">http://www.cs.columbia.edu/~mcollins/notes-spring2013.html</a></li>
+<li><a href="http://pytorch.org/tutorials/beginner/nlp/advanced_tutorial.html" target="_blank" rel="noopener noreffer ">http://pytorch.org/tutorials/beginner/nlp/advanced_tutorial.html</a></li>
+</ol></div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2018-02-03</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/2018-02-03-crf/index.md" target="_blank">Read Markdown</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="http://xxuan.cc/2018-02-03-crf/" data-title="对数线性模型, MEMM与CRF" data-hashtags="MEMM,CRF,PGM,NLP"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="http://xxuan.cc/2018-02-03-crf/" data-hashtag="MEMM"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="http://xxuan.cc/2018-02-03-crf/" data-title="对数线性模型, MEMM与CRF"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="http://xxuan.cc/2018-02-03-crf/" data-title="对数线性模型, MEMM与CRF"><i data-svg-src="/lib/simple-icons/icons/line.min.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="http://xxuan.cc/2018-02-03-crf/" data-title="对数线性模型, MEMM与CRF"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/memm/">MEMM</a>,&nbsp;<a href="/tags/crf/">CRF</a>,&nbsp;<a href="/tags/pgm/">PGM</a>,&nbsp;<a href="/tags/nlp/">NLP</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/2018-02-03-hmm/" class="prev" rel="prev" title="Hidden Markov Model"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>Hidden Markov Model</a>
+            <a href="/2018-07-13-image-classification/" class="next" rel="next" title="图像识别综述-从Inception到ResNet">图像识别综述-从Inception到ResNet<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+<div id="comments"><div id="disqus_thread" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://disqus.com/?ref_noscript">Disqus</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.102.2">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2016 - 2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">xiaoxuan</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/cookieconsent/cookieconsent.min.css"><script type="text/javascript" src="https://xxuan-cc.disqus.com/embed.js" defer></script><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/mhchem.min.js"></script><script type="text/javascript" src="/lib/cookieconsent/cookieconsent.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{},"cookieconsent":{"content":{"dismiss":"Got it!","link":"Learn more","message":"This website uses Cookies to improve your experience."},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":50,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

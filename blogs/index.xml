@@ -141,6 +141,1867 @@ ChartJS Simple yet flexible JavaScript charting for designers &amp;amp; develope
         
       </item>
       
+      <item>
+        <title>Python数据分析笔记2 pandas基础</title>
+        <link>/blogs/2017-09-28-pandas/</link>
+        <pubDate>Fri, 29 Sep 2017 00:30:14 +0000</pubDate>
+        <author>xxuan@mail.ustc.edu.cn (Xuan)</author>
+        <atom:modified>Fri, 29 Sep 2017 00:30:14 +0000</atom:modified>
+        <guid>/blogs/2017-09-28-pandas/</guid>
+        <description>全面翻新的pandas介绍, 篇幅较长, 请善用右下角目录! 1 2 import numpy as np import pandas as pd 数据结构 Series 1 Series(data=None, index=None, dtype=None, name=None, copy=False, , fastpath=False) data: 可遍历序列数据 index: 索引, hsahabl</description>
+        
+        <dc:creator>Xuan</dc:creator>
+        
+        
+        
+        
+          
+            
+              <category>pandas</category>
+            
+          
+            
+              <category>python-data-analysis</category>
+            
+          
+        
+        
+        
+      </item>
+      
+      <item>
+        <title>Python核心编程笔记5 扩展Python</title>
+        <link>/blogs/2017-09-27-python-extend/</link>
+        <pubDate>Wed, 27 Sep 2017 23:59:35 +0000</pubDate>
+        <author>xxuan@mail.ustc.edu.cn (Xuan)</author>
+        <atom:modified>Wed, 27 Sep 2017 23:59:35 +0000</atom:modified>
+        <guid>/blogs/2017-09-27-python-extend/</guid>
+        <description>左手C++, 右手Python, 性能与表达力的完美融合 Python扩展 官方文档 python在设计之初就考虑到让模块的导入机制足够抽象, 抽象到让</description>
+        
+        <dc:creator>Xuan</dc:creator>
+        
+        
+        
+        
+          
+            
+              <category>python</category>
+            
+          
+        
+        
+        
+      </item>
+      
+      <item>
+        <title>Python核心编程笔记4 多线程</title>
+        <link>/blogs/2017-09-26-python-thread/</link>
+        <pubDate>Tue, 26 Sep 2017 21:54:13 +0000</pubDate>
+        <author>xxuan@mail.ustc.edu.cn (Xuan)</author>
+        <atom:modified>Tue, 26 Sep 2017 21:54:13 +0000</atom:modified>
+        <guid>/blogs/2017-09-26-python-thread/</guid>
+        <description>即使有GIL的存在使得python的多线程显得鸡肋, 但在重I/O应用中还是很实用, 并且multiprecessing是基于threading</description>
+        
+        <dc:creator>Xuan</dc:creator>
+        
+        
+        
+        
+          
+            
+              <category>python</category>
+            
+          
+        
+        
+        
+      </item>
+      
+      <item>
+        <title>Python核心编程笔记3 面向对象编程</title>
+        <link>/blogs/2017-09-25-python-oop/</link>
+        <pubDate>Mon, 25 Sep 2017 16:54:18 +0000</pubDate>
+        <author>xxuan@mail.ustc.edu.cn (Xuan)</author>
+        <atom:modified>Mon, 25 Sep 2017 16:54:18 +0000</atom:modified>
+        <guid>/blogs/2017-09-25-python-oop/</guid>
+        <description>python有很好的OOP特性, 自由度也非常大 命名规则 小驼峰命名法(camel case), 适用于变量名: varFirst, verSecond 大驼峰命名法, 适用于类名: PersonFirst, PersonSecond 下划线命名法</description>
+        
+        <dc:creator>Xuan</dc:creator>
+        
+        
+        
+        
+          
+            
+              <category>python</category>
+            
+          
+        
+        
+        
+      </item>
+      
+      <item>
+        <title>Python数据分析笔记1 numpy</title>
+        <link>/blogs/2017-09-21-numpy/</link>
+        <pubDate>Thu, 21 Sep 2017 23:48:31 +0000</pubDate>
+        <author>xxuan@mail.ustc.edu.cn (Xuan)</author>
+        <atom:modified>Thu, 21 Sep 2017 23:48:31 +0000</atom:modified>
+        <guid>/blogs/2017-09-21-numpy/</guid>
+        <description>用了这么久numpy居然没有总结一下 1 import numpy as np ndarray属性 1 2 # 初始化 a = np.array([[1, 2], [3, 4]]) 1 2 # 第一维的维数 a.ndim 2 1 2 # 所有维的维数 a.shape (2, 2) 1 2 #</description>
+        
+        <dc:creator>Xuan</dc:creator>
+        
+        
+        
+        
+          
+            
+              <category>numpy</category>
+            
+          
+            
+              <category>python-data-analysis</category>
+            
+          
+        
+        
+        
+      </item>
+      
+      <item>
+        <title>梯度提升(Gradient Boosting)</title>
+        <link>/blogs/2017-09-04-gradient-boosting/</link>
+        <pubDate>Mon, 04 Sep 2017 22:05:06 +0000</pubDate>
+        <author>xxuan@mail.ustc.edu.cn (Xuan)</author>
+        <atom:modified>Mon, 04 Sep 2017 22:05:06 +0000</atom:modified>
+        <guid>/blogs/2017-09-04-gradient-boosting/</guid>
+        <description>自己写的老物了, 整理一下发出来, 可能会修改 1. 任意损失函数的Boosting 损失函数的一般表示是: $$ L(y_i, f(x_i)) $$ 考虑使用前向分步算法求解一个任意损失</description>
+        
+        <dc:creator>Xuan</dc:creator>
+        
+        
+        
+        
+          
+            
+              <category>gbdt</category>
+            
+          
+        
+        
+        
+      </item>
+      
+      <item>
+        <title>Python核心编程笔记2 函数式编程</title>
+        <link>/blogs/2017-08-20-python-functional-programming/</link>
+        <pubDate>Sun, 20 Aug 2017 18:22:10 +0000</pubDate>
+        <author>xxuan@mail.ustc.edu.cn (Xuan)</author>
+        <atom:modified>Sun, 20 Aug 2017 18:22:10 +0000</atom:modified>
+        <guid>/blogs/2017-08-20-python-functional-programming/</guid>
+        <description>不学好函数式编程, 总觉得人生有遗憾 什么是函数 python函数可以返回一个值或对象, 但返回一个容器对象的时候看起来像是返回了多个值: return &#39;abc&#39;, &#39;de</description>
+        
+        <dc:creator>Xuan</dc:creator>
+        
+        
+        
+        
+          
+            
+              <category>python</category>
+            
+          
+        
+        
+        
+      </item>
+      
+      <item>
+        <title>Python核心编程笔记1 基础知识</title>
+        <link>/blogs/2017-08-18-core-python-programming-1/</link>
+        <pubDate>Fri, 18 Aug 2017 13:42:39 +0000</pubDate>
+        <author>xxuan@mail.ustc.edu.cn (Xuan)</author>
+        <atom:modified>Fri, 18 Aug 2017 13:42:39 +0000</atom:modified>
+        <guid>/blogs/2017-08-18-core-python-programming-1/</guid>
+        <description>这本书翻译稀烂, 然而我还是忍着看完了第一部分 Python基础 基本风格指南 跨行代码可以使用反斜杠\ 变量赋值通过引用传递 python不支持++,</description>
+        
+        <dc:creator>Xuan</dc:creator>
+        
+        
+        
+        
+          
+            
+              <category>python</category>
+            
+          
+        
+        
+        
+      </item>
+      
+      <item>
+        <title>Poisson Distribution Summary</title>
+        <link>/blogs/2017-08-08-poisson/</link>
+        <pubDate>Tue, 08 Aug 2017 15:47:56 +0000</pubDate>
+        <author>xxuan@mail.ustc.edu.cn (Xuan)</author>
+        <atom:modified>Tue, 08 Aug 2017 15:47:56 +0000</atom:modified>
+        <guid>/blogs/2017-08-08-poisson/</guid>
+        <description>泊松分布是随机过程中的一个重要分布 Poisson分布的直观解释 定义 $$ {\displaystyle P(k{\text{ events in interval}})=e^{-\lambda }{\frac {\lambda ^{k}}{k!}}} $$ that expresses the probability of a given number of events occurring in a fixed interval of time and/or space if these events occur with a known average</description>
+        
+        <dc:creator>Xuan</dc:creator>
+        
+        
+        
+        
+          
+            
+              <category>stat</category>
+            
+          
+        
+        
+        
+      </item>
+      
+      <item>
+        <title>某动态规划小题</title>
+        <link>/blogs/2017-08-07-dp1/</link>
+        <pubDate>Mon, 07 Aug 2017 16:43:15 +0000</pubDate>
+        <author>xxuan@mail.ustc.edu.cn (Xuan)</author>
+        <atom:modified>Mon, 07 Aug 2017 16:43:15 +0000</atom:modified>
+        <guid>/blogs/2017-08-07-dp1/</guid>
+        <description>好像是谷歌面试题&amp;hellip;中比较弱智的 输入: 一个m*n矩阵ary, 矩阵元素只有0和1 输出: 寻找从左上到右下的连续路径中最长的路径长度(</description>
+        
+        <dc:creator>Xuan</dc:creator>
+        
+        
+        
+        
+          
+            
+              <category>面试题</category>
+            
+          
+        
+        
+        
+      </item>
+      
+      <item>
+        <title>日推</title>
+        <link>/blogs/2017-08-03-musicdaily/</link>
+        <pubDate>Thu, 03 Aug 2017 20:31:19 +0000</pubDate>
+        <author>xxuan@mail.ustc.edu.cn (Xuan)</author>
+        <atom:modified>Thu, 03 Aug 2017 20:31:19 +0000</atom:modified>
+        <guid>/blogs/2017-08-03-musicdaily/</guid>
+        <description>🎵 Aug 3 {% nemusic 31477465 iframe 0 &amp;lsquo;{&amp;ldquo;width&amp;rdquo;:320, &amp;ldquo;height&amp;rdquo;:66}&amp;rsquo; %} Do you hold your breath and make up your mind? Can you calculate in space and time? Marit Larsen来自挪威, 早年是M2M的一员, 02年组合解散后单飞 Marit的嗓音甜美</description>
+        
+        <dc:creator>Xuan</dc:creator>
+        
+        
+        
+        
+          
+            
+              <category>melody</category>
+            
+          
+        
+        
+        
+      </item>
+      
+      <item>
+        <title>18年秋季阅读计划</title>
+        <link>/blogs/2017-08-03-redinglist/</link>
+        <pubDate>Thu, 03 Aug 2017 01:30:20 +0000</pubDate>
+        <author>xxuan@mail.ustc.edu.cn (Xuan)</author>
+        <atom:modified>Thu, 03 Aug 2017 01:30:20 +0000</atom:modified>
+        <guid>/blogs/2017-08-03-redinglist/</guid>
+        <description>包括书和paper和感兴趣的topic 推荐系统实战 好的推荐系统 利用用户行为数据 推荐系统冷启动问题 利用用户标签数据 利用上下文信息 利用社交网络数</description>
+        
+        <dc:creator>Xuan</dc:creator>
+        
+        
+        
+        
+        
+        
+      </item>
+      
+      <item>
+        <title>ChinaJoy 2017纪实 多图杀猫</title>
+        <link>/blogs/2017-08-01-chinajoy/</link>
+        <pubDate>Tue, 01 Aug 2017 20:53:01 +0000</pubDate>
+        <author>xxuan@mail.ustc.edu.cn (Xuan)</author>
+        <atom:modified>Tue, 01 Aug 2017 20:53:01 +0000</atom:modified>
+        <guid>/blogs/2017-08-01-chinajoy/</guid>
+        <description>I used to love ruining the weekend alone. But now it just drives me mad 感谢基友抽空一起浪费这个周末, 没有他在前面当T我可能就挤不出场馆了( 上海新国际博览中心(SNIEC) 规模: 7个</description>
+        
+        <dc:creator>Xuan</dc:creator>
+        
+        
+        
+        
+          
+            
+              <category>photograph</category>
+            
+          
+        
+        
+        
+      </item>
+      
+      <item>
+        <title>工坊装修记录</title>
+        <link>/blogs/2017-07-26-new-start/</link>
+        <pubDate>Thu, 27 Jul 2017 01:31:19 +0000</pubDate>
+        <author>xxuan@mail.ustc.edu.cn (Xuan)</author>
+        <atom:modified>Thu, 27 Jul 2017 01:31:19 +0000</atom:modified>
+        <guid>/blogs/2017-07-26-new-start/</guid>
+        <description>很久没有动blog了. 修整了一下, 希望能做得有趣一点, 别老更新冷冰冰的技术文, 也写点别的, 狗窝也得有个窝样是不是(x 更换主题(感谢原作者Li</description>
+        
+        <dc:creator>Xuan</dc:creator>
+        
+        
+        
+        
+        
+        
+      </item>
+      
+      <item>
+        <title>数据可视化工具Seaborn指南</title>
+        <link>/blogs/2017-03-29-seaborn/</link>
+        <pubDate>Wed, 29 Mar 2017 23:30:01 +0000</pubDate>
+        <author>xxuan@mail.ustc.edu.cn (Xuan)</author>
+        <atom:modified>Wed, 29 Mar 2017 23:30:01 +0000</atom:modified>
+        <guid>/blogs/2017-03-29-seaborn/</guid>
+        <description>Seaborn是基于matplotlib的封装, 使得制作图表更为简便 一维数据的分析 1 2 3 4 5 6 7 8 9 %matplotlib inline import numpy as np import pandas as pd from scipy import stats, integrate import matplotlib.pyplot as plt import</description>
+        
+        <dc:creator>Xuan</dc:creator>
+        
+        
+        
+        
+          
+            
+              <category>seaborn</category>
+            
+          
+            
+              <category>matplotlib</category>
+            
+          
+            
+              <category>python</category>
+            
+          
+        
+        
+        
+      </item>
+      
+      <item>
+        <title>pandas速查</title>
+        <link>/blogs/2017-03-29-pandas-10min/</link>
+        <pubDate>Wed, 29 Mar 2017 18:07:25 +0000</pubDate>
+        <author>xxuan@mail.ustc.edu.cn (Xuan)</author>
+        <atom:modified>Wed, 29 Mar 2017 18:07:25 +0000</atom:modified>
+        <guid>/blogs/2017-03-29-pandas-10min/</guid>
+        <description>pandas, python栈的数据处理最强package, 没有之一(? 1 # -*- coding: utf-8 -*- 1 2 3 import pandas as pd import numpy as np import matplotlib.pyplot as plt 1. Series() 1 s = pd.Series([1,3,5,np.nan,6,8]) 1 s 0 1.0 1 3.0 2 5.0 3 NaN 4 6.0 5 8.0</description>
+        
+        <dc:creator>Xuan</dc:creator>
+        
+        
+        
+        
+          
+            
+              <category>pandas</category>
+            
+          
+        
+        
+        
+      </item>
+      
+      <item>
+        <title>PCA</title>
+        <link>/blogs/2017-03-27-pca/</link>
+        <pubDate>Mon, 27 Mar 2017 16:52:34 +0000</pubDate>
+        <author>xxuan@mail.ustc.edu.cn (Xuan)</author>
+        <atom:modified>Mon, 27 Mar 2017 16:52:34 +0000</atom:modified>
+        <guid>/blogs/2017-03-27-pca/</guid>
+        <description>先看Refer, 该介绍的都介绍到位了: 17/10/09 更新了预备知识和详细计算过程 机器学习中的数学(4)-线性判别分析（LDA）, 主成分分析(PCA) 强大</description>
+        
+        <dc:creator>Xuan</dc:creator>
+        
+        
+        
+        
+          
+            
+              <category>pca</category>
+            
+          
+        
+        
+        
+      </item>
+      
+      <item>
+        <title>Logistic Regression, Softmax与最大熵</title>
+        <link>/blogs/2017-03-27-logistic-regression/</link>
+        <pubDate>Mon, 27 Mar 2017 16:27:20 +0000</pubDate>
+        <author>xxuan@mail.ustc.edu.cn (Xuan)</author>
+        <atom:modified>Mon, 27 Mar 2017 16:27:20 +0000</atom:modified>
+        <guid>/blogs/2017-03-27-logistic-regression/</guid>
+        <description>Logistic Regression的小结 第一部分 Logistic Regression 1. 线性回归的缺点 线性回归不适用于分类问题: 容易过拟合 $h_\theta$ can be &amp;gt;1 or &amp;lt;0 2. Logisitc Regression 2.1 模型假设 Sigmoid函数:</description>
+        
+        <dc:creator>Xuan</dc:creator>
+        
+        
+        
+        
+          
+            
+              <category>logistic regression</category>
+            
+          
+            
+              <category>machine learning</category>
+            
+          
+        
+        
+        
+      </item>
+      
+      <item>
+        <title>决策树</title>
+        <link>/blogs/2017-03-26-decision-tree/</link>
+        <pubDate>Mon, 27 Mar 2017 00:29:14 +0000</pubDate>
+        <author>xxuan@mail.ustc.edu.cn (Xuan)</author>
+        <atom:modified>Mon, 27 Mar 2017 00:29:14 +0000</atom:modified>
+        <guid>/blogs/2017-03-26-decision-tree/</guid>
+        <description>决策树的小结 第一部分: 熵, 条件熵和信息增益 1. 熵 熵的定义和变量的概率分布有关, 和变量本身的值无关, 定义如下: $$ H(X) = - \sum\limits_{i=1}^{n} p_i log p_i \\ \text{其中</description>
+        
+        <dc:creator>Xuan</dc:creator>
+        
+        
+        
+        
+          
+            
+              <category>decision tree</category>
+            
+          
+            
+              <category>machine learning</category>
+            
+          
+        
+        
+        
+      </item>
+      
+      <item>
+        <title>Adaboost算法 &#43; python实现</title>
+        <link>/blogs/2017-03-24-adaboost/</link>
+        <pubDate>Fri, 24 Mar 2017 23:39:40 +0000</pubDate>
+        <author>xxuan@mail.ustc.edu.cn (Xuan)</author>
+        <atom:modified>Fri, 24 Mar 2017 23:39:40 +0000</atom:modified>
+        <guid>/blogs/2017-03-24-adaboost/</guid>
+        <description>Adaboost的总结 第一部分: AdaBoost简介 1.1 强可学习和弱可学习 在概率近似正确(PAC)学习框架中, 一个类如果存在: 一个多项式复杂度</description>
+        
+        <dc:creator>Xuan</dc:creator>
+        
+        
+        
+        
+          
+            
+              <category>boosting</category>
+            
+          
+            
+              <category>machine learning</category>
+            
+          
+            
+              <category>python</category>
+            
+          
+        
+        
+        
+      </item>
+      
+      <item>
+        <title>支持向量机(SVM)</title>
+        <link>/blogs/2017-03-24-svm-cn/</link>
+        <pubDate>Fri, 24 Mar 2017 23:02:02 +0000</pubDate>
+        <author>xxuan@mail.ustc.edu.cn (Xuan)</author>
+        <atom:modified>Fri, 24 Mar 2017 23:02:02 +0000</atom:modified>
+        <guid>/blogs/2017-03-24-svm-cn/</guid>
+        <description>旧文章的翻译, 主要参考自李航的统计学习方法一书. 第一部分 基本概念 1.1 超平面(Hyperplane) 考虑一个二分类问题: $$\text{Training set: } T = \left \lbrace (x^{(1)}, y^{(1)}), (x^{(2)}, y^{(2)}) &amp;hellip;(x^{(N)},</description>
+        
+        <dc:creator>Xuan</dc:creator>
+        
+        
+        
+        
+          
+            
+              <category>SVM</category>
+            
+          
+            
+              <category>machine learning</category>
+            
+          
+        
+        
+        
+      </item>
+      
+      <item>
+        <title>朴素贝叶斯</title>
+        <link>/blogs/2017-03-22-naive-bayes/</link>
+        <pubDate>Wed, 22 Mar 2017 16:06:07 +0000</pubDate>
+        <author>xxuan@mail.ustc.edu.cn (Xuan)</author>
+        <atom:modified>Wed, 22 Mar 2017 16:06:07 +0000</atom:modified>
+        <guid>/blogs/2017-03-22-naive-bayes/</guid>
+        <description>朴素贝叶斯(Naive Bayes) 如此蛤意盎然的算法, 居然一直没写 原理 训练集: $T = \lbrace (X^{(1)}, y_1), (X^{(2)}, y_2), \cdots, (X^{(N)}, y_N) \rbrace$, 其中 $ X = (X_1, X_2, \cdots, X_n), y \in \lbrace c_1, c_2, \cdots, c_K \rbrace $ 学习过程: 根据</description>
+        
+        <dc:creator>Xuan</dc:creator>
+        
+        
+        
+        
+          
+            
+              <category>bayes</category>
+            
+          
+            
+              <category>machine learning</category>
+            
+          
+        
+        
+        
+      </item>
+      
+      <item>
+        <title>存档-数据挖掘作业</title>
+        <link>/blogs/2017-03-18-data-mining-assn1/</link>
+        <pubDate>Sat, 18 Mar 2017 11:14:50 +0000</pubDate>
+        <author>xxuan@mail.ustc.edu.cn (Xuan)</author>
+        <atom:modified>Sat, 18 Mar 2017 11:14:50 +0000</atom:modified>
+        <guid>/blogs/2017-03-18-data-mining-assn1/</guid>
+        <description>USTC Spring 2017: Data Mining Assignment 1 挺有意思的, 存在blog里参考, 以后说不定用得上. 不过这个作业应该有点历史了, 出处未考 SA16225220 Question 1 Classify the following attributes as binary, discrete, or continuous. Also classify them as qualitative (nominal or ordinal)</description>
+        
+        <dc:creator>Xuan</dc:creator>
+        
+        
+        
+        
+        
+        
+      </item>
+      
+      <item>
+        <title>nginx &#43; uwsgi &#43; flask部署应用</title>
+        <link>/blogs/2017-03-16-nginx-uwsgi-flask/</link>
+        <pubDate>Thu, 16 Mar 2017 15:38:14 +0000</pubDate>
+        <author>xxuan@mail.ustc.edu.cn (Xuan)</author>
+        <atom:modified>Thu, 16 Mar 2017 15:38:14 +0000</atom:modified>
+        <guid>/blogs/2017-03-16-nginx-uwsgi-flask/</guid>
+        <description>主要参考了这篇文章 How To Serve Flask Applications with uWSGI and Nginx on Ubuntu 14.04 安装nginx + uwsgi + flask 1 2 sudo apt-get update sudo apt-get install python-pip python-dev nginx 启动virtualenv, 以下操作都在virtuale</description>
+        
+        <dc:creator>Xuan</dc:creator>
+        
+        
+        
+        
+          
+            
+              <category>flask</category>
+            
+          
+            
+              <category>nginx</category>
+            
+          
+            
+              <category>uwsgi</category>
+            
+          
+            
+              <category>python</category>
+            
+          
+        
+        
+        
+      </item>
+      
+      <item>
+        <title>scrapy &#43; mongodb &#43; flask &#43; echarts 数据可视化</title>
+        <link>/blogs/2017-03-13-mongodb-flask-echarts-data-visualize/</link>
+        <pubDate>Mon, 13 Mar 2017 21:33:07 +0000</pubDate>
+        <author>xxuan@mail.ustc.edu.cn (Xuan)</author>
+        <atom:modified>Mon, 13 Mar 2017 21:33:07 +0000</atom:modified>
+        <guid>/blogs/2017-03-13-mongodb-flask-echarts-data-visualize/</guid>
+        <description>源码 项目地址 项目框架 scrapy负责定时抓取数据到mongodb中 每小时定时生成echarts需要的数据, 以json格式保存 flask读取j</description>
+        
+        <dc:creator>Xuan</dc:creator>
+        
+        
+        
+        
+          
+            
+              <category>mongodb</category>
+            
+          
+            
+              <category>flask</category>
+            
+          
+            
+              <category>echarts</category>
+            
+          
+            
+              <category>python</category>
+            
+          
+        
+        
+        
+      </item>
+      
+      <item>
+        <title>一道阿里在线面试算法题--落入心形线的概率</title>
+        <link>/blogs/2017-03-08-online-interview/</link>
+        <pubDate>Wed, 08 Mar 2017 18:53:20 +0000</pubDate>
+        <author>xxuan@mail.ustc.edu.cn (Xuan)</author>
+        <atom:modified>Wed, 08 Mar 2017 18:53:20 +0000</atom:modified>
+        <guid>/blogs/2017-03-08-online-interview/</guid>
+        <description>最近连续被问到两三次, 可惜时间紧张没能帮上什么忙, 这里就记一下解决过程吧 小明向他的女友仙仙求婚, 在求婚戒指上刻了一个大大的爱心. 仙仙看到爱心</description>
+        
+        <dc:creator>Xuan</dc:creator>
+        
+        
+        
+        
+          
+            
+              <category>面试题</category>
+            
+          
+        
+        
+        
+      </item>
+      
+      <item>
+        <title>shadowsocks&#43;chrome代理配置速查手册</title>
+        <link>/blogs/2017-02-23-shadowsocks-chrome-config/</link>
+        <pubDate>Thu, 23 Feb 2017 00:56:07 +0000</pubDate>
+        <author>xxuan@mail.ustc.edu.cn (Xuan)</author>
+        <atom:modified>Thu, 23 Feb 2017 00:56:07 +0000</atom:modified>
+        <guid>/blogs/2017-02-23-shadowsocks-chrome-config/</guid>
+        <description>最近老是要配置ss, 顺手记下来以便存档. 为了方便0基础人士阅读极其傻瓜 参考官方文档 1. 服务端(只是使用的话可以跳过这节直接看第二节) 1.1 安装 apt-get install</description>
+        
+        <dc:creator>Xuan</dc:creator>
+        
+        
+        
+        
+          
+            
+              <category>shadowsocks</category>
+            
+          
+        
+        
+        
+      </item>
+      
+      <item>
+        <title>Scrapy简介(附项目:爬取实习僧实习信息)</title>
+        <link>/blogs/2017-02-18-scrapy/</link>
+        <pubDate>Sat, 18 Feb 2017 16:29:59 +0000</pubDate>
+        <author>xxuan@mail.ustc.edu.cn (Xuan)</author>
+        <atom:modified>Sat, 18 Feb 2017 16:29:59 +0000</atom:modified>
+        <guid>/blogs/2017-02-18-scrapy/</guid>
+        <description>scrapy的官方中文文档 源代码 Scrapy框架数据流 上图是scrapy的数据流, 看不懂没关系, 接下来会简单介绍scrapy爬取的流程. 1 2</description>
+        
+        <dc:creator>Xuan</dc:creator>
+        
+        
+        
+        
+          
+            
+              <category>scrapy</category>
+            
+          
+            
+              <category>python</category>
+            
+          
+        
+        
+        
+      </item>
+      
+      <item>
+        <title>MongoDB&#43;pymongo简介(持续更新中)</title>
+        <link>/blogs/2017-02-17-mongodb/</link>
+        <pubDate>Fri, 17 Feb 2017 16:50:26 +0000</pubDate>
+        <author>xxuan@mail.ustc.edu.cn (Xuan)</author>
+        <atom:modified>Fri, 17 Feb 2017 16:50:26 +0000</atom:modified>
+        <guid>/blogs/2017-02-17-mongodb/</guid>
+        <description>MongoDB 是一种文件导向的 NoSQL 数据库，由 C++ 撰写而成。 MongoDB简介 什么是NoSQL? 看看这篇zhihu问题足矣. 我的粗浅理解就是NoSQL和SQL</description>
+        
+        <dc:creator>Xuan</dc:creator>
+        
+        
+        
+        
+          
+            
+              <category>MongoDB</category>
+            
+          
+        
+        
+        
+      </item>
+      
+      <item>
+        <title>知乎LIVE整理</title>
+        <link>/blogs/2017-01-19-encrypted/</link>
+        <pubDate>Thu, 19 Jan 2017 20:03:42 +0000</pubDate>
+        <author>xxuan@mail.ustc.edu.cn (Xuan)</author>
+        <atom:modified>Thu, 19 Jan 2017 20:03:42 +0000</atom:modified>
+        <guid>/blogs/2017-01-19-encrypted/</guid>
+        <description>LIVE1: 一小时了解乳腺的秘密 live地址 1. 版权提示 讲者在此live中发表的一切原创内容（包括但不限于语音、文字、图片等）的著作权均归讲者所有。任何</description>
+        
+        <dc:creator>Xuan</dc:creator>
+        
+        
+        
+        
+        
+        
+      </item>
+      
+      <item>
+        <title>算法总结</title>
+        <link>/blogs/2017-01-11-algo-sum/</link>
+        <pubDate>Wed, 11 Jan 2017 00:16:02 +0000</pubDate>
+        <author>xxuan@mail.ustc.edu.cn (Xuan)</author>
+        <atom:modified>Wed, 11 Jan 2017 00:16:02 +0000</atom:modified>
+        <guid>/blogs/2017-01-11-algo-sum/</guid>
+        <description>这是个课程总结. 1. 分治法 适用条件 原问题可以分解为若干个与原问题性质相类似的子问题 问题的规模缩小到一定程度后可方便求出解 子问题的解可以合并得到</description>
+        
+        <dc:creator>Xuan</dc:creator>
+        
+        
+        
+        
+        
+        
+      </item>
+      
+      <item>
+        <title>2016秋 网络程序设计 课程学习心得总结</title>
+        <link>/blogs/2017-01-05-np2016/</link>
+        <pubDate>Thu, 05 Jan 2017 20:24:27 +0000</pubDate>
+        <author>xxuan@mail.ustc.edu.cn (Xuan)</author>
+        <atom:modified>Thu, 05 Jan 2017 20:24:27 +0000</atom:modified>
+        <guid>/blogs/2017-01-05-np2016/</guid>
+        <description>这是个课程报告 1. 课程贡献: pull requests(2次) #更新项目1手写体识别的README #221 sklearn改进 将数据集更换为train2.cs</description>
+        
+        <dc:creator>Xuan</dc:creator>
+        
+        
+        
+        
+        
+        
+      </item>
+      
+      <item>
+        <title>Blazing Fast! 使用YOLO&#43;Darknet进行目标检测</title>
+        <link>/blogs/2016-12-26-yolo-darknet/</link>
+        <pubDate>Mon, 26 Dec 2016 15:15:08 +0000</pubDate>
+        <author>xxuan@mail.ustc.edu.cn (Xuan)</author>
+        <atom:modified>Mon, 26 Dec 2016 15:15:08 +0000</atom:modified>
+        <guid>/blogs/2016-12-26-yolo-darknet/</guid>
+        <description>YOLO做目标检测很快 系统配置 系统: Ubuntu 16.04 x64 显卡: gtx960m + i5核显 内存: 8G CPU: i5-6300HQ 使用独立显卡 安装驱动和切换工具 sudo apt-get install nvidia-364 nvidia-prime 驱动版本可以到软件更新-&amp;g</description>
+        
+        <dc:creator>Xuan</dc:creator>
+        
+        
+        
+        
+          
+            
+              <category>deep learning</category>
+            
+          
+        
+        
+        
+      </item>
+      
+      <item>
+        <title>Github Page &#43; Hexo &#43; next主题 blog网站的搭建</title>
+        <link>/blogs/2016-12-22-hexo-blog-based-on-next-theme/</link>
+        <pubDate>Thu, 22 Dec 2016 15:40:00 +0000</pubDate>
+        <author>xxuan@mail.ustc.edu.cn (Xuan)</author>
+        <atom:modified>Thu, 22 Dec 2016 15:40:00 +0000</atom:modified>
+        <guid>/blogs/2016-12-22-hexo-blog-based-on-next-theme/</guid>
+        <description>简单介绍一下本站的建立过程 部署Hexo 系统: Ubuntu 16.04 LTS 0. 安装Git(略) 1. 安装 Node.js 最好使用nvm来安装Node.js 方法一: cURL: $ curl https://raw.githubusercontent.com/creationix/nvm/master/install.sh | sh 方法二: Wget:</description>
+        
+        <dc:creator>Xuan</dc:creator>
+        
+        
+        
+        
+          
+            
+              <category>blog</category>
+            
+          
+            
+              <category>hexo</category>
+            
+          
+        
+        
+        
+      </item>
+      
+      <item>
+        <title>Jupyter Notebooks 简介</title>
+        <link>/blogs/2016-12-22-jupyter-notebooks/</link>
+        <pubDate>Thu, 22 Dec 2016 15:37:15 +0000</pubDate>
+        <author>xxuan@mail.ustc.edu.cn (Xuan)</author>
+        <atom:modified>Thu, 22 Dec 2016 15:37:15 +0000</atom:modified>
+        <guid>/blogs/2016-12-22-jupyter-notebooks/</guid>
+        <description>jupyter可以看作是一款强化版的python terminal, 实时运行命令脚本, 实时反映结果, 非常适用于科学计算和数据分析. 除此之外通过安装kernel</description>
+        
+        <dc:creator>Xuan</dc:creator>
+        
+        
+        
+        
+          
+            
+              <category>python</category>
+            
+          
+        
+        
+        
+      </item>
+      
+      <item>
+        <title>基于Docker的Faster R-CNN, CPU-Only环境配置</title>
+        <link>/blogs/2016-12-10-build-fast-rcnn-under-docker/</link>
+        <pubDate>Sat, 10 Dec 2016 19:24:42 +0000</pubDate>
+        <author>xxuan@mail.ustc.edu.cn (Xuan)</author>
+        <atom:modified>Sat, 10 Dec 2016 19:24:42 +0000</atom:modified>
+        <guid>/blogs/2016-12-10-build-fast-rcnn-under-docker/</guid>
+        <description>详见我的repo 1. 系统配置 系统: VMware下的Ubuntu 14.04 LTS x64, 需要分配至少4GB内存 坑: 内存过小(&amp;lt;1G)编译时会出错: g++: internal compiler error: Killed</description>
+        
+        <dc:creator>Xuan</dc:creator>
+        
+        
+        
+        
+          
+            
+              <category>docker</category>
+            
+          
+            
+              <category>deep learning</category>
+            
+          
+        
+        
+        
+      </item>
+      
+      <item>
+        <title>Docker速查</title>
+        <link>/blogs/2016-12-06-docker-abc/</link>
+        <pubDate>Thu, 08 Dec 2016 19:29:07 +0000</pubDate>
+        <author>xxuan@mail.ustc.edu.cn (Xuan)</author>
+        <atom:modified>Thu, 08 Dec 2016 19:29:07 +0000</atom:modified>
+        <guid>/blogs/2016-12-06-docker-abc/</guid>
+        <description>docker是一款很牛逼的虚拟化工具 1. 安装 要求 64位系统 kernel版本为3.10或以上 以下使用的是Ubuntu 14.04 LTS 64位 参考官方文档 2. 使用</description>
+        
+        <dc:creator>Xuan</dc:creator>
+        
+        
+        
+        
+          
+            
+              <category>docker</category>
+            
+          
+        
+        
+        
+      </item>
+      
+      <item>
+        <title>Landslide - Markdown to Slide</title>
+        <link>/blogs/2016-11-25-landslide/</link>
+        <pubDate>Fri, 25 Nov 2016 11:24:20 +0000</pubDate>
+        <author>xxuan@mail.ustc.edu.cn (Xuan)</author>
+        <atom:modified>Fri, 25 Nov 2016 11:24:20 +0000</atom:modified>
+        <guid>/blogs/2016-11-25-landslide/</guid>
+        <description>Landslide 是个可以把markdown文件变成幻灯片直接在浏览器里播放的工具. 页面之间直接使用---间隔即可 环境配置 1 2 3 4 5 6 pip install -U markdown pip install -U docutils pip install Jinja2</description>
+        
+        <dc:creator>Xuan</dc:creator>
+        
+        
+        
+        
+          
+            
+              <category>markdown</category>
+            
+          
+        
+        
+        
+      </item>
+      
+      <item>
+        <title>git 从fork的项目更新自己的项目的简易手段</title>
+        <link>/blogs/2016-11-22-git-update-forked/</link>
+        <pubDate>Tue, 22 Nov 2016 00:00:00 +0000</pubDate>
+        <author>xxuan@mail.ustc.edu.cn (Xuan)</author>
+        <atom:modified>Tue, 22 Nov 2016 00:00:00 +0000</atom:modified>
+        <guid>/blogs/2016-11-22-git-update-forked/</guid>
+        <description>RT 假设白井黑子从[misaki/railgun.git]处fork了炮姐的项目到自己的项目[kuroko/railgun.git] 过了段时间</description>
+        
+        <dc:creator>Xuan</dc:creator>
+        
+        
+        
+        
+          
+            
+              <category>git</category>
+            
+          
+        
+        
+        
+      </item>
+      
+      <item>
+        <title>在mac os 10.12 Sierra下安装caffe</title>
+        <link>/blogs/2016-11-12-install-caffe-under-macos/</link>
+        <pubDate>Sat, 12 Nov 2016 16:34:06 +0000</pubDate>
+        <author>xxuan@mail.ustc.edu.cn (Xuan)</author>
+        <atom:modified>Sat, 12 Nov 2016 16:34:06 +0000</atom:modified>
+        <guid>/blogs/2016-11-12-install-caffe-under-macos/</guid>
+        <description>RT 1. 配置 Mac OS Sierra 10.12.1 2. 安装 安装CUDA8 (略) 1 2 3 brew install -vd snappy leveldb gflags glog szip lmdb brew tap homebrew/science brew install hdf5 opencv brew edit opencv, 改变如下两行: 1 2 -DPYTHON_LIBRARY=#{py_prefix}/lib/libpython2.7.dylib -DPYTHON_INCLUDE_DIR=#{py_prefix}/include/python2.7 安装protobuf和boost</description>
+        
+        <dc:creator>Xuan</dc:creator>
+        
+        
+        
+        
+          
+            
+              <category>caffe</category>
+            
+          
+            
+              <category>deep learning</category>
+            
+          
+        
+        
+        
+      </item>
+      
+      <item>
+        <title>EM算法</title>
+        <link>/blogs/2016-08-26-expectation-maximization/</link>
+        <pubDate>Fri, 26 Aug 2016 21:01:12 +0000</pubDate>
+        <author>xxuan@mail.ustc.edu.cn (Xuan)</author>
+        <atom:modified>Fri, 26 Aug 2016 21:01:12 +0000</atom:modified>
+        <guid>/blogs/2016-08-26-expectation-maximization/</guid>
+        <description>Expectation Maximization Algorithm 1. 三硬币模型 假设有三枚硬币A, B, C, 这些硬币正面出现的概率是$p_a$, $p_b$, $p_c$. 进行如下掷硬币试验: 掷硬币A 若A为正面则选择B, 否则选择C 掷</description>
+        
+        <dc:creator>Xuan</dc:creator>
+        
+        
+        
+        
+          
+            
+              <category>machine learning</category>
+            
+          
+            
+              <category>EM算法</category>
+            
+          
+            
+              <category>统计学习方法</category>
+            
+          
+        
+        
+        
+      </item>
+      
+      <item>
+        <title>bilibili新番/旧番弹幕抓取</title>
+        <link>/blogs/2016-07-17-bilibili-scraper/</link>
+        <pubDate>Sun, 17 Jul 2016 20:09:38 +0000</pubDate>
+        <author>xxuan@mail.ustc.edu.cn (Xuan)</author>
+        <atom:modified>Sun, 17 Jul 2016 20:09:38 +0000</atom:modified>
+        <guid>/blogs/2016-07-17-bilibili-scraper/</guid>
+        <description>主要涉及到Selenium的使用 源代码: https://github.com/shawnau/bilibili_scraper 本文中的所有技术在上一篇文章中均有介绍, 因此本文只涉及到针对bilibili主页结构的分析, 省略了</description>
+        
+        <dc:creator>Xuan</dc:creator>
+        
+        
+        
+        
+          
+            
+              <category>python</category>
+            
+          
+            
+              <category>爬虫</category>
+            
+          
+        
+        
+        
+      </item>
+      
+      <item>
+        <title>基于selenium&#43;phantomJS的动态网页抓取</title>
+        <link>/blogs/2016-07-16-webscraper/</link>
+        <pubDate>Sat, 16 Jul 2016 12:26:35 +0000</pubDate>
+        <author>xxuan@mail.ustc.edu.cn (Xuan)</author>
+        <atom:modified>Sat, 16 Jul 2016 12:26:35 +0000</atom:modified>
+        <guid>/blogs/2016-07-16-webscraper/</guid>
+        <description>源代码: https://github.com/shawnau/ustcsse_scraper 0. 准备工作 首先介绍下需要安装的组件： selenium, 自动化测试工具, 本文会通过它操纵phantomJS, 使得爬虫能做出模仿普通用户的操作, 基于p</description>
+        
+        <dc:creator>Xuan</dc:creator>
+        
+        
+        
+        
+          
+            
+              <category>python</category>
+            
+          
+            
+              <category>爬虫</category>
+            
+          
+        
+        
+        
+      </item>
+      
+      <item>
+        <title>Spark Tutorial - Learning Apache Spark</title>
+        <link>/blogs/2016-06-28-spark-tutorial/</link>
+        <pubDate>Tue, 28 Jun 2016 04:15:50 +0000</pubDate>
+        <author>xxuan@mail.ustc.edu.cn (Xuan)</author>
+        <atom:modified>Tue, 28 Jun 2016 04:15:50 +0000</atom:modified>
+        <guid>/blogs/2016-06-28-spark-tutorial/</guid>
+        <description>Spark简介 This article is copied from the BerkeleyX: CS105x Introduction to Apache Spark course materials. Source: https://raw.githubusercontent.com/spark-mooc/mooc-setup/master/cs105_lab1a_spark_tutorial.dbc This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License. Spark Tutorial: Learning Apache Spark This tutorial will teach you how to use Apache Spark, a framework for large-scale data processing, within a notebook. Many traditional frameworks were designed to be run on a single</description>
+        
+        <dc:creator>Xuan</dc:creator>
+        
+        
+        
+        
+          
+            
+              <category>spark</category>
+            
+          
+            
+              <category>CS105x</category>
+            
+          
+        
+        
+        
+      </item>
+      
+      <item>
+        <title>Boosting(3)- Gradient Boosting</title>
+        <link>/blogs/2016-06-24-gradient-boosting/</link>
+        <pubDate>Thu, 23 Jun 2016 22:47:00 +0000</pubDate>
+        <author>xxuan@mail.ustc.edu.cn (Xuan)</author>
+        <atom:modified>Thu, 23 Jun 2016 22:47:00 +0000</atom:modified>
+        <guid>/blogs/2016-06-24-gradient-boosting/</guid>
+        <description>梯度提升算法简介 Boosting on different Loss Functions In the last section, we use forward stagewise on an addictive model to solve the optimization of adaboost. The exponential loss function is relatively easy to handle, but other loss functions may not. Recall from the last section, we have loss function like this: $$ L(y_i, f(x_i)) $$ Consider optimizing an arbitary loss function using forward stagewise:</description>
+        
+        <dc:creator>Xuan</dc:creator>
+        
+        
+        
+        
+          
+            
+              <category>machine learning</category>
+            
+          
+            
+              <category>统计学习方法</category>
+            
+          
+            
+              <category>boosting</category>
+            
+          
+        
+        
+        
+      </item>
+      
+      <item>
+        <title>Boosting(2) - Adaboost and Forward Stagewise</title>
+        <link>/blogs/2016-06-22-forward-stagewise-algorithm/</link>
+        <pubDate>Wed, 22 Jun 2016 06:30:37 +0000</pubDate>
+        <author>xxuan@mail.ustc.edu.cn (Xuan)</author>
+        <atom:modified>Wed, 22 Jun 2016 06:30:37 +0000</atom:modified>
+        <guid>/blogs/2016-06-22-forward-stagewise-algorithm/</guid>
+        <description>Boosting理论基础: 和前向分步算法的等价性 Forward stagewise Consider an additive model like adaboost: $$ f(x) = \sum\limits_{m=1}^M \beta_m b(x; \gamma_m) $$ in which $b(x; \gamma_m)$ is the base model, $\gamma_m$ is the model&amp;rsquo;s parameters, $\beta_m$ is it&amp;rsquo;s coefficient. To minimim the loss function, we have the forward stagewise algorithm, which minimize</description>
+        
+        <dc:creator>Xuan</dc:creator>
+        
+        
+        
+        
+          
+            
+              <category>machine learning</category>
+            
+          
+            
+              <category>统计学习方法</category>
+            
+          
+            
+              <category>boosting</category>
+            
+          
+        
+        
+        
+      </item>
+      
+      <item>
+        <title>SQL 速查</title>
+        <link>/blogs/2016-06-20-sql-abc/</link>
+        <pubDate>Sun, 19 Jun 2016 07:51:31 +0000</pubDate>
+        <author>xxuan@mail.ustc.edu.cn (Xuan)</author>
+        <atom:modified>Sun, 19 Jun 2016 07:51:31 +0000</atom:modified>
+        <guid>/blogs/2016-06-20-sql-abc/</guid>
+        <description>All the resources from codecademy Basic Operations celebs: $$ \begin{array}{c|c|c|c} \text{id} &amp;amp; \text{name} &amp;amp; \text{age} &amp;amp; \text{twitter_handle} \\ \hline 1 &amp;amp; \text{Justin Bieber} &amp;amp; 22 &amp;amp; \\ 2 &amp;amp; \text{Beyonce Knowles} &amp;amp; 33 &amp;amp; \\ 3 &amp;amp; \text{Jeremy Lin} &amp;amp; 26 &amp;amp; \\ \end{array} $$ Table Creation CREATE TABLE celebs (id INTEGER, name TEXT, age INTEGER, twitter_handle TEXT); Changing values UPDATE celebs SET age = 22 WHERE id = 1;</description>
+        
+        <dc:creator>Xuan</dc:creator>
+        
+        
+        
+        
+          
+            
+              <category>SQL</category>
+            
+          
+        
+        
+        
+      </item>
+      
+      <item>
+        <title>Boosting(1) - AdaBoost</title>
+        <link>/blogs/2016-06-06-adaboost/</link>
+        <pubDate>Mon, 06 Jun 2016 06:50:16 +0000</pubDate>
+        <author>xxuan@mail.ustc.edu.cn (Xuan)</author>
+        <atom:modified>Mon, 06 Jun 2016 06:50:16 +0000</atom:modified>
+        <guid>/blogs/2016-06-06-adaboost/</guid>
+        <description>Adaptive Boosting 算法 Combine different classifiers &amp;amp; weights Test data: $$T = \left\lbrace (x^{(1)}, y^{(1)}), (x^{(2)}, y^{(2)}), \cdots, (x^{(N)}, y^{(N)})\right\rbrace, \quad x \in \chi \subseteq R^N, y \in \lbrace +1, -1 \rbrace \\ \text{with weights: } D_i = (w_{i1}, w_{i2}, \cdots, w_{iN})$$ Classifier: $$G_m(x): \chi \to \lbrace +1, -1\rbrace, \quad G(x) = \sum\limits^M_{i=1} \alpha_m G_m(x) \\ \text{with weights: } A = (\alpha_{1}, \alpha_{2}, \cdots, \alpha_{M}) $$ AdaBoost Algorithm Input:</description>
+        
+        <dc:creator>Xuan</dc:creator>
+        
+        
+        
+        
+          
+            
+              <category>machine learning</category>
+            
+          
+            
+              <category>boosting</category>
+            
+          
+            
+              <category>统计学习方法</category>
+            
+          
+        
+        
+        
+      </item>
+      
+      <item>
+        <title>Decision Tree</title>
+        <link>/blogs/2016-05-22-decision-tree/</link>
+        <pubDate>Sun, 22 May 2016 07:41:08 +0000</pubDate>
+        <author>xxuan@mail.ustc.edu.cn (Xuan)</author>
+        <atom:modified>Sun, 22 May 2016 07:41:08 +0000</atom:modified>
+        <guid>/blogs/2016-05-22-decision-tree/</guid>
+        <description>决策树 CN ver. 1. 熵 熵的定义和变量的概率分布有关, 和变量本身的值无关, 定义如下: $$ H(X) = - \sum\limits_{i=1}^{n} p_i log p_i \\ \text{其中} P(X=x_i) = p_i, i= 1,2,\cdots, n$$ $H(X)$的一个</description>
+        
+        <dc:creator>Xuan</dc:creator>
+        
+        
+        
+        
+          
+            
+              <category>machine learning</category>
+            
+          
+            
+              <category>decision tree</category>
+            
+          
+            
+              <category>统计学习方法</category>
+            
+          
+        
+        
+        
+      </item>
+      
+      <item>
+        <title>Support Vector Machine(4)-SMO implementation</title>
+        <link>/blogs/2016-05-16-smo-implementation/</link>
+        <pubDate>Mon, 16 May 2016 07:41:08 +0000</pubDate>
+        <author>xxuan@mail.ustc.edu.cn (Xuan)</author>
+        <atom:modified>Mon, 16 May 2016 07:41:08 +0000</atom:modified>
+        <guid>/blogs/2016-05-16-smo-implementation/</guid>
+        <description>SMO算法的python实现 Full implementation here SMO.1: Calculating $L$, $H$ and $E_i$ if p.y[i] != p.y[j]: L = max(0, p.a[j] - p.a[i]) H = min(p.c, p.a[j] - p.a[i] + p.c) else: L = max(0, p.a[j] + p.a[i] - p.c) H = min(p.c, p.a[j] + p.a[i]) def calc_ei(p, i): f_xi = float(np.dot((p.a * p.y).T, np.dot(p.x, p.x[i].T)) + p.b) ei =</description>
+        
+        <dc:creator>Xuan</dc:creator>
+        
+        
+        
+        
+          
+            
+              <category>machine learning</category>
+            
+          
+            
+              <category>svm</category>
+            
+          
+            
+              <category>machine-learning-in-action</category>
+            
+          
+        
+        
+        
+      </item>
+      
+      <item>
+        <title>Support Vector Machine(3)-SMO</title>
+        <link>/blogs/2016-05-14-smo/</link>
+        <pubDate>Sat, 14 May 2016 13:33:33 +0000</pubDate>
+        <author>xxuan@mail.ustc.edu.cn (Xuan)</author>
+        <atom:modified>Sat, 14 May 2016 13:33:33 +0000</atom:modified>
+        <guid>/blogs/2016-05-14-smo/</guid>
+        <description>序列最小化算法 Recall from the last section: $ \begin{align} &amp;amp; \min\limits_{\alpha} \quad \frac{1}{2} \sum\limits_{i=1}^{N} \sum\limits_{j=1}^{N} \alpha_i \alpha_j y^{(i)} y^{(j)} K(x^{(i)}, x^{(j)}) - \sum\limits_{i=1}^{N} \alpha_i \end{align} \tag{3.2}$ $ s.t. \quad \sum\limits_{i=1}^{N} \alpha_i y^{(i)} = 0, \quad 0 \le \alpha_i \le C \tag{3.4}$ To solve the optimization problem above, we introduce the Sequantial Minimal Optimization(SMO) method. Solve the 2-variable Quadratic Programming Assume from all of the $\alpha_i$,</description>
+        
+        <dc:creator>Xuan</dc:creator>
+        
+        
+        
+        
+          
+            
+              <category>machine learning</category>
+            
+          
+            
+              <category>svm</category>
+            
+          
+            
+              <category>统计学习方法</category>
+            
+          
+        
+        
+        
+      </item>
+      
+      <item>
+        <title>Support Vector Machine(2.2)-Solving dual problem for soft margin maximization</title>
+        <link>/blogs/2016-05-12-svm2_2/</link>
+        <pubDate>Thu, 12 May 2016 13:33:33 +0000</pubDate>
+        <author>xxuan@mail.ustc.edu.cn (Xuan)</author>
+        <atom:modified>Thu, 12 May 2016 13:33:33 +0000</atom:modified>
+        <guid>/blogs/2016-05-12-svm2_2/</guid>
+        <description>SVM之软间隔最大化 Recall from the 1st section, we have: $$ \begin{align} &amp;amp; \min\limits_{w, \xi} \quad \frac{1}{2} {\Vert w \Vert}^2 + C \sum\limits_{i=1}^{N}\xi_i \\ s.t. \quad &amp;amp; y^{(i)} \left ( w \cdot x^{(i)} + {b} \right ) + \xi_i - 1\ge 0 \ &amp;amp; \xi_i \ge 0\tag{1.10} \end{align}$$ For the constraint condition and target function in (1.10), using the method of Lagrange multipliers,</description>
+        
+        <dc:creator>Xuan</dc:creator>
+        
+        
+        
+        
+          
+            
+              <category>machine learning</category>
+            
+          
+            
+              <category>svm</category>
+            
+          
+            
+              <category>统计学习方法</category>
+            
+          
+        
+        
+        
+      </item>
+      
+      <item>
+        <title>Support Vector Machine(2.1)-Solving dual problem for hard margin maximization</title>
+        <link>/blogs/2016-05-12-svm2_1/</link>
+        <pubDate>Thu, 12 May 2016 06:57:41 +0000</pubDate>
+        <author>xxuan@mail.ustc.edu.cn (Xuan)</author>
+        <atom:modified>Thu, 12 May 2016 06:57:41 +0000</atom:modified>
+        <guid>/blogs/2016-05-12-svm2_1/</guid>
+        <description>SVM之硬间隔最大化 In the last section, (1.8) is a convex quadratic programming problem. Using the method of Lagrange multipliers, (1.8) could be represented as: $$ L(w,b,\alpha) = \frac{1}{2} {\Vert w \Vert}^2 + \sum\limits_{i=1}^{N} \alpha_i (1-y^{(i)}(w \cdot x^{(i)} + b)), \alpha_i \ge 0 \tag{2.1}$$ The dual problem is: $$\max\limits_{\alpha} \ \min\limits_{w,b} L(w,b,\alpha) \tag{2.2}$$ Solving $\min\limits_{w,b} L(w,b,\alpha)$ $$ \nabla_w L(w,b,\alpha) = w - \sum\limits_{i=1}^{N}</description>
+        
+        <dc:creator>Xuan</dc:creator>
+        
+        
+        
+        
+          
+            
+              <category>machine learning</category>
+            
+          
+            
+              <category>svm</category>
+            
+          
+            
+              <category>统计学习方法</category>
+            
+          
+        
+        
+        
+      </item>
+      
+      <item>
+        <title>Support Vector Machine(1) - Hard margin maximization</title>
+        <link>/blogs/2016-05-11-svm/</link>
+        <pubDate>Wed, 11 May 2016 15:36:18 +0000</pubDate>
+        <author>xxuan@mail.ustc.edu.cn (Xuan)</author>
+        <atom:modified>Wed, 11 May 2016 15:36:18 +0000</atom:modified>
+        <guid>/blogs/2016-05-11-svm/</guid>
+        <description>支持向量机 Hyperplane Consider a two-class separation problem: $$\text{Training set: } T = \left \lbrace (x^{(1)}, y^{(1)}), (x^{(2)}, y^{(2)}) &amp;hellip;(x^{(N)}, y^{(N)}) \right \rbrace \\ \text{in which }x^{(i)} \in R^n, y^{(i)} \in \lbrace +1, -1 \rbrace, i=1,2&amp;hellip;N$$ Assuming all the samples in the sample space X are linearly separable, we have the hyperplane: $$ w \cdot x + b = 0 \text{, in which }w, b \in R^N$$</description>
+        
+        <dc:creator>Xuan</dc:creator>
+        
+        
+        
+        
+          
+            
+              <category>machine learning</category>
+            
+          
+            
+              <category>svm</category>
+            
+          
+            
+              <category>统计学习方法</category>
+            
+          
+        
+        
+        
+      </item>
+      
+      <item>
+        <title>Machine Learning Notes(13)-Programming Exercise 5</title>
+        <link>/blogs/2016-02-27-programming-exercise-5/</link>
+        <pubDate>Sat, 27 Feb 2016 22:17:15 +0000</pubDate>
+        <author>xxuan@mail.ustc.edu.cn (Xuan)</author>
+        <atom:modified>Sat, 27 Feb 2016 22:17:15 +0000</atom:modified>
+        <guid>/blogs/2016-02-27-programming-exercise-5/</guid>
+        <description>Programming Exercise 5
+Notification: This is a simplified code example, if you are attempting this class, don&amp;rsquo;t copy &amp;amp; submit since it won&amp;rsquo;t even work&amp;hellip;
+Regularized linear regression 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 function [J, grad] = linearRegCostFunction(X, y, theta, lambda) % Initialize some useful values m = length(y); % number of training examples n = size(theta,1); % You need to return the following variables correctly J = 0; grad = zeros(size(theta)); % Calculate cost function J = (1/(2*m))*sum((X*theta .</description>
+        
+        <dc:creator>Xuan</dc:creator>
+        
+        
+        
+        
+          
+            
+              <category>coursera</category>
+            
+          
+        
+        
+        
+      </item>
+      
+      <item>
+        <title>Machine Learning Notes(12)-Advice for Applying Machine Learning</title>
+        <link>/blogs/2016-02-27-advice-for-applying-machine-learning/</link>
+        <pubDate>Sat, 27 Feb 2016 22:10:17 +0000</pubDate>
+        <author>xxuan@mail.ustc.edu.cn (Xuan)</author>
+        <atom:modified>Sat, 27 Feb 2016 22:10:17 +0000</atom:modified>
+        <guid>/blogs/2016-02-27-advice-for-applying-machine-learning/</guid>
+        <description>Advice for Applying Machine Learning
+Debugging a learning algorithm Get more training data Try smaller sets of features Getting additional features Changing fit hypothesis Changing $\lambda$ Evaluate hypothesis Training/testing procedure Splitting data into training set and test set Learn parameters from training data Compute test error If $J_{train}(\theta)$ is low while $J_{test}(\theta)$ is high, then it might be overfitting. For logistic regression Misclassification error:
+$$
+err(h_\theta (x), y) =
+\begin{cases}</description>
+        
+        <dc:creator>Xuan</dc:creator>
+        
+        
+        
+        
+          
+            
+              <category>machine learning</category>
+            
+          
+            
+              <category>coursera</category>
+            
+          
+        
+        
+        
+      </item>
+      
+      <item>
+        <title>Machine Learning Notes(11)-Programming Exercise 4</title>
+        <link>/blogs/2016-02-20-programming-exercise-4/</link>
+        <pubDate>Sat, 20 Feb 2016 14:37:56 +0000</pubDate>
+        <author>xxuan@mail.ustc.edu.cn (Xuan)</author>
+        <atom:modified>Sat, 20 Feb 2016 14:37:56 +0000</atom:modified>
+        <guid>/blogs/2016-02-20-programming-exercise-4/</guid>
+        <description>Programming Exercise 4
+Notification: This is a simplified code example, if you are attempting this class, don&amp;rsquo;t copy &amp;amp; submit since it won&amp;rsquo;t even work&amp;hellip;
+Cost function for fmincg 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 function [J grad] = nnCostFunction(nn_params, .</description>
+        
+        <dc:creator>Xuan</dc:creator>
+        
+        
+        
+        
+          
+            
+              <category>coursera</category>
+            
+          
+        
+        
+        
+      </item>
+      
+      <item>
+        <title>Machine Learning Notes(10)-Neural Networks Learning</title>
+        <link>/blogs/2016-02-20-neural-networks-learning/</link>
+        <pubDate>Sat, 20 Feb 2016 13:55:02 +0000</pubDate>
+        <author>xxuan@mail.ustc.edu.cn (Xuan)</author>
+        <atom:modified>Sat, 20 Feb 2016 13:55:02 +0000</atom:modified>
+        <guid>/blogs/2016-02-20-neural-networks-learning/</guid>
+        <description>Neural Networks Learning
+Cost Fuction 1. For a neural network like the pic above, the cost function should be like: $$ J(\theta) = \frac {1}{m} \sum\limits\_{i=1}^{m}\sum\limits\_{k=1}^{K} [-y\_k^{(i)} log(h\_\theta (x^{(i)})\_k) - (1 - y\_k^{(i)}) log(1 - h\_\theta (x^{(i)})\_k)] $$ 2. In which there are m training data and the output layer has K units. The cost function will sum all the outputs from all the data. 3. Similarly, the regularization term just sum up the square of all the parameters from all the layers: $$ \frac {\lambda}{2m} \sum\limits\_{j=1}^{s^{(l)}} \sum\limits\_{k=2}^{s^{(l+1)}} \sum\limits\_{l=1}^{n} [(\Theta\_{jk}^{(l)})^2] $$ 4.</description>
+        
+        <dc:creator>Xuan</dc:creator>
+        
+        
+        
+        
+          
+            
+              <category>machine learning</category>
+            
+          
+            
+              <category>neural network</category>
+            
+          
+            
+              <category>coursera</category>
+            
+          
+        
+        
+        
+      </item>
+      
+      <item>
+        <title>Machine Learning Notes(8)-Neural Networks Representation</title>
+        <link>/blogs/2016-02-11-neural-networks-representation/</link>
+        <pubDate>Thu, 11 Feb 2016 16:38:03 +0000</pubDate>
+        <author>xxuan@mail.ustc.edu.cn (Xuan)</author>
+        <atom:modified>Thu, 11 Feb 2016 16:38:03 +0000</atom:modified>
+        <guid>/blogs/2016-02-11-neural-networks-representation/</guid>
+        <description>Neural Networks Model A single neuron model: logistic unit - Takes 3+1 inputs(the extra input called bias is just like $\theta\_0$ in logistic regression, not shown in picture). - Both input and output could be represented as vectors, in which each unit has its own parameters $\theta$ - All the units in the same layer take the same input $\mathbf{x}$, as the pic shows. - Each unit has only one output: $sigmoid(\theta^T x)$.</description>
+        
+        <dc:creator>Xuan</dc:creator>
+        
+        
+        
+        
+          
+            
+              <category>machine learning</category>
+            
+          
+            
+              <category>neural network</category>
+            
+          
+            
+              <category>coursera</category>
+            
+          
+        
+        
+        
+      </item>
+      
+      <item>
+        <title>Machine Learning Notes(7)-Programming Exercise 2</title>
+        <link>/blogs/2016-02-09-programming-exercise-2/</link>
+        <pubDate>Tue, 09 Feb 2016 19:59:32 +0000</pubDate>
+        <author>xxuan@mail.ustc.edu.cn (Xuan)</author>
+        <atom:modified>Tue, 09 Feb 2016 19:59:32 +0000</atom:modified>
+        <guid>/blogs/2016-02-09-programming-exercise-2/</guid>
+        <description>Programming Exercise 2
+Notification: This is a simplified code example, if you are attempting this class, don&amp;rsquo;t copy &amp;amp; submit since it won&amp;rsquo;t even work&amp;hellip;
+Plot function 1 2 3 4 5 6 7 8 9 10 11 12 13 function plotData(X, y) figure; hold on; pos = find(y==1); neg = find(y == 0); plot(X(pos, 1), X(pos, 2), &amp;#39;k+&amp;#39;,&amp;#39;LineWidth&amp;#39;, 2, ... &amp;#39;MarkerSize&amp;#39;, 7); plot(X(neg, 1), X(neg, 2), &amp;#39;ko&amp;#39;, &amp;#39;MarkerFaceColor&amp;#39;, &amp;#39;y&amp;#39;, .</description>
+        
+        <dc:creator>Xuan</dc:creator>
+        
+        
+        
+        
+          
+            
+              <category>coursera</category>
+            
+          
+        
+        
+        
+      </item>
+      
+      <item>
+        <title>Machine Learning Notes(9)-Programming Exercise 3</title>
+        <link>/blogs/2016-02-13-programming-exercise-3/</link>
+        <pubDate>Tue, 09 Feb 2016 19:59:32 +0000</pubDate>
+        <author>xxuan@mail.ustc.edu.cn (Xuan)</author>
+        <atom:modified>Tue, 09 Feb 2016 19:59:32 +0000</atom:modified>
+        <guid>/blogs/2016-02-13-programming-exercise-3/</guid>
+        <description>Programming Exercise 3
+Multi-class Classification CostFunction for fmincg 1 2 3 4 5 6 7 8 9 10 11 12 function [J, grad] = lrCostFunction(theta, X, y, lambda) % Initialize some useful values m = length(y); % number of training examples n = size(theta,1); J = (1/m)*sum(-y .* log(sigmoid(X*theta)) - (1 .- y) .* log(1 .- sigmoid(X*theta))) + (lambda/(2*m))*(theta&amp;#39;(2:n) * theta(2:n)); grad(1) = ((X&amp;#39;)*(sigmoid(X*theta) - y)*(1/m))(1); grad(2:n,:) = ((X&amp;#39;)*(sigmoid(X*theta) - y)*(1/m) + (lambda/m)*theta)(2:n,:); end The same as is in Programming Exercise 2 One-vs-all Classification 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 function [all_theta] = oneVsAll(X, y, num_labels, lambda) % Some useful variables m = size(X, 1); n = size(X, 2); % Initialize X and all_theta X = [ones(m, 1) X]; all_theta = zeros(num_labels, n + 1); % Initialize options for fmincg initial_theta = zeros(n + 1, 1); options = optimset(&amp;#39;GradObj&amp;#39;, &amp;#39;on&amp;#39;, &amp;#39;MaxIter&amp;#39;, 50); % Generate rows of all_theta row by row using fmincg for iter = 1:num_labels all_theta(iter,:) = (fmincg (@(t)(lrCostFunction(t, X, (y == iter), lambda)), initial_theta, options))&amp;#39;; end; end ONEVSALL trains multiple logistic regression classifiers and returns all the classifiers in a matrix all_theta, where the i-th row of all_theta corresponds to the classifier for label i The parameter y == iter returns a vector of the same size as y with ones at positions where the elements of y are equal to iter and zeroes where they are different.</description>
+        
+        <dc:creator>Xuan</dc:creator>
+        
+        
+        
+        
+          
+            
+              <category>coursera</category>
+            
+          
+        
+        
+        
+      </item>
+      
+      <item>
+        <title>Machine Learning Notes(6)-Logistic Regression</title>
+        <link>/blogs/2016-02-06-logistic-regression/</link>
+        <pubDate>Sat, 06 Feb 2016 18:54:52 +0000</pubDate>
+        <author>xxuan@mail.ustc.edu.cn (Xuan)</author>
+        <atom:modified>Sat, 06 Feb 2016 18:54:52 +0000</atom:modified>
+        <guid>/blogs/2016-02-06-logistic-regression/</guid>
+        <description>Logistic Regression
+Linear Regression is not suitable for classification problem overfit $h_\theta$ can be &amp;gt;1 or &amp;lt;0 Logisitc Regression Hypothesis Representation Sigmoid/Logistic Function for linear regression: $$h_\theta (x) = \frac {1}{1 + e^{-\theta^T x}}$$ Interpretation: estimated probability that y=1 on input x $P(y=0|x=\theta) + P(y=1|x=\theta) = 1$ Decision Boundary Linear Regression: y=1 equals to $\theta^T x$ &amp;gt; 0 which is decided by parameters Unlinear Regression: Polynomial Regression etc. Cost function for one variable hypothesis To let the cost function be convex for gradient descent, it should be like this:</description>
+        
+        <dc:creator>Xuan</dc:creator>
+        
+        
+        
+        
+          
+            
+              <category>machine learning</category>
+            
+          
+            
+              <category>logistic regression</category>
+            
+          
+            
+              <category>coursera</category>
+            
+          
+        
+        
+        
+      </item>
+      
+      <item>
+        <title>Machine Learning Notes(5)-Programming Exercise 1</title>
+        <link>/blogs/2016-02-01-programming-exercise-1/</link>
+        <pubDate>Mon, 01 Feb 2016 16:13:57 +0000</pubDate>
+        <author>xxuan@mail.ustc.edu.cn (Xuan)</author>
+        <atom:modified>Mon, 01 Feb 2016 16:13:57 +0000</atom:modified>
+        <guid>/blogs/2016-02-01-programming-exercise-1/</guid>
+        <description>Programming Exercise 1: Gradient Descent for Linear regression
+Gradient Descent for Linear regression Notification: This is a simplified code example, if you are attempting this class, don&amp;rsquo;t copy &amp;amp; submit since it won&amp;rsquo;t even work&amp;hellip;
+Step 1 - Load &amp;amp; Initialize Data 1 2 3 4 5 6 7 data = load(&amp;#39;ex1data1.txt&amp;#39;); X = data(:, 1); y = data(:, 2); X = [ones(m, 1), data(:,1)]; theta = zeros(2, 1); iterations = 1500; alpha = 0.</description>
+        
+        <dc:creator>Xuan</dc:creator>
+        
+        
+        
+        
+          
+            
+              <category>coursera</category>
+            
+          
+        
+        
+        
+      </item>
+      
+      <item>
+        <title>Machine Learning Notes(4)-Octave abc</title>
+        <link>/blogs/2016-02-01-octave-abc/</link>
+        <pubDate>Mon, 01 Feb 2016 13:44:34 +0000</pubDate>
+        <author>xxuan@mail.ustc.edu.cn (Xuan)</author>
+        <atom:modified>Mon, 01 Feb 2016 13:44:34 +0000</atom:modified>
+        <guid>/blogs/2016-02-01-octave-abc/</guid>
+        <description>Too lazy to explain some of the commands&amp;hellip;orz
+Basic PS1(&#39;sign&#39;) Change prompt to &amp;lsquo;sign&amp;rsquo; Matrix Assignment v = [1 2; 3 4; 5 6] v = [1.1 1.2 1.3] = [1:&amp;lt;0.1:&amp;gt;1.3] (default step is 1) Matrix Generation commands ones(2,3) = [1 1 1; 1 1 1] (ones/zeros/rand/randn) eye(n): generate n by n identical matrix magic(n): generate n by n magic matrix size(M, n): return the size of the n=1:row n=2:coloum length(M): max dimention of M Moving data around pwd: show current path load(&#39;xxx&#39;) load &amp;lt;filename&amp;gt; who: display current scope.</description>
+        
+        <dc:creator>Xuan</dc:creator>
+        
+        
+        
+        
+          
+            
+              <category>coursera</category>
+            
+          
+        
+        
+        
+      </item>
+      
+      <item>
+        <title>Machine Learning Notes(3)-Multivariate Linear Regression</title>
+        <link>/blogs/2016-01-30-multivariate-linear-regression/</link>
+        <pubDate>Sat, 30 Jan 2016 16:20:23 +0000</pubDate>
+        <author>xxuan@mail.ustc.edu.cn (Xuan)</author>
+        <atom:modified>Sat, 30 Jan 2016 16:20:23 +0000</atom:modified>
+        <guid>/blogs/2016-01-30-multivariate-linear-regression/</guid>
+        <description>Multivariate Linear Regression
+Gradient Descent for Multiple Variables Suppose we have n variables, set hypothesis to be:
+$$h_\theta(\mathbf{x}) = \sum_{i=0}^n \theta_i x_i = \theta^T \mathbf{x}, x_0 =1$$
+in which $\mathbf{x} = \begin{bmatrix}x_1 \\ x_2 \\ \vdots \\ x_n \end{bmatrix}$, $\mathbf{\theta} = \begin{bmatrix}\theta_1 \\ \theta_2 \\ \vdots \\ \theta_n \end{bmatrix}$
+Cost Function
+$$J(\theta^T) = \frac {1}{2m} \sum_{i=1}^m (h_\theta (\mathbf{x}^{(i)}) - y^{(i)} )^2$$
+Gredient Descent Algorithm
+$$\begin{align*} \text{repeat until convergence: } \lbrace &amp;amp; \\ \theta_j := &amp;amp; \theta_j - \alpha \frac{1}{m} \sum\limits_{i=1}^{m}\left((h_\theta(\mathbf{x}^{(i)}) - y^{(i)}) x_j^{(i)}\right) \ \rbrace&amp;amp;\end{align*}$$</description>
+        
+        <dc:creator>Xuan</dc:creator>
+        
+        
+        
+        
+          
+            
+              <category>machine learning</category>
+            
+          
+            
+              <category>linear regression</category>
+            
+          
+            
+              <category>coursera</category>
+            
+          
+        
+        
+        
+      </item>
+      
+      <item>
+        <title>Machine Learning Notes(2)-A Linear Regression Example</title>
+        <link>/blogs/2016-01-29-model-and-cost-function/</link>
+        <pubDate>Fri, 29 Jan 2016 22:38:43 +0000</pubDate>
+        <author>xxuan@mail.ustc.edu.cn (Xuan)</author>
+        <atom:modified>Fri, 29 Jan 2016 22:38:43 +0000</atom:modified>
+        <guid>/blogs/2016-01-29-model-and-cost-function/</guid>
+        <description>This is my notes for the open course Machine Learning from coursera.
+Model and Cost Function - A Linear Regression Example Hypothesis: $$h_\theta(x) = \theta_0 + {\theta_1}x$$ Cost function: $$J(\theta_0, \theta_1) = \frac {1}{2m} \sum_{i=1}^m (h_\theta (x^{(i)}) - y^{(i)} )^2$$ Basically this function is derived from the maximum likelihood estimation of a set of $\theta_a, \theta_b \sim N(0, \sigma^2)$ $\exists J(\theta_a, \theta_b) (J(\theta_a, \theta_b) = min \lbrace J(\theta_0, \theta_1) \rbrace ) \to \theta_a, \theta_b$ is the best fit of hypothesis Parameter Learning - Minimize Cost Function Gradient descent algorithm repeat until convergence:$$\theta_j := \theta_j - \alpha \frac{\partial}{\partial \theta_j} J(\theta_0, \theta_1)$$ Notifications $\alpha$: learning rate.</description>
+        
+        <dc:creator>Xuan</dc:creator>
+        
+        
+        
+        
+          
+            
+              <category>machine learning</category>
+            
+          
+            
+              <category>coursera</category>
+            
+          
+        
+        
+        
+      </item>
+      
+      <item>
+        <title>Machine Learning Notes(1)-Supervised and Unsupervised Learning</title>
+        <link>/blogs/2016-01-29-supervised-learning/</link>
+        <pubDate>Fri, 29 Jan 2016 16:47:34 +0000</pubDate>
+        <author>xxuan@mail.ustc.edu.cn (Xuan)</author>
+        <atom:modified>Fri, 29 Jan 2016 16:47:34 +0000</atom:modified>
+        <guid>/blogs/2016-01-29-supervised-learning/</guid>
+        <description>This is my notes for the open course Machine Learning from coursera.
+Supervised learning Model given a set of data assigned with special features(experience) build a model through learning algorithm(task) predict the features through given data using the model built(performance) Regression problem predict through consecutive data Classification problem pretict between discrete data sets learning from multiple(even infinite) featurea as parameters Unsupervised learning Model given a set of data(with no features) build a model through learning algorithm like cluster, etc.</description>
+        
+        <dc:creator>Xuan</dc:creator>
+        
+        
+        
+        
+          
+            
+              <category>machine learning</category>
+            
+          
+            
+              <category>coursera</category>
+            
+          
+        
+        
+        
+      </item>
+      
+      <item>
+        <title>利用链表ADT学习C&#43;&#43;面向对象(2) - 栈和队列继承链表</title>
+        <link>/blogs/2016-01-22-cpp-fundamental-2/</link>
+        <pubDate>Fri, 22 Jan 2016 20:03:27 +0000</pubDate>
+        <author>xxuan@mail.ustc.edu.cn (Xuan)</author>
+        <atom:modified>Fri, 22 Jan 2016 20:03:27 +0000</atom:modified>
+        <guid>/blogs/2016-01-22-cpp-fundamental-2/</guid>
+        <description>some cpp fundamentals 栈 #include &amp;lt;iostream&amp;gt; #include &amp;#34;LinkedList_simplified.h&amp;#34; using namespace std; template &amp;lt;typename T&amp;gt; class xStack : public LinkedList&amp;lt;T&amp;gt; //don&amp;#39;t miss &amp;lt;T&amp;gt; here { public: T&amp;amp; gettop() {return LinkedList&amp;lt;T&amp;gt;::begin();} void push(T rhs) {LinkedList&amp;lt;T&amp;gt;::insert(0, rhs);} bool pop(T&amp;amp; popout) { if (LinkedList&amp;lt;T&amp;gt;::size() == 1) { cout &amp;lt;&amp;lt; &amp;#34;error:Already Empty&amp;#34; &amp;lt;&amp;lt; endl; return false; } else { popout = LinkedList&amp;lt;T&amp;gt;::begin(); LinkedList&amp;lt;T&amp;gt;::erase(1); return true; } } }; 栈的实现是通过</description>
+        
+        <dc:creator>Xuan</dc:creator>
+        
+        
+        
+        
+          
+            
+              <category>cpp</category>
+            
+          
+        
+        
+        
+      </item>
+      
+      <item>
+        <title>利用链表ADT学习C&#43;&#43;面向对象(1) - 基础知识</title>
+        <link>/blogs/2016-01-22-cpp-fundamental-1/</link>
+        <pubDate>Fri, 22 Jan 2016 17:35:14 +0000</pubDate>
+        <author>xxuan@mail.ustc.edu.cn (Xuan)</author>
+        <atom:modified>Fri, 22 Jan 2016 17:35:14 +0000</atom:modified>
+        <guid>/blogs/2016-01-22-cpp-fundamental-1/</guid>
+        <description>some cpp fundamentals 类的基本语法 一个具有最基础功能的链表接口如下： template &amp;lt;typename T&amp;gt; class LinkedList { protected: void init() {} //私有初始化函数 struct Node{} //链节点 int ListSize; //链长度 Node* head; //头指针 Node* locate(int index); /</description>
+        
+        <dc:creator>Xuan</dc:creator>
+        
+        
+        
+        
+          
+            
+              <category>cpp</category>
+            
+          
+        
+        
+        
+      </item>
+      
 
     
   </channel>

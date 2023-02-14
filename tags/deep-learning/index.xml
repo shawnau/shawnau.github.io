@@ -1,0 +1,32 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>deep learning - Tag - Laniakea</title>
+        <link>http://xxuan.cc/tags/deep-learning/</link>
+        <description>deep learning - Tag - Laniakea</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>shawn_au@outlook.com (xiaoxuan)</managingEditor>
+            <webMaster>shawn_au@outlook.com (xiaoxuan)</webMaster><lastBuildDate>Mon, 26 Dec 2016 15:15:08 &#43;0000</lastBuildDate><atom:link href="http://xxuan.cc/tags/deep-learning/" rel="self" type="application/rss+xml" /><item>
+    <title>Blazing Fast! 使用YOLO&#43;Darknet进行目标检测</title>
+    <link>http://xxuan.cc/code/2016-12-26-yolo-darknet/</link>
+    <pubDate>Mon, 26 Dec 2016 15:15:08 &#43;0000</pubDate>
+    <author>xiaoxuan</author>
+    <guid>http://xxuan.cc/code/2016-12-26-yolo-darknet/</guid>
+    <description><![CDATA[<p>YOLO做目标检测很快</p>]]></description>
+</item>
+<item>
+    <title>基于Docker的Faster R-CNN, CPU-Only环境配置</title>
+    <link>http://xxuan.cc/code/2016-12-10-build-fast-rcnn-under-docker/</link>
+    <pubDate>Sat, 10 Dec 2016 19:24:42 &#43;0000</pubDate>
+    <author>xiaoxuan</author>
+    <guid>http://xxuan.cc/code/2016-12-10-build-fast-rcnn-under-docker/</guid>
+    <description><![CDATA[<p>详见<a href="https://github.com/shawnau/py-faster-rcnn-cpu" target="_blank" rel="noopener noreffer ">我的repo</a></p>]]></description>
+</item>
+<item>
+    <title>在mac os 10.12 Sierra下安装caffe</title>
+    <link>http://xxuan.cc/code/2016-11-12-install-caffe-under-macos/</link>
+    <pubDate>Sat, 12 Nov 2016 16:34:06 &#43;0000</pubDate>
+    <author>xiaoxuan</author>
+    <guid>http://xxuan.cc/code/2016-11-12-install-caffe-under-macos/</guid>
+    <description><![CDATA[<p>RT</p>]]></description>
+</item>
+</channel>
+</rss>

@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>Python核心编程笔记1 基础知识 - Laniakea</title><meta name="Description" content="xxuan&#39;s blog"><meta property="og:title" content="Python核心编程笔记1 基础知识" />
+<meta property="og:description" content="
+这本书翻译稀烂, 然而我还是忍着看完了第一部分" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://xxuan.cc/2017-08-18-core-python-programming-1/" /><meta property="og:image" content="http://xxuan.cc/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2017-08-18T13:42:39+00:00" />
+<meta property="article:modified_time" content="2017-08-18T13:42:39+00:00" /><meta property="og:site_name" content="xxuan.cc" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="http://xxuan.cc/logo.png"/>
+
+<meta name="twitter:title" content="Python核心编程笔记1 基础知识"/>
+<meta name="twitter:description" content="
+这本书翻译稀烂, 然而我还是忍着看完了第一部分"/>
+<meta name="application-name" content="Laniakea">
+<meta name="apple-mobile-web-app-title" content="Laniakea"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://xxuan.cc/2017-08-18-core-python-programming-1/" /><link rel="prev" href="http://xxuan.cc/2017-08-08-poisson/" /><link rel="next" href="http://xxuan.cc/2017-08-20-python-functional-programming/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" href="/lib/animate/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Python核心编程笔记1 基础知识",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/xxuan.cc\/2017-08-18-core-python-programming-1\/"
+        },"genre": "posts","keywords": "python","wordcount":  2386 ,
+        "url": "http:\/\/xxuan.cc\/2017-08-18-core-python-programming-1\/","datePublished": "2017-08-18T13:42:39+00:00","dateModified": "2017-08-18T13:42:39+00:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "xiaoxuan"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Laniakea">Laniakea</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/" title="存档脑细胞"> 文章 </a><a class="menu-item" href="/playground/" title="玩耍算法题的地方"> 练习场 </a><a class="menu-item" href="/code/" title="存放大概率过期的代码"> 码农 </a><a class="menu-item" href="/tags/" title="标签"> Tags </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Laniakea">Laniakea</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="存档脑细胞">文章</a><a class="menu-item" href="/playground/" title="玩耍算法题的地方">练习场</a><a class="menu-item" href="/code/" title="存放大概率过期的代码">码农</a><a class="menu-item" href="/tags/" title="标签">Tags</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Python核心编程笔记1 基础知识</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>xiaoxuan</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2017-08-18">2017-08-18</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;2386 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;5 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="true">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#python基础">Python基础</a>
+      <ul>
+        <li><a href="#基本风格指南">基本风格指南</a></li>
+        <li><a href="#内存管理">内存管理</a></li>
+      </ul>
+    </li>
+    <li><a href="#python对象">Python对象</a>
+      <ul>
+        <li><a href="#built-in-类型">Built-in 类型</a></li>
+        <li><a href="#数字">数字</a></li>
+      </ul>
+    </li>
+    <li><a href="#序列">序列</a>
+      <ul>
+        <li><a href="#字符串">字符串</a></li>
+        <li><a href="#列表">列表</a></li>
+        <li><a href="#元组">元组</a></li>
+        <li><a href="#浅拷贝-深拷贝和可变不可变对象的例子">浅拷贝, 深拷贝和可变/不可变对象的例子</a></li>
+      </ul>
+    </li>
+    <li><a href="#映像和集合类型">映像和集合类型</a>
+      <ul>
+        <li><a href="#字典">字典</a></li>
+        <li><a href="#集合">集合</a></li>
+      </ul>
+    </li>
+    <li><a href="#条件和循环">条件和循环</a>
+      <ul>
+        <li><a href="#循环语句">循环语句</a></li>
+        <li><a href="#迭代器">迭代器</a></li>
+        <li><a href="#列表解析式">列表解析式</a></li>
+        <li><a href="#生成器表达式">生成器表达式</a></li>
+      </ul>
+    </li>
+    <li><a href="#文件和输入输出">文件和输入输出</a>
+      <ul>
+        <li><a href="#内建函数open和file">内建函数open()和file()</a></li>
+        <li><a href="#内建方法">内建方法</a></li>
+      </ul>
+    </li>
+    <li><a href="#错误和异常">错误和异常</a>
+      <ul>
+        <li><a href="#上下文管理">上下文管理</a></li>
+        <li><a href="#断言">断言</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/080_S.jpg"
+        data-srcset="http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/080_S.jpg, http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/080_S.jpg 1.5x, http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/080_S.jpg 2x"
+        data-sizes="auto"
+        alt="http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/080_S.jpg"
+        title="http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/080_S.jpg" />
+这本书翻译稀烂, 然而我还是忍着看完了第一部分</p>
+<h2 id="python基础">Python基础</h2>
+<h3 id="基本风格指南">基本风格指南</h3>
+<ol>
+<li>跨行代码可以使用反斜杠<code>\</code></li>
+<li>变量赋值通过<strong>引用传递</strong></li>
+<li>python不支持<code>++</code>, <code>--</code>, 请使用<code>+=</code>和<code>-=</code></li>
+<li>多元赋值: 实际上是元组赋值: <code>a, b = 1, 2</code>等价于<code>(a, b) = (1, 2)</code>. 在python中, 没有括号的分组<strong>默认是元组</strong>, 而不是列表</li>
+<li>下划线标识符:</li>
+</ol>
+<ul>
+<li><code>_xxx</code>: 此类属性不会被<code>from module import *</code>导入. 另外python不提倡使用此语句导入包, 容易造成名空间混乱</li>
+<li><code>__xxx__</code>: 类的特殊方法</li>
+<li><code>_xxx</code>: 类的私有变量名, 在子类中建议使用, 可以避免和父类冲突</li>
+</ul>
+<ol start="6">
+<li><code>__name__</code>: 如果module被导入, 变量值为module名, 如果被执行, 为<code>__main__</code></li>
+</ol>
+<h3 id="内存管理">内存管理</h3>
+<p>python的垃圾收集器实际上是引用计数器+循环辣鸡收集器</p>
+<h2 id="python对象">Python对象</h2>
+<h3 id="built-in-类型">Built-in 类型</h3>
+<ol>
+<li>内建类型略</li>
+<li>切片对象的复制问题</li>
+<li>对象值的比较可以用<code>id()</code>, 类似于c中的取地址操作<code>&amp;</code>, <code>a is b</code>可以比较a与b的地址</li>
+<li>python不支持函数或者方法重载</li>
+<li><strong>类型工厂函数/内建函数</strong>: 看上去是函数, 实际上是生成了该类型的一个实例:</li>
+</ol>
+<ul>
+<li><code>int</code>, <code>float</code>, <code>complex</code>, <code>str</code>, <code>list</code>, <code>turple</code>, <code>dict</code>, <code>type</code>, <code>bool</code>, <code>set</code>, <code>super</code>等</li>
+</ul>
+<ol start="6">
+<li><strong>可变类型</strong>: 列表和字典. <strong>不可变类型</strong>: 数字, 字符串, 元组</li>
+</ol>
+<h3 id="数字">数字</h3>
+<ol>
+<li>数字的隐式类型转换和c++相似</li>
+<li>几个取整的常用工厂函数:</li>
+</ol>
+<ul>
+<li><code>round(3.141, 2) = 3.15</code>: 按四舍五入取整</li>
+<li><code>int(3.14) = 3</code>: 直接截取整数部分, 返回int</li>
+<li><code>floor(-0.2) = -1.0</code>: 取最接近但小于原数的整数, 返回float</li>
+</ul>
+<h2 id="序列">序列</h2>
+<h3 id="字符串">字符串</h3>
+<ol>
+<li>切片索引的一个小技巧: 用<code>None</code>作为索引值, 可以使用一个变量作为索引从第一个遍历到最后一个, 即<code>s[:None] = s</code></li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">s</span> <span class="o">=</span> <span class="s1">&#39;abcde&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="p">[</span><span class="kc">None</span><span class="p">]</span> <span class="o">+</span> <span class="nb">range</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="nb">len</span><span class="p">(</span><span class="n">s</span><span class="p">),</span> <span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span> <span class="n">s</span><span class="p">[:</span><span class="n">i</span><span class="p">]</span>  
+</span></span><span class="line"><span class="cl"><span class="c1"># 输出</span>
+</span></span><span class="line"><span class="cl"><span class="n">abcde</span>
+</span></span><span class="line"><span class="cl"><span class="n">abcd</span>
+</span></span><span class="line"><span class="cl"><span class="n">abc</span>
+</span></span><span class="line"><span class="cl"><span class="n">ab</span>
+</span></span><span class="line"><span class="cl"><span class="n">a</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ol start="2">
+<li>字符串比较是按ASCII值比较的, 因此大写字母一定比小写字母小. 即<code>cmp('Z', 'a' ) == -1</code></li>
+<li><code>string</code>库的常用方法和属性:</li>
+</ol>
+<ul>
+<li>替换<code>'abcde'.replace('abc', 'xyz') = 'xyzde'</code></li>
+<li>分割<code>'a/bxxx/c'.split('/') = ['a', 'bxxx', 'c']</code></li>
+<li>删除头尾空格<code>'  abc  '.strip() = 'abc'</code></li>
+</ul>
+<h3 id="列表">列表</h3>
+<ol>
+<li>删除元素时, 知道元素值用<code>del(element)</code>, 不知道元素只知道序号用<code>remove(index)</code></li>
+<li>列表的<code>sort()</code>和<code>reversed()</code>都是inplace操作, 返回None, 而<code>sorted()</code>和<code>reversed()</code>是工厂函数, 可以作为值返回</li>
+</ol>
+<h3 id="元组">元组</h3>
+<ol>
+<li>单元素元组的坑: 只有一个元素的元组需要加逗号, 否则容易和工厂函数混淆:</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="nb">tuple</span><span class="p">(</span><span class="s1">&#39;abc&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="p">(</span><span class="s1">&#39;abc&#39;</span><span class="p">,</span> <span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="s1">&#39;abc&#39;</span><span class="p">,)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ol start="2">
+<li>所有多对象, 用逗号分隔的, 没有明确符号定义的集合默认为元组</li>
+</ol>
+<h3 id="浅拷贝-深拷贝和可变不可变对象的例子">浅拷贝, 深拷贝和可变/不可变对象的例子</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="n">person</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;savings&#39;</span><span class="p">,</span> <span class="mf">100.00</span><span class="p">]]</span>
+</span></span><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="n">hubby</span> <span class="o">=</span> <span class="n">person</span><span class="p">[:]</span> <span class="c1"># 切片复制</span>
+</span></span><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="n">wifey</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">person</span><span class="p">)</span> <span class="c1"># 工厂函数复制</span>
+</span></span><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="p">[</span><span class="nb">id</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">person</span><span class="p">,</span> <span class="n">hubby</span><span class="p">,</span> <span class="n">wifey</span><span class="p">]</span> <span class="c1"># 查看地址</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span> <span class="c1"># 为了方便使用了虚构的地址, 可见三个变量不同</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="n">hubby</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;joe&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="n">wifey</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;jane&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="n">hubby</span><span class="p">,</span> <span class="n">wifey</span>
+</span></span><span class="line"><span class="cl"><span class="p">([</span><span class="s1">&#39;joe&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;savings&#39;</span><span class="p">,</span> <span class="mf">100.0</span><span class="p">]],</span> <span class="p">[</span><span class="s1">&#39;jane&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;savings&#39;</span><span class="p">,</span> <span class="mf">100.0</span><span class="p">]])</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="n">hubby</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">50</span>
+</span></span><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="n">hubby</span><span class="p">,</span> <span class="n">wifey</span>
+</span></span><span class="line"><span class="cl"><span class="p">([</span><span class="s1">&#39;joe&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;savings&#39;</span><span class="p">,</span> <span class="mf">50.0</span><span class="p">]],</span> <span class="p">[</span><span class="s1">&#39;jane&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;savings&#39;</span><span class="p">,</span> <span class="mf">50.0</span><span class="p">]])</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>hubby, wifey这两个对象是新的, 但他们的内容不一定</li>
+<li>序列类型对象的默认拷贝是浅拷贝, 可以通过<strong>切片</strong>, <strong>工厂函数</strong>, **<code>copy()</code>**实现</li>
+<li><strong>不可变对象</strong>(例子中是字符串)的拷贝, 实际上是删除变量引用, 创建新的对象, 然后转移引用到新变量</li>
+<li><strong>可变对象</strong>(例子中是列表)的拷贝只是复制了引用</li>
+<li>想要深拷贝请使用<code>copy.deepcopy()</code></li>
+<li>对原子元素组成的元组进行深拷贝无效</li>
+</ul>
+<h2 id="映像和集合类型">映像和集合类型</h2>
+<h3 id="字典">字典</h3>
+<ol>
+<li>只需要字典名就可以遍历字典key, 但key是无序的</li>
+<li>检查key是否存在使用<code>in</code>和<code>not in</code>, <code>has_key()</code>即将被弃用</li>
+<li>key必须是可hash的, 也就是不可变对象. 可以使用<code>hash()</code>检验</li>
+<li>字典的常用方法有</li>
+</ol>
+<ul>
+<li><code>iteritems()</code>返回一个迭代器, 而不是数组</li>
+<li><code>values()</code>返回一个包含字典所有值的列表</li>
+</ul>
+<h3 id="集合">集合</h3>
+<p>无序, 只能用工厂函数构造</p>
+<h2 id="条件和循环">条件和循环</h2>
+<h3 id="循环语句">循环语句</h3>
+<ol>
+<li>三元组表达式: <code>A if EXP else B</code>, 等价于<code>exp? A:B</code></li>
+<li><code>else</code>可以放在循环之后, 只要循环是正常结束的, 会执行<code>else</code>中的语句</li>
+</ol>
+<h3 id="迭代器">迭代器</h3>
+<ol>
+<li>定义: Iterator类是实现了<code>__iter__()</code>和<code>next()</code>的类.<a href="https://stackoverflow.com/questions/2776829/difference-between-pythons-generators-and-iterators" target="_blank" rel="noopener noreffer ">例子出处</a></li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Yes</span><span class="p">(</span><span class="n">collections</span><span class="o">.</span><span class="n">Iterator</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">stop</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">stop</span> <span class="o">=</span> <span class="n">stop</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="fm">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="bp">self</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">next</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">stop</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">+=</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="s1">&#39;yes&#39;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="c1"># Iterators must raise when done, else considered broken</span>
+</span></span><span class="line"><span class="cl">            <span class="k">raise</span> <span class="ne">StopIteration</span> 
+</span></span><span class="line"><span class="cl">    <span class="fm">__next__</span> <span class="o">=</span> <span class="nb">next</span> <span class="c1"># Python 3 compatibility</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>在<code>for</code>循环中迭代该类, 会依次调用迭代器的<code>next()</code>方法, 直到<code>StopIteration</code>抛出, <code>for</code>循环会捕捉处理.
+2. 将其他序列转化成迭代器可以直接使用<code>iter()</code>工厂函数. 如果传递两个参数给<code>iter()</code>, 他会重复调用<code>func</code>, 直到迭代器的下个值等于<code>sentinel</code></p>
+<h3 id="列表解析式">列表解析式</h3>
+<p>只说一点, 列表解析式可以套双层循环:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="p">[(</span><span class="n">x</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">y</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span> <span class="k">if</span> <span class="n">x</span> <span class="o">!=</span> <span class="n">y</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="p">[(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">)]</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>scala也有类似的语法, 也许是从函数式语言中引进的</p>
+<h3 id="生成器表达式">生成器表达式</h3>
+<p>和生成器类似, 有关生成器的内容见后文, 这里只给出和列表解析式的区别:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># 列表解析式</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="n">expr</span> <span class="k">for</span> <span class="n">iter_var</span> <span class="ow">in</span> <span class="n">iterable</span> <span class="k">if</span> <span class="n">cond_expr</span><span class="p">]</span> 
+</span></span><span class="line"><span class="cl"><span class="c1"># 生成器表达式</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="n">expr</span> <span class="k">for</span> <span class="n">iter_var</span> <span class="ow">in</span> <span class="n">iterable</span> <span class="k">if</span> <span class="n">cond_expr</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>可见只是将方括号换成了圆括号. 对生成器表达式迭代会引发和生成器类似的效果, 即延迟计算(lazy evaluation), 也可以理解为懒惰的列表解析, 是对内存更友好的结构.</p>
+<h2 id="文件和输入输出">文件和输入输出</h2>
+<h3 id="内建函数open和file">内建函数open()和file()</h3>
+<p>常见访问模式</p>
+<ul>
+<li><code>r</code>: 只读</li>
+<li><code>w</code>: 写入,若文件存在则首先清空</li>
+<li><code>a</code>: 写入, 若文件存在则追加</li>
+<li><code>w+</code>/<code>a+</code>: 读写模式,参考前两个模式</li>
+</ul>
+<h3 id="内建方法">内建方法</h3>
+<ol>
+<li><code>readline()</code>: 读取打开文件的第一行, <strong>不会删除行结束符</strong></li>
+<li><code>readlines()</code>: 读取所有行并把他们作为一个字符串列表返回</li>
+<li><code>write()</code>: 写入, <strong>但不会自动加入换行符</strong></li>
+<li><code>writelines()</code>: 将列表写入, <strong>但不会自动加入换行符</strong></li>
+<li>文件对象可以直接作为文件迭代器:</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"> <span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="err">`</span><span class="n">abc</span><span class="o">.</span><span class="n">txt</span><span class="err">`</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"> <span class="k">for</span> <span class="n">eachLine</span> <span class="ow">in</span> <span class="n">f</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">     <span class="nb">print</span> <span class="n">eachLine</span>
+</span></span><span class="line"><span class="cl"> <span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="错误和异常">错误和异常</h2>
+<p>有些行为, 比如用户退出或者系统退出并不应该被捕获, 需要提前处理:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">try</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="k">pass</span>
+</span></span><span class="line"><span class="cl"><span class="k">except</span> <span class="p">(</span><span class="ne">KeyboardInterrupt</span><span class="p">,</span> <span class="ne">SystemExit</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># 系统或者用户退出</span>
+</span></span><span class="line"><span class="cl">    <span class="k">raise</span>
+</span></span><span class="line"><span class="cl"><span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># 处理真正的错误</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>2.5版本之后, KeyboardInterrupt和SystemExit被从Exception里移出和Exception平级, 因此不必单独处理这两种情况:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">try</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="k">pass</span>
+</span></span><span class="line"><span class="cl"><span class="k">except</span> <span class="ne">Exception</span><span class="p">,</span> <span class="n">e</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># 处理错误</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>最后, Exception的父类是BaseException</p>
+<h3 id="上下文管理">上下文管理</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;abc.txt&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="k">pass</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="断言">断言</h3>
+<p>一个用try语句捕捉断言产生的错误的例子:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">try</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="k">assert</span> <span class="mi">1</span> <span class="o">==</span> <span class="mi">0</span><span class="p">,</span> <span class="s2">&#34;That&#39;s reall silly&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="k">except</span> <span class="ne">AssertionError</span><span class="p">,</span> <span class="n">args</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span> <span class="p">(</span><span class="s1">&#39;</span><span class="si">%s</span><span class="s1">: </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">args</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span> <span class="n">args</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2017-08-18</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/2017-08-18-core-python-programming-1/index.md" target="_blank">Read Markdown</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="http://xxuan.cc/2017-08-18-core-python-programming-1/" data-title="Python核心编程笔记1 基础知识" data-hashtags="python"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="http://xxuan.cc/2017-08-18-core-python-programming-1/" data-hashtag="python"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="http://xxuan.cc/2017-08-18-core-python-programming-1/" data-title="Python核心编程笔记1 基础知识"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="http://xxuan.cc/2017-08-18-core-python-programming-1/" data-title="Python核心编程笔记1 基础知识"><i data-svg-src="/lib/simple-icons/icons/line.min.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="http://xxuan.cc/2017-08-18-core-python-programming-1/" data-title="Python核心编程笔记1 基础知识"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/python/">python</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/2017-08-08-poisson/" class="prev" rel="prev" title="Poisson Distribution Summary"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>Poisson Distribution Summary</a>
+            <a href="/2017-08-20-python-functional-programming/" class="next" rel="next" title="Python核心编程笔记2 函数式编程">Python核心编程笔记2 函数式编程<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+<div id="comments"><div id="disqus_thread" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://disqus.com/?ref_noscript">Disqus</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.102.2">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2016 - 2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">xiaoxuan</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/cookieconsent/cookieconsent.min.css"><script type="text/javascript" src="https://xxuan-cc.disqus.com/embed.js" defer></script><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/mhchem.min.js"></script><script type="text/javascript" src="/lib/cookieconsent/cookieconsent.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{},"cookieconsent":{"content":{"dismiss":"Got it!","link":"Learn more","message":"This website uses Cookies to improve your experience."},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":50,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

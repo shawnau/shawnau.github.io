@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>Hidden Markov Model - Laniakea</title><meta name="Description" content="xxuan&#39;s blog"><meta property="og:title" content="Hidden Markov Model" />
+<meta property="og:description" content="
+使用HMM的赌徒, 你还好吗? hmmm&hellip;." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://xxuan.cc/2018-02-03-hmm/" /><meta property="og:image" content="http://xxuan.cc/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2018-02-03T18:04:28+00:00" />
+<meta property="article:modified_time" content="2018-02-03T18:04:28+00:00" /><meta property="og:site_name" content="xxuan.cc" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="http://xxuan.cc/logo.png"/>
+
+<meta name="twitter:title" content="Hidden Markov Model"/>
+<meta name="twitter:description" content="
+使用HMM的赌徒, 你还好吗? hmmm&hellip;."/>
+<meta name="application-name" content="Laniakea">
+<meta name="apple-mobile-web-app-title" content="Laniakea"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://xxuan.cc/2018-02-03-hmm/" /><link rel="prev" href="http://xxuan.cc/2018-01-29-lstm/" /><link rel="next" href="http://xxuan.cc/2018-02-03-crf/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" href="/lib/animate/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Hidden Markov Model",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/xxuan.cc\/2018-02-03-hmm\/"
+        },"genre": "posts","keywords": "HMM, PGM, NLP","wordcount":  2367 ,
+        "url": "http:\/\/xxuan.cc\/2018-02-03-hmm\/","datePublished": "2018-02-03T18:04:28+00:00","dateModified": "2018-02-03T18:04:28+00:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "xiaoxuan"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Laniakea">Laniakea</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/" title="存档脑细胞"> 文章 </a><a class="menu-item" href="/playground/" title="玩耍算法题的地方"> 练习场 </a><a class="menu-item" href="/code/" title="存放大概率过期的代码"> 码农 </a><a class="menu-item" href="/tags/" title="标签"> Tags </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Laniakea">Laniakea</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="存档脑细胞">文章</a><a class="menu-item" href="/playground/" title="玩耍算法题的地方">练习场</a><a class="menu-item" href="/code/" title="存放大概率过期的代码">码农</a><a class="menu-item" href="/tags/" title="标签">Tags</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Hidden Markov Model</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>xiaoxuan</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2018-02-03">2018-02-03</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;2367 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;5 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="true">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#0-定义">0. 定义</a>
+      <ul>
+        <li><a href="#00-符号表">0.0 符号表</a></li>
+        <li><a href="#01-基本假设">0.1 基本假设</a></li>
+        <li><a href="#02-基本问题">0.2 基本问题</a></li>
+      </ul>
+    </li>
+    <li><a href="#1-概率计算">1. 概率计算</a>
+      <ul>
+        <li><a href="#11-直接计算">1.1 直接计算</a></li>
+        <li><a href="#12-前向算法">1.2 前向算法</a></li>
+        <li><a href="#13-后向算法">1.3 后向算法</a></li>
+        <li><a href="#14-小结">1.4 小结</a></li>
+      </ul>
+    </li>
+    <li><a href="#2-学习问题">2. 学习问题</a>
+      <ul>
+        <li><a href="#21-supervised-mle">2.1 Supervised: MLE</a></li>
+        <li><a href="#22-non-supervised-baum-welch">2.2 Non-Supervised: Baum-Welch</a></li>
+      </ul>
+    </li>
+    <li><a href="#3-decode">3. Decode</a>
+      <ul>
+        <li><a href="#31-viterbi算法">3.1 Viterbi算法</a></li>
+      </ul>
+    </li>
+    <li><a href="#4-python-实现">4. Python 实现</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/4099531_p0_master1200.jpg"
+        data-srcset="http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/4099531_p0_master1200.jpg, http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/4099531_p0_master1200.jpg 1.5x, http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/4099531_p0_master1200.jpg 2x"
+        data-sizes="auto"
+        alt="http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/4099531_p0_master1200.jpg"
+        title="http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/4099531_p0_master1200.jpg" />
+使用HMM的赌徒, 你还好吗? hmmm&hellip;.</p>
+<h2 id="0-定义">0. 定义</h2>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/HMM.png"
+        data-srcset="http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/HMM.png, http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/HMM.png 1.5x, http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/HMM.png 2x"
+        data-sizes="auto"
+        alt="http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/HMM.png"
+        title="HMM" /></p>
+<p>如图所示, 线性HMM由状态$V$和观察$Q$的序列$I$和$O$组成,  其中$I$是马尔科夫链(Markov Chain). 状态之间通过转移矩阵$A$(transition)决定状态转移的概率分布, 每一时间步的状态通过观察矩阵$B$(emission)决定观察结果的概率分布.而状态一般是未知的.</p>
+<h3 id="00-符号表">0.0 符号表</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">符号</th>
+<th>含义</th>
+<th style="text-align:center">备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">$Q = \lbrace q_1, q_2, \cdots, q_{N_Q} \rbrace$</td>
+<td>状态(state)</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">$I = (I_1, I_2, \cdots, I_T)$</td>
+<td>状态序列</td>
+<td style="text-align:center">$I_t \in Q$</td>
+</tr>
+<tr>
+<td style="text-align:left">$V = \lbrace v_1, v_2, \cdots, v_{N_V} \rbrace$</td>
+<td>观察(observation)</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">$O = (o_1, o_2, \cdots, o_T )$</td>
+<td>观察序列</td>
+<td style="text-align:center">$o_t \in V$</td>
+</tr>
+<tr>
+<td style="text-align:left">$A_{ij} \in R^{N_Q \times N_Q}$</td>
+<td>状态转移矩阵</td>
+<td style="text-align:center">$P(I_t = q_j \lvert I_{t-1} =  q_i)$</td>
+</tr>
+<tr>
+<td style="text-align:left">$B_{q_i}(v_j ) \in R^{N_Q \times N_V}$</td>
+<td>观测概率矩阵(emission)</td>
+<td style="text-align:center">$P(o_t = v_j \lvert I_t =  q_i)$</td>
+</tr>
+<tr>
+<td style="text-align:left">$\pi \in R^{N_Q}$</td>
+<td>初始状态分布</td>
+<td style="text-align:center">$P(I_1 = q_i)$</td>
+</tr>
+<tr>
+<td style="text-align:left">$\lambda=(\pi, A, B)$</td>
+<td>模型参数</td>
+<td style="text-align:center">HMM的参数由$\lambda$组成</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>状态转移矩阵代表了从状态$q_i$转移到$q_j$的概率</li>
+<li>观测概率矩阵代表了从状态$q_i$观察到输出$v_j$的概率</li>
+</ul>
+<h3 id="01-基本假设">0.1 基本假设</h3>
+<ol>
+<li><strong>一阶齐次Markov假设</strong>: 任意时刻的状态$I_t$只依赖于前一时刻的状态$I_{t-1}$</li>
+<li>任意时刻的观察$O_t$只依赖于该时刻的状态$I_t$</li>
+</ol>
+<h3 id="02-基本问题">0.2 基本问题</h3>
+<p>HMM作为一个生成模型, 也涉及<strong>概率计算</strong>, <strong>学习问题</strong>和<strong>预测问题</strong>(也叫decoding)</p>
+<ol>
+<li>概率计算: 已知$\lambda$, 求$P(O|\lambda)$</li>
+<li>学习问题: 已知$O$, 求$arg\max\limits_{\lambda}P(O|\lambda)$</li>
+<li>预测问题: 已知$O, \lambda$, 求$arg\max\limits_{I}P(I|O, \lambda)$</li>
+</ol>
+<h2 id="1-概率计算">1. 概率计算</h2>
+<p>已知$\lambda=(A, B, \pi)$, 计算观测序列$O$出现的概率$P(O|\lambda)$.</p>
+<h3 id="11-直接计算">1.1 直接计算</h3>
+<p>在已知$O$的情况下, 需要知道所有可能的状态序列$I$, 对所有状态序列与观察结果的联合概率分布求和.</p>
+<ol>
+<li>状态序列$(I_1, I_2, \cdots, I_T)$的概率为
+$$
+P(I) = \pi_{I_1} \prod_{t=2}^{T} A_{I_{t-1} I_t}
+\tag{1.1.1}
+$$</li>
+<li>状态序列为$I$, 观测序列为$O$的概率为
+$$
+\begin{align}
+P(O, I) &amp;= P(O | I)P(I) \\
+&amp;= \pi_{I_1}B_{I_1}(o_1) \prod_{t=2}^{T} A_{I_{t-1} I_t}B_{I_t}(o_t)
+\end{align}
+\tag{1.1.2}
+$$</li>
+<li>对所有可能的$I$求和, 时间复杂度为$O(N_V^T)$, 每次计算时间复杂度为$O(T)$, 总复杂度为$O(TN_V^T)$
+$$
+P(O) = \sum_I P(O, I)
+$$</li>
+</ol>
+<h3 id="12-前向算法">1.2 前向算法</h3>
+<p>对所有的$I$求和, 由于每一步$I$都可能属于$Q$中的任何一个, 相当于在以下$N \times T$矩阵中寻找从左边到右边的所有路径的概率和.
+$$
+\begin{align}
+&amp;\begin{bmatrix}
+o_1 &amp; o_2 &amp; \cdots &amp; o_T\\
+\end{bmatrix} \\
+&amp;\begin{bmatrix}
+q_1 &amp; q_1 &amp; \cdots &amp; q_1 \\
+q_2 &amp; q_2 &amp; \cdots &amp; q_2 \\
+\vdots &amp; \vdots &amp; \ddots &amp; \vdots \\
+q_N &amp; q_N &amp; \cdots &amp; q_N \\
+\end{bmatrix}
+\end{align}
+\tag{1.2.1}
+$$</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/7.PNG"
+        data-srcset="http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/7.PNG, http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/7.PNG 1.5x, http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/7.PNG 2x"
+        data-sizes="auto"
+        alt="http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/7.PNG"
+        title="http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/7.PNG" />
+(示意图, 侵删)</p>
+<p>对所有的路径求和涉及到大量的重复运算. 假设已经计算出了$(I_1, I_2, \cdots, I_t=q_t)$的所有可能的路径的概率之和, 那么在计算$(I_1, I_2, \cdots, I_{t+1})$时, 所有经过节点$I_t=q_t$的路径即可复用之前的计算结果. 写成递推式即为:
+$$
+\alpha_{t+1}(q_i) = \sum_{j=1}^N \alpha_t(q_j) A_{ji}
+\tag{1.2.2}
+$$
+输出是已知的, 可以求出给定输出的概率为:
+$$
+\alpha_{t+1}(q_i) = B_{q_i}(o_{t+1})\sum_{j=1}^N \alpha_t(q_j) A_{ji}
+\tag{1.2.3}
+$$
+其中
+$$\alpha_{t}(q_i) = P((o_1, o_2, \cdots, o_t), I_t=q_i)\tag{1.2.4}$$
+使用此式递推, 时间复杂度为$O(TN^2)$</p>
+<h3 id="13-后向算法">1.3 后向算法</h3>
+<p>类似地定义后向算法. 假设已经计算出了$(I_t=q_i, I_{t+1}, \cdots, I_T)$的所有可能的路径的概率之和, 那么在计算$(I_{t-1}, I_t, \cdots, I_T)$时, 所有经过节点$I_t=q_t$的路径即可复用之前的计算结果.
+$$
+\beta_{t-1}(q_i) = \sum_{j=1}^N A_{ij} \beta_{t}(q_j) B_{q_j}(o_{t})
+\tag{1.3.1}
+$$
+其中
+$$\beta_{t}(q_i) = P((o_{t+1}, o_{t+2}, \cdots, o_T), I_t=q_i)\tag{1.3.2}$$</p>
+<h3 id="14-小结">1.4 小结</h3>
+<p>结合前向和后向算法的表达式, 可以发现
+$$
+P(O, I_t=q_i) = \alpha_{t}(q_i) \beta_{t}(q_i)
+\tag{1.4.1}
+$$
+给定输出$O$, 状态$I_t=q_i$的概率可以利用全概率公式得到:
+$$
+\begin{align}
+\gamma_t(q_i)=P(I_t=q_i|O) &amp;= \frac{P(O, I_t=q_i)}{P(O)} \\
+&amp;= \frac{P(O, I_t=q_i)}{\sum_j P(O, I_t=q_j)} \\
+&amp;= \frac{\alpha_{t}(I_t=q_i) \beta_{t}(I_t=q_i)}{\sum_j \alpha_{t}(I_t=q_j) \beta_{t}(I_t=q_j)}
+\end{align}
+\tag{1.4.2}
+$$
+类似方法可以求出给定输出$O$, 状态$I_t=q_i$, $I_{t+1}=q_j$的概率:
+$$
+\begin{align}
+\xi_t(q_i, q_j) &amp;= P(I_t=q_i, I_{t+1}=q_j|O) \\
+&amp;=\frac{P(I_t=q_i, I_{t+1}=q_j, O)}{P(O)} \\
+&amp;=\frac{P(I_t=q_i, I_{t+1}=q_j, O)}{\sum_i \sum_j P(I_t=q_i, I_{t+1}=q_j, O)}
+\end{align}
+\tag{1.4.3}
+$$
+其中$P(I_t=q_i, I_{t+1}=q_j, O)=\alpha_t(q_i)A_{ij}B_{q_j}(o_{t+1})\beta_{t+1}(q_j)$
+$(1.4.1)$和$(1.4.3)$可以被用于化简学习问题的求解</p>
+<h2 id="2-学习问题">2. 学习问题</h2>
+<h3 id="21-supervised-mle">2.1 Supervised: MLE</h3>
+<p>已知$I, O$, 求$A, B$的MLE, 直接用频数计算
+$$
+A_{ij} = \frac{\sum\limits_{t=1}^{T-1} I(I_t = q_i, I_{t+1} = q_j)}{\sum\limits_{t=1}^{T-1} \sum\limits_{j=1}^{N_Q} I(I_t = q_i, I_{t+1} = q_j)}
+\tag{2.1.1}
+$$</p>
+<p>$$
+B_{q_i}(v_j) = \frac{\sum\limits_{t=1}^{T-1} I(I_t = q_i, o_t = v_j)}{\sum\limits_{t=1}^{T-1} \sum\limits_{j=1}^{N_V} I(I_t = q_i, o_t = v_j)}
+\tag{2.1.2}
+$$</p>
+<h3 id="22-non-supervised-baum-welch">2.2 Non-Supervised: Baum-Welch</h3>
+<p>只知道$O$, 不知道$I$, 求$A, B$的MLE, 采用EM算法</p>
+<ol>
+<li>E步: 给定参数先验$\overline \lambda$, 计算Q函数
+$$Q(\lambda, \overline \lambda) = \sum\limits_I  P(I| O, \overline \lambda) logP(I, O | \lambda) \tag{2.2.1}$$</li>
+<li>M步: 求$Q(\lambda, \overline\lambda)$对$\lambda$的最大值
+$$ \max\limits_{\lambda} \sum\limits_I  P(I| O, \overline \lambda) logP(I, O | \lambda) \tag{2.2.2}$$</li>
+<li>$\overline \lambda = \lambda$, 重复1和2.</li>
+</ol>
+<p>由于
+$$
+P(I | O, \overline \lambda) = \frac{P(I, O| \overline \lambda)}{P(O | \overline \lambda)}
+\tag{2.2.3}
+$$
+而优化目标是最大化$P(I, O | \lambda)$对$I$的期望,和$P(O | \overline \lambda)$无关 故可以用$P(I, O| \overline \lambda)$替代</p>
+<p>其中
+$$
+P(I, O | \lambda) = \pi_{I_1} B_{I_1}(o_1)\prod\limits_{t=1}^{T-1} A_{I_{t}I_{t+1}}B_{I_{t+1}}(o_{t+1}) \tag{2.2.4}
+$$
+将$(2.2.4)$带入$(2.2.2)$, 使用拉格朗日乘子法可以求出$\lambda$</p>
+<p>$$
+\pi_{q_i} = \gamma_1(q_i) \\
+A_{ij} = \frac{\sum\limits_{t=1}^{T-1}\xi_t(q_i, q_j)}{\sum\limits_{t=1}^{T-1} \gamma_t(q_i)} \\
+B_{q_i}(v_j) = \frac{\sum\limits_{t=1}^{T-1} [\gamma_t(q_i) I(o_t=v_j)]}{\sum\limits_{t=1}^{T-1} \gamma_t(q_i)}
+\tag{2.2.5}
+$$</p>
+<h2 id="3-decode">3. Decode</h2>
+<p>已知$\lambda=(A, B, \pi), O=(o_1, o_2, \cdots, o_T)$, 求使得$P(I|O,\lambda)$最大的状态序列$I$. 由于
+$$P(I | O, \lambda) = \frac{P(I, O| \lambda)}{P(O | \lambda)}$$
+而$P(O | \lambda)$与状态序列$I$无关, 因此该问题等价于
+$$
+\begin{align}
+\max\limits_{I} P(I|O, \lambda) &amp; \Leftrightarrow \max\limits_{I} P(I, O| \lambda) \\
+&amp; \Leftrightarrow \max\limits_{I} \prod\limits_{t=0}^{T-1} A_{I_{t}I_{t+1}}B_{I_{t+1}}(o_{t+1})
+\end{align}
+\tag{3.1}
+$$
+其中为了简化计算, 令$A_{I_0I_1} = \pi_{I_1}$.</p>
+<p>由此可见, 问题转化为在$(1.2.1)$中找到一条路径使得$(4.1)$最大. 可以使用类似于Dijkstra算法的动态规划, 只不过这里加权路径使用的是累乘计算. 该算法被称为Viterbi算法. 由于图是层次的, 因此比Dijkstra算法简单</p>
+<h3 id="31-viterbi算法">3.1 Viterbi算法</h3>
+<ol>
+<li>初始化
+$$
+\delta_1(q_i) = \pi_{q_i} \\
+\phi_1(q_i) = 0
+\tag{3.1.1}
+$$</li>
+<li>递推. 对$t=[2, T]$:
+$$
+\delta_t(q_i) = \max\limits_{1 \leq j \leq N_Q} [\delta_{t-1}(q_j)A_{ji}] B_{q_i}(o_t) \\
+\phi_t(q_i) = arg\max\limits_{1 \leq j \leq N_Q} [\delta_{t-1}(q_j)A_{ji}]
+\tag{3.1.2}
+$$</li>
+<li>终止
+$$
+P = \max\limits_{1 \leq i \leq N_Q} \delta_T(q_i) \\
+I_T = arg\max\limits_{1 \leq i \leq N_Q} \delta_T(q_i)
+\tag{3.1.3}
+$$</li>
+<li>逆推最优状态序列. 对$t=T-1, T-2, \cdots, 1$
+$$
+I_t = \phi_{t+1}(I_{t+1})
+\tag{3.1.4}
+$$</li>
+</ol>
+<p>其中
+$$
+\delta_t(q_i)=\max\limits_{I_i \cdots I_{t-1}} P((I_1, I_2, \cdots, I_t=q_i), O | \lambda)
+\tag{3.1.5}
+$$
+$\delta_t(q_i)$代表输出为$O$且以$q_i$结尾长度为$t$的任意状态序列的最大联合概率
+$\phi_t(q_i)$代表$(3.1.5)$时的$I_{t-1}$, 顺着逆推即可得到概率最大路径</p>
+<h2 id="4-python-实现">4. Python 实现</h2>
+<blockquote>
+<p>to be continued&hellip;.</p>
+</blockquote></div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2018-02-03</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/2018-02-03-hmm/index.md" target="_blank">Read Markdown</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="http://xxuan.cc/2018-02-03-hmm/" data-title="Hidden Markov Model" data-hashtags="HMM,PGM,NLP"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="http://xxuan.cc/2018-02-03-hmm/" data-hashtag="HMM"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="http://xxuan.cc/2018-02-03-hmm/" data-title="Hidden Markov Model"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="http://xxuan.cc/2018-02-03-hmm/" data-title="Hidden Markov Model"><i data-svg-src="/lib/simple-icons/icons/line.min.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="http://xxuan.cc/2018-02-03-hmm/" data-title="Hidden Markov Model"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/hmm/">HMM</a>,&nbsp;<a href="/tags/pgm/">PGM</a>,&nbsp;<a href="/tags/nlp/">NLP</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/2018-01-29-lstm/" class="prev" rel="prev" title="循环神经网络的前世今生"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>循环神经网络的前世今生</a>
+            <a href="/2018-02-03-crf/" class="next" rel="next" title="对数线性模型, MEMM与CRF">对数线性模型, MEMM与CRF<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+<div id="comments"><div id="disqus_thread" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://disqus.com/?ref_noscript">Disqus</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.102.2">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2016 - 2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">xiaoxuan</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/cookieconsent/cookieconsent.min.css"><script type="text/javascript" src="https://xxuan-cc.disqus.com/embed.js" defer></script><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/mhchem.min.js"></script><script type="text/javascript" src="/lib/cookieconsent/cookieconsent.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{},"cookieconsent":{"content":{"dismiss":"Got it!","link":"Learn more","message":"This website uses Cookies to improve your experience."},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":50,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

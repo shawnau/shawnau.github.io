@@ -1,0 +1,38 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>NLP - Tag - Laniakea</title>
+        <link>http://xxuan.cc/tags/nlp/</link>
+        <description>NLP - Tag - Laniakea</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>shawn_au@outlook.com (xiaoxuan)</managingEditor>
+            <webMaster>shawn_au@outlook.com (xiaoxuan)</webMaster><lastBuildDate>Sat, 03 Feb 2018 19:03:23 &#43;0000</lastBuildDate><atom:link href="http://xxuan.cc/tags/nlp/" rel="self" type="application/rss+xml" /><item>
+    <title>对数线性模型, MEMM与CRF</title>
+    <link>http://xxuan.cc/2018-02-03-crf/</link>
+    <pubDate>Sat, 03 Feb 2018 19:03:23 &#43;0000</pubDate>
+    <author>xiaoxuan</author>
+    <guid>http://xxuan.cc/2018-02-03-crf/</guid>
+    <description><![CDATA[<p></p>
+<blockquote>
+<p>你的PGM也会和Steins Gate的世界线一样收束吗?</p>
+</blockquote>
+<p>可能是有史以来公式最多的文章. 敲到吐血</p>]]></description>
+</item>
+<item>
+    <title>Hidden Markov Model</title>
+    <link>http://xxuan.cc/2018-02-03-hmm/</link>
+    <pubDate>Sat, 03 Feb 2018 18:04:28 &#43;0000</pubDate>
+    <author>xiaoxuan</author>
+    <guid>http://xxuan.cc/2018-02-03-hmm/</guid>
+    <description><![CDATA[<p>
+使用HMM的赌徒, 你还好吗? hmmm&hellip;.</p>]]></description>
+</item>
+<item>
+    <title>循环神经网络的前世今生</title>
+    <link>http://xxuan.cc/2018-01-29-lstm/</link>
+    <pubDate>Mon, 29 Jan 2018 15:27:59 &#43;0000</pubDate>
+    <author>xiaoxuan</author>
+    <guid>http://xxuan.cc/2018-01-29-lstm/</guid>
+    <description><![CDATA[<p>
+新年第一篇, 和永无止境的八月一样循环的神经网络(其实是存货</p>]]></description>
+</item>
+</channel>
+</rss>

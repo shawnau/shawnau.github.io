@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>支持向量机(SVM) - Laniakea</title><meta name="Description" content="xxuan&#39;s blog"><meta property="og:title" content="支持向量机(SVM)" />
+<meta property="og:description" content="旧文章的翻译, 主要参考自李航的统计学习方法一书." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://xxuan.cc/2017-03-24-svm-cn/" /><meta property="og:image" content="http://xxuan.cc/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2017-03-24T23:02:02+00:00" />
+<meta property="article:modified_time" content="2017-03-24T23:02:02+00:00" /><meta property="og:site_name" content="xxuan.cc" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="http://xxuan.cc/logo.png"/>
+
+<meta name="twitter:title" content="支持向量机(SVM)"/>
+<meta name="twitter:description" content="旧文章的翻译, 主要参考自李航的统计学习方法一书."/>
+<meta name="application-name" content="Laniakea">
+<meta name="apple-mobile-web-app-title" content="Laniakea"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://xxuan.cc/2017-03-24-svm-cn/" /><link rel="prev" href="http://xxuan.cc/2017-03-22-naive-bayes/" /><link rel="next" href="http://xxuan.cc/2017-03-24-adaboost/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" href="/lib/animate/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "支持向量机(SVM)",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/xxuan.cc\/2017-03-24-svm-cn\/"
+        },"genre": "posts","keywords": "SVM, machine learning","wordcount":  2165 ,
+        "url": "http:\/\/xxuan.cc\/2017-03-24-svm-cn\/","datePublished": "2017-03-24T23:02:02+00:00","dateModified": "2017-03-24T23:02:02+00:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "xiaoxuan"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Laniakea">Laniakea</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/" title="存档脑细胞"> 文章 </a><a class="menu-item" href="/playground/" title="玩耍算法题的地方"> 练习场 </a><a class="menu-item" href="/code/" title="存放大概率过期的代码"> 码农 </a><a class="menu-item" href="/tags/" title="标签"> Tags </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Laniakea">Laniakea</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="存档脑细胞">文章</a><a class="menu-item" href="/playground/" title="玩耍算法题的地方">练习场</a><a class="menu-item" href="/code/" title="存放大概率过期的代码">码农</a><a class="menu-item" href="/tags/" title="标签">Tags</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">支持向量机(SVM)</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>xiaoxuan</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2017-03-24">2017-03-24</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;2165 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;5 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="true">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#第一部分-基本概念">第一部分 基本概念</a>
+      <ul>
+        <li><a href="#11-超平面hyperplane">1.1 超平面(Hyperplane)</a></li>
+        <li><a href="#12-间隔margin">1.2 间隔(Margin)</a></li>
+        <li><a href="#13-寻找更好的分隔">1.3 寻找更好的分隔</a></li>
+        <li><a href="#14-硬间隔最大化-找到最大间隔是svm的目标">1.4 硬间隔最大化: 找到最大间隔是SVM的目标</a></li>
+        <li><a href="#16-软间隔最大化">1.6 软间隔最大化</a></li>
+        <li><a href="#17-support-vector-支持向量">1.7 Support Vector (支持向量)</a></li>
+      </ul>
+    </li>
+    <li><a href="#第二部分-解决硬间隔最大化问题">第二部分: 解决硬间隔最大化问题</a>
+      <ul>
+        <li><a href="#21-解决硬间隔最大化问题">2.1 解决硬间隔最大化问题</a></li>
+        <li><a href="#22-求解-minlimits_wb-lwbalpha">2.2 求解 $\min\limits_{w,b} L(w,b,\alpha)$</a></li>
+        <li><a href="#23-求解-alpha">2.3 求解 $\alpha$</a></li>
+        <li><a href="#24-求解-wb">2.4 求解 $w,b$</a></li>
+      </ul>
+    </li>
+    <li><a href="#第三部分-解决软间隔最大化问题">第三部分: 解决软间隔最大化问题</a>
+      <ul>
+        <li><a href="#31-求解-minlimits_wb-lwbxialphamu">3.1 求解 $\min\limits_{w,b} L(w,b,\xi,\alpha,\mu)$</a></li>
+        <li><a href="#32-求解-alpha">3.2 求解 $\alpha$</a></li>
+        <li><a href="#33-求解-wb">3.3 求解 $w,b$</a></li>
+        <li><a href="#34-svm的损失函数-合页损失函数hinge-loss-function">3.4 SVM的损失函数: 合页损失函数(Hinge loss function)</a></li>
+      </ul>
+    </li>
+    <li><a href="#第四部分-序列最小最优化算法">第四部分: 序列最小最优化算法</a>
+      <ul>
+        <li><a href="#41-问题描述">4.1 问题描述</a></li>
+        <li><a href="#42-序列化求解凸二次规划问题">4.2 序列化求解凸二次规划问题</a></li>
+        <li><a href="#43-启发式选择-alpha_1-alpha_2">4.3 启发式选择 $\alpha_1, \alpha_2$</a></li>
+        <li><a href="#44-计算新的-b-和-e_i">4.4 计算新的 $b$ 和 $E_i$</a></li>
+      </ul>
+    </li>
+    <li><a href="#第五部分-核函数方法">第五部分: 核函数方法</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><p>旧文章的翻译, 主要参考自李航的统计学习方法一书.</p>
+<hr>
+<h2 id="第一部分-基本概念">第一部分 基本概念</h2>
+<hr>
+<h3 id="11-超平面hyperplane">1.1 超平面(Hyperplane)</h3>
+<p>考虑一个二分类问题:
+$$\text{Training set: } T = \left \lbrace (x^{(1)}, y^{(1)}), (x^{(2)}, y^{(2)}) &hellip;(x^{(N)}, y^{(N)}) \right \rbrace \\
+\text{in which }x^{(i)} \in R^n, y^{(i)} \in \lbrace +1, -1 \rbrace, i=1,2&hellip;N$$</p>
+<p>假设样本空间线性可分, 则有超平面:
+$$ w \cdot x + b = 0 \text{, in which }w, b \in R^N$$</p>
+<hr>
+<h3 id="12-间隔margin">1.2 间隔(Margin)</h3>
+<ol>
+<li>
+<p>在希尔伯特空间中, <a href="http://mathworld.wolfram.com/Point-PlaneDistance.html" target="_blank" rel="noopener noreffer ">点到平面的距离是</a>:
+$$ \gamma^{(i)} = \left \vert \frac{w}{\Vert w \Vert} \cdot x^{(i)} + \frac{b}{\Vert w \Vert} \right \vert \tag{1.1}$$</p>
+</li>
+<li>
+<p>为了去掉绝对值, 令在超平面法向量一侧的$x^{(i)}$标记为+1, 另一侧的标记为-1, $\gamma^{(i)}$ 可以被定义为:
+$$ \gamma^{(i)} = y^{(i)} \left ( \frac{w}{\Vert w \Vert} \cdot x^{(i)} + \frac{b}{\Vert w \Vert} \right ) \tag{1.2}$$</p>
+</li>
+</ol>
+<hr>
+<h3 id="13-寻找更好的分隔">1.3 寻找更好的分隔</h3>
+<ol>
+<li>
+<p>预测函数 (Predicting function)<br>
+换句话说如果我们已经找到了超平面 $ w^{*} \cdot x + b^{*} = 0 $, 给定一个样本点 $x^{(i)}$, 预测函数是:
+$$y^{(i)} = f(x^{(i)}) = sign(w^{*} \cdot x^{(i)} + b^{*}) \tag{1.3}$$</p>
+</li>
+<li>
+<p>几何间隔 (Geometric margin)<br>
+几何间隔就是点到平面的最大距离:
+$$ \gamma = \min \limits_{i = 1,2&hellip;N} \quad \gamma^{(i)} \tag{1.4}$$</p>
+</li>
+<li>
+<p>函数间隔 (Functional margin)<br>
+函数间隔被定义为:
+$$ \hat \gamma^{(i)} = y^{(i)} \left ( w \cdot x^{(i)} + {b} \right ) =  {\Vert w \Vert} \gamma^{(i)} \tag{1.5}$$
+函数间隔可以被考虑为分类的置信度, 可以被用来简化运算</p>
+</li>
+</ol>
+<hr>
+<h3 id="14-硬间隔最大化-找到最大间隔是svm的目标">1.4 硬间隔最大化: 找到最大间隔是SVM的目标</h3>
+<p>$$ \begin{align}
+&amp;  \max \limits_{w,b}  \quad \gamma \\
+&amp; s.t. \quad y^{(i)} \left ( \frac{w}{\Vert w \Vert} \cdot x^{(i)} + \frac{b}{\Vert w \Vert} \right ) \ge \gamma , \quad i=1,2,&hellip;,N \tag{1.6}
+\end{align}$$</p>
+<p>使用函数间隔, 原问题可以被定义为:
+$$ \begin{align}
+&amp;  \max \limits_{w,b}  \quad \frac{\hat \gamma}{\Vert w \Vert} \\
+&amp; s.t. \quad y^{(i)} \left ( w \cdot x^{(i)} + {b} \right ) \ge \hat \gamma , \quad i=1,2,&hellip;,N
+\end{align} \tag{1.7}$$</p>
+<p>给定一个超平面, $\Vert w \Vert$ 和 $\Vert b \Vert$ 是可变的: $w$ 和 $b$ 只要保持比例相同,则超平面不变. 为了限制这两个变量,令 $\hat\gamma = 1$(<strong>这样就可以让 $\Vert w \Vert$ 保持不变</strong>), 问题最终被定义为:
+$$ \begin{align}
+&amp;  \min \limits_{w,b} \quad \frac{1}{2} {\Vert w \Vert}^2 \\
+&amp; s.t. \quad y^{(i)} \left ( w \cdot x^{(i)} + {b} \right ) - 1 \ge  0, \quad i=1,2,&hellip;,N
+\end{align} \tag{1.8}$$</p>
+<p>$\min \limits_{w,b} \frac{1}{2} {\Vert w \Vert}^2$ 和原始问题 $ \max \limits_{w,b} \frac{1}{\Vert w \Vert} $ 是等价的.</p>
+<hr>
+<h3 id="16-软间隔最大化">1.6 软间隔最大化</h3>
+<p>如果样本空间线性不可分, 为每个样本设置一个松弛变量 $\xi \in R^n$ 那么 (1.8) 成为:
+$$ y^{(i)} \left ( w \cdot x^{(i)} + {b} \right ) + \xi_i - 1 \ge  0 \tag{1.9}$$
+对每个样本支付代价 $\xi_i$ 目标函数变为:
+$$ \frac{1}{2} {\Vert w \Vert}^2 + C \sum\limits_{i=1}^{N}\xi_i \tag{1.10}$$
+$C$ 称为惩罚参数, 更大的$C$ 意味着对误分类的样本惩罚更大</p>
+<hr>
+<h3 id="17-support-vector-支持向量">1.7 Support Vector (支持向量)</h3>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/Svm_max_sep_hyperplane_with_margin.png"
+        data-srcset="http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/Svm_max_sep_hyperplane_with_margin.png, http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/Svm_max_sep_hyperplane_with_margin.png 1.5x, http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/Svm_max_sep_hyperplane_with_margin.png 2x"
+        data-sizes="auto"
+        alt="http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/Svm_max_sep_hyperplane_with_margin.png"
+        title="SV" />
+顾名思义, 支持向量是&quot;支持&quot;超平面的向量</p>
+<hr>
+<h2 id="第二部分-解决硬间隔最大化问题">第二部分: 解决硬间隔最大化问题</h2>
+<hr>
+<h3 id="21-解决硬间隔最大化问题">2.1 解决硬间隔最大化问题</h3>
+<p>(1.8) 是个凸二次规划问题
+使用<a href="https://www.wikiwand.com/en/Lagrange_multiplier" target="_blank" rel="noopener noreffer ">拉格朗日乘子法</a>, (1.8) 可以表示为:
+$$ L(w,b,\alpha) = \frac{1}{2} {\Vert w \Vert}^2 + \sum\limits_{i=1}^{N} \alpha_i (1-y^{(i)}(w \cdot x^{(i)} + b)), \alpha_i \ge 0 \tag{2.1}$$</p>
+<p>他的对偶问题是:
+$$\max\limits_{\alpha} \ \min\limits_{w,b} L(w,b,\alpha) \tag{2.2}$$</p>
+<hr>
+<h3 id="22-求解-minlimits_wb-lwbalpha">2.2 求解 $\min\limits_{w,b} L(w,b,\alpha)$</h3>
+<p>$$ \nabla_w  L(w,b,\alpha) = w -  \sum\limits_{i=1}^{N} \alpha_i y^{(i)} x^{(i)} = 0  \\
+\nabla_b  L(w,b,\alpha) = \sum\limits_{i=1}^{N} \alpha_i y^{(i)} = 0 \tag{2.3}$$</p>
+<p>组合(2.3) 和 (2.1), 得到如下对偶问题:
+$$ \begin{align}
+&amp; \max\limits_{\alpha} \left\lbrace - \frac{1}{2}  \sum\limits_{i=1}^{N}  \sum\limits_{j=1}^{N} \alpha_i \alpha_j y^{(i)} y^{(j)} (x^{(i)} \cdot x^{(j)}) + \sum\limits_{i=1}^{N} \alpha_i \right\rbrace  \\<br>
+&amp; s.t. \quad \sum\limits_{i=1}^{N} \alpha_i y^{(i)} = 0, \alpha_i \ge 0
+\end{align} \tag{2.4}$$</p>
+<hr>
+<h3 id="23-求解-alpha">2.3 求解 $\alpha$</h3>
+<p>$$ \begin{align}
+&amp; \min\limits_{\alpha} \left\lbrace \frac{1}{2}  \sum\limits_{i=1}^{N}  \sum\limits_{j=1}^{N} \alpha_i \alpha_j y^{(i)} y^{(j)} (x^{(i)} \cdot x^{(j)}) - \sum\limits_{i=1}^{N} \alpha_i \right\rbrace \\<br>
+&amp; s.t. \quad \sum\limits_{i=1}^{N} \alpha_i y^{(i)} = 0, \alpha_i \ge 0
+\end{align} \tag{2.5}$$</p>
+<p>$\alpha^{*}$ 需要满足KKT条件 (2.3), (2.4) 和 $ \alpha_i^{*} (1-y^{(i)}(w^{*} \cdot x^{(i)} + b^{*})) = 0 $</p>
+<hr>
+<h3 id="24-求解-wb">2.4 求解 $w,b$</h3>
+<p>一旦 $\alpha^{*}$ 已经求解出, 那么:
+$$ w^{*} =  \sum\limits_{i=1}^{N} \alpha_i^{*} y^{(i)} x^{(i)} \\
+b^{*} = y^{(j)} - \sum\limits_{i=1}^{N} \alpha_i^{*} y^{(i)} (x^{(i)} \cdot x^{(j)})
+\tag{2.6}$$
+其中$(x^{(j)}, y^{(j)})$ 满足: $ 1-y^{(j)}(w^{*} \cdot x^{(j)} + b^{*}) = 0 $, 这意味着该点是支持向量</p>
+<p>注意到当 $\alpha_i = 0$, $(x^{(i)}, y^{(i)})$ 对 $w$ 和 $b$ 没有任何贡献, 这就意味着只有少数满足$\alpha_i &gt; 0$, 即 $ 1-y^{(i)}(w^{*} \cdot x^{(i)} + b^{*}) = 0 $ 的支持向量决定了超平面.</p>
+<hr>
+<h2 id="第三部分-解决软间隔最大化问题">第三部分: 解决软间隔最大化问题</h2>
+<hr>
+<h3 id="31-求解-minlimits_wb-lwbxialphamu">3.1 求解 $\min\limits_{w,b} L(w,b,\xi,\alpha,\mu)$</h3>
+<p>二次凸优化问题是:
+$$ \begin{align}
+&amp; \min\limits_{w, \xi} \quad \frac{1}{2} {\Vert w \Vert}^2 + C \sum\limits_{i=1}^{N}\xi_i   \\
+s.t. \quad &amp; y^{(i)} \left ( w \cdot x^{(i)} + {b} \right ) + \xi_i - 1\ge  0 \
+&amp; \xi_i \ge 0\tag{1.10}
+\end{align}$$
+对(1.10)使用<a href="https://www.wikiwand.com/en/Lagrange%5c_multiplier" target="_blank" rel="noopener noreffer ">拉格朗日乘子法</a>, (1.10) 可以被表示为:</p>
+<p>$$ \begin{align}
+&amp; L(w,b,\xi,\alpha,\mu) = \frac{1}{2} {\Vert w \Vert}^2 + C \sum\limits_{i=1}^{N}\xi_i + \sum\limits_{i=1}^{N} \alpha_i (1 -\xi_i - y^{(i)}(w \cdot x^{(i)} + b)) + \sum\limits_{i=1}^{N} \mu_i(-\xi_i)
+\tag{3.1} \end{align}$$</p>
+<p>$$ \nabla_w  L(w,b,\xi,\alpha,\mu) = w -  \sum\limits_{i=1}^{N} \alpha_i y^{(i)} x^{(i)} = 0 \\
+\nabla_b  L(w,b,\xi,\alpha,\mu) = \sum\limits_{i=1}^{N} \alpha_i y^{(i)} = 0 \\
+\nabla_{\xi_i}  L(w,b,\xi,\alpha,\mu) = C-\alpha_i - \mu_i = 0
+\tag{3.2}$$</p>
+<p>幸运的是他们和 (2.4) 以及 (2.5) 有相同的形式</p>
+<hr>
+<h3 id="32-求解-alpha">3.2 求解 $\alpha$</h3>
+<p>软间隔最大化的对偶问题是:</p>
+<p>$ \begin{align}
+&amp; \min\limits_{\alpha} \quad \frac{1}{2}  \sum\limits_{i=1}^{N}  \sum\limits_{j=1}^{N} \alpha_i \alpha_j y^{(i)} y^{(j)} (x^{(i)} \cdot x^{(j)}) - \sum\limits_{i=1}^{N} \alpha_i
+\end{align} \tag{3.2}$</p>
+<p>$ s.t. \quad \sum\limits_{i=1}^{N} \alpha_i y^{(i)} = 0, \quad
+\alpha_i \ge 0, \quad
+\mu_i \ge 0, \quad
+C- \alpha_i-\mu_i =0
+\tag{3.3} $</p>
+<p>(3.3) 可以被简化为:</p>
+<p>$$ s.t. \quad \sum\limits_{i=1}^{N} \alpha_i y^{(i)} = 0, \quad 0 \le \alpha_i \le C \tag{3.4}$$</p>
+<hr>
+<h3 id="33-求解-wb">3.3 求解 $w,b$</h3>
+<p>一旦 $\alpha^{*}$ 被求解, 有:
+$$ w^{*} =  \sum\limits_{i=1}^{N} \alpha_i^{*} y^{(i)} x^{(i)} \\
+b^{*} = y^{(j)} - \sum\limits_{i=1}^{N} \alpha_i^{*} y^{(i)} (x^{(i)} \cdot x^{(j)})
+\tag{3.5}$$
+其中$(x^{(j)}, y^{(j)})$ 满足: $ 0 \le \alpha_j \le C $, 亦即 $ 1 - \xi_i -y^{(j)}(w^{*} \cdot x^{(j)} + b^{*})) = 0 $, 意味着这些向量满足在分类边界的区间之内.</p>
+<hr>
+<h3 id="34-svm的损失函数-合页损失函数hinge-loss-function">3.4 SVM的损失函数: 合页损失函数(Hinge loss function)</h3>
+<p>令 $\quad [ 1 - y^{(i)} \left ( w \cdot x^{(i)} + {b} \right ) ]_+ = \xi_i $, (1.10) 可以被表达为</p>
+<p>$$\min\limits_{w,b} \quad \sum\limits_{i=1}^N \xi_i + \lambda {\Vert w \Vert}^2 \tag{3.6}$$</p>
+<p>令 $\lambda = \frac{1}{2C}$, 和 (1.10) 是等价的, 那么损失函数可以被表示为:</p>
+<p>$$ \sum\limits_{i=1}^N[ 1 - y^{(i)} \left ( w \cdot x^{(i)} + {b} \right ) ]_+ +  \lambda {\Vert w \Vert}^2 \tag{3.7}$$</p>
+<p>称合页损失函数</p>
+<hr>
+<h2 id="第四部分-序列最小最优化算法">第四部分: 序列最小最优化算法</h2>
+<hr>
+<h3 id="41-问题描述">4.1 问题描述</h3>
+<p>优化问题是:
+$ \begin{align}
+&amp; \min\limits_{\alpha} \quad \frac{1}{2}  \sum\limits_{i=1}^{N}  \sum\limits_{j=1}^{N} \alpha_i \alpha_j y^{(i)} y^{(j)} K(x^{(i)},  x^{(j)}) - \sum\limits_{i=1}^{N} \alpha_i
+\end{align} \tag{3.2}$</p>
+<p>$ s.t. \quad \sum\limits_{i=1}^{N} \alpha_i y^{(i)} = 0, \quad 0 \le \alpha_i \le C \tag{3.4}$</p>
+<p>为了高效地解决这个优化问题, 引入序列最小最优化算法(Sequantial Minimal Optimization)</p>
+<hr>
+<h3 id="42-序列化求解凸二次规划问题">4.2 序列化求解凸二次规划问题</h3>
+<p>假设在所有 $\alpha_i$ 中, 只把 $\alpha_1, \alpha_2$ 当成变量, 所有其他 $\alpha_i(i \neq 1, 2)$ 都是常量,  $\alpha_2^{i}$ 是第 $\alpha_2$ 的第$i$次迭代结果, 为了表示方便首先定义一些变量:</p>
+<p>$$ L = \begin{cases}
+max\lbrace 0, \alpha_2^i - \alpha_1^i \rbrace,  &amp; y^{(1)} \neq y^{(2)} \\
+max\lbrace 0, \alpha_2^i + \alpha_1^i - C \rbrace,  &amp; y^{(1)} = y^{(2)}
+\end{cases}
+$$</p>
+<p>$$
+H =  \begin{cases}
+min \lbrace C, \alpha_2^i - \alpha_1^i + C \rbrace, &amp; y^{(1)} \neq y^{(2)} \\
+min \lbrace C, \alpha_2^i + \alpha_1^i \rbrace, &amp; y^{(1)} = y^{(2)}
+\end{cases}
+$$</p>
+<p>$$E_i = g(x^{(i)}) - y^{(i)} = \left( \sum\limits_{j=1}^{N} \alpha_j y^{(j)} K(x^{(i)},  x^{(j)})+b \right)- y^{(i)}
+\tag{SMO.1}$$</p>
+<p>那么利用 $H$ 和 $L$ 去约束 $\alpha_2$, 在第 $(i+1)$ 次迭代中:</p>
+<p>$$ \alpha_2^{i+1, unc} = \alpha_2^{i} + \frac { y^{(2)}(E_1 - E_2)}{K_{11}+K_{22}-2K_{12}} \tag{SMO.2}$$</p>
+<p>$$ \alpha_2^{i+1} =
+\begin{cases}
+H, &amp; \alpha_2^{i+1, unc} &gt; H \\
+\alpha_2^{i+1, unc}, &amp; L \le \alpha_2^{i+1, unc} \le H \\
+L, &amp; \alpha_2^{i+1, unc} &lt; L
+\end{cases}
+\tag{SMO.3}
+$$</p>
+<p>$$  \alpha_1^{i+1} = \alpha_1^{i} + y^{(1)}y^{(2)}(\alpha_2^{i} - \alpha_2^{i+1}) \tag{SMO.4} $$</p>
+<hr>
+<h3 id="43-启发式选择-alpha_1-alpha_2">4.3 启发式选择 $\alpha_1, \alpha_2$</h3>
+<p>对每个 $\alpha_i$, KKT约束是:
+$$ \begin{align}
+\alpha_i = 0 \quad &amp; \Leftrightarrow \quad y^{(i)} g(x^{(i)}) \ge 1 \quad \text{(Out of the border)} \\
+0 &lt; \alpha_i &lt; C \quad &amp; \Leftrightarrow \quad y^{(i)} g(x^{(i)}) = 1 \quad \text{(On the border)} \\
+\alpha_i = C \quad &amp; \Leftrightarrow \quad y^{(i)} g(x^{(i)}) \le 1 \quad \text{(Inside the border)}
+\end{align}
+\tag{SMO.5} $$</p>
+<ol>
+<li>选择 $\alpha_1$:</li>
+</ol>
+<ul>
+<li>遍历所有满足$0 &lt; \alpha_i &lt; C$的点, 检查他们是否满足KKT条件, 若满足则再遍历整个训练集</li>
+</ul>
+<ol start="2">
+<li>选择 $\alpha_2$:</li>
+</ol>
+<ul>
+<li>寻找一个样本 $(x^{(i)}, y^{(i)})$ 使得 $\vert E^i_1 - E^i_2 \vert$ 有最大的变动. 为了节省运算量, 提前缓存 $E_i$</li>
+</ul>
+<hr>
+<h3 id="44-计算新的-b-和-e_i">4.4 计算新的 $b$ 和 $E_i$</h3>
+<ol>
+<li>计算 $b$
+$$ b_1^{i+1} = b^i -[E_1^i + y^{(1)}K_{11}(\alpha_1^{i+1} - \alpha_1^{i}) + y^{(2)}K_{21}(\alpha_2^{i+1} - \alpha_2^{i}) ] \\
+b_2^{i+1} = b^i -[E_2^i + y^{(1)}K_{12}(\alpha_1^{i+1} - \alpha_1^{i}) + y^{(2)}K_{22}(\alpha_2^{i+1} - \alpha_2^{i}) ]
+\tag{SMO.6} $$</li>
+</ol>
+<p>$$b^{i+1} =
+\begin{cases}
+b_{1}^{i+1} = b_{2}^{i+1}, &amp; 0 &lt;   \alpha_1^{i+1}, \alpha_2^{i+1} &lt; C \\
+\frac {1}{2} (b_{1}^{i+1} + b_{2}^{i+1}), &amp; \alpha_1^{i+1}, \alpha_2^{i+1} = 0 ; or ; C
+\end{cases}
+$$
+2. Calculate $E_i$ using $\alpha_1^{i+1}, \alpha_2^{i+1}, b^{i+1}$
+$$ E_i = \sum\limits_{j \in S} \alpha_j y^{(j)} K(x^{(i)},  x^{(j)})+b^{i+1} - y^{(i)} $$</p>
+<hr>
+<h2 id="第五部分-核函数方法">第五部分: 核函数方法</h2>
+<hr>
+<blockquote>
+<p>施工中</p>
+</blockquote></div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2017-03-24</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/2017-03-24-svm-cn/index.md" target="_blank">Read Markdown</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="http://xxuan.cc/2017-03-24-svm-cn/" data-title="支持向量机(SVM)" data-hashtags="SVM,machine learning"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="http://xxuan.cc/2017-03-24-svm-cn/" data-hashtag="SVM"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="http://xxuan.cc/2017-03-24-svm-cn/" data-title="支持向量机(SVM)"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="http://xxuan.cc/2017-03-24-svm-cn/" data-title="支持向量机(SVM)"><i data-svg-src="/lib/simple-icons/icons/line.min.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="http://xxuan.cc/2017-03-24-svm-cn/" data-title="支持向量机(SVM)"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/svm/">svm</a>,&nbsp;<a href="/tags/machine-learning/">machine learning</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/2017-03-22-naive-bayes/" class="prev" rel="prev" title="朴素贝叶斯"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>朴素贝叶斯</a>
+            <a href="/2017-03-24-adaboost/" class="next" rel="next" title="Adaboost算法 &#43; python实现">Adaboost算法 + python实现<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+<div id="comments"><div id="disqus_thread" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://disqus.com/?ref_noscript">Disqus</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.102.2">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2016 - 2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">xiaoxuan</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/cookieconsent/cookieconsent.min.css"><script type="text/javascript" src="https://xxuan-cc.disqus.com/embed.js" defer></script><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/mhchem.min.js"></script><script type="text/javascript" src="/lib/cookieconsent/cookieconsent.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{},"cookieconsent":{"content":{"dismiss":"Got it!","link":"Learn more","message":"This website uses Cookies to improve your experience."},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":50,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>一道阿里在线面试算法题--落入心形线的概率 - Laniakea</title><meta name="Description" content="xxuan&#39;s blog"><meta property="og:title" content="一道阿里在线面试算法题--落入心形线的概率" />
+<meta property="og:description" content="最近连续被问到两三次, 可惜时间紧张没能帮上什么忙, 这里就记一下解决过程吧" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://xxuan.cc/playground/2017-03-08-online-interview/" /><meta property="og:image" content="http://xxuan.cc/logo.png"/><meta property="article:section" content="playground" />
+<meta property="article:published_time" content="2017-03-08T18:53:20+00:00" />
+<meta property="article:modified_time" content="2017-03-08T18:53:20+00:00" /><meta property="og:site_name" content="xxuan.cc" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="http://xxuan.cc/logo.png"/>
+
+<meta name="twitter:title" content="一道阿里在线面试算法题--落入心形线的概率"/>
+<meta name="twitter:description" content="最近连续被问到两三次, 可惜时间紧张没能帮上什么忙, 这里就记一下解决过程吧"/>
+<meta name="application-name" content="Laniakea">
+<meta name="apple-mobile-web-app-title" content="Laniakea"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://xxuan.cc/playground/2017-03-08-online-interview/" /><link rel="next" href="http://xxuan.cc/playground/2017-08-07-dp1/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" href="/lib/animate/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "一道阿里在线面试算法题--落入心形线的概率",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/xxuan.cc\/playground\/2017-03-08-online-interview\/"
+        },"genre": "playground","keywords": "面试题","wordcount":  825 ,
+        "url": "http:\/\/xxuan.cc\/playground\/2017-03-08-online-interview\/","datePublished": "2017-03-08T18:53:20+00:00","dateModified": "2017-03-08T18:53:20+00:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "xiaoxuan"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Laniakea">Laniakea</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/" title="存档脑细胞"> 文章 </a><a class="menu-item" href="/playground/" title="玩耍算法题的地方"> 练习场 </a><a class="menu-item" href="/code/" title="存放大概率过期的代码"> 码农 </a><a class="menu-item" href="/tags/" title="标签"> Tags </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Laniakea">Laniakea</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="存档脑细胞">文章</a><a class="menu-item" href="/playground/" title="玩耍算法题的地方">练习场</a><a class="menu-item" href="/code/" title="存放大概率过期的代码">码农</a><a class="menu-item" href="/tags/" title="标签">Tags</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="page single special"><h1 class="single-title animate__animated animate__pulse animate__faster">一道阿里在线面试算法题--落入心形线的概率</h1><div class="content" id="content"><p>最近连续被问到两三次, 可惜时间紧张没能帮上什么忙, 这里就记一下解决过程吧</p>
+<blockquote>
+<p>小明向他的女友仙仙求婚, 在求婚戒指上刻了一个大大的爱心. 仙仙看到爱心想考验一下小明, 出了一道题. 方程 $(x^2 + y^2 - 1)^3 -x^2y^3 = 0$ 能画出一个美丽的爱心, 现在给定一个点 $(X, Y)$, 其中 $ X \sim N(\mu_1, \sigma_1^2) $, $ Y \sim N(\mu_2, \sigma_2^2) $, 这个点在这个爱心里面的概率是多少? 精确到0.1</p>
+</blockquote>
+<p>这是一道概率题, 起初想到的是直接在心形线内对概率积分, 后来经过同学的提醒才知道可以直接用实验模拟. 现在介绍一下这两种方法</p>
+<h1 id="蒙特卡洛方法">蒙特卡洛方法</h1>
+<p>其实就是一个单变量概率模拟, 直接按给定的概率$(u1, u2, s1, s2)$生成坐标, 然后判断一下在不在心形线内部, 进行足够迭代次数之后就可以统计概率了. 很直观的做法</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">calc_prob</span><span class="p">(</span><span class="n">u1</span><span class="p">,</span> <span class="n">u2</span><span class="p">,</span> <span class="n">s1</span><span class="p">,</span> <span class="n">s2</span><span class="p">,</span> <span class="n">iter_num</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">in_circle</span> <span class="o">=</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">iter_num</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">u1</span><span class="p">,</span> <span class="n">s1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">u2</span><span class="p">,</span> <span class="n">s2</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">((</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">y</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span><span class="o">**</span><span class="mi">3</span> <span class="o">-</span> <span class="p">(</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">y</span><span class="o">**</span><span class="mi">3</span><span class="p">))</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="n">in_circle</span> <span class="o">+=</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="n">in_circle</span><span class="p">)</span><span class="o">/</span><span class="n">iter_num</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span> <span class="n">calc_prob</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">10000</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>输出结果大约收敛在0.424</li>
+</ul>
+<h1 id="二重积分计算">二重积分计算</h1>
+<p>首先观察一下曲线:
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/F68E07C9C4E003D54BEFCB84CA5692CC.jpg"
+        data-srcset="http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/F68E07C9C4E003D54BEFCB84CA5692CC.jpg, http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/F68E07C9C4E003D54BEFCB84CA5692CC.jpg 1.5x, http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/F68E07C9C4E003D54BEFCB84CA5692CC.jpg 2x"
+        data-sizes="auto"
+        alt="http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/F68E07C9C4E003D54BEFCB84CA5692CC.jpg"
+        title="http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/F68E07C9C4E003D54BEFCB84CA5692CC.jpg" /></p>
+<ol>
+<li>
+<p>看右半边显然曲线是右凸的, 为了避免分段, 决定先从y轴再从x轴积分</p>
+</li>
+<li>
+<p>为了取得x轴的上下限. 由于正态分布的中心对称性, x从0开始积分就行了.至于上限, 获得了方程之后求x的极值即可:</p>
+<ol>
+<li>化简方程为: $x^2 + y^2 - 1 = x^{2/3}y$, 这是心形线的右半部分</li>
+<li>隐函数求导, 解出$\frac{dx}{dy}$:
+3. $ 2xdx + 2ydy = \frac{2}{3}x^{-\frac{1}{3}}ydx +  x^{\frac{2}{3}}dy$
+4. $(2x-\frac{2}{3}x^{-\frac{1}{3}}y) \frac{dx}{dy} = x^{\frac{2}{3}} - 2y$
+5. 令$\frac{dx}{dy} = 0$, 得到$x^2 = 8y^3$, 联立方程组解得上限$x_{max} \approx 1.13903$</li>
+</ol>
+</li>
+<li>
+<p>y轴的上下限容易计算, 直接求解化简的方程就行了.</p>
+<ol>
+<li>$ y_{min} = \frac{1}{2}(x^{\frac{2}{3}} - \sqrt{x^{\frac{4}{3}} - 4 x^2 + 4)} $</li>
+<li>$ y_{max} = \frac{1}{2}(x^{\frac{2}{3}} + \sqrt{x^{\frac{4}{3}} - 4 x^2 + 4)} $</li>
+</ol>
+</li>
+<li>
+<p>最后求积分即可</p>
+</li>
+</ol>
+<p>$$
+\frac{1}{\pi\sigma_1\sigma_2} \int_{x=0}^{x=1.139} \int_{y_{min}}^{y_{max}} e^{-\frac{(x - \mu_1)^2}{2\sigma_1^2} - \frac{(y- \mu_2)^2}{2\sigma_2^2}} dydx
+$$</p>
+<ul>
+<li>将第一种方法中的参数代入之后得到结果如下</li>
+</ul>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/MSP1821c731010163c3i2e000019i42c9cfeb3h0i9.gif"
+        data-srcset="http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/MSP1821c731010163c3i2e000019i42c9cfeb3h0i9.gif, http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/MSP1821c731010163c3i2e000019i42c9cfeb3h0i9.gif 1.5x, http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/MSP1821c731010163c3i2e000019i42c9cfeb3h0i9.gif 2x"
+        data-sizes="auto"
+        alt="http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/MSP1821c731010163c3i2e000019i42c9cfeb3h0i9.gif"
+        title="http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/MSP1821c731010163c3i2e000019i42c9cfeb3h0i9.gif" /></p>
+<ul>
+<li>计算$\frac{1.33368}{\pi} = 0.4245$, 得到的结果相似.</li>
+</ul>
+<h2 id="后记">后记</h2>
+<ol>
+<li>
+<p>x的最大值大概在哪?
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/MSP14421gd0ab25140hfhg500004ih16a48d690936f.gif"
+        data-srcset="http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/MSP14421gd0ab25140hfhg500004ih16a48d690936f.gif, http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/MSP14421gd0ab25140hfhg500004ih16a48d690936f.gif 1.5x, http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/MSP14421gd0ab25140hfhg500004ih16a48d690936f.gif 2x"
+        data-sizes="auto"
+        alt="http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/MSP14421gd0ab25140hfhg500004ih16a48d690936f.gif"
+        title="http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/MSP14421gd0ab25140hfhg500004ih16a48d690936f.gif" /></p>
+</li>
+<li>
+<p>x的解析解是什么?
+$$
+\frac{1}{8 \sqrt{ \frac{3}{193 + \sqrt[3]{55873 - 1536 \sqrt{1299}} + \sqrt[3]{55873 + 1536 \sqrt{1299}}}}}
+$$</p>
+</li>
+<li>
+<p>真正的心形线(Cardioid)长这个样子, 曲线方程也优美得多. 这道题使用数学手段计算毫无美感. 阿里的HRG里没有强迫症改一下嘛w
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/Kardioide.svg/440px-Kardioide.svg.png"
+        data-srcset="https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/Kardioide.svg/440px-Kardioide.svg.png, https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/Kardioide.svg/440px-Kardioide.svg.png 1.5x, https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/Kardioide.svg/440px-Kardioide.svg.png 2x"
+        data-sizes="auto"
+        alt="https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/Kardioide.svg/440px-Kardioide.svg.png"
+        title="https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/Kardioide.svg/440px-Kardioide.svg.png" /></p>
+</li>
+<li>
+<p>把女友换成男友, 这个题目的剧情会更合理一些(たぶん</p>
+</li>
+</ol></div><div id="comments"><div id="disqus_thread" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://disqus.com/?ref_noscript">Disqus</a>.
+            </noscript></div></div></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.102.2">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2016 - 2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">xiaoxuan</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/cookieconsent/cookieconsent.min.css"><script type="text/javascript" src="https://xxuan-cc.disqus.com/embed.js" defer></script><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/mhchem.min.js"></script><script type="text/javascript" src="/lib/cookieconsent/cookieconsent.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{},"cookieconsent":{"content":{"dismiss":"Got it!","link":"Learn more","message":"This website uses Cookies to improve your experience."},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":50,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

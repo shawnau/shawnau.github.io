@@ -1,0 +1,88 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>machine learning - Tag - Laniakea</title>
+        <link>http://xxuan.cc/tags/machine-learning/</link>
+        <description>machine learning - Tag - Laniakea</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>shawn_au@outlook.com (xiaoxuan)</managingEditor>
+            <webMaster>shawn_au@outlook.com (xiaoxuan)</webMaster><lastBuildDate>Mon, 27 Mar 2017 16:27:20 &#43;0000</lastBuildDate><atom:link href="http://xxuan.cc/tags/machine-learning/" rel="self" type="application/rss+xml" /><item>
+    <title>Logistic Regression, Softmax与最大熵</title>
+    <link>http://xxuan.cc/2017-03-27-logistic-regression/</link>
+    <pubDate>Mon, 27 Mar 2017 16:27:20 &#43;0000</pubDate>
+    <author>xiaoxuan</author>
+    <guid>http://xxuan.cc/2017-03-27-logistic-regression/</guid>
+    <description><![CDATA[<p>Logistic Regression的小结</p>]]></description>
+</item>
+<item>
+    <title>决策树</title>
+    <link>http://xxuan.cc/2017-03-26-decision-tree/</link>
+    <pubDate>Mon, 27 Mar 2017 00:29:14 &#43;0000</pubDate>
+    <author>xiaoxuan</author>
+    <guid>http://xxuan.cc/2017-03-26-decision-tree/</guid>
+    <description><![CDATA[<p>决策树的小结</p>]]></description>
+</item>
+<item>
+    <title>Adaboost算法 &#43; python实现</title>
+    <link>http://xxuan.cc/2017-03-24-adaboost/</link>
+    <pubDate>Fri, 24 Mar 2017 23:39:40 &#43;0000</pubDate>
+    <author>xiaoxuan</author>
+    <guid>http://xxuan.cc/2017-03-24-adaboost/</guid>
+    <description><![CDATA[<p>Adaboost的总结</p>]]></description>
+</item>
+<item>
+    <title>支持向量机(SVM)</title>
+    <link>http://xxuan.cc/2017-03-24-svm-cn/</link>
+    <pubDate>Fri, 24 Mar 2017 23:02:02 &#43;0000</pubDate>
+    <author>xiaoxuan</author>
+    <guid>http://xxuan.cc/2017-03-24-svm-cn/</guid>
+    <description><![CDATA[<p>旧文章的翻译, 主要参考自李航的统计学习方法一书.</p>]]></description>
+</item>
+<item>
+    <title>朴素贝叶斯</title>
+    <link>http://xxuan.cc/2017-03-22-naive-bayes/</link>
+    <pubDate>Wed, 22 Mar 2017 16:06:07 &#43;0000</pubDate>
+    <author>xiaoxuan</author>
+    <guid>http://xxuan.cc/2017-03-22-naive-bayes/</guid>
+    <description><![CDATA[<p>朴素贝叶斯(<strong>Naive</strong> Bayes) 如此蛤意盎然的算法, 居然一直没写</p>]]></description>
+</item>
+<item>
+    <title>EM算法</title>
+    <link>http://xxuan.cc/2016-08-26-expectation-maximization/</link>
+    <pubDate>Fri, 26 Aug 2016 21:01:12 &#43;0000</pubDate>
+    <author>xiaoxuan</author>
+    <guid>http://xxuan.cc/2016-08-26-expectation-maximization/</guid>
+    <description><![CDATA[<p>Expectation Maximization Algorithm</p>]]></description>
+</item>
+<item>
+    <title>Boosting(3)- Gradient Boosting</title>
+    <link>http://xxuan.cc/2016-06-24-gradient-boosting/</link>
+    <pubDate>Thu, 23 Jun 2016 22:47:00 &#43;0000</pubDate>
+    <author>xiaoxuan</author>
+    <guid>http://xxuan.cc/2016-06-24-gradient-boosting/</guid>
+    <description><![CDATA[<p>梯度提升算法简介</p>]]></description>
+</item>
+<item>
+    <title>Boosting(2) - Adaboost and Forward Stagewise</title>
+    <link>http://xxuan.cc/2016-06-22-forward-stagewise-algorithm/</link>
+    <pubDate>Wed, 22 Jun 2016 06:30:37 &#43;0000</pubDate>
+    <author>xiaoxuan</author>
+    <guid>http://xxuan.cc/2016-06-22-forward-stagewise-algorithm/</guid>
+    <description><![CDATA[<p>Boosting理论基础: 和前向分步算法的等价性</p>]]></description>
+</item>
+<item>
+    <title>Boosting(1) - AdaBoost</title>
+    <link>http://xxuan.cc/2016-06-06-adaboost/</link>
+    <pubDate>Mon, 06 Jun 2016 06:50:16 &#43;0000</pubDate>
+    <author>xiaoxuan</author>
+    <guid>http://xxuan.cc/2016-06-06-adaboost/</guid>
+    <description><![CDATA[<p>Adaptive Boosting 算法</p>]]></description>
+</item>
+<item>
+    <title>决策树 (Decision Tree)</title>
+    <link>http://xxuan.cc/2016-05-22-decision-tree/</link>
+    <pubDate>Sun, 22 May 2016 07:41:08 &#43;0000</pubDate>
+    <author>xiaoxuan</author>
+    <guid>http://xxuan.cc/2016-05-22-decision-tree/</guid>
+    <description><![CDATA[<p>决策树</p>]]></description>
+</item>
+</channel>
+</rss>

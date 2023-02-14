@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>Machine Learning Notes(6)-Logistic Regression - Laniakea</title><meta name="Description" content="xxuan&#39;s blog"><meta property="og:title" content="Machine Learning Notes(6)-Logistic Regression" />
+<meta property="og:description" content="Logistic Regression" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://xxuan.cc/2016-02-06-logistic-regression/" /><meta property="og:image" content="http://xxuan.cc/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2016-02-06T18:54:52+00:00" />
+<meta property="article:modified_time" content="2016-02-06T18:54:52+00:00" /><meta property="og:site_name" content="xxuan.cc" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="http://xxuan.cc/logo.png"/>
+
+<meta name="twitter:title" content="Machine Learning Notes(6)-Logistic Regression"/>
+<meta name="twitter:description" content="Logistic Regression"/>
+<meta name="application-name" content="Laniakea">
+<meta name="apple-mobile-web-app-title" content="Laniakea"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://xxuan.cc/2016-02-06-logistic-regression/" /><link rel="prev" href="http://xxuan.cc/2016-02-01-programming-exercise-1/" /><link rel="next" href="http://xxuan.cc/2016-02-13-programming-exercise-3/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" href="/lib/animate/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Machine Learning Notes(6)-Logistic Regression",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/xxuan.cc\/2016-02-06-logistic-regression\/"
+        },"genre": "posts","keywords": "machine learning, logistic regression, coursera","wordcount":  269 ,
+        "url": "http:\/\/xxuan.cc\/2016-02-06-logistic-regression\/","datePublished": "2016-02-06T18:54:52+00:00","dateModified": "2016-02-06T18:54:52+00:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "xiaoxuan"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Laniakea">Laniakea</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/" title="存档脑细胞"> 文章 </a><a class="menu-item" href="/playground/" title="玩耍算法题的地方"> 练习场 </a><a class="menu-item" href="/code/" title="存放大概率过期的代码"> 码农 </a><a class="menu-item" href="/tags/" title="标签"> Tags </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Laniakea">Laniakea</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="存档脑细胞">文章</a><a class="menu-item" href="/playground/" title="玩耍算法题的地方">练习场</a><a class="menu-item" href="/code/" title="存放大概率过期的代码">码农</a><a class="menu-item" href="/tags/" title="标签">Tags</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Machine Learning Notes(6)-Logistic Regression</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>xiaoxuan</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2016-02-06">2016-02-06</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;269 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;2 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="true">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#linear-regression-is-not-suitable-for-classification-problem">Linear Regression is not suitable for classification problem</a></li>
+    <li><a href="#logisitc-regression">Logisitc Regression</a></li>
+    <li><a href="#regularzation">Regularzation</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><p>Logistic Regression</p>
+<h2 id="linear-regression-is-not-suitable-for-classification-problem">Linear Regression is not suitable for classification problem</h2>
+<ul>
+<li>overfit</li>
+<li>$h_\theta$ can be &gt;1 or &lt;0</li>
+</ul>
+<h2 id="logisitc-regression">Logisitc Regression</h2>
+<ol>
+<li>Hypothesis Representation
+<ul>
+<li>Sigmoid/Logistic Function for linear regression: $$h_\theta (x) = \frac {1}{1 + e^{-\theta^T x}}$$</li>
+<li>Interpretation: estimated probability that y=1 on input x</li>
+<li>$P(y=0|x=\theta) + P(y=1|x=\theta) = 1$</li>
+</ul>
+</li>
+<li>Decision Boundary
+<ul>
+<li>Linear Regression: y=1 equals to $\theta^T x$ &gt; 0 which is decided by parameters</li>
+<li>Unlinear Regression: Polynomial Regression etc.</li>
+</ul>
+</li>
+<li>Cost function for one variable hypothesis
+<ul>
+<li>To let the cost function be convex for gradient descent, it should be like this:
+$$Cost(h_\theta (x), y) = \begin{cases} -log(h_\theta (x)), &amp; (y = 1) \\ -log(1 - h_\theta (x)), &amp; (y = 0) \\ \end{cases}$$</li>
+</ul>
+</li>
+<li>Simplified Cost Function
+<ul>
+<li>$Cost(h_\theta (x), y) = y log(h_\theta (x)) + (1 - y)log(1 - h_\theta (x))$</li>
+<li>For a set of training data, we have:
+$$ J(\theta) = -\frac{1}{m}\sum\limits_{i=1}^{m}[y^{(i)}\log h_\theta(x^{(i)}) + (1-y^{(i)})\log(1-h_\theta(x^{(i)}))] $$</li>
+</ul>
+</li>
+<li>Minimize $J(\theta)$ using gradient descent
+$$\frac{\partial}{\partial \theta_j} J(\theta) = \frac{1}{m}\sum\limits_{i=1}^{m}[(h_\theta (x^{(i)}) - y^{(i)})x_j^{(i)}]$$
+$$\theta_j := \theta_j - \alpha \frac{1}{m} \sum\limits_{i=1}^{m}[(h_\theta (x^{(i)}) - y^{(i)})x_j^{(i)}]$$</li>
+<li>Advanced Optimization
+<ul>
+<li>Other optimization algorithms other than gradient descent (do not need to manually pick $\alpha$):
+<ul>
+<li>Conjugate descent</li>
+<li>BGFS</li>
+<li>L-BFGS</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Multiclass Classification: One-vs-all
+<ul>
+<li>For more than 2 features of y, do logisitc regression for each feature separately</li>
+</ul>
+</li>
+</ol>
+<h2 id="regularzation">Regularzation</h2>
+<ol>
+<li>The problem of overfitting
+<ul>
+<li><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/overfitting1.png"
+        data-srcset="http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/overfitting1.png, http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/overfitting1.png 1.5x, http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/overfitting1.png 2x"
+        data-sizes="auto"
+        alt="http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/overfitting1.png"
+        title="Linear Regression overfitting" /></li>
+<li><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/overfitting1.png"
+        data-srcset="http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/overfitting1.png, http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/overfitting1.png 1.5x, http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/overfitting1.png 2x"
+        data-sizes="auto"
+        alt="http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/overfitting1.png"
+        title="Logistic Regression overfitting" /></li>
+</ul>
+</li>
+<li>Addressing overfitting
+<ul>
+<li>Reduce number of features (manually/model selection)</li>
+<li>Regularzation: add panalize terms to some less important parameters, or panalize all the parameters(<strong>except for $\theta_0$</strong>)</li>
+</ul>
+</li>
+<li>Regularized Linear Regression
+$$\displaystyle \theta_j := \theta_j(1-\alpha\frac{\lambda}{m}) - \alpha\frac{1}{m}\sum_{i=1}^m(h_\theta(x^{(i)})-y^{(i)})x^{(i)}_j$$
+<ul>
+<li>For normal equation, regularization would also make $X^T X$ invertible</li>
+</ul>
+</li>
+<li>Regularized Logistic Regression
+<ul>
+<li>Literally the same as Regularized Linear Regression except for the form of $h_\theta (x)$</li>
+</ul>
+</li>
+</ol></div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2016-02-06</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/2016-02-06-logistic-regression/index.md" target="_blank">Read Markdown</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="http://xxuan.cc/2016-02-06-logistic-regression/" data-title="Machine Learning Notes(6)-Logistic Regression" data-hashtags="machine learning,logistic regression,coursera"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="http://xxuan.cc/2016-02-06-logistic-regression/" data-hashtag="machine learning"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="http://xxuan.cc/2016-02-06-logistic-regression/" data-title="Machine Learning Notes(6)-Logistic Regression"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="http://xxuan.cc/2016-02-06-logistic-regression/" data-title="Machine Learning Notes(6)-Logistic Regression"><i data-svg-src="/lib/simple-icons/icons/line.min.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="http://xxuan.cc/2016-02-06-logistic-regression/" data-title="Machine Learning Notes(6)-Logistic Regression"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/machine-learning/">machine learning</a>,&nbsp;<a href="/tags/logistic-regression/">logistic regression</a>,&nbsp;<a href="/tags/coursera/">coursera</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/2016-02-01-programming-exercise-1/" class="prev" rel="prev" title="Machine Learning Notes(5)-Programming Exercise 1"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>Machine Learning Notes(5)-Programming Exercise 1</a>
+            <a href="/2016-02-13-programming-exercise-3/" class="next" rel="next" title="Machine Learning Notes(9)-Programming Exercise 3">Machine Learning Notes(9)-Programming Exercise 3<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+<div id="comments"><div id="disqus_thread" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://disqus.com/?ref_noscript">Disqus</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.102.2">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2016 - 2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">xiaoxuan</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/cookieconsent/cookieconsent.min.css"><script type="text/javascript" src="https://xxuan-cc.disqus.com/embed.js" defer></script><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/mhchem.min.js"></script><script type="text/javascript" src="/lib/cookieconsent/cookieconsent.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{},"cookieconsent":{"content":{"dismiss":"Got it!","link":"Learn more","message":"This website uses Cookies to improve your experience."},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":50,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

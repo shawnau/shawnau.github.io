@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>bilibili新番/旧番弹幕抓取 - Laniakea</title><meta name="Description" content="xxuan&#39;s blog"><meta property="og:title" content="bilibili新番/旧番弹幕抓取" />
+<meta property="og:description" content="主要涉及到Selenium的使用" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://xxuan.cc/code/2016-07-17-bilibili-scraper/" /><meta property="og:image" content="http://xxuan.cc/logo.png"/><meta property="article:section" content="code" />
+<meta property="article:published_time" content="2016-07-17T20:09:38+00:00" />
+<meta property="article:modified_time" content="2016-07-17T20:09:38+00:00" /><meta property="og:site_name" content="xxuan.cc" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="http://xxuan.cc/logo.png"/>
+
+<meta name="twitter:title" content="bilibili新番/旧番弹幕抓取"/>
+<meta name="twitter:description" content="主要涉及到Selenium的使用"/>
+<meta name="application-name" content="Laniakea">
+<meta name="apple-mobile-web-app-title" content="Laniakea"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://xxuan.cc/code/2016-07-17-bilibili-scraper/" /><link rel="prev" href="http://xxuan.cc/code/2016-07-16-webscraper/" /><link rel="next" href="http://xxuan.cc/code/2016-11-12-install-caffe-under-macos/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" href="/lib/animate/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "bilibili新番/旧番弹幕抓取",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/xxuan.cc\/code\/2016-07-17-bilibili-scraper\/"
+        },"genre": "code","keywords": "python, 爬虫","wordcount":  1557 ,
+        "url": "http:\/\/xxuan.cc\/code\/2016-07-17-bilibili-scraper\/","datePublished": "2016-07-17T20:09:38+00:00","dateModified": "2016-07-17T20:09:38+00:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "xiaoxuan"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Laniakea">Laniakea</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/" title="存档脑细胞"> 文章 </a><a class="menu-item" href="/playground/" title="玩耍算法题的地方"> 练习场 </a><a class="menu-item" href="/code/" title="存放大概率过期的代码"> 码农 </a><a class="menu-item" href="/tags/" title="标签"> Tags </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Laniakea">Laniakea</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="存档脑细胞">文章</a><a class="menu-item" href="/playground/" title="玩耍算法题的地方">练习场</a><a class="menu-item" href="/code/" title="存放大概率过期的代码">码农</a><a class="menu-item" href="/tags/" title="标签">Tags</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="page single special"><h1 class="single-title animate__animated animate__pulse animate__faster">bilibili新番/旧番弹幕抓取</h1><div class="content" id="content"><p>主要涉及到Selenium的使用</p>
+<p>源代码:
+<a href="https://github.com/shawnau/bilibili_scraper" target="_blank" rel="noopener noreffer ">https://github.com/shawnau/bilibili_scraper</a></p>
+<p>本文中的所有技术在<a href="http://xxuan.me/2016-07-16-webscraper.html" target="_blank" rel="noopener noreffer ">上一篇文章</a>中均有介绍, 因此本文只涉及到针对bilibili主页结构的分析, 省略了技术细节</p>
+<h2 id="0-抓取番剧弹幕的基本步骤">0. 抓取番剧弹幕的基本步骤</h2>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/Screen%20Shot%202016-07-17%20at%207.29.41%20PM.png"
+        data-srcset="http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/Screen%20Shot%202016-07-17%20at%207.29.41%20PM.png, http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/Screen%20Shot%202016-07-17%20at%207.29.41%20PM.png 1.5x, http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/Screen%20Shot%202016-07-17%20at%207.29.41%20PM.png 2x"
+        data-sizes="auto"
+        alt="http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/Screen%20Shot%202016-07-17%20at%207.29.41%20PM.png"
+        title="pageinfo" />
+b站的每个视频页面源代码中, 负责启动播放器的script标签下保存了弹幕编号(cid)以及视频编号(aid), 例如上图中的视频, 其script内容为</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">EmbedPlayer(&#39;player&#39;, &#34;http://static.hdslb.com/play.swf&#34;, &#34;cid=8628660&amp;aid=5244087&amp;pre_ad=0&#34;);
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>找到了cid=8628660后, 前往comment.bilibili.tv下取得xml格式的弹幕, 例如本视频的弹幕地址为: <a href="http://comment.bilibili.tv/8628660.xml" target="_blank" rel="noopener noreffer ">http://comment.bilibili.tv/8628660.xml</a></p>
+<p>幸运的是, b站看视频并不需要登录, 且cid都可以通过直接读取网页源代码并通过正则表达式匹配得到, 不幸的是分p视频的分p链接那一栏大部分需要点击展开按钮才能获得, 因此我们的selenium派上了用场.</p>
+<p>综上所述, 我们需要实现以下功能:</p>
+<ol>
+<li>获得网页上分p一栏所有视频的链接</li>
+<li>打开每个链接, 获得cid, 标题等页面信息</li>
+<li>利用cid下载弹幕</li>
+</ol>
+<p>除此之外, 爬虫需要一定的容错率, 对找不到cid/难以下载弹幕的视频, 爬虫需要在重试一定次数之后主动跳过</p>
+<h2 id="1-旧番站点结构">1. 旧番站点结构</h2>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/Screen%20Shot%202016-07-17%20at%207.16.38%20PM.png"
+        data-srcset="http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/Screen%20Shot%202016-07-17%20at%207.16.38%20PM.png, http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/Screen%20Shot%202016-07-17%20at%207.16.38%20PM.png 1.5x, http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/Screen%20Shot%202016-07-17%20at%207.16.38%20PM.png 2x"
+        data-sizes="auto"
+        alt="http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/Screen%20Shot%202016-07-17%20at%207.16.38%20PM.png"
+        title="old" />
+打开分p在播放器上方的视频页面, 使用xpath找到id为plist的div标签, 可以发现标签下有三部分:</p>
+<ul>
+<li>span标签, 代表当前页面</li>
+<li>带有超链接的a标签, 代表其他p的链接和副标题</li>
+<li>带有class名为v-part-toggle的a标签, 代表展开按钮</li>
+</ul>
+<p>由此可得我们需要的操作:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">span</span> <span class="o">=</span> <span class="n">driver</span><span class="o">.</span><span class="n">find_elements_by_xpath</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">xPaths</span><span class="p">[</span><span class="s2">&#34;plistButton&#34;</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">span</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s1">&#39;No other page found&#39;</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>利用plist下的span标签检查是否有分p, 如果没有则扔异常, 在异常处理中只将本页面链接添加进链接表中. 对于只有一个链接的视频也同样处理即可</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># 检查是否有展开按钮, 有就按一下</span>
+</span></span><span class="line"><span class="cl"><span class="n">unfold_button</span> <span class="o">=</span> <span class="n">driver</span><span class="o">.</span><span class="n">find_elements_by_class_name</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">togglename</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">unfold_button</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">unfold_button</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">click</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 截取展开后的所有链接, 提取源代码</span>
+</span></span><span class="line"><span class="cl"><span class="n">plist</span> <span class="o">=</span> <span class="n">driver</span><span class="o">.</span><span class="n">find_element_by_xpath</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">xPaths</span><span class="p">[</span><span class="s2">&#34;plist&#34;</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl"><span class="n">list_source</span> <span class="o">=</span> <span class="n">plist</span><span class="o">.</span><span class="n">get_attribute</span><span class="p">(</span><span class="s1">&#39;innerHTML&#39;</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>首先有展开按钮就先点击展开, 然后再取得链接, 发送给beautifulsoup分析. (当然也可以直接用正则表达式分析)</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">link_list</span> <span class="o">=</span> <span class="p">[]</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 切割完整域名</span>
+</span></span><span class="line"><span class="cl"><span class="n">cut_current_list</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s2">&#34;/video/av[0-9]+/&#34;</span><span class="p">,</span> <span class="n">page_url</span><span class="p">)</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># bs4识别所有链接</span>
+</span></span><span class="line"><span class="cl"><span class="n">bsobj</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">list_source</span><span class="p">,</span> <span class="s2">&#34;html.parser&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">a_list</span> <span class="o">=</span> <span class="n">bsobj</span><span class="o">.</span><span class="n">findAll</span><span class="p">(</span><span class="s2">&#34;a&#34;</span><span class="p">,</span> <span class="p">{</span><span class="s2">&#34;href&#34;</span><span class="p">:</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="s2">&#34;/video/[a-z0-9/_.]+&#34;</span><span class="p">)})</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 保存包括本页面的所有链接</span>
+</span></span><span class="line"><span class="cl"><span class="n">link_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">cut_current_list</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">a_list</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">link_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="s2">&#34;href&#34;</span><span class="p">]))</span>
+</span></span><span class="line"><span class="cl"><span class="k">return</span> <span class="n">link_list</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>将链接列表保存至 <code>link_list</code> , 注意匹配到的是除了本页面以外的链接, 且格式是子域名(/video/av&hellip;./), 为了保持格式一致性, 本页面的链接也应该先切割后再保存进列表.</p>
+<h2 id="2-新番站点结构">2. 新番站点结构</h2>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/Screen%20Shot%202016-07-17%20at%207.52.14%20PM.png"
+        data-srcset="http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/Screen%20Shot%202016-07-17%20at%207.52.14%20PM.png, http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/Screen%20Shot%202016-07-17%20at%207.52.14%20PM.png 1.5x, http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/Screen%20Shot%202016-07-17%20at%207.52.14%20PM.png 2x"
+        data-sizes="auto"
+        alt="http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/Screen%20Shot%202016-07-17%20at%207.52.14%20PM.png"
+        title="new" />
+新番站点结构相对简单, 直接使用xpath搜索到链接表(v_bgm_list_data)并提取源代码, 用beautifulsoup分析后保存即可, 其他步骤和前面类似</p>
+<h2 id="3-提取页面cid-标题等信息">3. 提取页面cid, 标题等信息</h2>
+<p>打开每个链接, 直接提取源代码, 使用正则表达式匹配cid和title, 注意标题需要使用utf-8编码, 否则在使用它作为文件名保存的时候会报错</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">driver</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">page_url</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">source_code</span> <span class="o">=</span> <span class="n">driver</span><span class="o">.</span><span class="n">page_source</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 源代码中可以找到cid和title, 对应弹幕文件和标题</span>
+</span></span><span class="line"><span class="cl"><span class="n">title_reg</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="s2">&#34;(?&lt;=&lt;title&gt;).*(?=&lt;/title&gt;)&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">cid_reg</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="s2">&#34;(?&lt;=cid=)[0-9]+&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">p</span><span class="o">.</span><span class="n">title</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">title_reg</span><span class="p">,</span> <span class="n">source_code</span><span class="p">)</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">p</span><span class="o">.</span><span class="n">cid</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">cid_reg</span><span class="p">,</span> <span class="n">source_code</span><span class="p">)</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="4-利用cid下载弹幕并保存">4. 利用cid下载弹幕并保存</h2>
+<p>获得了cid之后, 拼接出完整地址, 直接保存页面源代码为xml文件即可</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl"># 拼接网址
+</span></span><span class="line"><span class="cl">comment_url = &#34;http://comment.bilibili.tv/&#34; + p.cid + &#34;.xml&#34;
+</span></span><span class="line"><span class="cl"># 保存源码, 设置30秒超时
+</span></span><span class="line"><span class="cl">driver.set_page_load_timeout(30)
+</span></span><span class="line"><span class="cl">driver.get(comment_url)
+</span></span><span class="line"><span class="cl">source = driver.page_source
+</span></span><span class="line"><span class="cl"># 保存时注意使用utf-8编码
+</span></span><span class="line"><span class="cl">with open(&#34;./data/&#34; + p.title + &#34;.xml&#34;, &#39;w&#39;) as fd:
+</span></span><span class="line"><span class="cl">    fd.write(source.encode(&#39;utf-8&#39;))
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="5-提高容错率">5. 提高容错率</h2>
+<p>主程序使用对link_list的循环依次打开视频并保存.</p>
+<p>取得页面信息和保存弹幕的函数都可以根据自身成功与否返回True或者False, 主程序根据取回情况决定是否重新执行, 执行3次依然失败的话即跳过该链接. 例子如下:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">for</span> <span class="n">link</span> <span class="ow">in</span> <span class="n">link_list</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">page_url</span> <span class="o">=</span> <span class="s2">&#34;http://www.bilibili.com&#34;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">link</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># 爬取页面失败重试3次, 再失败则跳过</span>
+</span></span><span class="line"><span class="cl">    <span class="n">cid_flag</span> <span class="o">=</span> <span class="n">get_page_info</span><span class="p">(</span><span class="n">driver</span><span class="p">,</span> <span class="n">page_url</span><span class="p">,</span> <span class="n">p</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="ow">not</span> <span class="n">cid_flag</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">            <span class="n">cid_flag</span> <span class="o">=</span> <span class="n">get_page_info</span><span class="p">(</span><span class="n">driver</span><span class="p">,</span> <span class="n">page_url</span><span class="p">,</span> <span class="n">p</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="n">cid_flag</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">                <span class="k">break</span>
+</span></span><span class="line"><span class="cl">            <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Get cid failed, retrying...&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="ow">not</span> <span class="n">cid_flag</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Retry times out, skip&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="k">continue</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="6-小结">6. 小结</h2>
+<p>通过分析, 我们获得了提取b站弹幕的基本策略, 并使用了简单的容错机制. 还可以完善的地方有:</p>
+<ul>
+<li>是否可以下载视频?</li>
+<li>如何处理副标题?</li>
+<li>如何处理视频链接? 在保存的弹幕中是否需要体现链接?</li>
+<li>是否可以并行下载以提升速度?</li>
+</ul>
+<p>感谢阅读!</p>
+<blockquote>
+<p>Written with <a href="https://stackedit.io/" target="_blank" rel="noopener noreffer ">StackEdit</a>.</p>
+</blockquote></div><div id="comments"><div id="disqus_thread" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://disqus.com/?ref_noscript">Disqus</a>.
+            </noscript></div></div></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.102.2">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2016 - 2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">xiaoxuan</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/cookieconsent/cookieconsent.min.css"><script type="text/javascript" src="https://xxuan-cc.disqus.com/embed.js" defer></script><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/mhchem.min.js"></script><script type="text/javascript" src="/lib/cookieconsent/cookieconsent.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{},"cookieconsent":{"content":{"dismiss":"Got it!","link":"Learn more","message":"This website uses Cookies to improve your experience."},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":50,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

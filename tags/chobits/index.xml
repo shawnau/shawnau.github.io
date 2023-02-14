@@ -1,0 +1,17 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>chobits - Tag - Laniakea</title>
+        <link>http://xxuan.cc/tags/chobits/</link>
+        <description>chobits - Tag - Laniakea</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>shawn_au@outlook.com (xiaoxuan)</managingEditor>
+            <webMaster>shawn_au@outlook.com (xiaoxuan)</webMaster><lastBuildDate>Mon, 08 Oct 2018 18:34:06 &#43;0000</lastBuildDate><atom:link href="http://xxuan.cc/tags/chobits/" rel="self" type="application/rss+xml" /><item>
+    <title>七牛云图床挂了</title>
+    <link>http://xxuan.cc/2018-10-08-imgshare-dead/</link>
+    <pubDate>Mon, 08 Oct 2018 18:34:06 &#43;0000</pubDate>
+    <author>xiaoxuan</author>
+    <guid>http://xxuan.cc/2018-10-08-imgshare-dead/</guid>
+    <description><![CDATA[<p>因为本域名没备案, 七牛云收回了临时链接, 本blog之前所有文章的图片都挂了, 需要一段时间抢修, 见谅
+目前切换阿里云oss</p>]]></description>
+</item>
+</channel>
+</rss>

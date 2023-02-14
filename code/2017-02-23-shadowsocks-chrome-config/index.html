@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>shadowsocks&#43;chrome代理配置速查手册 - Laniakea</title><meta name="Description" content="xxuan&#39;s blog"><meta property="og:title" content="shadowsocks&#43;chrome代理配置速查手册" />
+<meta property="og:description" content="最近老是要配置ss, 顺手记下来以便存档. 为了方便0基础人士阅读极其傻瓜" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://xxuan.cc/code/2017-02-23-shadowsocks-chrome-config/" /><meta property="og:image" content="http://xxuan.cc/logo.png"/><meta property="article:section" content="code" />
+<meta property="article:published_time" content="2017-02-23T00:56:07+00:00" />
+<meta property="article:modified_time" content="2017-02-23T00:56:07+00:00" /><meta property="og:site_name" content="xxuan.cc" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="http://xxuan.cc/logo.png"/>
+
+<meta name="twitter:title" content="shadowsocks&#43;chrome代理配置速查手册"/>
+<meta name="twitter:description" content="最近老是要配置ss, 顺手记下来以便存档. 为了方便0基础人士阅读极其傻瓜"/>
+<meta name="application-name" content="Laniakea">
+<meta name="apple-mobile-web-app-title" content="Laniakea"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://xxuan.cc/code/2017-02-23-shadowsocks-chrome-config/" /><link rel="prev" href="http://xxuan.cc/code/2017-02-18-scrapy/" /><link rel="next" href="http://xxuan.cc/code/2017-03-13-mongodb-flask-echarts-data-visualize/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" href="/lib/animate/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "shadowsocks+chrome代理配置速查手册",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/xxuan.cc\/code\/2017-02-23-shadowsocks-chrome-config\/"
+        },"genre": "code","keywords": "shadowsocks","wordcount":  1146 ,
+        "url": "http:\/\/xxuan.cc\/code\/2017-02-23-shadowsocks-chrome-config\/","datePublished": "2017-02-23T00:56:07+00:00","dateModified": "2017-02-23T00:56:07+00:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "xiaoxuan"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Laniakea">Laniakea</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/" title="存档脑细胞"> 文章 </a><a class="menu-item" href="/playground/" title="玩耍算法题的地方"> 练习场 </a><a class="menu-item" href="/code/" title="存放大概率过期的代码"> 码农 </a><a class="menu-item" href="/tags/" title="标签"> Tags </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Laniakea">Laniakea</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="存档脑细胞">文章</a><a class="menu-item" href="/playground/" title="玩耍算法题的地方">练习场</a><a class="menu-item" href="/code/" title="存放大概率过期的代码">码农</a><a class="menu-item" href="/tags/" title="标签">Tags</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="page single special"><h1 class="single-title animate__animated animate__pulse animate__faster">shadowsocks&#43;chrome代理配置速查手册</h1><div class="content" id="content"><p>最近老是要配置ss, 顺手记下来以便存档. 为了方便0基础人士阅读极其傻瓜</p>
+<p>参考<a href="https://github.com/shadowsocks/shadowsocks/tree/master" target="_blank" rel="noopener noreffer ">官方文档</a></p>
+<h1 id="1-服务端只是使用的话可以跳过这节直接看第二节">1. 服务端(只是使用的话可以跳过这节直接看第二节)</h1>
+<h2 id="11-安装">1.1 安装</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">apt-get install python-pip
+</span></span><span class="line"><span class="cl">pip install shadowsocks
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>注意pip安装出了错千万别用sudo, 否则会有无数的(权限)火坑等着你. 好好上stackoverflow查</li>
+</ul>
+<h2 id="12-使用配置文件启动方案">1.2 使用配置文件启动方案</h2>
+<p>配置文件建议写在<code>~/</code>下, 可以避免一些潜在的权限问题</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">cd
+</span></span><span class="line"><span class="cl">mkdir shadowsocks
+</span></span><span class="line"><span class="cl">touch ~/shadowsocks/shadowsocks.json # 创建配置文件
+</span></span><span class="line"><span class="cl">touch ~/shadowsocks/ss.log # 创建log(可选, 使用方案2需要)
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>配置文件格式:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">{
+</span></span><span class="line"><span class="cl">    &#34;server&#34;:&#34;my_server_ip&#34;,
+</span></span><span class="line"><span class="cl">    &#34;server_port&#34;:8388,
+</span></span><span class="line"><span class="cl">    &#34;local_address&#34;: &#34;127.0.0.1&#34;,
+</span></span><span class="line"><span class="cl">    &#34;local_port&#34;:1080,
+</span></span><span class="line"><span class="cl">    &#34;password&#34;:&#34;mypassword&#34;,
+</span></span><span class="line"><span class="cl">    &#34;timeout&#34;:300,
+</span></span><span class="line"><span class="cl">    &#34;method&#34;:&#34;aes-256-cfb&#34;,
+</span></span><span class="line"><span class="cl">    &#34;fast_open&#34;: false
+</span></span><span class="line"><span class="cl">}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>后台运行:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">ssserver -c /etc/shadowsocks.json -d start
+</span></span><span class="line"><span class="cl">ssserver -c /etc/shadowsocks.json -d stop
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="13-直接后台运行方案">1.3 直接后台运行方案</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">nohup ssserver -p 443 -k password -m aes-256-cfb &gt; ~/shadowsocks/ss.log 2&gt;&amp;1 &amp;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>之所以不使用文档里的后台运行指令是因为会出现一些权限问题. 在腾讯云上只能使用方案2, 在digitalocean上则可以完全按照文档来.</p>
+<h1 id="2-客户端使用">2. 客户端使用</h1>
+<h2 id="21-windows">2.1 windows</h2>
+<blockquote>
+<p>If you want to keep a secret, you must also hide it from yourself.</p>
+</blockquote>
+<p>^ repo上有趣的介绍 23333</p>
+<h3 id="211-下载最新版本">2.1.1 下载最新版本</h3>
+<p><a href="https://github.com/shadowsocks/shadowsocks-windows/releases/download/3.4.3/Shadowsocks-3.4.3.zip" target="_blank" rel="noopener noreffer ">目前的最新版本是3.4, 猛戳下载</a></p>
+<p><a href="https://github.com/shadowsocks/shadowsocks-windows/releases" target="_blank" rel="noopener noreffer ">在这里查看最新版本</a></p>
+<p>解压后只有一个<code>shadowsocks.exe</code>, 直接双击启动就行</p>
+<h3 id="222-使用">2.2.2 使用</h3>
+<ol>
+<li>在任务栏找到<code>Shadowsocks</code>图标, 一个纸飞机</li>
+<li>在<code>服务器</code>菜单添加多个服务器. 具体填写内容见下图</li>
+<li>选择<code>启用系统代理</code>来启用系统代理, 此时如果有浏览器里的代理插件请关闭,或者使用<code>system proxy</code>, 否则会出现代理循环</li>
+</ol>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="http://www.godusevpn.cc/assets/img/wiki/windows-shadowsocks-02.png"
+        data-srcset="http://www.godusevpn.cc/assets/img/wiki/windows-shadowsocks-02.png, http://www.godusevpn.cc/assets/img/wiki/windows-shadowsocks-02.png 1.5x, http://www.godusevpn.cc/assets/img/wiki/windows-shadowsocks-02.png 2x"
+        data-sizes="auto"
+        alt="http://www.godusevpn.cc/assets/img/wiki/windows-shadowsocks-02.png"
+        title="http://www.godusevpn.cc/assets/img/wiki/windows-shadowsocks-02.png" /></p>
+<h2 id="22-os-x">2.2 OS X</h2>
+<h3 id="221-下载最新版本">2.2.1 下载最新版本</h3>
+<p><a href="https://github.com/shadowsocks/shadowsocks-iOS/releases/download/2.6.3/ShadowsocksX-2.6.3.dmg" target="_blank" rel="noopener noreffer ">目前的最新版本是2.6.3, 猛戳下载</a></p>
+<p>作者自从被请喝茶之后就没更新了, 可以预见以后也不会了. 安装一路双击就行了</p>
+<h3 id="222-使用-1">2.2.2 使用</h3>
+<ol>
+<li>在Applications里找到shadowsocksX, 打开, 右上任务栏里会出现一个小纸飞机. 点击纸飞机</li>
+<li>Servers -&gt; Open Server Preferences -&gt; 点左下的<code>+</code>按钮 -&gt; 填写各种配置信息, 填错了可以用<code>-</code>按钮删除配置重新填</li>
+<li>Servers -&gt; 勾上刚刚创建的服务器配置, 如果是第一次配置的话应该已经默认勾选了</li>
+<li>勾上 Global Mode</li>
+<li>Turn Shadowsocks On, 启动</li>
+<li>Turn Shadowsocks Off, 关闭</li>
+</ol>
+<h1 id="3-chrome浏览器使用proxyomega插件连接shadowsocks">3. chrome浏览器使用proxyOmega插件连接shadowsocks</h1>
+<p>Q: 为什么要使用proxyOmega?
+A: 简单说proxyOmega可以只让你的浏览器走代理, 系统的其他部分全部使用正常连接, 配置起来方便. 否则就需要使用上一节的方法启用系统代理, 让所有流量都走代理</p>
+<p>Q: 我是mac用户, 我用Safari还要看吗
+A: 不用了, 乖乖用shadowsocksX就行</p>
+<h2 id="31-安装">3.1 安装</h2>
+<p><a href="https://chrome.google.com/webstore/detail/proxy-switchyomega/padekgcemlokbadohgkifijomclgjgif?hl=en" target="_blank" rel="noopener noreffer ">插件传送门</a></p>
+<p>直接点击添加到chrome就ok. 国内没法上chrome应用商店怎么办? 呵呵呵翻墙工具在墙外怎么办? 我能怎么办? 我也很绝望啊</p>
+<h2 id="32-配置">3.2 配置</h2>
+<p>点击浏览器右上角那个小圆圈-&gt;options-&gt;在左边profiles一栏选择proxy</p>
+<table>
+<thead>
+<tr>
+<th>Scheme</th>
+<th>Protocol</th>
+<th>Server</th>
+<th>Port</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>(default)</td>
+<td>SOCKS5</td>
+<td>127.0.0.1</td>
+<td>1080</td>
+</tr>
+</tbody>
+</table>
+<p>这么填好之后点左下角绿颜色的的Apply Changes就行了</p>
+<h2 id="33-使用">3.3 使用</h2>
+<ol start="0">
+<li>没运行shadowsocks的先运行</li>
+<li>点击浏览器右上角那个小圆圈</li>
+<li>选择proxy, 进入代理模式</li>
+<li>选择direct, 退出代理模式</li>
+</ol></div><div id="comments"><div id="disqus_thread" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://disqus.com/?ref_noscript">Disqus</a>.
+            </noscript></div></div></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.102.2">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2016 - 2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">xiaoxuan</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/cookieconsent/cookieconsent.min.css"><script type="text/javascript" src="https://xxuan-cc.disqus.com/embed.js" defer></script><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/mhchem.min.js"></script><script type="text/javascript" src="/lib/cookieconsent/cookieconsent.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{},"cookieconsent":{"content":{"dismiss":"Got it!","link":"Learn more","message":"This website uses Cookies to improve your experience."},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":50,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>SQL 速查 - Laniakea</title><meta name="Description" content="xxuan&#39;s blog"><meta property="og:title" content="SQL 速查" />
+<meta property="og:description" content="All the resources from codecademy" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://xxuan.cc/code/2016-06-20-sql-abc/" /><meta property="og:image" content="http://xxuan.cc/logo.png"/><meta property="article:section" content="code" />
+<meta property="article:published_time" content="2016-06-19T07:51:31+00:00" />
+<meta property="article:modified_time" content="2016-06-19T07:51:31+00:00" /><meta property="og:site_name" content="xxuan.cc" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="http://xxuan.cc/logo.png"/>
+
+<meta name="twitter:title" content="SQL 速查"/>
+<meta name="twitter:description" content="All the resources from codecademy"/>
+<meta name="application-name" content="Laniakea">
+<meta name="apple-mobile-web-app-title" content="Laniakea"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://xxuan.cc/code/2016-06-20-sql-abc/" /><link rel="next" href="http://xxuan.cc/code/2016-06-28-spark-tutorial/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" href="/lib/animate/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "SQL 速查",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/xxuan.cc\/code\/2016-06-20-sql-abc\/"
+        },"genre": "code","keywords": "SQL","wordcount":  779 ,
+        "url": "http:\/\/xxuan.cc\/code\/2016-06-20-sql-abc\/","datePublished": "2016-06-19T07:51:31+00:00","dateModified": "2016-06-19T07:51:31+00:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "xiaoxuan"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Laniakea">Laniakea</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/" title="存档脑细胞"> 文章 </a><a class="menu-item" href="/playground/" title="玩耍算法题的地方"> 练习场 </a><a class="menu-item" href="/code/" title="存放大概率过期的代码"> 码农 </a><a class="menu-item" href="/tags/" title="标签"> Tags </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Laniakea">Laniakea</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="存档脑细胞">文章</a><a class="menu-item" href="/playground/" title="玩耍算法题的地方">练习场</a><a class="menu-item" href="/code/" title="存放大概率过期的代码">码农</a><a class="menu-item" href="/tags/" title="标签">Tags</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="page single special"><h1 class="single-title animate__animated animate__pulse animate__faster">SQL 速查</h1><div class="content" id="content"><p>All the resources from <a href="https://www.codecademy.com/learn" target="_blank" rel="noopener noreffer ">codecademy</a></p>
+<h3 id="basic-operations">Basic Operations</h3>
+<p>celebs:</p>
+<p>$$
+\begin{array}{c|c|c|c}
+\text{id} &amp; \text{name} &amp; \text{age} &amp; \text{twitter_handle} \\
+\hline
+1 &amp; \text{Justin Bieber} &amp; 22 &amp;  \\
+2 &amp; \text{Beyonce Knowles} &amp; 33 &amp;  \\
+3 &amp; \text{Jeremy Lin} &amp; 26 &amp;  \\
+\end{array}
+$$</p>
+<ol>
+<li>
+<p>Table Creation</p>
+<pre><code> CREATE TABLE celebs (id INTEGER, name TEXT, age INTEGER, twitter_handle TEXT);
+</code></pre>
+</li>
+<li>
+<p>Changing values</p>
+<pre><code> UPDATE celebs SET age = 22 WHERE id = 1;
+</code></pre>
+</li>
+<li>
+<p>Inserting
+Insert a row:</p>
+<pre><code> INSERT INTO celebs (id, name, age) VALUES (1, 'Justin Bieber', 21);
+</code></pre>
+</li>
+</ol>
+<p>Insert a column:</p>
+<pre><code>    ALTER TABLE celebs ADD COLUMN twitter_handle TEXT; 
+</code></pre>
+<ol start="4">
+<li>
+<p>Deletion</p>
+<pre><code> DELETE FROM celebs WHERE twitter_handle IS NULL;
+</code></pre>
+</li>
+</ol>
+<hr>
+<h3 id="queries">Queries</h3>
+<p>movies:</p>
+<p>$$
+\begin{array}{c|c|c|c|c}
+\text{id} &amp; \text{name} &amp; \text{genre} &amp; \text{year} &amp; \text{imdb_rating} \\
+\hline
+1 &amp; \text{Avatar} &amp; \text{action} &amp; 2009 &amp; 7.9 \\
+2 &amp; \text{Jurassic World} &amp; \text{action} &amp; 2015 &amp; 7.3 \\
+3 &amp; \text{The Avengers} &amp; \text{action} &amp; 2012 &amp; 8.1 \\
+\end{array}
+$$</p>
+<ol>
+<li>
+<p>Select one or more column:</p>
+<pre><code> SELECT * FROM movies;
+ SELECT name, imdb_rating FROM movies;
+</code></pre>
+</li>
+<li>
+<p>Select distinct elements</p>
+<pre><code> SELECT DISTINCT genre FROM movies;
+</code></pre>
+</li>
+<li>
+<p>Select values specifying rules:
+Sinple rules:</p>
+<pre><code> SELECT * FROM movies WHERE imdb_rating &gt; 8;
+</code></pre>
+</li>
+</ol>
+<p>Regular expression-like rules:</p>
+<pre><code>    SELECT * FROM movies WHERE name LIKE 'Se_en';
+    SELECT * FROM movies WHERE name LIKE 'A%';
+    SELECT * FROM movies WHERE name BETWEEN 'A' AND 'J';
+</code></pre>
+<p>Combine different rules:</p>
+<pre><code>    SELECT * FROM movies WHERE genre = 'comedy' OR year &lt; 1980;
+</code></pre>
+<ol start="4">
+<li>
+<p>Ordering:</p>
+<pre><code> SELECT * FROM movies
+ ORDER BY imdb_rating DESC;
+</code></pre>
+</li>
+</ol>
+<p>DESC is a keyword in SQL that is used with ORDER BY to sort the results in descending order, ASC works similarly</p>
+<pre><code>    SELECT * FROM movies
+    ORDER BY imdb_rating ASC
+    LIMIT 3;
+</code></pre>
+<p>LIMIT specifies that the result table returned can not have more than three rows</p>
+<hr>
+<h3 id="aggregate-functions">Aggregate Functions</h3>
+<p>fake_apps:</p>
+<p>$$
+\begin{array}{c|c|c|c|c}
+\text{id} &amp; \text{name} &amp; \text{category} &amp; \text{downloads} &amp; \text{price} \\
+\hline
+1 &amp; \text{siliconphase} &amp; \text{Productivity	} &amp; 17193 &amp; 0.0 \\
+2 &amp; \text{Donzolab} &amp; \text{Education} &amp; 4259 &amp; 0.99 \\
+3 &amp; \text{Ittechi} &amp; \text{Reference} &amp; 3874 &amp; 0.0 \\
+\end{array}
+$$</p>
+<ol>
+<li>
+<p>Counting</p>
+<pre><code> SELECT COUNT(*) FROM fake_apps;
+ SELECT price, COUNT(*) FROM fake_apps GROUP BY price;
+ SELECT price, COUNT(*) FROM fake_apps WHERE downloads &gt; 20000 GROUP BY price;
+</code></pre>
+</li>
+</ol>
+<p><code>COUNT()</code> is a function that takes the name of a column as an argument and counts the number of rows where the column is not NULL. Here, we want to count every row so we pass * as an argument.</p>
+<ol start="2">
+<li>
+<p>SUM, MAX, AVG, ROUND
+Return the sum of downloads under each category:</p>
+<pre><code> SELECT category, SUM(downloads) FROM fake_apps GROUP BY category;
+</code></pre>
+</li>
+</ol>
+<p>Return the name and category of the most frequently downloaded apps in each category:</p>
+<pre><code>    SELECT name, category, MAX(downloads) FROM fake_apps GROUP BY category;
+</code></pre>
+<p>Calculate the average number of downloads at each price</p>
+<pre><code>    SELECT price, AVG(downloads) FROM fake_apps GROUP BY price;
+</code></pre>
+<p>Rounding the average number of downloads to two decimal(default is 0):</p>
+<pre><code>    SELECT price, ROUND(AVG(downloads), 2) FROM fake_apps GROUP BY price;
+</code></pre>
+<hr>
+<h3 id="multiple-tables">Multiple Tables</h3>
+<p>albums:</p>
+<p>$$
+\begin{array}{c|c|c|c}
+\text{id} &amp; \text{name} &amp; \text{artist_id} &amp; \text{year} \\
+\hline
+1 &amp; \text{A Hard Days Night} &amp; 1 &amp; 1964 \\
+2 &amp; \text{Elvis Presley} &amp; 2 &amp; 1956 \\
+3 &amp; \text{Unorthodox Jukebox} &amp;  &amp; 2012 \\
+\end{array}
+$$</p>
+<p>artists:</p>
+<p>$$
+\begin{array}{c|c}
+\text{id} &amp; \text{name} \\
+\hline
+1 &amp; \text{The Beatles} \\
+2 &amp; \text{Elvis Presley} \\
+3 &amp; \text{Unorthodox Jukebox} \\
+\end{array}
+$$</p>
+<ol>
+<li>
+<p>Primary Key</p>
+<pre><code> CREATE TABLE artists(id INTEGER PRIMARY KEY, name TEXT)
+</code></pre>
+</li>
+</ol>
+<p>A primary key serves as a unique identifier for each row. By specifying that the id column is the PRIMARY KEY, SQL makes sure that:</p>
+<ul>
+<li>None of the values in this column are NULL</li>
+<li>Each value in this column is unique</li>
+</ul>
+<ol start="2">
+<li>
+<p>Selection from multiple tables:</p>
+<pre><code> SELECT albums.name, albums.year, artists.name FROM albums, artists;
+</code></pre>
+<p>Unfortunately, this operation would return a table which combines every row of the artists table with every row of the albums table.</p>
+</li>
+<li>
+<p>Join 2 different tables through rule:</p>
+<pre><code> SELECT * FROM albums JOIN artists ON albums.artist_id = artists.id;
+</code></pre>
+<p>Here, artist_id is a foreign key in the albums table. A foreign key is a column that contains the primary key of another table in the database.</p>
+<pre><code> SELECT * FROM albums LEFT JOIN artists ON albums.artist_id = artists.id;
+</code></pre>
+</li>
+</ol>
+<p>Every row in the left table is returned in the result set, and if the join condition is not met, then NULL values are used to fill. The left table is simply the first table that appears in the statement.</p>
+<ol start="4">
+<li>
+<p>Set alias</p>
+<pre><code> SELECT
+   albums.name AS 'Album',
+   albums.year,
+   artists.name AS 'Artist'
+ FROM
+   albums
+ JOIN artists ON
+   albums.artist_id = artists.id
+ WHERE
+   albums.year &gt; 1980;
+</code></pre>
+<p><code>AS</code> is a keyword in SQL that allows you to use an alias. The aliases only appear in the result set,  columns have not been renamed</p>
+</li>
+</ol>
+<blockquote>
+<p>Written with <a href="https://stackedit.io/" target="_blank" rel="noopener noreffer ">StackEdit</a>.</p>
+</blockquote></div><div id="comments"><div id="disqus_thread" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://disqus.com/?ref_noscript">Disqus</a>.
+            </noscript></div></div></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.102.2">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2016 - 2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">xiaoxuan</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/cookieconsent/cookieconsent.min.css"><script type="text/javascript" src="https://xxuan-cc.disqus.com/embed.js" defer></script><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/mhchem.min.js"></script><script type="text/javascript" src="/lib/cookieconsent/cookieconsent.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{},"cookieconsent":{"content":{"dismiss":"Got it!","link":"Learn more","message":"This website uses Cookies to improve your experience."},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":50,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

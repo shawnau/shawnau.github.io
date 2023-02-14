@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>Scrapy简介(附项目:爬取实习僧实习信息) - Laniakea</title><meta name="Description" content="xxuan&#39;s blog"><meta property="og:title" content="Scrapy简介(附项目:爬取实习僧实习信息)" />
+<meta property="og:description" content="scrapy的官方中文文档
+源代码" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://xxuan.cc/code/2017-02-18-scrapy/" /><meta property="og:image" content="http://xxuan.cc/logo.png"/><meta property="article:section" content="code" />
+<meta property="article:published_time" content="2017-02-18T16:29:59+00:00" />
+<meta property="article:modified_time" content="2017-02-18T16:29:59+00:00" /><meta property="og:site_name" content="xxuan.cc" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="http://xxuan.cc/logo.png"/>
+
+<meta name="twitter:title" content="Scrapy简介(附项目:爬取实习僧实习信息)"/>
+<meta name="twitter:description" content="scrapy的官方中文文档
+源代码"/>
+<meta name="application-name" content="Laniakea">
+<meta name="apple-mobile-web-app-title" content="Laniakea"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://xxuan.cc/code/2017-02-18-scrapy/" /><link rel="prev" href="http://xxuan.cc/code/2017-02-17-mongodb/" /><link rel="next" href="http://xxuan.cc/code/2017-02-23-shadowsocks-chrome-config/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" href="/lib/animate/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Scrapy简介(附项目:爬取实习僧实习信息)",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/xxuan.cc\/code\/2017-02-18-scrapy\/"
+        },"genre": "code","keywords": "scrapy, python","wordcount":  3359 ,
+        "url": "http:\/\/xxuan.cc\/code\/2017-02-18-scrapy\/","datePublished": "2017-02-18T16:29:59+00:00","dateModified": "2017-02-18T16:29:59+00:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "xiaoxuan"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Laniakea">Laniakea</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/" title="存档脑细胞"> 文章 </a><a class="menu-item" href="/playground/" title="玩耍算法题的地方"> 练习场 </a><a class="menu-item" href="/code/" title="存放大概率过期的代码"> 码农 </a><a class="menu-item" href="/tags/" title="标签"> Tags </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Laniakea">Laniakea</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="存档脑细胞">文章</a><a class="menu-item" href="/playground/" title="玩耍算法题的地方">练习场</a><a class="menu-item" href="/code/" title="存放大概率过期的代码">码农</a><a class="menu-item" href="/tags/" title="标签">Tags</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="page single special"><h1 class="single-title animate__animated animate__pulse animate__faster">Scrapy简介(附项目:爬取实习僧实习信息)</h1><div class="content" id="content"><p><a href="http://scrapy-chs.readthedocs.io/zh_CN/latest/index.html" target="_blank" rel="noopener noreffer ">scrapy的官方中文文档</a></p>
+<p><a href="https://github.com/shawnau/shixiseng" target="_blank" rel="noopener noreffer ">源代码</a></p>
+<h1 id="scrapy框架数据流">Scrapy框架数据流</h1>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="http://7xlen8.com1.z0.glb.clouddn.com/scrapy_work.jpeg"
+        data-srcset="http://7xlen8.com1.z0.glb.clouddn.com/scrapy_work.jpeg, http://7xlen8.com1.z0.glb.clouddn.com/scrapy_work.jpeg 1.5x, http://7xlen8.com1.z0.glb.clouddn.com/scrapy_work.jpeg 2x"
+        data-sizes="auto"
+        alt="http://7xlen8.com1.z0.glb.clouddn.com/scrapy_work.jpeg"
+        title="http://7xlen8.com1.z0.glb.clouddn.com/scrapy_work.jpeg" /></p>
+<p>上图是scrapy的数据流, 看不懂没关系, 接下来会简单介绍scrapy爬取的流程.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">pip install scrapy <span class="c1"># 安装scrapy</span>
+</span></span><span class="line"><span class="cl">scrapy startproject shixiseng <span class="c1"># 启动一个新项目,命名为shixiseng</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>接下来会在目录下看到以下结构:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">shixiseng/
+</span></span><span class="line"><span class="cl">    scrapy.cfg
+</span></span><span class="line"><span class="cl">    shixiseng/
+</span></span><span class="line"><span class="cl">        __init__.py
+</span></span><span class="line"><span class="cl">        items.py
+</span></span><span class="line"><span class="cl">        pipelines.py
+</span></span><span class="line"><span class="cl">        settings.py
+</span></span><span class="line"><span class="cl">        spiders/
+</span></span><span class="line"><span class="cl">            __init__.py
+</span></span><span class="line"><span class="cl">            ...
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>我们重点关注的是以下几个文件:</p>
+<p><code>spiders</code>目录下的脚本负责解析和爬取网页信息 -&gt; 将信息封装成<code>items.py</code>中定义好的格式(类似于python的dict) -&gt; 传给<code>pipelines.py</code>处理得到的Item, 可以写入文件, 也可以传入数据库</p>
+<h1 id="spider部分的构造">spider部分的构造</h1>
+<ol>
+<li>
+<p>在spiders目录下新建一个脚本, 命名为<code>intern_spider.py</code></p>
+</li>
+<li>
+<p>看看实习僧主页, 列出了一堆关键词, 随便找一个进入, 发现url格式很简单, 为<code>http://www.shixiseng.com/interns?k=IOS&amp;p=1</code>, 其中k=搜索关键词, p=显示页数. 这个结构很简单, 不涉及复杂的js/ajax功能, 例如需要下拉才能刷新出信息等. 省却了很多麻烦</p>
+</li>
+</ol>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/Screen%20Shot%202017-02-18%20at%205.13.01%20PM.png"
+        data-srcset="http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/Screen%20Shot%202017-02-18%20at%205.13.01%20PM.png, http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/Screen%20Shot%202017-02-18%20at%205.13.01%20PM.png 1.5x, http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/Screen%20Shot%202017-02-18%20at%205.13.01%20PM.png 2x"
+        data-sizes="auto"
+        alt="http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/Screen%20Shot%202017-02-18%20at%205.13.01%20PM.png"
+        title="http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/Screen%20Shot%202017-02-18%20at%205.13.01%20PM.png" /></p>
+<ol start="3">
+<li>发现置空关键词的话, 只能显示出500页信息, 而实习信息远远不止这个数, 所以还是乖乖按关键词搜索吧. 把第一行的关键词输入一个list, 按照list一个一个爬就可以了, 见下:</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># 爬取各种关键词</span>
+</span></span><span class="line"><span class="cl">    <span class="n">key_words</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;软件&#39;</span><span class="p">,</span> <span class="s1">&#39;IOS&#39;</span><span class="p">,</span> <span class="s1">&#39;数据库&#39;</span><span class="p">,</span> <span class="s1">&#39;C#/.NET&#39;</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">                 <span class="s1">&#39;Hadoop&#39;</span><span class="p">,</span> <span class="s1">&#39;Android&#39;</span><span class="p">,</span> <span class="s1">&#39;算法&#39;</span><span class="p">,</span> <span class="s1">&#39;IT运维&#39;</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">                 <span class="s1">&#39;Python&#39;</span><span class="p">,</span> <span class="s1">&#39;云计算/大数据&#39;</span><span class="p">,</span> <span class="s1">&#39;Node.js&#39;</span><span class="p">,</span> <span class="s1">&#39;数据挖掘&#39;</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">                 <span class="s1">&#39;PHP&#39;</span><span class="p">,</span> <span class="s1">&#39;Ruby/Perl&#39;</span><span class="p">,</span> <span class="s1">&#39;测试&#39;</span><span class="p">,</span> <span class="s1">&#39;Java&#39;</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">                 <span class="s1">&#39;C/C++&#39;</span><span class="p">,</span> <span class="s1">&#39;前端&#39;</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="n">start_urls</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;http://www.shixiseng.com/interns?k=#&amp;p=1&#39;</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;#&#39;</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">key_words</span><span class="p">]</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>其中<code>start_urls</code>就是scrapy开始爬取的链接, 我们组装出了18个关键词, 每次从搜索结果的第一页开始爬取, 一直爬到最后一页. 然而最后一页是第几页? 在不知情的情况下, 我们只能一直增加页数, 直到新的页面不能显示出实习信息为止, 像这样:</li>
+</ul>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/Screen%20Shot%202017-02-18%20at%203.14.38%20PM.png"
+        data-srcset="http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/Screen%20Shot%202017-02-18%20at%203.14.38%20PM.png, http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/Screen%20Shot%202017-02-18%20at%203.14.38%20PM.png 1.5x, http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/Screen%20Shot%202017-02-18%20at%203.14.38%20PM.png 2x"
+        data-sizes="auto"
+        alt="http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/Screen%20Shot%202017-02-18%20at%203.14.38%20PM.png"
+        title="http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/Screen%20Shot%202017-02-18%20at%203.14.38%20PM.png" /></p>
+<ul>
+<li>此时使用xpath搜不到显示实习信息的div就可以停止爬取了. 所以我们的<code>parse()</code>函数, 即爬取一页信息的信息定义如下:</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">parse</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">response</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="c1"># 初始化选择器和item</span>
+</span></span><span class="line"><span class="cl">        <span class="n">sel</span> <span class="o">=</span> <span class="n">Selector</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">item</span> <span class="o">=</span> <span class="n">InternItem</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="c1"># 如果超出最大页数, 就不执行抓取</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="n">sel</span><span class="o">.</span><span class="n">xpath</span><span class="p">(</span><span class="s2">&#34;.//*[@id=&#39;load_box_item&#39;]/div&#34;</span><span class="p">)</span><span class="o">.</span><span class="n">extract_first</span><span class="p">()</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>  
+</span></span><span class="line"><span class="cl">            
+</span></span><span class="line"><span class="cl">            <span class="c1"># 爬取一页的职业信息, 返回一个list</span>
+</span></span><span class="line"><span class="cl">            <span class="n">title</span> <span class="o">=</span> <span class="n">sel</span><span class="o">.</span><span class="n">xpath</span><span class="p">(</span><span class="s2">&#34;.//*[@id=&#39;load_box_item&#39;]/div[*]/div/div/a/h3/text()&#34;</span><span class="p">)</span><span class="o">.</span><span class="n">extract</span><span class="p">()</span>  
+</span></span><span class="line"><span class="cl">            <span class="c1"># 爬取指向每个信息的岗位职责子页面的链接</span>
+</span></span><span class="line"><span class="cl">            <span class="n">dec_link</span> <span class="o">=</span> <span class="n">sel</span><span class="o">.</span><span class="n">xpath</span><span class="p">(</span><span class="s2">&#34;.//*[@id=&#39;load_box_item&#39;]/div[*]/div/div/a/@href&#34;</span><span class="p">)</span><span class="o">.</span><span class="n">extract</span><span class="p">()</span>  
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="c1"># 将爬取的unicode转换成utf-8字节码</span>
+</span></span><span class="line"><span class="cl">            <span class="c1"># 每一页所有的候选框依次清洗并封装成wrapped_dict并缓存在item_list中</span>
+</span></span><span class="line"><span class="cl">            <span class="n">item_list</span> <span class="o">=</span> <span class="p">[]</span>
+</span></span><span class="line"><span class="cl">            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">title</span><span class="p">)):</span>
+</span></span><span class="line"><span class="cl">                <span class="c1"># 把相对路径拼接成绝对路径</span>
+</span></span><span class="line"><span class="cl">                <span class="n">abs_link</span> <span class="o">=</span> <span class="s1">&#39;http://www.shixiseng.com&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">dec_link</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">                <span class="n">wrapped_dict</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;dec_link&#39;</span><span class="p">:</span> <span class="n">abs_link</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">                                <span class="s1">&#39;title&#39;</span><span class="p">:</span> <span class="n">title</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">                                <span class="p">}</span>
+</span></span><span class="line"><span class="cl">                <span class="n">item_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">wrapped_dict</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="c1"># 按照每一个title对应的url爬取岗位职责, 同时通过meta传入打包好的item给parse_dec()</span>
+</span></span><span class="line"><span class="cl">            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">item_list</span><span class="p">)):</span>
+</span></span><span class="line"><span class="cl">                <span class="k">yield</span> <span class="n">Request</span><span class="p">(</span><span class="n">item_list</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="s1">&#39;dec_link&#39;</span><span class="p">],</span> <span class="n">callback</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">parse_dec</span><span class="p">,</span> <span class="n">meta</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;item&#39;</span><span class="p">:</span> <span class="n">item_list</span><span class="p">[</span><span class="n">i</span><span class="p">]})</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="c1"># 拼接好下一页的url并爬取下一页</span>
+</span></span><span class="line"><span class="cl">            <span class="n">next_page_index</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">url</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span> <span class="o">+</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">            <span class="n">next_page</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">url</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">next_page_index</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="k">yield</span> <span class="n">Request</span><span class="p">(</span><span class="n">next_page</span><span class="p">,</span> <span class="n">callback</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">parse</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="k">yield</span> <span class="n">item</span>  <span class="c1"># 直接返回空的item</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>介绍代码之前, 首先说明一下需要爬取的信息(源代码要复杂一点, 这里是简化版): title(职位), link(打开实习信息的链接), dec(实习信息, 需要在子页面爬取). 其中链接是在存储入数据库的时候用来区分是否重复的依据.</p>
+<ul>
+<li><code>sel = Selector(response)</code>这行把爬取到的信息初始化为一个选择器, 可以通过调用<code>xpath()</code>(xpath选择器), <code>css()</code>(css选择器), <code>re()</code>(正则表达式)等方法提取需要的信息</li>
+<li>首先通过<code>xpath()</code>方法利用xpath提取需要的信息, 再使用<code>extract()</code>提取得到的文本list, 否则会返回一个Object而不是文本.</li>
+<li>获取title和dec_link之后, 配对封装成<code>wrapped_dict</code>, 放到<code>item_list</code>中备用</li>
+<li>提取到每个实习信息的dict, 通过<code>Request(item_list[i]['dec_link'], callback=self.parse_dec, meta={'item': item_list[i]})</code>发出请求爬取子页面</li>
+<li>解释一下这里的<code>Request()</code>函数:
+<ul>
+<li>首先, <code>Request()</code>返回一个<code>response</code>类, 其中包含了请求获得的网页信息, 以及自己传入的一些参数.</li>
+<li>第一个参数是需要爬取的url</li>
+<li>第二个参数是调用相应的函数处理爬取的信息, 这里会调用自己写好的<code>parse_dec()</code>函数处理这个<code>Request</code>的<code>response</code>.</li>
+<li>第三个参数<code>meta={'item': item_list[i]})</code>将前面爬到的信息传入这里的<code>response</code>.</li>
+</ul>
+</li>
+<li>下一步, 在<code>parse_dec()</code>中将爬取子页面的信息和之前传入的信息合并并交给pipelines处理, 见之后介绍<code>parse_dec()</code>的部分</li>
+<li>处理结束之后, 只爬取到了一页的信息, 接下来还要去下一页, 拼接好<code>next_page</code>之后, 使用<code>Request(next_page, callback=self.parse)</code>调用自己爬取下一页, 如果下一页没有信息了, 就直接返回空的item交给pipelines.</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># 爬取岗位职责页面, 和之前的信息拼接成item并传给pipelines</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">parse_dec</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">response</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="n">sel</span> <span class="o">=</span> <span class="n">Selector</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="c1"># # 接收之前传入的meta</span>
+</span></span><span class="line"><span class="cl">        <span class="n">item</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">meta</span><span class="p">[</span><span class="s1">&#39;item&#39;</span><span class="p">]</span>  
+</span></span><span class="line"><span class="cl">        <span class="c1"># 职位描述和截止日期</span>
+</span></span><span class="line"><span class="cl">        <span class="n">dec_list</span> <span class="o">=</span> <span class="n">sel</span><span class="o">.</span><span class="n">xpath</span><span class="p">(</span><span class="s2">&#34;.//*[@id=&#39;container&#39;]/div[1]/div[1]/div[3]//text()&#34;</span><span class="p">)</span><span class="o">.</span><span class="n">extract</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">        <span class="n">item</span><span class="p">[</span><span class="s1">&#39;dec_content&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">dec_list</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">        <span class="k">yield</span> <span class="n">item</span>  <span class="c1"># 返回爬取一个候选框的信息给pipeline处理</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>介绍一下这段代码</p>
+<ul>
+<li>首先, 之前爬取的职位和链接信息都包含在了<code>response</code>的<code>meta</code>参数里面了, 通过<code>item = response.meta['item']</code>把他们传入item.</li>
+<li>其次, 通过新增<code>'dec_content'</code>键, 继续往item里添加爬取到的信息, 最后返回<code>item</code>, 给pipeline处理.</li>
+</ul>
+<p>整个爬取的流程如下</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">parse()page1 --item(title1,link1)--&gt; parse_dec()爬取子页面1 --item(title1,link1,dec1)--&gt; pipelinesc处理
+</span></span><span class="line"><span class="cl">             --item(title2,link2)--&gt; parse_dec()爬取子页面2 --item(title2,link2,dec2)--&gt; pipelinesc处理
+</span></span><span class="line"><span class="cl">             ...
+</span></span><span class="line"><span class="cl">             --item(title9,link9)--&gt; parse_dec()爬取子页面9 --item(title9,link9,dec9)--&gt; pipelinesc处理
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">parse()进入第二页爬取
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">parse()page2 --item(title1,link1)--&gt; parse_dec()爬取子页面1 --item(title1,link1,dec1)--&gt; pipelinesc处理
+</span></span><span class="line"><span class="cl">             --item(title2,link2)--&gt; parse_dec()爬取子页面2 --item(title2,link2,dec2)--&gt; pipelinesc处理
+</span></span><span class="line"><span class="cl">             ...
+</span></span><span class="line"><span class="cl">             --item(title9,link9)--&gt; parse_dec()爬取子页面9 --item(title9,link9,dec9)--&gt; pipelinesc处理
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">...
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">parse()进入下一页, 找不到信息, 爬虫停止.
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h1 id="pipelines的构造">pipelines的构造</h1>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">MongoPipeline</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># 这个pipeline是保存到数据库中的</span>
+</span></span><span class="line"><span class="cl">    <span class="n">collection_name</span> <span class="o">=</span> <span class="s1">&#39;interns&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mongo_uri</span><span class="p">,</span> <span class="n">mongo_db</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">mongo_uri</span> <span class="o">=</span> <span class="n">mongo_uri</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">mongo_db</span> <span class="o">=</span> <span class="n">mongo_db</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nd">@classmethod</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">from_crawler</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">crawler</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">            <span class="n">mongo_uri</span><span class="o">=</span><span class="n">crawler</span><span class="o">.</span><span class="n">settings</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;MONGO_URI&#39;</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">            <span class="n">mongo_db</span><span class="o">=</span><span class="n">crawler</span><span class="o">.</span><span class="n">settings</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;MONGO_DATABASE&#39;</span><span class="p">,</span> <span class="s1">&#39;shixiseng_interns&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">open_spider</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">spider</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">client</span> <span class="o">=</span> <span class="n">pymongo</span><span class="o">.</span><span class="n">MongoClient</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">mongo_uri</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">db</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">mongo_db</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">close_spider</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">spider</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">process_item</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item</span><span class="p">,</span> <span class="n">spider</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="c1"># 通过dec_link, 即岗位职责页面的链接来判断是否重复, 若重复就不存入数据库</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">db</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">collection_name</span><span class="p">]</span><span class="o">.</span><span class="n">find</span><span class="p">({</span><span class="s1">&#39;dec_link&#39;</span><span class="p">:</span> <span class="n">item</span><span class="p">[</span><span class="s1">&#39;dec_link&#39;</span><span class="p">]})</span><span class="o">.</span><span class="n">count</span><span class="p">()</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="bp">self</span><span class="o">.</span><span class="n">db</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">collection_name</span><span class="p">]</span><span class="o">.</span><span class="n">insert_one</span><span class="p">(</span><span class="nb">dict</span><span class="p">(</span><span class="n">item</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">item</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>处理获取的item相对简单, 只有<code>process_item()</code>方法是必要的. 新建mongodb数据库名为<code>shixiseng_interns</code>, 新建collection名为<code>interns</code></li>
+<li>存入数据库之前先查询一下有没有相同链接的文档已经存在了, 如果存在就视为重复, 放弃存储.</li>
+<li>通过<code>insert_one(dict(item)</code>把<code>item</code>存入数据库</li>
+</ul>
+<h1 id="运行与部署">运行与部署</h1>
+<p>进入shixiseng根目录下, 运行</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo service mongod start
+</span></span><span class="line"><span class="cl">scrapy crawl shixiseng_intern_spider
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>获得大量log信息, 爬取结束之后, 进入数据库查询:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;_id&#34;</span> : ObjectId<span class="o">(</span><span class="s2">&#34;58a7ecbc44cefc2e49838e41&#34;</span><span class="o">)</span>,
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;addr&#34;</span> : <span class="s2">&#34;南京&#34;</span>,
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;title&#34;</span> : <span class="s2">&#34;产品策划（专题活动方向）实习生&#34;</span>,
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;closing_date&#34;</span> : <span class="s2">&#34;2017-12-31&#34;</span>,
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;money&#34;</span> : <span class="o">[</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;70&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;90&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">]</span>,
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;dec_link&#34;</span> : <span class="s2">&#34;http://www.shixiseng.com/intern/inn_2oycacvj6eqw&#34;</span>,
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;dec_content&#34;</span> : <span class="o">[</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;岗位职责：&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;1、负责与市场、运营等部门的线上专题页活动对接&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;2、通过对公司业务梳理​和专题活动类型分析调研，挖掘需求&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;3、负责专题页的交互设计&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;4、组织活动需求方及研发、前端等资源确保产品按时高质交付&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;岗位职责：&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;1、负责与市场、运营等部门的线上专题页活动对接&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;2、通过对公司业务梳理​和专题活动类型分析调研，挖掘需求&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;3、负责专题页的交互设计&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;4、组织活动需求方及研发、前端等资源确保产品按时高质交付&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">]</span>,
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;tag&#34;</span> : <span class="s2">&#34;软件&#34;</span>,
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;company_name&#34;</span> : <span class="s2">&#34;课窝教育&#34;</span>,
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;job_time&#34;</span> : <span class="o">[</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;02&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;18 &#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">]</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>未完待续</p>
+</blockquote>
+<p>Refer:</p>
+<ul>
+<li><a href="http://www.jianshu.com/p/a8aad3bf4dc4" target="_blank" rel="noopener noreffer ">【scrapy】学习Scrapy入门</a></li>
+<li><a href="http://aljun.me/post/4" target="_blank" rel="noopener noreffer ">用scrapy爬取豆瓣电影新片榜</a></li>
+</ul></div><div id="comments"><div id="disqus_thread" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://disqus.com/?ref_noscript">Disqus</a>.
+            </noscript></div></div></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.102.2">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2016 - 2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">xiaoxuan</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/cookieconsent/cookieconsent.min.css"><script type="text/javascript" src="https://xxuan-cc.disqus.com/embed.js" defer></script><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/mhchem.min.js"></script><script type="text/javascript" src="/lib/cookieconsent/cookieconsent.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{},"cookieconsent":{"content":{"dismiss":"Got it!","link":"Learn more","message":"This website uses Cookies to improve your experience."},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":50,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

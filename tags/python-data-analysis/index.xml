@@ -1,0 +1,26 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>python-data-analysis - Tag - Laniakea</title>
+        <link>http://xxuan.cc/tags/python-data-analysis/</link>
+        <description>python-data-analysis - Tag - Laniakea</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>shawn_au@outlook.com (xiaoxuan)</managingEditor>
+            <webMaster>shawn_au@outlook.com (xiaoxuan)</webMaster><lastBuildDate>Fri, 29 Sep 2017 00:30:14 &#43;0000</lastBuildDate><atom:link href="http://xxuan.cc/tags/python-data-analysis/" rel="self" type="application/rss+xml" /><item>
+    <title>Python数据分析笔记2 pandas基础</title>
+    <link>http://xxuan.cc/code/2017-09-28-pandas/</link>
+    <pubDate>Fri, 29 Sep 2017 00:30:14 &#43;0000</pubDate>
+    <author>xiaoxuan</author>
+    <guid>http://xxuan.cc/code/2017-09-28-pandas/</guid>
+    <description><![CDATA[<p>
+全面翻新的pandas介绍, 篇幅较长, 请善用右下角目录!</p>]]></description>
+</item>
+<item>
+    <title>Python数据分析笔记1 numpy</title>
+    <link>http://xxuan.cc/2017-09-21-numpy/</link>
+    <pubDate>Thu, 21 Sep 2017 23:48:31 &#43;0000</pubDate>
+    <author>xiaoxuan</author>
+    <guid>http://xxuan.cc/2017-09-21-numpy/</guid>
+    <description><![CDATA[<p>
+用了这么久numpy居然没有总结一下</p>]]></description>
+</item>
+</channel>
+</rss>

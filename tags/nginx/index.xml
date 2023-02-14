@@ -1,0 +1,17 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>nginx - Tag - Laniakea</title>
+        <link>http://xxuan.cc/tags/nginx/</link>
+        <description>nginx - Tag - Laniakea</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>shawn_au@outlook.com (xiaoxuan)</managingEditor>
+            <webMaster>shawn_au@outlook.com (xiaoxuan)</webMaster><lastBuildDate>Thu, 16 Mar 2017 15:38:14 &#43;0000</lastBuildDate><atom:link href="http://xxuan.cc/tags/nginx/" rel="self" type="application/rss+xml" /><item>
+    <title>nginx &#43; uwsgi &#43; flask部署应用</title>
+    <link>http://xxuan.cc/code/2017-03-16-nginx-uwsgi-flask/</link>
+    <pubDate>Thu, 16 Mar 2017 15:38:14 &#43;0000</pubDate>
+    <author>xiaoxuan</author>
+    <guid>http://xxuan.cc/code/2017-03-16-nginx-uwsgi-flask/</guid>
+    <description><![CDATA[<p>主要参考了这篇文章
+<a href="https://www.digitalocean.com/community/tutorials/how-to-serve-flask-applications-with-uwsgi-and-nginx-on-ubuntu-14-04" target="_blank" rel="noopener noreffer ">How To Serve Flask Applications with uWSGI and Nginx on Ubuntu 14.04</a></p>]]></description>
+</item>
+</channel>
+</rss>

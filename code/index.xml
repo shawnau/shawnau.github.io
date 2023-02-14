@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Codes on Laniakea</title>
+    <link>http://xxuan.cc/code/</link>
+    <description>Recent content in Codes on Laniakea</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <managingEditor>shawn_au@outlook.com (xiaoxuan)</managingEditor>
+    <webMaster>shawn_au@outlook.com (xiaoxuan)</webMaster>
+    <lastBuildDate>Fri, 29 Sep 2017 00:30:14 +0000</lastBuildDate><atom:link href="http://xxuan.cc/code/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Python数据分析笔记2 pandas基础</title>
+      <link>http://xxuan.cc/code/2017-09-28-pandas/</link>
+      <pubDate>Fri, 29 Sep 2017 00:30:14 +0000</pubDate>
+      <author>shawn_au@outlook.com (xiaoxuan)</author>
+      <guid>http://xxuan.cc/code/2017-09-28-pandas/</guid>
+      <description>&lt;p&gt;&lt;img
+        class=&#34;lazyload&#34;
+        src=&#34;http://xxuan.cc/svg/loading.min.svg&#34;
+        data-src=&#34;http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/65138347_p0.png&#34;
+        data-srcset=&#34;http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/65138347_p0.png, http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/65138347_p0.png 1.5x, http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/65138347_p0.png 2x&#34;
+        data-sizes=&#34;auto&#34;
+        alt=&#34;http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/65138347_p0.png&#34;
+        title=&#34;http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/65138347_p0.png&#34; /&gt;
+全面翻新的pandas介绍, 篇幅较长, 请善用右下角目录!&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>数据可视化工具Seaborn指南</title>
+      <link>http://xxuan.cc/code/2017-03-29-seaborn/</link>
+      <pubDate>Wed, 29 Mar 2017 23:30:01 +0000</pubDate>
+      <author>shawn_au@outlook.com (xiaoxuan)</author>
+      <guid>http://xxuan.cc/code/2017-03-29-seaborn/</guid>
+      <description>&lt;p&gt;Seaborn是基于matplotlib的封装, 使得制作图表更为简便&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>pandas速查</title>
+      <link>http://xxuan.cc/code/2017-03-29-pandas-10min/</link>
+      <pubDate>Wed, 29 Mar 2017 18:07:25 +0000</pubDate>
+      <author>shawn_au@outlook.com (xiaoxuan)</author>
+      <guid>http://xxuan.cc/code/2017-03-29-pandas-10min/</guid>
+      <description>&lt;p&gt;pandas, python栈的数据处理最强package, 没有之一(?&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>nginx &#43; uwsgi &#43; flask部署应用</title>
+      <link>http://xxuan.cc/code/2017-03-16-nginx-uwsgi-flask/</link>
+      <pubDate>Thu, 16 Mar 2017 15:38:14 +0000</pubDate>
+      <author>shawn_au@outlook.com (xiaoxuan)</author>
+      <guid>http://xxuan.cc/code/2017-03-16-nginx-uwsgi-flask/</guid>
+      <description>&lt;p&gt;主要参考了这篇文章
+&lt;a href=&#34;https://www.digitalocean.com/community/tutorials/how-to-serve-flask-applications-with-uwsgi-and-nginx-on-ubuntu-14-04&#34; target=&#34;_blank&#34; rel=&#34;noopener noreffer &#34;&gt;How To Serve Flask Applications with uWSGI and Nginx on Ubuntu 14.04&lt;/a&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>scrapy &#43; mongodb &#43; flask &#43; echarts 数据可视化</title>
+      <link>http://xxuan.cc/code/2017-03-13-mongodb-flask-echarts-data-visualize/</link>
+      <pubDate>Mon, 13 Mar 2017 21:33:07 +0000</pubDate>
+      <author>shawn_au@outlook.com (xiaoxuan)</author>
+      <guid>http://xxuan.cc/code/2017-03-13-mongodb-flask-echarts-data-visualize/</guid>
+      <description>&lt;p&gt;&lt;a href=&#34;https://github.com/shawnau/intern_visualization&#34; target=&#34;_blank&#34; rel=&#34;noopener noreffer &#34;&gt;源码&lt;/a&gt;
+&lt;a href=&#34;http://54.169.117.35:8080&#34; target=&#34;_blank&#34; rel=&#34;noopener noreffer &#34;&gt;项目地址&lt;/a&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>shadowsocks&#43;chrome代理配置速查手册</title>
+      <link>http://xxuan.cc/code/2017-02-23-shadowsocks-chrome-config/</link>
+      <pubDate>Thu, 23 Feb 2017 00:56:07 +0000</pubDate>
+      <author>shawn_au@outlook.com (xiaoxuan)</author>
+      <guid>http://xxuan.cc/code/2017-02-23-shadowsocks-chrome-config/</guid>
+      <description>&lt;p&gt;最近老是要配置ss, 顺手记下来以便存档. 为了方便0基础人士阅读极其傻瓜&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Scrapy简介(附项目:爬取实习僧实习信息)</title>
+      <link>http://xxuan.cc/code/2017-02-18-scrapy/</link>
+      <pubDate>Sat, 18 Feb 2017 16:29:59 +0000</pubDate>
+      <author>shawn_au@outlook.com (xiaoxuan)</author>
+      <guid>http://xxuan.cc/code/2017-02-18-scrapy/</guid>
+      <description>&lt;p&gt;&lt;a href=&#34;http://scrapy-chs.readthedocs.io/zh_CN/latest/index.html&#34; target=&#34;_blank&#34; rel=&#34;noopener noreffer &#34;&gt;scrapy的官方中文文档&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/shawnau/shixiseng&#34; target=&#34;_blank&#34; rel=&#34;noopener noreffer &#34;&gt;源代码&lt;/a&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>MongoDB&#43;pymongo简介(持续更新中)</title>
+      <link>http://xxuan.cc/code/2017-02-17-mongodb/</link>
+      <pubDate>Fri, 17 Feb 2017 16:50:26 +0000</pubDate>
+      <author>shawn_au@outlook.com (xiaoxuan)</author>
+      <guid>http://xxuan.cc/code/2017-02-17-mongodb/</guid>
+      <description>&lt;p&gt;MongoDB 是一种文件导向的 NoSQL 数据库，由 C++ 撰写而成。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Blazing Fast! 使用YOLO&#43;Darknet进行目标检测</title>
+      <link>http://xxuan.cc/code/2016-12-26-yolo-darknet/</link>
+      <pubDate>Mon, 26 Dec 2016 15:15:08 +0000</pubDate>
+      <author>shawn_au@outlook.com (xiaoxuan)</author>
+      <guid>http://xxuan.cc/code/2016-12-26-yolo-darknet/</guid>
+      <description>&lt;p&gt;YOLO做目标检测很快&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Github Page &#43; Hexo &#43; next主题 blog网站的搭建</title>
+      <link>http://xxuan.cc/code/2016-12-22-hexo-blog-based-on-next-theme/</link>
+      <pubDate>Thu, 22 Dec 2016 15:40:00 +0000</pubDate>
+      <author>shawn_au@outlook.com (xiaoxuan)</author>
+      <guid>http://xxuan.cc/code/2016-12-22-hexo-blog-based-on-next-theme/</guid>
+      <description>&lt;p&gt;简单介绍一下本站的建立过程&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Jupyter Notebooks 简介</title>
+      <link>http://xxuan.cc/code/2016-12-22-jupyter-notebooks/</link>
+      <pubDate>Thu, 22 Dec 2016 15:37:15 +0000</pubDate>
+      <author>shawn_au@outlook.com (xiaoxuan)</author>
+      <guid>http://xxuan.cc/code/2016-12-22-jupyter-notebooks/</guid>
+      <description>&lt;p&gt;jupyter可以看作是一款强化版的python terminal, 实时运行命令脚本, 实时反映结果, 非常适用于科学计算和数据分析. 除此之外通过安装kernel也可以用其他语言工作&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>基于Docker的Faster R-CNN, CPU-Only环境配置</title>
+      <link>http://xxuan.cc/code/2016-12-10-build-fast-rcnn-under-docker/</link>
+      <pubDate>Sat, 10 Dec 2016 19:24:42 +0000</pubDate>
+      <author>shawn_au@outlook.com (xiaoxuan)</author>
+      <guid>http://xxuan.cc/code/2016-12-10-build-fast-rcnn-under-docker/</guid>
+      <description>&lt;p&gt;详见&lt;a href=&#34;https://github.com/shawnau/py-faster-rcnn-cpu&#34; target=&#34;_blank&#34; rel=&#34;noopener noreffer &#34;&gt;我的repo&lt;/a&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Docker速查</title>
+      <link>http://xxuan.cc/code/2016-12-06-docker-abc/</link>
+      <pubDate>Thu, 08 Dec 2016 19:29:07 +0000</pubDate>
+      <author>shawn_au@outlook.com (xiaoxuan)</author>
+      <guid>http://xxuan.cc/code/2016-12-06-docker-abc/</guid>
+      <description>&lt;p&gt;docker是一款很牛逼的虚拟化工具&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Landslide - Markdown to Slide</title>
+      <link>http://xxuan.cc/code/2016-11-25-landslide/</link>
+      <pubDate>Fri, 25 Nov 2016 11:24:20 +0000</pubDate>
+      <author>shawn_au@outlook.com (xiaoxuan)</author>
+      <guid>http://xxuan.cc/code/2016-11-25-landslide/</guid>
+      <description>&lt;p&gt;&lt;a href=&#34;https://github.com/adamzap/landslide&#34; target=&#34;_blank&#34; rel=&#34;noopener noreffer &#34;&gt;Landslide&lt;/a&gt; 是个可以把markdown文件变成幻灯片直接在浏览器里播放的工具.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>git 从fork的项目更新自己的项目的简易手段</title>
+      <link>http://xxuan.cc/code/2016-11-22-git-update-forked/</link>
+      <pubDate>Tue, 22 Nov 2016 00:00:00 +0000</pubDate>
+      <author>shawn_au@outlook.com (xiaoxuan)</author>
+      <guid>http://xxuan.cc/code/2016-11-22-git-update-forked/</guid>
+      <description>&lt;p&gt;RT&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>在mac os 10.12 Sierra下安装caffe</title>
+      <link>http://xxuan.cc/code/2016-11-12-install-caffe-under-macos/</link>
+      <pubDate>Sat, 12 Nov 2016 16:34:06 +0000</pubDate>
+      <author>shawn_au@outlook.com (xiaoxuan)</author>
+      <guid>http://xxuan.cc/code/2016-11-12-install-caffe-under-macos/</guid>
+      <description>&lt;p&gt;RT&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>bilibili新番/旧番弹幕抓取</title>
+      <link>http://xxuan.cc/code/2016-07-17-bilibili-scraper/</link>
+      <pubDate>Sun, 17 Jul 2016 20:09:38 +0000</pubDate>
+      <author>shawn_au@outlook.com (xiaoxuan)</author>
+      <guid>http://xxuan.cc/code/2016-07-17-bilibili-scraper/</guid>
+      <description>&lt;p&gt;主要涉及到Selenium的使用&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>基于selenium&#43;phantomJS的动态网页抓取</title>
+      <link>http://xxuan.cc/code/2016-07-16-webscraper/</link>
+      <pubDate>Sat, 16 Jul 2016 12:26:35 +0000</pubDate>
+      <author>shawn_au@outlook.com (xiaoxuan)</author>
+      <guid>http://xxuan.cc/code/2016-07-16-webscraper/</guid>
+      <description>&lt;p&gt;源代码: &lt;a href=&#34;https://github.com/shawnau/ustcsse_scraper&#34; target=&#34;_blank&#34; rel=&#34;noopener noreffer &#34;&gt;https://github.com/shawnau/ustcsse_scraper&lt;/a&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Spark Tutorial - Learning Apache Spark</title>
+      <link>http://xxuan.cc/code/2016-06-28-spark-tutorial/</link>
+      <pubDate>Tue, 28 Jun 2016 04:15:50 +0000</pubDate>
+      <author>shawn_au@outlook.com (xiaoxuan)</author>
+      <guid>http://xxuan.cc/code/2016-06-28-spark-tutorial/</guid>
+      <description>&lt;p&gt;Spark简介&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>SQL 速查</title>
+      <link>http://xxuan.cc/code/2016-06-20-sql-abc/</link>
+      <pubDate>Sun, 19 Jun 2016 07:51:31 +0000</pubDate>
+      <author>shawn_au@outlook.com (xiaoxuan)</author>
+      <guid>http://xxuan.cc/code/2016-06-20-sql-abc/</guid>
+      <description>&lt;p&gt;All the resources from &lt;a href=&#34;https://www.codecademy.com/learn&#34; target=&#34;_blank&#34; rel=&#34;noopener noreffer &#34;&gt;codecademy&lt;/a&gt;&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

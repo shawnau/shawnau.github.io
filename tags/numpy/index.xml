@@ -1,0 +1,17 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>numpy - Tag - Laniakea</title>
+        <link>http://xxuan.cc/tags/numpy/</link>
+        <description>numpy - Tag - Laniakea</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>shawn_au@outlook.com (xiaoxuan)</managingEditor>
+            <webMaster>shawn_au@outlook.com (xiaoxuan)</webMaster><lastBuildDate>Thu, 21 Sep 2017 23:48:31 &#43;0000</lastBuildDate><atom:link href="http://xxuan.cc/tags/numpy/" rel="self" type="application/rss+xml" /><item>
+    <title>Python数据分析笔记1 numpy</title>
+    <link>http://xxuan.cc/2017-09-21-numpy/</link>
+    <pubDate>Thu, 21 Sep 2017 23:48:31 &#43;0000</pubDate>
+    <author>xiaoxuan</author>
+    <guid>http://xxuan.cc/2017-09-21-numpy/</guid>
+    <description><![CDATA[<p>
+用了这么久numpy居然没有总结一下</p>]]></description>
+</item>
+</channel>
+</rss>
