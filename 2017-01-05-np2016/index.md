@@ -53,20 +53,20 @@
 4. 区分年龄段之后, 预测结果如下
 
     1. 0-25岁
-    ![](http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/ppt_4.png)
-    ![](http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/ppt_5.png)
+    ![](https://my-imgshare.oss-cn-shenzhen.aliyuncs.com/ppt_4.png)
+    ![](https://my-imgshare.oss-cn-shenzhen.aliyuncs.com/ppt_5.png)
     训练集准确率为: 0.983532934132
     测试集准确率为: 0.906040268456
     
     2. 25-60岁
-    ![](http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/ppt_6.png)
-    ![](http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/ppt_7.png)
+    ![](https://my-imgshare.oss-cn-shenzhen.aliyuncs.com/ppt_6.png)
+    ![](https://my-imgshare.oss-cn-shenzhen.aliyuncs.com/ppt_7.png)
     训练集准确率为: 0.843848874
     测试集准确率为: 0.373534338358
 
     3. 60-80岁
-    ![](http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/ppt_8.png)
-    ![](http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/ppt_9.png)
+    ![](https://my-imgshare.oss-cn-shenzhen.aliyuncs.com/ppt_8.png)
+    ![](https://my-imgshare.oss-cn-shenzhen.aliyuncs.com/ppt_9.png)
     训练集准确率为: 0.977473065622
     测试集准确率为: 0.649122807018
 
@@ -140,7 +140,7 @@ $$Z\_m = \sum\limits^N\_{i=1}w\_{mi}e^{-\alpha\_m y^{(i)} G\_m(x^{(i)})} $$
 
 
 ### 直观解释
-![function](http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/Logistic.png)
+![function](https://my-imgshare.oss-cn-shenzhen.aliyuncs.com/Logistic.png)
  
  - 对模型来说, 这里显示了弱分类器 $G\_m(x)$的权重, $ \alpha\_m = \frac{1}{2} ln \frac{1-e\_m}{e\_m} $ 与误差 $e\_m$, 变化的关系. 显然更精确的弱分类器具有更大的权重
  - 相反, 对训练集数据来说, 从 (3) 可知被误分类的样本的权重会增加, 被正确分类的样本权重会降低, 增加/降低的速度都是指数级别的.
@@ -447,7 +447,7 @@ labels:
 error rate:  0.0
 ```
 
-![](http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/ppt_10.png)
+![](https://my-imgshare.oss-cn-shenzhen.aliyuncs.com/ppt_10.png)
 
 AUC曲线完美, 准确率也是100%.在如此数据缺失, 且特征多的情况下还能达到这么高的效果, 显示了adaboost的强大
 
@@ -609,13 +609,13 @@ python view.py # upload图像,在浏览器打开http://yourip:8080
 ```
 
 提交图片:
-![](http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/ppt_1.png)
+![](https://my-imgshare.oss-cn-shenzhen.aliyuncs.com/ppt_1.png)
 
 生成报告:
-![](http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/ppt_2.png)
+![](https://my-imgshare.oss-cn-shenzhen.aliyuncs.com/ppt_2.png)
 
 预测性别年龄:
-![](http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/ppt_3.png)
+![](https://my-imgshare.oss-cn-shenzhen.aliyuncs.com/ppt_3.png)
 
 # 4. 课程学习心得总结
 本次课程学习了以下知识

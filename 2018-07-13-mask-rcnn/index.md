@@ -38,8 +38,8 @@ Mask RCNN的RPN是multi head的, 也就是每一个FPN的特征图对应一个RP
 ## RoiAlign
 RoiAlign被用于根据RPN proposal或者RCNN proposal从特征图上切割固定尺寸的特征图给RCNN或者Mask Head
 
-![](http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/roi_align_1.png)
-![](http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/roi_align_2.png)
+![](https://my-imgshare.oss-cn-shenzhen.aliyuncs.com/roi_align_1.png)
+![](https://my-imgshare.oss-cn-shenzhen.aliyuncs.com/roi_align_2.png)
 
 两张图解释一下ROI Align与ROI Pooling的区别.
 1. 使用ROI Pooling, proposal在feature map上的坐标大概率不是整数(尤其是有Bbox Regression), pooling的时候需要取整, 这个时候引入了不可逆的misalignment, 损失了精确的位置信息. 对要求精确到像素的实例分割是不可忍受的

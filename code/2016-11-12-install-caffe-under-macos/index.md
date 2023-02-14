@@ -102,7 +102,7 @@ curl  http://dl.caffe.berkeleyvision.org/bvlc_reference_caffenet.caffemodel > bv
 ```
 ./build/examples/cpp_classification/classification.bin models/bvlc_reference_caffenet/deploy.prototxt models/bvlc_reference_caffenet/bvlc_reference_caffenet.caffemodel data/ilsvrc12/imagenet_mean.binaryproto data/ilsvrc12/synset_words.txt examples/images/cat.jpg
 ```
-![](http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/2016-12-11)
+![](https://my-imgshare.oss-cn-shenzhen.aliyuncs.com/2016-12-11)
 
 参考资料
 https://gist.github.com/doctorpangloss/f8463bddce2a91b949639522ea1dcbe4

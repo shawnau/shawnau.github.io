@@ -1,6 +1,6 @@
 # Python核心编程笔记2 函数式编程
 
-![](http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/gamersky_028small_056_201785187DEA.jpg)
+![](https://my-imgshare.oss-cn-shenzhen.aliyuncs.com/gamersky_028small_056_201785187DEA.jpg)
 不学好函数式编程, 总觉得人生有遗憾
 <!--more-->
 

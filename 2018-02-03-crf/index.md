@@ -1,6 +1,6 @@
 # 对数线性模型, MEMM与CRF
 
-![](http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/13010631_p0_master1200.jpg)
+![](https://my-imgshare.oss-cn-shenzhen.aliyuncs.com/13010631_p0_master1200.jpg)
 >你的PGM也会和Steins Gate的世界线一样收束吗?
 
 可能是有史以来公式最多的文章. 敲到吐血

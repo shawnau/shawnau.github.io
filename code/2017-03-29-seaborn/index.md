@@ -39,7 +39,7 @@ sns.distplot(x, bins=20, kde=True, rug=True)
 
 
 
-![png](http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/output_3_1.png)
+![png](https://my-imgshare.oss-cn-shenzhen.aliyuncs.com/output_3_1.png)
 
 
 ### 2. `jointplot()`绘制二维柱状图
@@ -64,7 +64,7 @@ sns.jointplot(x="x", y="y", data=df)
 
 
 
-![png](http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/output_5_1.png)
+![png](https://my-imgshare.oss-cn-shenzhen.aliyuncs.com/output_5_1.png)
 
 
 ## 二维数据的分析
@@ -86,7 +86,7 @@ sns.regplot(x="total_bill", y="tip", data=tips)
 
 
 
-![png](http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/output_8_1.png)
+![png](https://my-imgshare.oss-cn-shenzhen.aliyuncs.com/output_8_1.png)
 
 
 ### 2. `lmplot()`更高自由度的二维图绘制
@@ -110,7 +110,7 @@ sns.pairplot(iris, hue="species")
 
 
 
-![png](http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/output_11_1.png)
+![png](https://my-imgshare.oss-cn-shenzhen.aliyuncs.com/output_11_1.png)
 
 
 ### 4. `heatmap()`展示不同特征的协方差
@@ -129,7 +129,7 @@ sns.heatmap(corrmat, cbar=True, annot=True, square=True, fmt='.2f', annot_kws={'
 
 
 
-![png](http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/output_13_1.png)
+![png](https://my-imgshare.oss-cn-shenzhen.aliyuncs.com/output_13_1.png)
 
 
 ## 分类数据的分析
@@ -151,7 +151,7 @@ sns.stripplot(x="day", y="total_bill", data=tips)
 
 
 
-![png](http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/output_15_1.png)
+![png](https://my-imgshare.oss-cn-shenzhen.aliyuncs.com/output_15_1.png)
 
 
 ### 2. `boxplot()`绘制箱形图
@@ -169,7 +169,7 @@ sns.boxplot(x="day", y="total_bill", data=tips)
 
 
 
-![png](http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/output_17_1.png)
+![png](https://my-imgshare.oss-cn-shenzhen.aliyuncs.com/output_17_1.png)
 
 
 

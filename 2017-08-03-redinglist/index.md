@@ -1,6 +1,6 @@
 # 18年秋季阅读计划
 
-![](http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/92e8647aly1fi7klbnzzng207409f1ky.gif)
+![](https://my-imgshare.oss-cn-shenzhen.aliyuncs.com/92e8647aly1fi7klbnzzng207409f1ky.gif)
 包括书和paper和感兴趣的topic
 
 <!--more-->

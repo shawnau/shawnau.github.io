@@ -1,14 +1,14 @@
 # Hidden Markov Model
 
 
-![](http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/4099531_p0_master1200.jpg)
+![](https://my-imgshare.oss-cn-shenzhen.aliyuncs.com/4099531_p0_master1200.jpg)
 使用HMM的赌徒, 你还好吗? hmmm....
 
 <!--more-->
 
 ## 0. 定义
 
-![HMM](http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/HMM.png)
+![HMM](https://my-imgshare.oss-cn-shenzhen.aliyuncs.com/HMM.png)
 
 如图所示, 线性HMM由状态$V$和观察$Q$的序列$I$和$O$组成,  其中$I$是马尔科夫链(Markov Chain). 状态之间通过转移矩阵$A$(transition)决定状态转移的概率分布, 每一时间步的状态通过观察矩阵$B$(emission)决定观察结果的概率分布.而状态一般是未知的.
 
@@ -85,7 +85,7 @@ q\_N & q\_N & \cdots & q\_N \\\
 \tag{1.2.1}
 $$
 
-![](http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/7.PNG)
+![](https://my-imgshare.oss-cn-shenzhen.aliyuncs.com/7.PNG)
 (示意图, 侵删)
 
 对所有的路径求和涉及到大量的重复运算. 假设已经计算出了$(I\_1, I\_2, \cdots, I\_t=q\_t)$的所有可能的路径的概率之和, 那么在计算$(I\_1, I\_2, \cdots, I\_{t+1})$时, 所有经过节点$I\_t=q\_t$的路径即可复用之前的计算结果. 写成递推式即为:

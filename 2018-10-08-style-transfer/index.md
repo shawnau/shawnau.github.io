@@ -6,7 +6,7 @@
 
 ## [Texture Synthesis Using Convolutional Neural Networks](https://arxiv.org/pdf/1505.07376.pdf)
 2015a, Gatys
-![enter image description here](http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/gatys-1.png)
+![enter image description here](https://my-imgshare.oss-cn-shenzhen.aliyuncs.com/gatys-1.png)
 
 1. 将图片输入预训练好的神经网络(VGG-19)中， 生成每层的特征
 2. 将灰度图同样输入预训练好的神经网络中，生成每层的特征
@@ -26,8 +26,8 @@ $$
 $$
 
 计算Gram矩阵的方法如下。Gram矩阵可以视为有偏的协方差矩阵
-![enter image description here](http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/gram-1.jpg)
-![enter image description here](http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/gram-2.jpg)
+![enter image description here](https://my-imgshare.oss-cn-shenzhen.aliyuncs.com/gram-1.jpg)
+![enter image description here](https://my-imgshare.oss-cn-shenzhen.aliyuncs.com/gram-2.jpg)
 
 ## [A Neural Algorithm of Artistic Style](https://arxiv.org/pdf/1508.06576.pdf)
 2015b, Gatys
@@ -57,14 +57,14 @@ $$
 \mathcal{L^{j}\_{style}}(y, \hat{y}) = \frac{1}{C\_{j}H\_{j}W\_{j}}\Vert G^{\phi}\_{j}(y) - G^{\phi}\_{j}({\hat{y}}) \Vert^{2}\_{F}
 $$
 
-![enter image description here](http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/Perceptual-Losses.png)
+![enter image description here](https://my-imgshare.oss-cn-shenzhen.aliyuncs.com/Perceptual-Losses.png)
 
 本文使用一个resnet来学习生成图片的变换，而将内容和风格损失作为损失函数，其计算方式通过一个固定参数的VGG16来生成。去掉风格损失之后还可以作为超分辨率模型使用。此外3.3节还提到了两个额外的损失函数，Pixel Loss和Total Variation Regularization。后者在风格迁移任务中也被使用到。
 
 ## [Fast Patch-based Style Transfer of Arbitrary Style](https://arxiv.org/pdf/1612.04337.pdf)
 Dec 2016, Tian Qi Chen
 实现了任意风格任意图片的迁移，
-![enter image description here](http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/Fast-Patch-based-style-transfer.png)
+![enter image description here](https://my-imgshare.oss-cn-shenzhen.aliyuncs.com/Fast-Patch-based-style-transfer.png)
 ### Style Swap
 1. Content图片产生特征图$\phi(C)$
 2. Style图片产生特征图$\phi(S)$

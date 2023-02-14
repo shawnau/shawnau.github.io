@@ -88,7 +88,7 @@ $$
 
 ### 5. 正则化(Regularzation)
 1. 过拟合的问题(看图吧)
- - ![Linear Regression overfitting](http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/overfitting1.png)
+ - ![Linear Regression overfitting](https://my-imgshare.oss-cn-shenzhen.aliyuncs.com/overfitting1.png)
 2. 处理过拟合问题
  - 降低特征维度 (manually/model selection)
  - 正则化: add panalize terms to some less important parameters, or panalize all the parameters(**except for $\theta\_0$**)

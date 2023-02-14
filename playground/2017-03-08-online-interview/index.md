@@ -34,7 +34,7 @@ if __name__ == '__main__':
 # 二重积分计算
 
 首先观察一下曲线:
-![](http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/F68E07C9C4E003D54BEFCB84CA5692CC.jpg)
+![](https://my-imgshare.oss-cn-shenzhen.aliyuncs.com/F68E07C9C4E003D54BEFCB84CA5692CC.jpg)
 
 1. 看右半边显然曲线是右凸的, 为了避免分段, 决定先从y轴再从x轴积分
 2. 为了取得x轴的上下限. 由于正态分布的中心对称性, x从0开始积分就行了.至于上限, 获得了方程之后求x的极值即可:
@@ -56,13 +56,13 @@ $$
 
  - 将第一种方法中的参数代入之后得到结果如下
 
-![](http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/MSP1821c731010163c3i2e000019i42c9cfeb3h0i9.gif)
+![](https://my-imgshare.oss-cn-shenzhen.aliyuncs.com/MSP1821c731010163c3i2e000019i42c9cfeb3h0i9.gif)
  
  - 计算$\frac{1.33368}{\pi} = 0.4245$, 得到的结果相似.
 
 ## 后记
 1. x的最大值大概在哪?
-![](http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/MSP14421gd0ab25140hfhg500004ih16a48d690936f.gif)
+![](https://my-imgshare.oss-cn-shenzhen.aliyuncs.com/MSP14421gd0ab25140hfhg500004ih16a48d690936f.gif)
 2. x的解析解是什么?
 $$
 \frac{1}{8 \sqrt{ \frac{3}{193 + \sqrt[3]{55873 - 1536 \sqrt{1299}} + \sqrt[3]{55873 + 1536 \sqrt{1299}}}}}

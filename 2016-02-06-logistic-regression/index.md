@@ -37,8 +37,8 @@ $$\theta\_j := \theta\_j - \alpha \frac{1}{m} \sum\limits\_{i=1}^{m}[(h\_\theta 
 
 ## Regularzation
 1. The problem of overfitting
-    - ![Linear Regression overfitting](http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/overfitting1.png)
-    - ![Logistic Regression overfitting](http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/overfitting1.png)
+    - ![Linear Regression overfitting](https://my-imgshare.oss-cn-shenzhen.aliyuncs.com/overfitting1.png)
+    - ![Logistic Regression overfitting](https://my-imgshare.oss-cn-shenzhen.aliyuncs.com/overfitting1.png)
 2. Addressing overfitting
     - Reduce number of features (manually/model selection)
     - Regularzation: add panalize terms to some less important parameters, or panalize all the parameters(**except for $\theta\_0$**)

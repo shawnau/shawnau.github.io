@@ -6,7 +6,7 @@ Neural Networks Learning
 <!--more-->
 
 ## Cost Fuction
-<p align="center"> <img src="http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/ex4.jpg" /> </p>
+<p align="center"> <img src="https://my-imgshare.oss-cn-shenzhen.aliyuncs.com/ex4.jpg" /> </p>
 1. For a neural network like the pic above, the cost function should be like:
  $$
 J(\theta) = \frac {1}{m} \sum\limits\_{i=1}^{m}\sum\limits\_{k=1}^{K}
@@ -26,7 +26,7 @@ J(\theta) = \frac {1}{m} \sum\limits\_{i=1}^{m}\sum\limits\_{k=1}^{K}
 
 
 ## Backpropagation Algorithm
-<p align="center"> <img src="http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/backProp.jpg" /> </p>
+<p align="center"> <img src="https://my-imgshare.oss-cn-shenzhen.aliyuncs.com/backProp.jpg" /> </p>
 1. In order to use optimization algorithms like gradient descent, we must calculate the derivative of the cost function. First we should calculate $\delta$ for each layer using backpropagation algorithm. From $layer\_l$ to $layer\_{l+1}$, we have:
  $$
 \delta^{(output)} = a^{(output)} - y

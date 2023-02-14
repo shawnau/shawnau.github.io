@@ -103,7 +103,7 @@ If $S(G1, G2) = 1$, are the two graphs equivalent? Provide an example to justify
 
 **Answer:**
 **No.** Example:
-![](http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/QQ20170317-233923@2x.png)
+![](https://my-imgshare.oss-cn-shenzhen.aliyuncs.com/QQ20170317-233923@2x.png)
 Same degree for each vertex, same number of edges in each graph, $S(G\_1, G\_2) = \frac{12}{12} = 1$, but the two graphs are not equivalent.
 
 注: 每个顶点的度数相同, 边也相同那么这里的相似度就是1, 但两个图并不一定一样. 只要举个反例就行了.

@@ -15,20 +15,20 @@
     - 空洞卷积, 见下节
 
 ## SegNet
-![](http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/segnet.png)
+![](https://my-imgshare.oss-cn-shenzhen.aliyuncs.com/segnet.png)
 [SegNet: A Deep Convolutional Encoder-Decoder Architecture for Image Segmentation](https://arxiv.org/abs/1511.00561) (2015/11/2)
 1. 缓存了max pooling的位置(memorized max-pooling), 这样先upsampling之后获得稀疏特征图, 再卷积获得dense的特征图
 2. 最后一层输出$class_number$层, 再使用带权重的pixel level的softmax, 即class balancing, 按照类的中位数的频率来给权重(median frequency balancing), 稀少的类权重更高
 > The final decoder output is fed to a multi-class soft-max classifier to produce class probabilities for each pixel independently.
 
 ## 空洞卷积(dilated convolution)
-![](http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/dilation.gif)
+![](https://my-imgshare.oss-cn-shenzhen.aliyuncs.com/dilation.gif)
 [Multi-Scale Context Aggregation by Dilated Convolutions](https://arxiv.org/abs/1511.07122) (2015/11/23)
 **空洞卷积**(dilated convolution)替代pooling: 既能够增大感受野, 也避免了down-sampling保留了位置信息
 
 ## DeepLab v1/v2
 (2014v1, 2016v2)
-![](http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/deeplab1.png)
+![](https://my-imgshare.oss-cn-shenzhen.aliyuncs.com/deeplab1.png)
 1. 空洞池化(atrous spatial pyramid pooling, ASPP), 多尺度的空洞卷积并行处理, 这个和inception v1的理念差不多哇
 2. 全连接的CRF进行后处理
 
@@ -45,7 +45,7 @@
 ## Hybrid Dilated Convolution, HDC
 [Understanding Convolution for Semantic Segmentation](https://arxiv.org/abs/1702.08502) 
  (2017/2)
-![](http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/dilated1.jpg)
+![](https://my-imgshare.oss-cn-shenzhen.aliyuncs.com/dilated1.jpg)
 用更加奇形怪状的空洞卷积兼顾大物体和小物体的检查, 避免gridding effect
 
 ## Mask RCNN
@@ -57,22 +57,22 @@
 详见blog中关于mask-rcnn的文章...
 
 ## Learning to Segment Every Thing
-![](http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/segeverything.png)
+![](https://my-imgshare.oss-cn-shenzhen.aliyuncs.com/segeverything.png)
 [Learning to Segment Every Thing](https://arxiv.org/abs/1711.10370)[CVPR18]
 1. 解决了一下有box却没有对应mask的情况下如何处理分类的问题: 学习一个模型, 把检测网络的权重转换成mask网络的权重. 
 2. 因为detection和segmentation使用的都是同一份特征, 很自然的, 这篇文章说明两者是可以互相迁移的. 下文的PANet也考虑到了这一点, 不过是用额外的一条high-level的向量来指导mask的预测
 
 ## PANet (SOTA)
-![](http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/panet1.png)
+![](https://my-imgshare.oss-cn-shenzhen.aliyuncs.com/panet1.png)
 [Path Aggregation Network for Instance Segmentation](http://link.zhihu.com/?target=https%3A//arxiv.org/abs/1803.01534)[CVPR 18]
 
  - 在FPN的基础上又加了一个Bottom-Up的金字塔. 用conv3x3进行S=2的downsample之后与平行的P层相加, 再过一个3x3conv(这个FPN里没有, 倒是平行的C层需要先过conv1x1统一channel数). 作者认为:
  > high response to edges or instance parts is a strong indicator to accurately localize instances
 
-![](http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/panet2.png)
+![](https://my-imgshare.oss-cn-shenzhen.aliyuncs.com/panet2.png)
  - 其中Detection分支是拉平成fc之后经过两个fc层
 
-![](http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/panet3.png)
+![](https://my-imgshare.oss-cn-shenzhen.aliyuncs.com/panet3.png)
  - Mask分支是将四个特征图concat到一起. 然后利用conv3的输出辅助一个fc向量, 希望使用high level的特征指导mask. 因为fc层的好处就是可以学到交叉特征.
 
 
@@ -85,13 +85,13 @@
 下面介绍一些非主流方法
 
 ## GAN
-![](http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/ganseg.png)
+![](https://my-imgshare.oss-cn-shenzhen.aliyuncs.com/ganseg.png)
 [Semantic Segmentation using Adversarial Networks](https://arxiv.org/abs/1611.08408)(2016/11)
 FAIR的大作. 其中Soumith Chintala哥哥是pytorch的主力, 他的名字我老是读成吃蛋挞
 
 大体思路是用一个segmentation网络生成mask, 然后再用判别网络区分真实mask和生成mask. 损失函数是生成网络的逐像素softmax损失和判别网络的二分类logloss
 
-![](http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/semiseg.png)
+![](https://my-imgshare.oss-cn-shenzhen.aliyuncs.com/semiseg.png)
 [Semi Supervised Semantic Segmentation Using Generative Adversarial Network](http://link.zhihu.com/?target=https%3A//arxiv.org/abs/1703.09695)(ICCV17)
 将分割网络(FCN)变成了判别器, 判别的是逐像素是不是instance.
 > 假设分割类别数为K，那么判别器则有K+1个类别的输出。多出来的分类类别为”该像素为假像素”。训练时，使用标记的分割图像训练前K个通道，使用（真实图片，生成图片）图片组按照adversarial loss的定义训练”该像素为假像素”的通道。真是图片既有分割数据库中的图片，也有大量未标注的图片。或者也可以理解为判断“真/假”的分类器，其“真”的这一类扩展成了K类具体的语义类别。

@@ -17,7 +17,7 @@
  > maxout network imposes the prior that instances of a latent concept lie within a convex set in the input space, which does not necessarily hold
 
 ### [Inception v1](https://arxiv.org/abs/1409.4842)
-![](http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/inceptionv1_2.png)
+![](https://my-imgshare.oss-cn-shenzhen.aliyuncs.com/inceptionv1_2.png)
 出自Google Brain. C Szegedy, CVPR 2015
 1. 整个网络由9个上图形成的block组成
 2. 第三个和第五个block有辅助分类器处理梯度消失问题
@@ -70,7 +70,7 @@ resnet由四个`stage`组成, 而每个`stage`又由数个`bottleneck`组成.
 
 一个Bottleneck由3层CBR(conv-batch norm-relu)层组成, 见下:
 
-![](http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/bottleneck.png)
+![](https://my-imgshare.oss-cn-shenzhen.aliyuncs.com/bottleneck.png)
 
 
 同时一个`stage`由若干重复`bottleneck`组成, 整个网络由4个`stage`组成
@@ -78,7 +78,7 @@ resnet由四个`stage`组成, 而每个`stage`又由数个`bottleneck`组成.
 1. 每个`stage`的开头第一个`bottleneck`的3x3卷积层的步长是2, 使得每个`stage`将feature map尺寸缩小一半
 2. 每个`stage`的开头第一个`bottleneck`需要处理上一个`stage`的输出通过shortcut与该`bottleneck`的输出相加时通道不匹配的问题, 故需要增加一层Conv-BN处理通道一致性
 
-![resnet](http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/resnet.png)
+![resnet](https://my-imgshare.oss-cn-shenzhen.aliyuncs.com/resnet.png)
 
 构造`Bottleneck`:
 ```python
@@ -158,13 +158,13 @@ def _make_stage(ch_in, ch, num_blocks, stride=1):
     - 将32个卷积层的4x32=128个通道concat为128个输出层
 
 
-![resnext](http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/resnext.png)
+![resnext](https://my-imgshare.oss-cn-shenzhen.aliyuncs.com/resnext.png)
 
-![](http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/v2-854177e100d7d48dc5dda40306f5b311_hd.png)
+![](https://my-imgshare.oss-cn-shenzhen.aliyuncs.com/v2-854177e100d7d48dc5dda40306f5b311_hd.png)
 
 
 与ResNet的比较:
-![resnext-resnet](http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/resnextcompare.png)
+![resnext-resnet](https://my-imgshare.oss-cn-shenzhen.aliyuncs.com/resnextcompare.png)
 构造`Bottleneck`, 和resnet相比改动很简单, 参考上图最右边的实现, 在每个stage的第二个卷积层启用`group`参数即可.
 
 

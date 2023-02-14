@@ -23,9 +23,9 @@
 
 首先看一下我们需要爬取的网站: http://mis.sse.ustc.edu.cn/ 
 (恩..教务网..a little private for my 1st web scraper lol)
-![homepage](http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/Screen%20Shot%202016-07-16%20at%2010.44.26%20AM.png)
+![homepage](https://my-imgshare.oss-cn-shenzhen.aliyuncs.com/Screen%20Shot%202016-07-16%20at%2010.44.26%20AM.png)
 观察源代码
-![sourcecode](http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/Screen%20Shot%202016-07-16%20at%2010.41.45%20AM.png)
+![sourcecode](https://my-imgshare.oss-cn-shenzhen.aliyuncs.com/Screen%20Shot%202016-07-16%20at%2010.41.45%20AM.png)
 
 万幸的是没有验证码. 不幸的是登录界面是javascript渲染出来的, 连input标签都找不到, 传统的直接通过requests包进行post操作登录将会遇到困难, 因此我们使用selenium来操作phantomJS登录.
 首先通过selenium启动phantomJS:
@@ -55,7 +55,7 @@ driver.get(login_url)
 ### 1.2 使用xpath找到需要的元素
 
 接下来我们需要让selenium找到填写账户和密码的文本框, 填写完毕之后再点击登录. 所有这些元素都可以通过强大的xPath找到. 首先使用火狐的firePath找到元素对应的xPath. 右键登录的文本框, 点击inspect in firepath:
-![xpath](http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/Screen%20Shot%202016-07-16%20at%2011.03.06%20AM.png)
+![xpath](https://my-imgshare.oss-cn-shenzhen.aliyuncs.com/Screen%20Shot%202016-07-16%20at%2011.03.06%20AM.png)
 复制找到的xPath, 同理找到其他两个元素, 保存下来:
 ```python
 idXpath = ".//*[@id='winLogin_sfLogin_txtUserLoginID']"
@@ -82,7 +82,7 @@ print("Login Success!")
 
 ### 1.3 登陆完毕后保存cookies备用
 
-![loginpage](http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/Screen%20Shot%202016-07-16%20at%2011.22.12%20AM.png)
+![loginpage](https://my-imgshare.oss-cn-shenzhen.aliyuncs.com/Screen%20Shot%202016-07-16%20at%2011.22.12%20AM.png)
 登录完毕之后, 可以看见网页已被重定向到了http://mis.sse.ustc.edu.cn/homepage/StuDefault.aspx, 那么怎样确认网页已经被重定向了呢? 我们故技重施, 在这个页面随意找一个之前登录页面没有的元素, 让selenium等到他出现就是了
 ```python
 redirectXpath = ".//*[@id='RegionPanel1_UpRegion_ContentPanel1_content']/table/tbody/tr/td[2]"
@@ -177,12 +177,12 @@ def scraper(login_url, scrape_url):
 
 找一找主页有什么可以爬取的? 从通知下手: 点击最新通知右下角的那个more, 转移到一个包含通知的新网页. 新网页似乎是嵌入在某个窗口中的. 我们用httpfox检查一下, 是不是能直接打开这个地址. 回到主页, 打开httpfox, 点击more之前按start检测, 点击完后再按stop停止:
 
-![httpfox](http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/Screen%20Shot%202016-07-16%20at%2012.02.54%20PM.png)
+![httpfox](https://my-imgshare.oss-cn-shenzhen.aliyuncs.com/Screen%20Shot%202016-07-16%20at%2012.02.54%20PM.png)
 
 果然, 在第一条下就发现了它的地址: 
 http://mis.sse.ustc.edu.cn/Base/NoticeInfo/ListView.aspx
 
-![subwindow](http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/Screen%20Shot%202016-07-16%20at%2012.06.16%20PM.png)
+![subwindow](https://my-imgshare.oss-cn-shenzhen.aliyuncs.com/Screen%20Shot%202016-07-16%20at%2012.06.16%20PM.png)
 
 打开这个地址, 正是我们要找的窗口. 接下来就可以使用 `driver.get()` 打开此地址并爬取通知了. 这里的做法是先用xPath选中整个列表, 把列表信息以html的形式保存下来, 然后用正则表达式匹配其中的链接, 获得所有链接之后一页一页地爬取
 ```python
@@ -223,7 +223,7 @@ for link in link_list:
 最后封装成 `rule()` 函数嵌入到 `scraper()` 的 # Do anything here! Scrape! 注释那一行中, 详见源代码.
 再看一下保存的文件:
 
-![savedfiles](http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/filesaved.png)
+![savedfiles](https://my-imgshare.oss-cn-shenzhen.aliyuncs.com/filesaved.png)
 
 格式似乎还没有整理完毕, 文字和css分离了
 

@@ -48,7 +48,7 @@ Note on implementation: The weights on datasets could be implemented with sampli
 ---
 
 ### Intuitive Explanation
-![function](http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/Logistic.png)
+![function](https://my-imgshare.oss-cn-shenzhen.aliyuncs.com/Logistic.png)
  
  - Here is how $G\_m(x)$'s coefficient, $ \alpha\_m = \frac{1}{2} ln \frac{1-e\_m}{e\_m} $ varies through $e\_m$, it's easy to see that the more precise model will get a larger weight.
  - Contrarily, from (3) it's easy to tell that the samples get classified wrong will increase their weights, while the weights of the samples get classified correct will decrease, both in an exponential rate.

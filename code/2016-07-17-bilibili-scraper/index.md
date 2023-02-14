@@ -11,7 +11,7 @@ https://github.com/shawnau/bilibili_scraper
 本文中的所有技术在[上一篇文章](http://xxuan.me/2016-07-16-webscraper.html)中均有介绍, 因此本文只涉及到针对bilibili主页结构的分析, 省略了技术细节
 
 ## 0. 抓取番剧弹幕的基本步骤
-![pageinfo](http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/Screen%20Shot%202016-07-17%20at%207.29.41%20PM.png)
+![pageinfo](https://my-imgshare.oss-cn-shenzhen.aliyuncs.com/Screen%20Shot%202016-07-17%20at%207.29.41%20PM.png)
 b站的每个视频页面源代码中, 负责启动播放器的script标签下保存了弹幕编号(cid)以及视频编号(aid), 例如上图中的视频, 其script内容为
 ```
 EmbedPlayer('player', "http://static.hdslb.com/play.swf", "cid=8628660&aid=5244087&pre_ad=0");
@@ -28,7 +28,7 @@ EmbedPlayer('player', "http://static.hdslb.com/play.swf", "cid=8628660&aid=52440
  除此之外, 爬虫需要一定的容错率, 对找不到cid/难以下载弹幕的视频, 爬虫需要在重试一定次数之后主动跳过
 
 ## 1. 旧番站点结构
-![old](http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/Screen%20Shot%202016-07-17%20at%207.16.38%20PM.png)
+![old](https://my-imgshare.oss-cn-shenzhen.aliyuncs.com/Screen%20Shot%202016-07-17%20at%207.16.38%20PM.png)
 打开分p在播放器上方的视频页面, 使用xpath找到id为plist的div标签, 可以发现标签下有三部分: 
 
  - span标签, 代表当前页面
@@ -73,7 +73,7 @@ return link_list
 将链接列表保存至 `link_list` , 注意匹配到的是除了本页面以外的链接, 且格式是子域名(/video/av..../), 为了保持格式一致性, 本页面的链接也应该先切割后再保存进列表.
 
 ## 2. 新番站点结构
-![new](http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/Screen%20Shot%202016-07-17%20at%207.52.14%20PM.png)
+![new](https://my-imgshare.oss-cn-shenzhen.aliyuncs.com/Screen%20Shot%202016-07-17%20at%207.52.14%20PM.png)
 新番站点结构相对简单, 直接使用xpath搜索到链接表(v_bgm_list_data)并提取源代码, 用beautifulsoup分析后保存即可, 其他步骤和前面类似
 
 ## 3. 提取页面cid, 标题等信息

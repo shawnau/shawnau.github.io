@@ -1,6 +1,6 @@
 # Binary Tree Traverse
 
-![](http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/50592758_p0.jpg)
+![](https://my-imgshare.oss-cn-shenzhen.aliyuncs.com/50592758_p0.jpg)
 
 茴字有四种写法, 二叉树有三种遍历手段(递归, 栈, morris遍历)
 

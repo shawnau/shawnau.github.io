@@ -1,7 +1,7 @@
 # Python核心编程笔记4 多线程
 
 
-![](http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/57080648_p0.jpg)
+![](https://my-imgshare.oss-cn-shenzhen.aliyuncs.com/57080648_p0.jpg)
 即使有GIL的存在使得python的多线程显得鸡肋, 但在重I/O应用中还是很实用, 并且multiprecessing是基于threading的, 有必要理解
 <!--more-->
 

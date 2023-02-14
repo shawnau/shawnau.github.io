@@ -64,5 +64,5 @@ $C$	is called the penalty parameter, the larger $C$ means a more strict SVM clas
 How to solve the margin maximization problem? (to be continued)
 
 ### Support Vector
-![SV](http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/Svm_max_sep_hyperplane_with_margin.png)
+![SV](https://my-imgshare.oss-cn-shenzhen.aliyuncs.com/Svm_max_sep_hyperplane_with_margin.png)
 Maximum-margin hyperplane and margins for an SVM trained with samples from two classes. Samples on the margin are called the support vectors.

@@ -85,7 +85,7 @@ $C$ 称为惩罚参数, 更大的$C$ 意味着对误分类的样本惩罚更大
 ---
 
 ### 1.7 Support Vector (支持向量)
-![SV](http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/Svm_max_sep_hyperplane_with_margin.png)
+![SV](https://my-imgshare.oss-cn-shenzhen.aliyuncs.com/Svm_max_sep_hyperplane_with_margin.png)
 顾名思义, 支持向量是"支持"超平面的向量
 
 ---

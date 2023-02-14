@@ -41,18 +41,18 @@ TestError = \frac {1}{m\_{test}} \sum\limits\_{i=1}^{m\_{test}} err(h\_\theta (x
 
 ## Bias vs. Variance
 1. Diagnosing Bias vs. Variance
- - ![errorWithD](http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/bias_variance.png)
+ - ![errorWithD](https://my-imgshare.oss-cn-shenzhen.aliyuncs.com/bias_variance.png)
  - Cross validation error and training error with different degree of polynomial d
  - The left side indicates high bias while the right side indicates high variance
 2. 'Error - training set size graph' affected by different hypothesis
- - ![errorWithBias](http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/bias_variance2.png)
+ - ![errorWithBias](https://my-imgshare.oss-cn-shenzhen.aliyuncs.com/bias_variance2.png)
  - The error with different training set size when the hypothesis is of high bias
- - ![errorWithVariance](http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/bias_variance_3.png)
+ - ![errorWithVariance](https://my-imgshare.oss-cn-shenzhen.aliyuncs.com/bias_variance_3.png)
  - The error with different training set size when the hypothesis is of high variance
 3. 'Error - training set size graph' affected by different regularzation parameter
- - ![errorWithReg](http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/regular_on_bias.png)
+ - ![errorWithReg](https://my-imgshare.oss-cn-shenzhen.aliyuncs.com/regular_on_bias.png)
 4. Debugging a learning algorithm
- - ![debugging](http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/bias_variance_4.png)
+ - ![debugging](https://my-imgshare.oss-cn-shenzhen.aliyuncs.com/bias_variance_4.png)
 
 ## Building a Spam Classifier
  - Do a dirty and quick example in order to examine whether a method like stemming might help lowering the error
@@ -60,14 +60,14 @@ TestError = \frac {1}{m\_{test}} \sum\limits\_{i=1}^{m\_{test}} err(h\_\theta (x
 ## Handling Skewed Data
 1. Skewed data: A set of very unbalanced data
 2. Precision/recall
- - ![precisionRecall](http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/precision_recall.png)
+ - ![precisionRecall](https://my-imgshare.oss-cn-shenzhen.aliyuncs.com/precision_recall.png)
  - High classfier threshold: High precision, low recall: Very confident, lots of overlook
  - Low classfier threshold: High recall, low precision: Not very confident, but less overlook
 3. Choose threshold automatically
- - ![FScore](http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/precision_recall2.png)
+ - ![FScore](https://my-imgshare.oss-cn-shenzhen.aliyuncs.com/precision_recall2.png)
  - F score is better than average on deciding which algo to use based on precision/recall data
 
 ## Using Large Data Sets
  - Generally more training data will improve learning performance
- - ![LargeData](http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/large_data2.png)
+ - ![LargeData](https://my-imgshare.oss-cn-shenzhen.aliyuncs.com/large_data2.png)
  - Having a significantly large set of data will improve learning performance: Low training error -> training error ≈ test error -> all errors are low

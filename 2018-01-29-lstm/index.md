@@ -1,7 +1,7 @@
 # 循环神经网络的前世今生
 
 
-![](http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/RNN3.png)
+![](https://my-imgshare.oss-cn-shenzhen.aliyuncs.com/RNN3.png)
 新年第一篇, 和永无止境的八月一样循环的神经网络(其实是存货
 
 <!--more-->

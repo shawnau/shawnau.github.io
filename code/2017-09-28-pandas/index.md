@@ -1,7 +1,7 @@
 # Python数据分析笔记2 pandas基础
 
 
-![](http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/65138347_p0.png)
+![](https://my-imgshare.oss-cn-shenzhen.aliyuncs.com/65138347_p0.png)
 全面翻新的pandas介绍, 篇幅较长, 请善用右下角目录!
 
 <!--more-->

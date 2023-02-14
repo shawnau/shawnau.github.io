@@ -131,7 +131,7 @@ $$
 1. 越靠近输入的特征图语义信息越少, 但是位置信息越精确(特征图大)
 2. 越远离输入的特征图语义信息越强, 但是位置信息越弱(各种卷积, pooling)
 
-![fpn](http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/fpn.png)
+![fpn](https://my-imgshare.oss-cn-shenzhen.aliyuncs.com/fpn.png)
 
 4. 左边是resnet的四层`stage`输出的特征图, 简称C2, C3, C4, C5
 5. 右边是P层, 每个P层通过上一层P层的upscale和相邻C层的smooth(统一通道数)之后相加得到. 每层通道数都是256, 其中最高层P4直接由C5 smooth而来.
@@ -187,7 +187,7 @@ class LateralBlock(nn.Module):
 详见blog中关于mask-rcnn的文章...懒得再复制粘贴了
 
 ## DetNet(SOTA)
-![](http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/detnet1.png)
+![](https://my-imgshare.oss-cn-shenzhen.aliyuncs.com/detnet1.png)
 [DetNet: A Backbone network for Object Detection](https://link.zhihu.com/?target=https%3A//arxiv.org/abs/1804.06215)[ECCV18]
 主要是对ResNet50的魔改
 

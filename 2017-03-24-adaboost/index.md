@@ -74,7 +74,7 @@ $$Z\_m = \sum\limits^N\_{i=1}w\_{mi}e^{-\alpha\_m y^{(i)} G\_m(x^{(i)})} $$
 ---
 
 ### 1.5 直观解释
-![function](http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/Logistic.png)
+![function](https://my-imgshare.oss-cn-shenzhen.aliyuncs.com/Logistic.png)
  
  - 对模型来说, 这里显示了弱分类器 $G\_m(x)$的权重, $ \alpha\_m = \frac{1}{2} ln \frac{1-e\_m}{e\_m} $ 与误差 $e\_m$, 变化的关系. 显然更精确的弱分类器具有更大的权重
  - 相反, 对训练集数据来说, 从 (3) 可知被误分类的样本的权重会增加, 被正确分类的样本权重会降低, 增加/降低的速度都是指数级别的.
@@ -419,7 +419,7 @@ s.t. $$ \alpha^\* = \frac{1}{2}ln \frac{1-\epsilon\_m}{\epsilon\_m} $$
     error rate:  0.0
 ```
 
-<img src="http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/ppt_10.png/h/250" align="center">
+<img src="https://my-imgshare.oss-cn-shenzhen.aliyuncs.com/ppt_10.png/h/250" align="center">
 
 AUC曲线完美, 准确率也是100%.在如此数据缺失, 且特征多的情况下还能达到这么高的效果, 显示了adaboost的强大
 

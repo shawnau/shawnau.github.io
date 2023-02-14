@@ -43,7 +43,7 @@ shixiseng/
 
 2. 看看实习僧主页, 列出了一堆关键词, 随便找一个进入, 发现url格式很简单, 为`http://www.shixiseng.com/interns?k=IOS&p=1`, 其中k=搜索关键词, p=显示页数. 这个结构很简单, 不涉及复杂的js/ajax功能, 例如需要下拉才能刷新出信息等. 省却了很多麻烦
 
-![](http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/Screen%20Shot%202017-02-18%20at%205.13.01%20PM.png)
+![](https://my-imgshare.oss-cn-shenzhen.aliyuncs.com/Screen%20Shot%202017-02-18%20at%205.13.01%20PM.png)
 
 3. 发现置空关键词的话, 只能显示出500页信息, 而实习信息远远不止这个数, 所以还是乖乖按关键词搜索吧. 把第一行的关键词输入一个list, 按照list一个一个爬就可以了, 见下:
 
@@ -59,7 +59,7 @@ shixiseng/
 
  - 其中`start_urls`就是scrapy开始爬取的链接, 我们组装出了18个关键词, 每次从搜索结果的第一页开始爬取, 一直爬到最后一页. 然而最后一页是第几页? 在不知情的情况下, 我们只能一直增加页数, 直到新的页面不能显示出实习信息为止, 像这样:
 
- ![](http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/Screen%20Shot%202017-02-18%20at%203.14.38%20PM.png)
+ ![](https://my-imgshare.oss-cn-shenzhen.aliyuncs.com/Screen%20Shot%202017-02-18%20at%203.14.38%20PM.png)
 
  - 此时使用xpath搜不到显示实习信息的div就可以停止爬取了. 所以我们的`parse()`函数, 即爬取一页信息的信息定义如下:
 

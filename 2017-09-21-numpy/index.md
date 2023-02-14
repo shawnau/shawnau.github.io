@@ -1,7 +1,7 @@
 # Python数据分析笔记1 numpy
 
 
-![](http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/56167711_p0.jpg)
+![](https://my-imgshare.oss-cn-shenzhen.aliyuncs.com/56167711_p0.jpg)
 用了这么久numpy居然没有总结一下
 <!--more-->
 

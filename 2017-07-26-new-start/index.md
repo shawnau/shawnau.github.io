@@ -1,7 +1,7 @@
 # 工坊装修记录
 
 
-![](http://my-imgshare.oss-cn-shenzhen.aliyuncs.com/8855672_p0.jpg)
+![](https://my-imgshare.oss-cn-shenzhen.aliyuncs.com/8855672_p0.jpg)
 
 很久没有动blog了. 
 
