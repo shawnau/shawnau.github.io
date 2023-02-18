@@ -1,10 +1,12 @@
 # 循环神经网络的前世今生
 
 
-![](https://my-imgshare.oss-cn-shenzhen.aliyuncs.com/RNN3.png)
+
 新年第一篇, 和永无止境的八月一样循环的神经网络(其实是存货
 
 <!--more-->
+
+![](https://my-imgshare.oss-cn-shenzhen.aliyuncs.com/RNN3.png)
 
 ## Standard RNN
 ![](http://colah.github.io/posts/2015-08-Understanding-LSTMs/img/RNN-unrolled.png)

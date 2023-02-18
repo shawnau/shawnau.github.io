@@ -1,11 +1,11 @@
 # Survival Models
 
 
-
-![](https://my-imgshare.oss-cn-shenzhen.aliyuncs.com/58319465_p0.jpg)
 生存模型(Survival Models)属于General Linear Model, 被广泛用于Censored Data的建模, 譬如用户流失预测. 这里介绍下最基本的生存模型以及在Censored Data上的MLE估计
 
 <!--more-->
+
+![](https://my-imgshare.oss-cn-shenzhen.aliyuncs.com/58319465_p0.jpg)
 
 ## Survival Function
 Assume $T$ is a continuous random variable indicates the death occurrence time, we have:

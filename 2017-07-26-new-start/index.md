@@ -1,11 +1,11 @@
 # 工坊装修记录
 
 
-![](https://my-imgshare.oss-cn-shenzhen.aliyuncs.com/8855672_p0.jpg)
-
 很久没有动blog了. 
 
 <!--more-->
+
+![](https://my-imgshare.oss-cn-shenzhen.aliyuncs.com/8855672_p0.jpg)
 
 修整了一下, 希望能做得有趣一点, 别老更新冷冰冰的技术文, 也写点别的, 狗窝也得有个窝样是不是(x
 

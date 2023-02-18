@@ -1,10 +1,11 @@
 # Python核心编程笔记3 面向对象编程
 
 
-![](https://my-imgshare.oss-cn-shenzhen.aliyuncs.com/64495434_p0.jpg)
 python有很好的OOP特性, 自由度也非常大
 
 <!--more-->
+
+![](https://my-imgshare.oss-cn-shenzhen.aliyuncs.com/64495434_p0.jpg)
 
 ## 命名规则
 1. 小驼峰命名法(camel case), 适用于变量名: `varFirst`, `verSecond`

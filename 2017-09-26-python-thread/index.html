@@ -5,19 +5,17 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="robots" content="noodp" />
         <title>Python核心编程笔记4 多线程 - Laniakea</title><meta name="Description" content="xxuan&#39;s blog"><meta property="og:title" content="Python核心编程笔记4 多线程" />
-<meta property="og:description" content="
-即使有GIL的存在使得python的多线程显得鸡肋, 但在重I/O应用中还是很实用, 并且multiprecessing是基于threading的, 有必要理解" />
+<meta property="og:description" content="即使有GIL的存在使得python的多线程显得鸡肋, 但在重I/O应用中还是很实用, 并且multiprecessing是基于threading的, 有必要理解" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://shawnau.github.io/2017-09-26-python-thread/" /><meta property="og:image" content="https://shawnau.github.io/logo.png"/><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2017-09-26T21:54:13+00:00" />
-<meta property="article:modified_time" content="2023-02-14T23:37:00+08:00" /><meta property="og:site_name" content="xxuan.cc" />
+<meta property="article:modified_time" content="2023-02-18T22:21:22+08:00" /><meta property="og:site_name" content="xxuan.cc" />
 
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://shawnau.github.io/logo.png"/>
 
 <meta name="twitter:title" content="Python核心编程笔记4 多线程"/>
-<meta name="twitter:description" content="
-即使有GIL的存在使得python的多线程显得鸡肋, 但在重I/O应用中还是很实用, 并且multiprecessing是基于threading的, 有必要理解"/>
+<meta name="twitter:description" content="即使有GIL的存在使得python的多线程显得鸡肋, 但在重I/O应用中还是很实用, 并且multiprecessing是基于threading的, 有必要理解"/>
 <meta name="application-name" content="Laniakea">
 <meta name="apple-mobile-web-app-title" content="Laniakea"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -33,7 +31,7 @@
             "@type": "WebPage",
             "@id": "https:\/\/shawnau.github.io\/2017-09-26-python-thread\/"
         },"genre": "posts","keywords": "python","wordcount":  2538 ,
-        "url": "https:\/\/shawnau.github.io\/2017-09-26-python-thread\/","datePublished": "2017-09-26T21:54:13+00:00","dateModified": "2023-02-14T23:37:00+08:00","publisher": {
+        "url": "https:\/\/shawnau.github.io\/2017-09-26-python-thread\/","datePublished": "2017-09-26T21:54:13+00:00","dateModified": "2023-02-18T22:21:22+08:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
                 "@type": "Person",
@@ -126,15 +124,15 @@
     </li>
   </ul>
 </nav></div>
-            </div><div class="content" id="content"><p><img
+            </div><div class="content" id="content"><p>即使有GIL的存在使得python的多线程显得鸡肋, 但在重I/O应用中还是很实用, 并且multiprecessing是基于threading的, 有必要理解</p>
+<p><img
         class="lazyload"
         src="/svg/loading.min.svg"
         data-src="https://my-imgshare.oss-cn-shenzhen.aliyuncs.com/57080648_p0.jpg"
         data-srcset="https://my-imgshare.oss-cn-shenzhen.aliyuncs.com/57080648_p0.jpg, https://my-imgshare.oss-cn-shenzhen.aliyuncs.com/57080648_p0.jpg 1.5x, https://my-imgshare.oss-cn-shenzhen.aliyuncs.com/57080648_p0.jpg 2x"
         data-sizes="auto"
         alt="https://my-imgshare.oss-cn-shenzhen.aliyuncs.com/57080648_p0.jpg"
-        title="https://my-imgshare.oss-cn-shenzhen.aliyuncs.com/57080648_p0.jpg" />
-即使有GIL的存在使得python的多线程显得鸡肋, 但在重I/O应用中还是很实用, 并且multiprecessing是基于threading的, 有必要理解</p>
+        title="https://my-imgshare.oss-cn-shenzhen.aliyuncs.com/57080648_p0.jpg" /></p>
 <h2 id="gil">GIL</h2>
 <p>全局解释器锁(Global Interpreter Lock, GIL)是Python虚拟机的一个特性, 保证了任意时刻只有一个线程在解释器中运行. Python虚拟机的执行方式如下:</p>
 <ol>
@@ -620,8 +618,8 @@ If the subclass overrides the constructor, it must make sure to invoke the base 
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>Updated on 2023-02-14&nbsp;<a class="git-hash" href="https://github.com/shawnau/hugo_blog/commit/2c2d05cdd3d4ee6a956693e6d97a6277b10ee5c0" target="_blank" title="commit by xiaoxuan(shawn_au@outlook.com) 2c2d05cdd3d4ee6a956693e6d97a6277b10ee5c0: update website">
-                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>2c2d05c</a></span>
+                <span>Updated on 2023-02-18&nbsp;<a class="git-hash" href="https://github.com/shawnau/hugo_blog/commit/753217d484b04c6def52834381eaa10d25b8863c" target="_blank" title="commit by xiaoxuan(shawn_au@outlook.com) 753217d484b04c6def52834381eaa10d25b8863c: update head img">
+                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>753217d</a></span>
             </div></div>
         <div class="post-info-line">
             <div class="post-info-md"><span>

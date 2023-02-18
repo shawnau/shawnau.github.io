@@ -10,8 +10,7 @@
     <pubDate>Wed, 27 Sep 2017 23:59:35 &#43;0000</pubDate>
     <author>xiaoxuan</author>
     <guid>https://shawnau.github.io/2017-09-27-python-extend/</guid>
-    <description><![CDATA[<p>
-左手C++, 右手Python, 性能与表达力的完美融合</p>]]></description>
+    <description><![CDATA[<p>C++ 和 Python 混合编程可以兼顾性能与效率</p>]]></description>
 </item>
 <item>
     <title>Python核心编程笔记4 多线程</title>
@@ -19,8 +18,7 @@
     <pubDate>Tue, 26 Sep 2017 21:54:13 &#43;0000</pubDate>
     <author>xiaoxuan</author>
     <guid>https://shawnau.github.io/2017-09-26-python-thread/</guid>
-    <description><![CDATA[<p>
-即使有GIL的存在使得python的多线程显得鸡肋, 但在重I/O应用中还是很实用, 并且multiprecessing是基于threading的, 有必要理解</p>]]></description>
+    <description><![CDATA[<p>即使有GIL的存在使得python的多线程显得鸡肋, 但在重I/O应用中还是很实用, 并且multiprecessing是基于threading的, 有必要理解</p>]]></description>
 </item>
 <item>
     <title>Python核心编程笔记3 面向对象编程</title>
@@ -28,8 +26,7 @@
     <pubDate>Mon, 25 Sep 2017 16:54:18 &#43;0000</pubDate>
     <author>xiaoxuan</author>
     <guid>https://shawnau.github.io/2017-09-25-python-oop/</guid>
-    <description><![CDATA[<p>
-python有很好的OOP特性, 自由度也非常大</p>]]></description>
+    <description><![CDATA[<p>python有很好的OOP特性, 自由度也非常大</p>]]></description>
 </item>
 <item>
     <title>Python核心编程笔记2 函数式编程</title>
@@ -37,8 +34,7 @@ python有很好的OOP特性, 自由度也非常大</p>]]></description>
     <pubDate>Sun, 20 Aug 2017 18:22:10 &#43;0000</pubDate>
     <author>xiaoxuan</author>
     <guid>https://shawnau.github.io/2017-08-20-python-functional-programming/</guid>
-    <description><![CDATA[<p>
-不学好函数式编程, 总觉得人生有遗憾</p>]]></description>
+    <description><![CDATA[<p>不学好函数式编程, 总觉得人生有遗憾</p>]]></description>
 </item>
 <item>
     <title>Python核心编程笔记1 基础知识</title>
@@ -46,8 +42,7 @@ python有很好的OOP特性, 自由度也非常大</p>]]></description>
     <pubDate>Fri, 18 Aug 2017 13:42:39 &#43;0000</pubDate>
     <author>xiaoxuan</author>
     <guid>https://shawnau.github.io/2017-08-18-core-python-programming-1/</guid>
-    <description><![CDATA[<p>
-这本书翻译稀烂, 然而我还是忍着看完了第一部分</p>]]></description>
+    <description><![CDATA[<p>这本书翻译稀烂, 然而我还是忍着看完了第一部分</p>]]></description>
 </item>
 <item>
     <title>数据可视化工具Seaborn指南</title>

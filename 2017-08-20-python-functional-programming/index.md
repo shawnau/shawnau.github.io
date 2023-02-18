@@ -1,8 +1,11 @@
 # Python核心编程笔记2 函数式编程
 
-![](https://my-imgshare.oss-cn-shenzhen.aliyuncs.com/gamersky_028small_056_201785187DEA.jpg)
+
 不学好函数式编程, 总觉得人生有遗憾
+
 <!--more-->
+
+![](https://my-imgshare.oss-cn-shenzhen.aliyuncs.com/gamersky_028small_056_201785187DEA.jpg)
 
 ## 什么是函数
 1.  python函数可以返回一个值或对象, 但返回一个容器对象的时候看起来像是返回了多个值: `return 'abc', 'def'`实际上是返回了一个有两个元素的元组而已

@@ -1,11 +1,11 @@
 # Python数据分析笔记1 numpy
 
 
-![](https://my-imgshare.oss-cn-shenzhen.aliyuncs.com/56167711_p0.jpg)
 用了这么久numpy居然没有总结一下
+
 <!--more-->
 
-
+![](https://my-imgshare.oss-cn-shenzhen.aliyuncs.com/56167711_p0.jpg)
 
 ```python
 import numpy as np

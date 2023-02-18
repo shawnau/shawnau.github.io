@@ -1,9 +1,11 @@
 # Python核心编程笔记4 多线程
 
 
-![](https://my-imgshare.oss-cn-shenzhen.aliyuncs.com/57080648_p0.jpg)
 即使有GIL的存在使得python的多线程显得鸡肋, 但在重I/O应用中还是很实用, 并且multiprecessing是基于threading的, 有必要理解
+
 <!--more-->
+
+![](https://my-imgshare.oss-cn-shenzhen.aliyuncs.com/57080648_p0.jpg)
 
 ## GIL
 全局解释器锁(Global Interpreter Lock, GIL)是Python虚拟机的一个特性, 保证了任意时刻只有一个线程在解释器中运行. Python虚拟机的执行方式如下:

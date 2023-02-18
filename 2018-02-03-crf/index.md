@@ -1,11 +1,11 @@
 # 对数线性模型, MEMM与CRF
 
-![](https://my-imgshare.oss-cn-shenzhen.aliyuncs.com/13010631_p0_master1200.jpg)
->你的PGM也会和Steins Gate的世界线一样收束吗?
 
 可能是有史以来公式最多的文章. 敲到吐血
 
 <!--more-->
+
+{{< image src="https://my-imgshare.oss-cn-shenzhen.aliyuncs.com/13010631_p0_master1200.jpg" caption="你的PGM也会和Steins Gate的世界线一样收束吗?" height="5" width="5">}}
 
 ## 序
 设输入是$x$, 输出是$y$, HMM刻画的是联合概率分布$P(x, y | \lambda)$, 因此是生成模型, 可以同时进行推断$P(y|x, \lambda)$和解码$P(x|y, \lambda)$. 而CRF刻画的是条件概率分布$P(y|x, \lambda)$, 是判别模型

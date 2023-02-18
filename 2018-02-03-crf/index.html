@@ -5,25 +5,17 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="robots" content="noodp" />
         <title>对数线性模型, MEMM与CRF - Laniakea</title><meta name="Description" content="xxuan&#39;s blog"><meta property="og:title" content="对数线性模型, MEMM与CRF" />
-<meta property="og:description" content="
-
-你的PGM也会和Steins Gate的世界线一样收束吗?
-
-可能是有史以来公式最多的文章. 敲到吐血" />
+<meta property="og:description" content="可能是有史以来公式最多的文章. 敲到吐血" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://shawnau.github.io/2018-02-03-crf/" /><meta property="og:image" content="https://shawnau.github.io/logo.png"/><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2018-02-03T19:03:23+00:00" />
-<meta property="article:modified_time" content="2023-02-14T23:37:00+08:00" /><meta property="og:site_name" content="xxuan.cc" />
+<meta property="article:modified_time" content="2023-02-18T22:21:22+08:00" /><meta property="og:site_name" content="xxuan.cc" />
 
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://shawnau.github.io/logo.png"/>
 
 <meta name="twitter:title" content="对数线性模型, MEMM与CRF"/>
-<meta name="twitter:description" content="
-
-你的PGM也会和Steins Gate的世界线一样收束吗?
-
-可能是有史以来公式最多的文章. 敲到吐血"/>
+<meta name="twitter:description" content="可能是有史以来公式最多的文章. 敲到吐血"/>
 <meta name="application-name" content="Laniakea">
 <meta name="apple-mobile-web-app-title" content="Laniakea"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -39,7 +31,7 @@
             "@type": "WebPage",
             "@id": "https:\/\/shawnau.github.io\/2018-02-03-crf\/"
         },"genre": "posts","keywords": "MEMM, CRF, PGM, NLP","wordcount":  4575 ,
-        "url": "https:\/\/shawnau.github.io\/2018-02-03-crf\/","datePublished": "2018-02-03T19:03:23+00:00","dateModified": "2023-02-14T23:37:00+08:00","publisher": {
+        "url": "https:\/\/shawnau.github.io\/2018-02-03-crf\/","datePublished": "2018-02-03T19:03:23+00:00","dateModified": "2023-02-18T22:21:22+08:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
                 "@type": "Person",
@@ -160,18 +152,17 @@
     <li><a href="#reference">Reference</a></li>
   </ul>
 </nav></div>
-            </div><div class="content" id="content"><p><img
-        class="lazyload"
-        src="/svg/loading.min.svg"
-        data-src="https://my-imgshare.oss-cn-shenzhen.aliyuncs.com/13010631_p0_master1200.jpg"
-        data-srcset="https://my-imgshare.oss-cn-shenzhen.aliyuncs.com/13010631_p0_master1200.jpg, https://my-imgshare.oss-cn-shenzhen.aliyuncs.com/13010631_p0_master1200.jpg 1.5x, https://my-imgshare.oss-cn-shenzhen.aliyuncs.com/13010631_p0_master1200.jpg 2x"
-        data-sizes="auto"
-        alt="https://my-imgshare.oss-cn-shenzhen.aliyuncs.com/13010631_p0_master1200.jpg"
-        title="https://my-imgshare.oss-cn-shenzhen.aliyuncs.com/13010631_p0_master1200.jpg" /></p>
-<blockquote>
-<p>你的PGM也会和Steins Gate的世界线一样收束吗?</p>
-</blockquote>
-<p>可能是有史以来公式最多的文章. 敲到吐血</p>
+            </div><div class="content" id="content"><p>可能是有史以来公式最多的文章. 敲到吐血</p>
+<figure><a class="lightgallery" href="https://my-imgshare.oss-cn-shenzhen.aliyuncs.com/13010631_p0_master1200.jpg" title="https://my-imgshare.oss-cn-shenzhen.aliyuncs.com/13010631_p0_master1200.jpg" data-thumbnail="https://my-imgshare.oss-cn-shenzhen.aliyuncs.com/13010631_p0_master1200.jpg" data-sub-html="<h2>你的PGM也会和Steins Gate的世界线一样收束吗?</h2>">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="https://my-imgshare.oss-cn-shenzhen.aliyuncs.com/13010631_p0_master1200.jpg"
+            data-srcset="https://my-imgshare.oss-cn-shenzhen.aliyuncs.com/13010631_p0_master1200.jpg, https://my-imgshare.oss-cn-shenzhen.aliyuncs.com/13010631_p0_master1200.jpg 1.5x, https://my-imgshare.oss-cn-shenzhen.aliyuncs.com/13010631_p0_master1200.jpg 2x"
+            data-sizes="auto"
+            alt="https://my-imgshare.oss-cn-shenzhen.aliyuncs.com/13010631_p0_master1200.jpg" width="5" height="5" />
+    </a><figcaption class="image-caption">你的PGM也会和Steins Gate的世界线一样收束吗?</figcaption>
+    </figure>
 <h2 id="序">序</h2>
 <p>设输入是$x$, 输出是$y$, HMM刻画的是联合概率分布$P(x, y | \lambda)$, 因此是生成模型, 可以同时进行推断$P(y|x, \lambda)$和解码$P(x|y, \lambda)$. 而CRF刻画的是条件概率分布$P(y|x, \lambda)$, 是判别模型</p>
 <h2 id="log-linear-models">Log-Linear Models</h2>
@@ -782,8 +773,8 @@ $$\vec \delta_{t+1} = \max(\vec \delta_t + T)^T \tag{e.5}$$</li>
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>Updated on 2023-02-14&nbsp;<a class="git-hash" href="https://github.com/shawnau/hugo_blog/commit/2c2d05cdd3d4ee6a956693e6d97a6277b10ee5c0" target="_blank" title="commit by xiaoxuan(shawn_au@outlook.com) 2c2d05cdd3d4ee6a956693e6d97a6277b10ee5c0: update website">
-                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>2c2d05c</a></span>
+                <span>Updated on 2023-02-18&nbsp;<a class="git-hash" href="https://github.com/shawnau/hugo_blog/commit/753217d484b04c6def52834381eaa10d25b8863c" target="_blank" title="commit by xiaoxuan(shawn_au@outlook.com) 753217d484b04c6def52834381eaa10d25b8863c: update head img">
+                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>753217d</a></span>
             </div></div>
         <div class="post-info-line">
             <div class="post-info-md"><span>

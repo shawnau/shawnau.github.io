@@ -1,10 +1,11 @@
 # 梯度提升(Gradient Boosting)
 
-![](https://my-imgshare.oss-cn-shenzhen.aliyuncs.com/50782598_p0.png)
 
 自己写的老物了, 整理一下发出来, 可能会修改
 
 <!--more-->
+
+![](https://my-imgshare.oss-cn-shenzhen.aliyuncs.com/50782598_p0.png)
 
 ### 1. 任意损失函数的Boosting
 损失函数的一般表示是:

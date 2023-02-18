@@ -1,10 +1,9 @@
 # Hidden Markov Model
 
 
-![](https://my-imgshare.oss-cn-shenzhen.aliyuncs.com/4099531_p0_master1200.jpg)
-使用HMM的赌徒, 你还好吗? hmmm....
-
 <!--more-->
+
+{{< image src="https://my-imgshare.oss-cn-shenzhen.aliyuncs.com/4099531_p0_master1200.jpg" caption="在 Cowboy Bebop 中, Faye 是个赌徒, 她使用HMM" height="5" width="5">}}
 
 ## 0. 定义
 

@@ -10,8 +10,7 @@
     <pubDate>Tue, 26 Dec 2017 19:21:27 &#43;0000</pubDate>
     <author>xiaoxuan</author>
     <guid>https://shawnau.github.io/2017-12-26-survival-models/</guid>
-    <description><![CDATA[<p>
-生存模型(Survival Models)属于General Linear Model, 被广泛用于Censored Data的建模, 譬如用户流失预测. 这里介绍下最基本的生存模型以及在Censored Data上的MLE估计</p>]]></description>
+    <description><![CDATA[<p>生存模型(Survival Models)属于General Linear Model, 被广泛用于Censored Data的建模, 譬如用户流失预测. 这里介绍下最基本的生存模型以及在Censored Data上的MLE估计</p>]]></description>
 </item>
 <item>
     <title>Poisson Distribution Summary</title>

@@ -5,19 +5,17 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="robots" content="noodp" />
         <title>Hidden Markov Model - Laniakea</title><meta name="Description" content="xxuan&#39;s blog"><meta property="og:title" content="Hidden Markov Model" />
-<meta property="og:description" content="
-使用HMM的赌徒, 你还好吗? hmmm&hellip;." />
+<meta property="og:description" content="" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://shawnau.github.io/2018-02-03-hmm/" /><meta property="og:image" content="https://shawnau.github.io/logo.png"/><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2018-02-03T18:04:28+00:00" />
-<meta property="article:modified_time" content="2023-02-14T23:37:00+08:00" /><meta property="og:site_name" content="xxuan.cc" />
+<meta property="article:modified_time" content="2023-02-18T22:21:22+08:00" /><meta property="og:site_name" content="xxuan.cc" />
 
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://shawnau.github.io/logo.png"/>
 
 <meta name="twitter:title" content="Hidden Markov Model"/>
-<meta name="twitter:description" content="
-使用HMM的赌徒, 你还好吗? hmmm&hellip;."/>
+<meta name="twitter:description" content=""/>
 <meta name="application-name" content="Laniakea">
 <meta name="apple-mobile-web-app-title" content="Laniakea"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -32,8 +30,8 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/shawnau.github.io\/2018-02-03-hmm\/"
-        },"genre": "posts","keywords": "HMM, PGM, NLP","wordcount":  2367 ,
-        "url": "https:\/\/shawnau.github.io\/2018-02-03-hmm\/","datePublished": "2018-02-03T18:04:28+00:00","dateModified": "2023-02-14T23:37:00+08:00","publisher": {
+        },"genre": "posts","keywords": "HMM, PGM, NLP","wordcount":  2369 ,
+        "url": "https:\/\/shawnau.github.io\/2018-02-03-hmm\/","datePublished": "2018-02-03T18:04:28+00:00","dateModified": "2023-02-18T22:21:22+08:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
                 "@type": "Person",
@@ -106,7 +104,7 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Hidden Markov Model</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>xiaoxuan</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2018-02-03">2018-02-03</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;2367 words&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2018-02-03">2018-02-03</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;2369 words&nbsp;
                 <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;5 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="true">
                 <div class="details-summary toc-title">
@@ -144,15 +142,16 @@
     <li><a href="#4-python-实现">4. Python 实现</a></li>
   </ul>
 </nav></div>
-            </div><div class="content" id="content"><p><img
-        class="lazyload"
-        src="/svg/loading.min.svg"
-        data-src="https://my-imgshare.oss-cn-shenzhen.aliyuncs.com/4099531_p0_master1200.jpg"
-        data-srcset="https://my-imgshare.oss-cn-shenzhen.aliyuncs.com/4099531_p0_master1200.jpg, https://my-imgshare.oss-cn-shenzhen.aliyuncs.com/4099531_p0_master1200.jpg 1.5x, https://my-imgshare.oss-cn-shenzhen.aliyuncs.com/4099531_p0_master1200.jpg 2x"
-        data-sizes="auto"
-        alt="https://my-imgshare.oss-cn-shenzhen.aliyuncs.com/4099531_p0_master1200.jpg"
-        title="https://my-imgshare.oss-cn-shenzhen.aliyuncs.com/4099531_p0_master1200.jpg" />
-使用HMM的赌徒, 你还好吗? hmmm&hellip;.</p>
+            </div><div class="content" id="content"><figure><a class="lightgallery" href="https://my-imgshare.oss-cn-shenzhen.aliyuncs.com/4099531_p0_master1200.jpg" title="https://my-imgshare.oss-cn-shenzhen.aliyuncs.com/4099531_p0_master1200.jpg" data-thumbnail="https://my-imgshare.oss-cn-shenzhen.aliyuncs.com/4099531_p0_master1200.jpg" data-sub-html="<h2>在 Cowboy Bebop 中, Faye 是个赌徒, 她使用HMM</h2>">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="https://my-imgshare.oss-cn-shenzhen.aliyuncs.com/4099531_p0_master1200.jpg"
+            data-srcset="https://my-imgshare.oss-cn-shenzhen.aliyuncs.com/4099531_p0_master1200.jpg, https://my-imgshare.oss-cn-shenzhen.aliyuncs.com/4099531_p0_master1200.jpg 1.5x, https://my-imgshare.oss-cn-shenzhen.aliyuncs.com/4099531_p0_master1200.jpg 2x"
+            data-sizes="auto"
+            alt="https://my-imgshare.oss-cn-shenzhen.aliyuncs.com/4099531_p0_master1200.jpg" width="5" height="5" />
+    </a><figcaption class="image-caption">在 Cowboy Bebop 中, Faye 是个赌徒, 她使用HMM</figcaption>
+    </figure>
 <h2 id="0-定义">0. 定义</h2>
 <p><img
         class="lazyload"
@@ -416,8 +415,8 @@ $\phi_t(q_i)$代表$(3.1.5)$时的$I_{t-1}$, 顺着逆推即可得到概率最�
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>Updated on 2023-02-14&nbsp;<a class="git-hash" href="https://github.com/shawnau/hugo_blog/commit/2c2d05cdd3d4ee6a956693e6d97a6277b10ee5c0" target="_blank" title="commit by xiaoxuan(shawn_au@outlook.com) 2c2d05cdd3d4ee6a956693e6d97a6277b10ee5c0: update website">
-                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>2c2d05c</a></span>
+                <span>Updated on 2023-02-18&nbsp;<a class="git-hash" href="https://github.com/shawnau/hugo_blog/commit/753217d484b04c6def52834381eaa10d25b8863c" target="_blank" title="commit by xiaoxuan(shawn_au@outlook.com) 753217d484b04c6def52834381eaa10d25b8863c: update head img">
+                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>753217d</a></span>
             </div></div>
         <div class="post-info-line">
             <div class="post-info-md"><span>

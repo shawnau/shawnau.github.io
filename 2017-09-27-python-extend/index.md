@@ -1,9 +1,11 @@
 # Python核心编程笔记5 扩展Python
 
 
-![](https://my-imgshare.oss-cn-shenzhen.aliyuncs.com/46228691_p0.jpg)
-左手C++, 右手Python, 性能与表达力的完美融合
+C++ 和 Python 混合编程可以兼顾性能与效率
+
 <!--more-->
+
+![](https://my-imgshare.oss-cn-shenzhen.aliyuncs.com/46228691_p0.jpg)
 
 ## Python扩展
 [官方文档](https://docs.python.org/3/extending/extending.html)
