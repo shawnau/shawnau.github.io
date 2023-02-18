@@ -1,0 +1,16 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>Design Pattern - Tag - Laniakea</title>
+        <link>https://shawnau.github.io/tags/design-pattern/</link>
+        <description>Design Pattern - Tag - Laniakea</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>shawn_au@outlook.com (xiaoxuan)</managingEditor>
+            <webMaster>shawn_au@outlook.com (xiaoxuan)</webMaster><lastBuildDate>Tue, 30 Aug 2022 16:56:33 &#43;0800</lastBuildDate><atom:link href="https://shawnau.github.io/tags/design-pattern/" rel="self" type="application/rss+xml" /><item>
+    <title>设计模式 - 观察者模式(Observer Pattern)</title>
+    <link>https://shawnau.github.io/2022-08-30-observer-pattern/</link>
+    <pubDate>Tue, 30 Aug 2022 16:56:33 &#43;0800</pubDate>
+    <author>xiaoxuan</author>
+    <guid>https://shawnau.github.io/2022-08-30-observer-pattern/</guid>
+    <description><![CDATA[<p>观察者模式是常见的设计模式之一.</p>]]></description>
+</item>
+</channel>
+</rss>

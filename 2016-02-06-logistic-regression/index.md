@@ -1,4 +1,4 @@
-# Machine Learning Notes(6)-Logistic Regression
+# 吴恩达 ML 公开课笔记(6)-Logistic Regression
 
 
 Logistic Regression

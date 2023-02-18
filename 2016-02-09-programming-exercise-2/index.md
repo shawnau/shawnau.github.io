@@ -1,4 +1,4 @@
-# Machine Learning Notes(7)-Programming Exercise 2
+# 吴恩达 ML 公开课笔记(7)-Programming Exercise 2
 
 
 Programming Exercise 2

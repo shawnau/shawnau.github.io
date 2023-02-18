@@ -1,4 +1,4 @@
-# Machine Learning Notes(4)-Octave abc
+# 吴恩达 ML 公开课笔记(4)-Octave abc
 
 Too lazy to explain some of the commands...orz
 

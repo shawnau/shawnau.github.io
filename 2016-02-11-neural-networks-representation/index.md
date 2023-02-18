@@ -1,4 +1,4 @@
-# Machine Learning Notes(8)-Neural Networks Representation
+# 吴恩达 ML 公开课笔记(8)-Neural Networks Representation
 
 
 <!--more-->

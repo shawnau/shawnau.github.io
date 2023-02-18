@@ -1,6 +1,6 @@
-# ML 笔记 1 - Supervised and Unsupervised Learning
+# 吴恩达 ML 公开课笔记(1) - Supervised and Unsupervised Learning
 
-This is my notes for the open course [Machine Learning](https://www.coursera.org/learn/machine-learning/) from coursera.
+This is my notes for the open course [Machine Learning](https://www.AndrewNg's ML.org/learn/machine-learning/) from AndrewNg's ML.
 
 <!--more-->
 

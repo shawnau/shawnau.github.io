@@ -1,0 +1,64 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>CV - Tag - Laniakea</title>
+        <link>https://shawnau.github.io/tags/cv/</link>
+        <description>CV - Tag - Laniakea</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>shawn_au@outlook.com (xiaoxuan)</managingEditor>
+            <webMaster>shawn_au@outlook.com (xiaoxuan)</webMaster><lastBuildDate>Mon, 08 Oct 2018 18:37:39 &#43;0000</lastBuildDate><atom:link href="https://shawnau.github.io/tags/cv/" rel="self" type="application/rss+xml" /><item>
+    <title>风格迁移(Style Transfer)</title>
+    <link>https://shawnau.github.io/2018-10-08-style-transfer/</link>
+    <pubDate>Mon, 08 Oct 2018 18:37:39 &#43;0000</pubDate>
+    <author>xiaoxuan</author>
+    <guid>https://shawnau.github.io/2018-10-08-style-transfer/</guid>
+    <description><![CDATA[<p>如何将艺术风格量化? 基于深度学习的风格迁移是个很有趣也很浪漫的领域</p>]]></description>
+</item>
+<item>
+    <title>Mask-RCNN</title>
+    <link>https://shawnau.github.io/2018-07-13-mask-rcnn/</link>
+    <pubDate>Fri, 13 Jul 2018 18:10:35 &#43;0000</pubDate>
+    <author>xiaoxuan</author>
+    <guid>https://shawnau.github.io/2018-07-13-mask-rcnn/</guid>
+    <description><![CDATA[<p>存货, 介绍了Mask-RCNN和具体的实现细节</p>]]></description>
+</item>
+<item>
+    <title>语义分割综述</title>
+    <link>https://shawnau.github.io/2018-07-13-semantic-segmentation/</link>
+    <pubDate>Fri, 13 Jul 2018 18:09:06 &#43;0000</pubDate>
+    <author>xiaoxuan</author>
+    <guid>https://shawnau.github.io/2018-07-13-semantic-segmentation/</guid>
+    <description><![CDATA[<p>存货, 介绍了语义分割模型的发展历史以及基本理念</p>]]></description>
+</item>
+<item>
+    <title>目标检测综述-从RCNN到Mask-RCNN</title>
+    <link>https://shawnau.github.io/2018-07-13-object-detection/</link>
+    <pubDate>Fri, 13 Jul 2018 18:06:56 &#43;0000</pubDate>
+    <author>xiaoxuan</author>
+    <guid>https://shawnau.github.io/2018-07-13-object-detection/</guid>
+    <description><![CDATA[<p>存货, 介绍了RCNN系列的发展历史以及基本理念</p>]]></description>
+</item>
+<item>
+    <title>图像识别综述-从Inception到ResNet</title>
+    <link>https://shawnau.github.io/2018-07-13-image-classification/</link>
+    <pubDate>Fri, 13 Jul 2018 18:04:05 &#43;0000</pubDate>
+    <author>xiaoxuan</author>
+    <guid>https://shawnau.github.io/2018-07-13-image-classification/</guid>
+    <description><![CDATA[<p>存货, 介绍了从Inception系列到Resnet系列的发展历史以及基本理念和pytorch实现</p>]]></description>
+</item>
+<item>
+    <title>Blazing Fast! 使用YOLO&#43;Darknet进行目标检测</title>
+    <link>https://shawnau.github.io/code/2016-12-26-yolo-darknet/</link>
+    <pubDate>Mon, 26 Dec 2016 15:15:08 &#43;0000</pubDate>
+    <author>xiaoxuan</author>
+    <guid>https://shawnau.github.io/code/2016-12-26-yolo-darknet/</guid>
+    <description><![CDATA[<p>YOLO做目标检测很快</p>]]></description>
+</item>
+<item>
+    <title>基于Docker的Faster R-CNN, CPU-Only环境配置</title>
+    <link>https://shawnau.github.io/code/2016-12-10-build-fast-rcnn-under-docker/</link>
+    <pubDate>Sat, 10 Dec 2016 19:24:42 &#43;0000</pubDate>
+    <author>xiaoxuan</author>
+    <guid>https://shawnau.github.io/code/2016-12-10-build-fast-rcnn-under-docker/</guid>
+    <description><![CDATA[<p>详见<a href="https://github.com/shawnau/py-faster-rcnn-cpu" target="_blank" rel="noopener noreffer ">我的repo</a></p>]]></description>
+</item>
+</channel>
+</rss>

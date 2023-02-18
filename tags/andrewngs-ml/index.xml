@@ -1,0 +1,88 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>AndrewNg&#39;s ML - Tag - Laniakea</title>
+        <link>https://shawnau.github.io/tags/andrewngs-ml/</link>
+        <description>AndrewNg&#39;s ML - Tag - Laniakea</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>shawn_au@outlook.com (xiaoxuan)</managingEditor>
+            <webMaster>shawn_au@outlook.com (xiaoxuan)</webMaster><lastBuildDate>Sat, 27 Feb 2016 22:17:15 &#43;0000</lastBuildDate><atom:link href="https://shawnau.github.io/tags/andrewngs-ml/" rel="self" type="application/rss+xml" /><item>
+    <title>吴恩达 ML 公开课笔记(13)-Programming Exercise 5</title>
+    <link>https://shawnau.github.io/2016-02-27-programming-exercise-5/</link>
+    <pubDate>Sat, 27 Feb 2016 22:17:15 &#43;0000</pubDate>
+    <author>xiaoxuan</author>
+    <guid>https://shawnau.github.io/2016-02-27-programming-exercise-5/</guid>
+    <description><![CDATA[<p>Programming Exercise 5</p>]]></description>
+</item>
+<item>
+    <title>吴恩达 ML 公开课笔记(12)-Advice for Applying Machine Learning</title>
+    <link>https://shawnau.github.io/2016-02-27-advice-for-applying-machine-learning/</link>
+    <pubDate>Sat, 27 Feb 2016 22:10:17 &#43;0000</pubDate>
+    <author>xiaoxuan</author>
+    <guid>https://shawnau.github.io/2016-02-27-advice-for-applying-machine-learning/</guid>
+    <description><![CDATA[<p>Advice for Applying Machine Learning</p>]]></description>
+</item>
+<item>
+    <title>吴恩达 ML 公开课笔记(11)-Programming Exercise 4</title>
+    <link>https://shawnau.github.io/2016-02-20-programming-exercise-4/</link>
+    <pubDate>Sat, 20 Feb 2016 14:37:56 &#43;0000</pubDate>
+    <author>xiaoxuan</author>
+    <guid>https://shawnau.github.io/2016-02-20-programming-exercise-4/</guid>
+    <description><![CDATA[<p>Programming Exercise 4</p>]]></description>
+</item>
+<item>
+    <title>吴恩达 ML 公开课笔记(10)-Neural Networks Learning</title>
+    <link>https://shawnau.github.io/2016-02-20-neural-networks-learning/</link>
+    <pubDate>Sat, 20 Feb 2016 13:55:02 &#43;0000</pubDate>
+    <author>xiaoxuan</author>
+    <guid>https://shawnau.github.io/2016-02-20-neural-networks-learning/</guid>
+    <description><![CDATA[<p>Neural Networks Learning</p>]]></description>
+</item>
+<item>
+    <title>吴恩达 ML 公开课笔记(8)-Neural Networks Representation</title>
+    <link>https://shawnau.github.io/2016-02-11-neural-networks-representation/</link>
+    <pubDate>Thu, 11 Feb 2016 16:38:03 &#43;0000</pubDate>
+    <author>xiaoxuan</author>
+    <guid>https://shawnau.github.io/2016-02-11-neural-networks-representation/</guid>
+    <description><![CDATA[]]></description>
+</item>
+<item>
+    <title>吴恩达 ML 公开课笔记(7)-Programming Exercise 2</title>
+    <link>https://shawnau.github.io/2016-02-09-programming-exercise-2/</link>
+    <pubDate>Tue, 09 Feb 2016 19:59:32 &#43;0000</pubDate>
+    <author>xiaoxuan</author>
+    <guid>https://shawnau.github.io/2016-02-09-programming-exercise-2/</guid>
+    <description><![CDATA[<p>Programming Exercise 2</p>]]></description>
+</item>
+<item>
+    <title>吴恩达 ML 公开课笔记(9)-Programming Exercise 3</title>
+    <link>https://shawnau.github.io/2016-02-13-programming-exercise-3/</link>
+    <pubDate>Tue, 09 Feb 2016 19:59:32 &#43;0000</pubDate>
+    <author>xiaoxuan</author>
+    <guid>https://shawnau.github.io/2016-02-13-programming-exercise-3/</guid>
+    <description><![CDATA[<p>Programming Exercise 3</p>]]></description>
+</item>
+<item>
+    <title>吴恩达 ML 公开课笔记(6)-Logistic Regression</title>
+    <link>https://shawnau.github.io/2016-02-06-logistic-regression/</link>
+    <pubDate>Sat, 06 Feb 2016 18:54:52 &#43;0000</pubDate>
+    <author>xiaoxuan</author>
+    <guid>https://shawnau.github.io/2016-02-06-logistic-regression/</guid>
+    <description><![CDATA[<p>Logistic Regression</p>]]></description>
+</item>
+<item>
+    <title>吴恩达 ML 公开课笔记(5)-Programming Exercise 1</title>
+    <link>https://shawnau.github.io/2016-02-01-programming-exercise-1/</link>
+    <pubDate>Mon, 01 Feb 2016 16:13:57 &#43;0000</pubDate>
+    <author>xiaoxuan</author>
+    <guid>https://shawnau.github.io/2016-02-01-programming-exercise-1/</guid>
+    <description><![CDATA[<p>Programming Exercise 1: Gradient Descent for Linear regression</p>]]></description>
+</item>
+<item>
+    <title>吴恩达 ML 公开课笔记(4)-Octave abc</title>
+    <link>https://shawnau.github.io/2016-02-01-octave-abc/</link>
+    <pubDate>Mon, 01 Feb 2016 13:44:34 &#43;0000</pubDate>
+    <author>xiaoxuan</author>
+    <guid>https://shawnau.github.io/2016-02-01-octave-abc/</guid>
+    <description><![CDATA[<p>Too lazy to explain some of the commands&hellip;orz</p>]]></description>
+</item>
+</channel>
+</rss>

@@ -1,7 +1,7 @@
-# ML 笔记 2 - A Linear Regression Example
+# 吴恩达 ML 公开课笔记(2) - A Linear Regression Example
 
 
-This is my notes for the open course [Machine Learning](https://www.coursera.org/learn/machine-learning/) from coursera.
+This is my notes for the open course [Machine Learning](https://www.AndrewNg's ML.org/learn/machine-learning/) from AndrewNg's ML.
 
 <!--more-->
 

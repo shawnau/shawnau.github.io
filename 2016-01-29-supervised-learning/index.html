@@ -4,18 +4,18 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="robots" content="noodp" />
-        <title>ML 笔记 1 - Supervised and Unsupervised Learning - Laniakea</title><meta name="Description" content="xxuan&#39;s blog"><meta property="og:title" content="ML 笔记 1 - Supervised and Unsupervised Learning" />
-<meta property="og:description" content="This is my notes for the open course Machine Learning from coursera." />
+        <title>吴恩达 ML 公开课笔记(1) - Supervised and Unsupervised Learning - Laniakea</title><meta name="Description" content="xxuan&#39;s blog"><meta property="og:title" content="吴恩达 ML 公开课笔记(1) - Supervised and Unsupervised Learning" />
+<meta property="og:description" content="This is my notes for the open course [Machine Learning](https://www.AndrewNg&rsquo;s ML.org/learn/machine-learning/) from AndrewNg&rsquo;s ML." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://shawnau.github.io/2016-01-29-supervised-learning/" /><meta property="og:image" content="https://shawnau.github.io/logo.png"/><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2016-01-29T16:47:34+00:00" />
-<meta property="article:modified_time" content="2023-02-14T23:37:00+08:00" /><meta property="og:site_name" content="xxuan.cc" />
+<meta property="article:modified_time" content="2023-02-18T22:51:59+08:00" /><meta property="og:site_name" content="xxuan.cc" />
 
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://shawnau.github.io/logo.png"/>
 
-<meta name="twitter:title" content="ML 笔记 1 - Supervised and Unsupervised Learning"/>
-<meta name="twitter:description" content="This is my notes for the open course Machine Learning from coursera."/>
+<meta name="twitter:title" content="吴恩达 ML 公开课笔记(1) - Supervised and Unsupervised Learning"/>
+<meta name="twitter:description" content="This is my notes for the open course [Machine Learning](https://www.AndrewNg&rsquo;s ML.org/learn/machine-learning/) from AndrewNg&rsquo;s ML."/>
 <meta name="application-name" content="Laniakea">
 <meta name="apple-mobile-web-app-title" content="Laniakea"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -25,13 +25,13 @@
     {
         "@context": "http://schema.org",
         "@type": "BlogPosting",
-        "headline": "ML 笔记 1 - Supervised and Unsupervised Learning",
+        "headline": "吴恩达 ML 公开课笔记(1) - Supervised and Unsupervised Learning",
         "inLanguage": "zh-CN",
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/shawnau.github.io\/2016-01-29-supervised-learning\/"
-        },"genre": "posts","keywords": "machine learning, coursera","wordcount":  118 ,
-        "url": "https:\/\/shawnau.github.io\/2016-01-29-supervised-learning\/","datePublished": "2016-01-29T16:47:34+00:00","dateModified": "2023-02-14T23:37:00+08:00","publisher": {
+        },"genre": "posts","keywords": "AndrewNg\u0027s ML","wordcount":  120 ,
+        "url": "https:\/\/shawnau.github.io\/2016-01-29-supervised-learning\/","datePublished": "2016-01-29T16:47:34+00:00","dateModified": "2023-02-18T22:51:59+08:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
                 "@type": "Person",
@@ -102,9 +102,9 @@
                 <div class="container"><div class="toc" id="toc-auto">
             <h2 class="toc-title">Contents</h2>
             <div class="toc-content" id="toc-content-auto"></div>
-        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">ML 笔记 1 - Supervised and Unsupervised Learning</h1><div class="post-meta">
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">吴恩达 ML 公开课笔记(1) - Supervised and Unsupervised Learning</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>xiaoxuan</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2016-01-29">2016-01-29</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;118 words&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2016-01-29">2016-01-29</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;120 words&nbsp;
                 <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;One minute&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="true">
                 <div class="details-summary toc-title">
@@ -117,7 +117,7 @@
     <li><a href="#unsupervised-learning">Unsupervised learning</a></li>
   </ul>
 </nav></div>
-            </div><div class="content" id="content"><p>This is my notes for the open course <a href="https://www.coursera.org/learn/machine-learning/" target="_blank" rel="noopener noreffer ">Machine Learning</a> from coursera.</p>
+            </div><div class="content" id="content"><p>This is my notes for the open course [Machine Learning](https://www.AndrewNg&rsquo;s ML.org/learn/machine-learning/) from AndrewNg&rsquo;s ML.</p>
 <h2 id="supervised-learning">Supervised learning</h2>
 <ol start="0">
 <li>Model</li>
@@ -159,28 +159,28 @@
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>Updated on 2023-02-14&nbsp;<a class="git-hash" href="https://github.com/shawnau/hugo_blog/commit/2c2d05cdd3d4ee6a956693e6d97a6277b10ee5c0" target="_blank" title="commit by xiaoxuan(shawn_au@outlook.com) 2c2d05cdd3d4ee6a956693e6d97a6277b10ee5c0: update website">
-                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>2c2d05c</a></span>
+                <span>Updated on 2023-02-18&nbsp;<a class="git-hash" href="https://github.com/shawnau/hugo_blog/commit/be87742158c6ebc38fa5027909346c7433e696de" target="_blank" title="commit by xiaoxuan(shawn_au@outlook.com) be87742158c6ebc38fa5027909346c7433e696de: clean up tags and names">
+                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>be87742</a></span>
             </div></div>
         <div class="post-info-line">
             <div class="post-info-md"><span>
                             <a class="link-to-markdown" href="/2016-01-29-supervised-learning/index.md" target="_blank">Read Markdown</a>
                         </span></div>
             <div class="post-info-share">
-                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://shawnau.github.io/2016-01-29-supervised-learning/" data-title="ML 笔记 1 - Supervised and Unsupervised Learning" data-hashtags="machine learning,coursera"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://shawnau.github.io/2016-01-29-supervised-learning/" data-hashtag="machine learning"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="https://shawnau.github.io/2016-01-29-supervised-learning/" data-title="ML 笔记 1 - Supervised and Unsupervised Learning"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="https://shawnau.github.io/2016-01-29-supervised-learning/" data-title="ML 笔记 1 - Supervised and Unsupervised Learning"><i data-svg-src="/lib/simple-icons/icons/line.min.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="https://shawnau.github.io/2016-01-29-supervised-learning/" data-title="ML 笔记 1 - Supervised and Unsupervised Learning"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://shawnau.github.io/2016-01-29-supervised-learning/" data-title="吴恩达 ML 公开课笔记(1) - Supervised and Unsupervised Learning" data-hashtags="AndrewNg&#39;s ML"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://shawnau.github.io/2016-01-29-supervised-learning/" data-hashtag="AndrewNg&#39;s ML"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="https://shawnau.github.io/2016-01-29-supervised-learning/" data-title="吴恩达 ML 公开课笔记(1) - Supervised and Unsupervised Learning"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="https://shawnau.github.io/2016-01-29-supervised-learning/" data-title="吴恩达 ML 公开课笔记(1) - Supervised and Unsupervised Learning"><i data-svg-src="/lib/simple-icons/icons/line.min.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="https://shawnau.github.io/2016-01-29-supervised-learning/" data-title="吴恩达 ML 公开课笔记(1) - Supervised and Unsupervised Learning"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
             </div>
         </div>
     </div>
 
     <div class="post-info-more">
-        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/machine-learning/">machine learning</a>,&nbsp;<a href="/tags/coursera/">coursera</a></section>
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/andrewngs-ml/">AndrewNg&#39;s ML</a></section>
         <section>
             <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
         </section>
     </div>
 
     <div class="post-nav"><a href="/2016-01-22-cpp-fundamental-2/" class="prev" rel="prev" title="利用链表ADT学习C&#43;&#43;面向对象(2) - 栈和队列继承链表"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>利用链表ADT学习C++面向对象(2) - 栈和队列继承链表</a>
-            <a href="/2016-01-29-model-and-cost-function/" class="next" rel="next" title="ML 笔记 2 - A Linear Regression Example">ML 笔记 2 - A Linear Regression Example<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+            <a href="/2016-01-29-model-and-cost-function/" class="next" rel="next" title="吴恩达 ML 公开课笔记(2) - A Linear Regression Example">吴恩达 ML 公开课笔记(2) - A Linear Regression Example<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
 </div>
 <div id="comments"><div id="disqus_thread" class="comment"></div><noscript>
                 Please enable JavaScript to view the comments powered by <a href="https://disqus.com/?ref_noscript">Disqus</a>.

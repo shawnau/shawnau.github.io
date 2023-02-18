@@ -54,5 +54,5 @@ The full algorithm is similar, see the reference of wiki. The base model used mo
 
 Reference:
 [统计学习方法](https://www.amazon.cn/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95-%E6%9D%8E%E8%88%AA/dp/B007TSFMTA/ref=sr\_1\_1?ie=UTF8&qid=1466746855&sr=8-1&keywords=%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95)
-[机器学习技法](https://www.coursera.org/course/ntumltwo)
+[机器学习技法](https://www.AndrewNg's ML.org/course/ntumltwo)
 [Wikipedia](https://www.wikiwand.com/en/Gradient\_boosting)

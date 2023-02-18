@@ -20,5 +20,13 @@
     <guid>https://shawnau.github.io/2017-08-08-poisson/</guid>
     <description><![CDATA[<p>泊松分布是随机过程中的一个重要分布</p>]]></description>
 </item>
+<item>
+    <title>朴素贝叶斯</title>
+    <link>https://shawnau.github.io/2017-03-22-naive-bayes/</link>
+    <pubDate>Wed, 22 Mar 2017 16:06:07 &#43;0000</pubDate>
+    <author>xiaoxuan</author>
+    <guid>https://shawnau.github.io/2017-03-22-naive-bayes/</guid>
+    <description><![CDATA[<p>朴素贝叶斯(<strong>Naive</strong> Bayes) 如此蛤意盎然的算法, 居然一直没写</p>]]></description>
+</item>
 </channel>
 </rss>

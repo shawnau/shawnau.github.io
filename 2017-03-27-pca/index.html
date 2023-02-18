@@ -5,23 +5,17 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="robots" content="noodp" />
         <title>PCA - Laniakea</title><meta name="Description" content="xxuan&#39;s blog"><meta property="og:title" content="PCA" />
-<meta property="og:description" content="先看Refer, 该介绍的都介绍到位了:
-
-17/10/09 更新了预备知识和详细计算过程
-" />
+<meta property="og:description" content="主成分分析" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://shawnau.github.io/2017-03-27-pca/" /><meta property="og:image" content="https://shawnau.github.io/logo.png"/><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2017-03-27T16:52:34+00:00" />
-<meta property="article:modified_time" content="2023-02-14T23:37:00+08:00" /><meta property="og:site_name" content="xxuan.cc" />
+<meta property="article:modified_time" content="2023-02-18T22:51:59+08:00" /><meta property="og:site_name" content="xxuan.cc" />
 
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://shawnau.github.io/logo.png"/>
 
 <meta name="twitter:title" content="PCA"/>
-<meta name="twitter:description" content="先看Refer, 该介绍的都介绍到位了:
-
-17/10/09 更新了预备知识和详细计算过程
-"/>
+<meta name="twitter:description" content="主成分分析"/>
 <meta name="application-name" content="Laniakea">
 <meta name="apple-mobile-web-app-title" content="Laniakea"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -36,8 +30,8 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/shawnau.github.io\/2017-03-27-pca\/"
-        },"genre": "posts","keywords": "pca","wordcount":  1630 ,
-        "url": "https:\/\/shawnau.github.io\/2017-03-27-pca\/","datePublished": "2017-03-27T16:52:34+00:00","dateModified": "2023-02-14T23:37:00+08:00","publisher": {
+        },"genre": "posts","wordcount":  1601 ,
+        "url": "https:\/\/shawnau.github.io\/2017-03-27-pca\/","datePublished": "2017-03-27T16:52:34+00:00","dateModified": "2023-02-18T22:51:59+08:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
                 "@type": "Person",
@@ -110,7 +104,7 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">PCA</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>xiaoxuan</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2017-03-27">2017-03-27</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;1630 words&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2017-03-27">2017-03-27</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;1601 words&nbsp;
                 <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;4 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="true">
                 <div class="details-summary toc-title">
@@ -137,10 +131,7 @@
     <li><a href="#numpy实现">Numpy实现</a></li>
   </ul>
 </nav></div>
-            </div><div class="content" id="content"><p>先看Refer, 该介绍的都介绍到位了:</p>
-<blockquote>
-<p>17/10/09 更新了预备知识和详细计算过程</p>
-</blockquote>
+            </div><div class="content" id="content"><p>主成分分析</p>
 <ul>
 <li><a href="http://www.cnblogs.com/LeftNotEasy/archive/2011/01/08/lda-and-pca-machine-learning.html" target="_blank" rel="noopener noreffer ">机器学习中的数学(4)-线性判别分析（LDA）, 主成分分析(PCA)</a></li>
 <li><a href="http://www.cnblogs.com/LeftNotEasy/archive/2011/01/19/svd-and-applications.html" target="_blank" rel="noopener noreffer ">强大的矩阵奇异值分解(SVD)及其应用</a></li>
@@ -291,21 +282,21 @@ $$
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>Updated on 2023-02-14&nbsp;<a class="git-hash" href="https://github.com/shawnau/hugo_blog/commit/2c2d05cdd3d4ee6a956693e6d97a6277b10ee5c0" target="_blank" title="commit by xiaoxuan(shawn_au@outlook.com) 2c2d05cdd3d4ee6a956693e6d97a6277b10ee5c0: update website">
-                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>2c2d05c</a></span>
+                <span>Updated on 2023-02-18&nbsp;<a class="git-hash" href="https://github.com/shawnau/hugo_blog/commit/be87742158c6ebc38fa5027909346c7433e696de" target="_blank" title="commit by xiaoxuan(shawn_au@outlook.com) be87742158c6ebc38fa5027909346c7433e696de: clean up tags and names">
+                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>be87742</a></span>
             </div></div>
         <div class="post-info-line">
             <div class="post-info-md"><span>
                             <a class="link-to-markdown" href="/2017-03-27-pca/index.md" target="_blank">Read Markdown</a>
                         </span></div>
             <div class="post-info-share">
-                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://shawnau.github.io/2017-03-27-pca/" data-title="PCA" data-hashtags="pca"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://shawnau.github.io/2017-03-27-pca/" data-hashtag="pca"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="https://shawnau.github.io/2017-03-27-pca/" data-title="PCA"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="https://shawnau.github.io/2017-03-27-pca/" data-title="PCA"><i data-svg-src="/lib/simple-icons/icons/line.min.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="https://shawnau.github.io/2017-03-27-pca/" data-title="PCA"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://shawnau.github.io/2017-03-27-pca/" data-title="PCA"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://shawnau.github.io/2017-03-27-pca/"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="https://shawnau.github.io/2017-03-27-pca/" data-title="PCA"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="https://shawnau.github.io/2017-03-27-pca/" data-title="PCA"><i data-svg-src="/lib/simple-icons/icons/line.min.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="https://shawnau.github.io/2017-03-27-pca/" data-title="PCA"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
             </div>
         </div>
     </div>
 
     <div class="post-info-more">
-        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/pca/">pca</a></section>
+        <section class="post-tags"></section>
         <section>
             <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
         </section>

@@ -1,0 +1,32 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>python核心编程 - Tag - Laniakea</title>
+        <link>https://shawnau.github.io/tags/python%E6%A0%B8%E5%BF%83%E7%BC%96%E7%A8%8B/</link>
+        <description>python核心编程 - Tag - Laniakea</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>shawn_au@outlook.com (xiaoxuan)</managingEditor>
+            <webMaster>shawn_au@outlook.com (xiaoxuan)</webMaster><lastBuildDate>Wed, 27 Sep 2017 23:59:35 &#43;0000</lastBuildDate><atom:link href="https://shawnau.github.io/tags/python%E6%A0%B8%E5%BF%83%E7%BC%96%E7%A8%8B/" rel="self" type="application/rss+xml" /><item>
+    <title>Python核心编程笔记5 扩展Python</title>
+    <link>https://shawnau.github.io/2017-09-27-python-extend/</link>
+    <pubDate>Wed, 27 Sep 2017 23:59:35 &#43;0000</pubDate>
+    <author>xiaoxuan</author>
+    <guid>https://shawnau.github.io/2017-09-27-python-extend/</guid>
+    <description><![CDATA[<p>C++ 和 Python 混合编程可以兼顾性能与效率</p>]]></description>
+</item>
+<item>
+    <title>Python核心编程笔记4 多线程</title>
+    <link>https://shawnau.github.io/2017-09-26-python-thread/</link>
+    <pubDate>Tue, 26 Sep 2017 21:54:13 &#43;0000</pubDate>
+    <author>xiaoxuan</author>
+    <guid>https://shawnau.github.io/2017-09-26-python-thread/</guid>
+    <description><![CDATA[<p>即使有GIL的存在使得python的多线程显得鸡肋, 但在重I/O应用中还是很实用, 并且multiprecessing是基于threading的, 有必要理解</p>]]></description>
+</item>
+<item>
+    <title>Python核心编程笔记3 面向对象编程</title>
+    <link>https://shawnau.github.io/2017-09-25-python-oop/</link>
+    <pubDate>Mon, 25 Sep 2017 16:54:18 &#43;0000</pubDate>
+    <author>xiaoxuan</author>
+    <guid>https://shawnau.github.io/2017-09-25-python-oop/</guid>
+    <description><![CDATA[<p>python有很好的OOP特性, 自由度也非常大</p>]]></description>
+</item>
+</channel>
+</rss>

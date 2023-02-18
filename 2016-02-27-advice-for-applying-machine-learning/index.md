@@ -1,4 +1,4 @@
-# Machine Learning Notes(12)-Advice for Applying Machine Learning
+# 吴恩达 ML 公开课笔记(12)-Advice for Applying Machine Learning
 
 
 Advice for Applying Machine Learning

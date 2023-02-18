@@ -4,31 +4,7 @@
         <link>https://shawnau.github.io/tags/python/</link>
         <description>python - Tag - Laniakea</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>shawn_au@outlook.com (xiaoxuan)</managingEditor>
-            <webMaster>shawn_au@outlook.com (xiaoxuan)</webMaster><lastBuildDate>Wed, 27 Sep 2017 23:59:35 &#43;0000</lastBuildDate><atom:link href="https://shawnau.github.io/tags/python/" rel="self" type="application/rss+xml" /><item>
-    <title>Python核心编程笔记5 扩展Python</title>
-    <link>https://shawnau.github.io/2017-09-27-python-extend/</link>
-    <pubDate>Wed, 27 Sep 2017 23:59:35 &#43;0000</pubDate>
-    <author>xiaoxuan</author>
-    <guid>https://shawnau.github.io/2017-09-27-python-extend/</guid>
-    <description><![CDATA[<p>C++ 和 Python 混合编程可以兼顾性能与效率</p>]]></description>
-</item>
-<item>
-    <title>Python核心编程笔记4 多线程</title>
-    <link>https://shawnau.github.io/2017-09-26-python-thread/</link>
-    <pubDate>Tue, 26 Sep 2017 21:54:13 &#43;0000</pubDate>
-    <author>xiaoxuan</author>
-    <guid>https://shawnau.github.io/2017-09-26-python-thread/</guid>
-    <description><![CDATA[<p>即使有GIL的存在使得python的多线程显得鸡肋, 但在重I/O应用中还是很实用, 并且multiprecessing是基于threading的, 有必要理解</p>]]></description>
-</item>
-<item>
-    <title>Python核心编程笔记3 面向对象编程</title>
-    <link>https://shawnau.github.io/2017-09-25-python-oop/</link>
-    <pubDate>Mon, 25 Sep 2017 16:54:18 &#43;0000</pubDate>
-    <author>xiaoxuan</author>
-    <guid>https://shawnau.github.io/2017-09-25-python-oop/</guid>
-    <description><![CDATA[<p>python有很好的OOP特性, 自由度也非常大</p>]]></description>
-</item>
-<item>
+            <webMaster>shawn_au@outlook.com (xiaoxuan)</webMaster><lastBuildDate>Sun, 20 Aug 2017 18:22:10 &#43;0000</lastBuildDate><atom:link href="https://shawnau.github.io/tags/python/" rel="self" type="application/rss+xml" /><item>
     <title>Python核心编程笔记2 函数式编程</title>
     <link>https://shawnau.github.io/2017-08-20-python-functional-programming/</link>
     <pubDate>Sun, 20 Aug 2017 18:22:10 &#43;0000</pubDate>
@@ -86,6 +62,30 @@
     <guid>https://shawnau.github.io/code/2017-02-18-scrapy/</guid>
     <description><![CDATA[<p><a href="http://scrapy-chs.readthedocs.io/zh_CN/latest/index.html" target="_blank" rel="noopener noreffer ">scrapy的官方中文文档</a></p>
 <p><a href="https://github.com/shawnau/shixiseng" target="_blank" rel="noopener noreffer ">源代码</a></p>]]></description>
+</item>
+<item>
+    <title>Jupyter Notebooks 简介</title>
+    <link>https://shawnau.github.io/code/2016-12-22-jupyter-notebooks/</link>
+    <pubDate>Thu, 22 Dec 2016 15:37:15 &#43;0000</pubDate>
+    <author>xiaoxuan</author>
+    <guid>https://shawnau.github.io/code/2016-12-22-jupyter-notebooks/</guid>
+    <description><![CDATA[<p>jupyter可以看作是一款强化版的python terminal, 实时运行命令脚本, 实时反映结果, 非常适用于科学计算和数据分析. 除此之外通过安装kernel也可以用其他语言工作</p>]]></description>
+</item>
+<item>
+    <title>bilibili新番/旧番弹幕抓取</title>
+    <link>https://shawnau.github.io/code/2016-07-17-bilibili-scraper/</link>
+    <pubDate>Sun, 17 Jul 2016 20:09:38 &#43;0000</pubDate>
+    <author>xiaoxuan</author>
+    <guid>https://shawnau.github.io/code/2016-07-17-bilibili-scraper/</guid>
+    <description><![CDATA[<p>主要涉及到Selenium的使用</p>]]></description>
+</item>
+<item>
+    <title>基于selenium&#43;phantomJS的动态网页抓取</title>
+    <link>https://shawnau.github.io/code/2016-07-16-webscraper/</link>
+    <pubDate>Sat, 16 Jul 2016 12:26:35 &#43;0000</pubDate>
+    <author>xiaoxuan</author>
+    <guid>https://shawnau.github.io/code/2016-07-16-webscraper/</guid>
+    <description><![CDATA[<p>源代码: <a href="https://github.com/shawnau/ustcsse_scraper" target="_blank" rel="noopener noreffer ">https://github.com/shawnau/ustcsse_scraper</a></p>]]></description>
 </item>
 </channel>
 </rss>
