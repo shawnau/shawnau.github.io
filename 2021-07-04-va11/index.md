@@ -56,15 +56,13 @@ The idea of cyberpunk is so famous. I'm guessing some big names would feel sting
 ### 缘起
 去年我在b站发现一位调酒师UP[神秘金针菇](https://space.bilibili.com/2403594)先生发了游戏里酒的复刻(当然不能真按游戏里的配方来, 需要要调酒师自己去按照酒的属性创作, 所以不会调酒就别瞎折腾了), 发现酒吧在南京, 就收藏了希望哪天有机会去体验一下. 所以, 2021年6月的最后一个周末, 冒着夜里的小雨, 我终于有机会前去拜访一下. 这还是我第一次去酒吧...本人基本上不喝酒, 以前在实验室闻了太多乙醇, 和巴普洛夫的狗子一样训练出了ptsd. 哈哈
 
-{{< figure src="https://xxuanstorage.blob.core.windows.net/xxuancc/va11_bar_entrance.jpg" title="酒吧门口的招牌. 其实藏得很深, 门口是烤肉店. 很有设计感的招牌" >}}
+{{< image src="https://xxuanstorage.blob.core.windows.net/xxuancc/va11_bar_entrance.jpg" caption="酒吧门口的招牌. 其实藏得很深, 门口是烤肉店. 很有设计感的招牌" width="400">}}
 
-{{< figure src="https://xxuanstorage.blob.core.windows.net/xxuancc/va11_bar.jpg" title="排排坐就满啦. 有全套eva和王牌酒保漫画可看" >}}
+{{< image src="https://xxuanstorage.blob.core.windows.net/xxuancc/va11_bar.jpg" caption="排排坐就满啦. 有全套eva和王牌酒保漫画可看" width="400">}}
 
-{{< figure src="https://xxuanstorage.blob.core.windows.net/xxuancc/va11_manga_eva.jpg" title="贞本义行的EVA漫画" >}}
-贞本义行老师的EVA. 漫画作者和我一样是个丽党, 我喜欢这个版本的结局.
+{{< image src="https://xxuanstorage.blob.core.windows.net/xxuancc/va11_manga_eva.jpg" caption="排排坐就满啦. 有全套eva和王牌酒保漫画可看" width="400">}}
 
-{{< figure src="https://xxuanstorage.blob.core.windows.net/xxuancc/va11_manga_bartender.jpg" title="王牌酒保是调酒师入行的引子" >}}
-王牌酒保是调酒师入行的引子呢. 不过依他所言, 现实要是和漫画里一样, 酒吧就要关门咯. 所以说漫画就是漫画, 啊哈哈.
+{{< image src="https://xxuanstorage.blob.core.windows.net/xxuancc/va11_manga_bartender.jpg" caption="王牌酒保是调酒师入行的引子呢. 不过依他所言, 现实要是和漫画里一样, 酒吧就要关门咯. 所以说漫画就是漫画, 啊哈哈." width="400">}}
 
 ### 赛博小酒馆
 

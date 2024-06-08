@@ -11,7 +11,7 @@
 损失函数的一般表示是:
 $$ L(y\_i, f(x\_i)) $$
 
-考虑使用前向分步算法求解一个任意损失函数:
+考虑使用[前向分步算法]({{< ref "/posts/2016-06-22-forward-stagewise-algorithm" >}})求解一个任意损失函数:
 
 $$ (\beta\_m, \gamma\_m) = arg\min\limits\_{\beta, \gamma} \sum\limits\_{i=1}^N L(y\_i, f\_{m-1}(x\_i) + \beta b(x\_i;\gamma)) \tag{4.1}$$
 

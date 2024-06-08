@@ -4,7 +4,15 @@
         <link>https://shawnau.github.io/posts/</link>
         <description>All Posts | Laniakea</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>shawn_au@outlook.com (xiaoxuan)</managingEditor>
-            <webMaster>shawn_au@outlook.com (xiaoxuan)</webMaster><lastBuildDate>Tue, 14 Feb 2023 23:07:39 &#43;0800</lastBuildDate><atom:link href="https://shawnau.github.io/posts/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>shawn_au@outlook.com (xiaoxuan)</webMaster><lastBuildDate>Sat, 08 Jun 2024 15:05:49 &#43;0800</lastBuildDate><atom:link href="https://shawnau.github.io/posts/" rel="self" type="application/rss+xml" /><item>
+    <title>使用 v2ray 部署 TLS Web Service</title>
+    <link>https://shawnau.github.io/2024-06-10-v2ray-tls-ws/</link>
+    <pubDate>Sat, 08 Jun 2024 15:05:49 &#43;0800</pubDate>
+    <author>xiaoxuan</author>
+    <guid>https://shawnau.github.io/2024-06-10-v2ray-tls-ws/</guid>
+    <description><![CDATA[<p>经过2年的试用, 可以获得比较稳定的科学上网体验.</p>]]></description>
+</item>
+<item>
     <title>图床迁移和旧文章恢复!</title>
     <link>https://shawnau.github.io/2023-02-14-refresh/</link>
     <pubDate>Tue, 14 Feb 2023 23:07:39 &#43;0800</pubDate>
@@ -81,14 +89,6 @@
     <author>xiaoxuan</author>
     <guid>https://shawnau.github.io/2018-07-13-object-detection/</guid>
     <description><![CDATA[<p>存货, 介绍了RCNN系列的发展历史以及基本理念</p>]]></description>
-</item>
-<item>
-    <title>图像识别综述-从Inception到ResNet</title>
-    <link>https://shawnau.github.io/2018-07-13-image-classification/</link>
-    <pubDate>Fri, 13 Jul 2018 18:04:05 &#43;0000</pubDate>
-    <author>xiaoxuan</author>
-    <guid>https://shawnau.github.io/2018-07-13-image-classification/</guid>
-    <description><![CDATA[<p>存货, 介绍了从Inception系列到Resnet系列的发展历史以及基本理念和pytorch实现</p>]]></description>
 </item>
 </channel>
 </rss>

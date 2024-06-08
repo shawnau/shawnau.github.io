@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>使用 v2ray 部署 TLS Web Service - Laniakea</title><meta name="Description" content="xxuan&#39;s blog"><meta property="og:title" content="使用 v2ray 部署 TLS Web Service" />
+<meta property="og:description" content="经过2年的试用, 可以获得比较稳定的科学上网体验." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://shawnau.github.io/2024-06-10-v2ray-tls-ws/" /><meta property="og:image" content="https://shawnau.github.io/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2024-06-08T15:05:49+08:00" />
+<meta property="article:modified_time" content="2024-06-08T15:05:49+08:00" /><meta property="og:site_name" content="xxuan.cc" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://shawnau.github.io/logo.png"/>
+
+<meta name="twitter:title" content="使用 v2ray 部署 TLS Web Service"/>
+<meta name="twitter:description" content="经过2年的试用, 可以获得比较稳定的科学上网体验."/>
+<meta name="application-name" content="Laniakea">
+<meta name="apple-mobile-web-app-title" content="Laniakea"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://shawnau.github.io/2024-06-10-v2ray-tls-ws/" /><link rel="prev" href="https://shawnau.github.io/2023-02-14-refresh/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" href="/lib/animate/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "使用 v2ray 部署 TLS Web Service",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/shawnau.github.io\/2024-06-10-v2ray-tls-ws\/"
+        },"genre": "posts","wordcount":  1295 ,
+        "url": "https:\/\/shawnau.github.io\/2024-06-10-v2ray-tls-ws\/","datePublished": "2024-06-08T15:05:49+08:00","dateModified": "2024-06-08T15:05:49+08:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "xiaoxuan"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Laniakea">Laniakea</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/" title="存档脑细胞"> 文章 </a><a class="menu-item" href="/playground/" title="玩耍算法题的地方"> 练习场 </a><a class="menu-item" href="/code/" title="存放大概率过期的代码"> 码农 </a><a class="menu-item" href="/tags/" title="标签"> Tags </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Laniakea">Laniakea</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="存档脑细胞">文章</a><a class="menu-item" href="/playground/" title="玩耍算法题的地方">练习场</a><a class="menu-item" href="/code/" title="存放大概率过期的代码">码农</a><a class="menu-item" href="/tags/" title="标签">Tags</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">使用 v2ray 部署 TLS Web Service</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>xiaoxuan</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-06-08">2024-06-08</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;1295 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;3 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="true">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#安装-v2ray">安装 v2ray</a></li>
+    <li><a href="#配置-v2ray">配置 v2ray</a></li>
+    <li><a href="#申请合法域名--ssl证书">申请合法域名 + SSL证书</a>
+      <ul>
+        <li><a href="#申请域名">申请域名</a></li>
+        <li><a href="#申请证书">申请证书</a></li>
+        <li><a href="#更新证书">更新证书</a></li>
+      </ul>
+    </li>
+    <li><a href="#配置-nginx-web-server">配置 nginx web server</a></li>
+    <li><a href="#配置本地客户端">配置本地客户端</a>
+      <ul>
+        <li><a href="#v2ray-客户端">v2ray 客户端</a></li>
+        <li><a href="#clashx-客户端">ClashX 客户端</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><p>经过2年的试用, 可以获得比较稳定的科学上网体验.</p>
+<p>总的思路其实很简单, 就是把代理服务器隐藏在域名后面, 客户端访问代理服务器通过 https 域名, 和访问一个网站并无二致.</p>
+<h2 id="安装-v2ray">安装 v2ray</h2>
+<p><a href="https://github.com/v2fly/fhs-install-v2ray" target="_blank" rel="noopener noreffer ">fhs-install-v2ray</a></p>
+<h2 id="配置-v2ray">配置 v2ray</h2>
+<p>默认配置路径: <code>/usr/local/etc/v2ray/config.json</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;inbounds&#34;</span><span class="p">:</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&#34;port&#34;</span><span class="p">:</span> <span class="mi">12345</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&#34;listen&#34;</span><span class="p">:</span> <span class="s2">&#34;127.0.0.1&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&#34;protocol&#34;</span><span class="p">:</span> <span class="s2">&#34;vmess&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&#34;settings&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;clients&#34;</span><span class="p">:</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">                    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                        <span class="nt">&#34;id&#34;</span><span class="p">:</span> <span class="s2">&#34;guid&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                        <span class="nt">&#34;alterId&#34;</span><span class="p">:</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl">                    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">                <span class="p">]</span>
+</span></span><span class="line"><span class="cl">            <span class="p">},</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&#34;streamSettings&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;network&#34;</span><span class="p">:</span> <span class="s2">&#34;ws&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;wsSettings&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                    <span class="nt">&#34;path&#34;</span><span class="p">:</span> <span class="s2">&#34;/ray&#34;</span> <span class="c1">// 路径需要和 web server 中的一致
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>                <span class="p">}</span>
+</span></span><span class="line"><span class="cl">            <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">],</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;outbounds&#34;</span><span class="p">:</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&#34;protocol&#34;</span><span class="p">:</span> <span class="s2">&#34;freedom&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&#34;settings&#34;</span><span class="p">:</span> <span class="p">{}</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>该配置可以让 v2ray 监听本地 12345 端口, 然后需要 nginx 反向代理将 https 请求转发给 12345 端口.</p>
+<p>这里 <code>alterId</code> 被设置为 0, 如果能够保证服务端和客户端时间同步, 也是可以设置成其他值的.</p>
+<p>最后, 启动 v2ray, 这部分的工作就完成了.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># start</span>
+</span></span><span class="line"><span class="cl">sudo systemctl start v2ray
+</span></span><span class="line"><span class="cl"><span class="c1"># enable auto start upon startup</span>
+</span></span><span class="line"><span class="cl">sudo systemctl <span class="nb">enable</span> v2ray
+</span></span><span class="line"><span class="cl"><span class="c1"># debug</span>
+</span></span><span class="line"><span class="cl">sudo netstat -anp <span class="p">|</span> grep v2ray
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="申请合法域名--ssl证书">申请合法域名 + SSL证书</h2>
+<h3 id="申请域名">申请域名</h3>
+<p>申请一个域名, 添加一个 A Record 指向部署的 VPS 的 IP 地址. (我用了 Namecheap 购买域名, 添加 A Record 为 @ 即可), 同时可以使用 <a href="https://dnschecker.org/" target="_blank" rel="noopener noreffer ">dnschecker</a> 检查 A record 是否生效.</p>
+<p>注意: 如果发现遭到运营商的 DNS 污染, 请使用第三方 DNS, 比如<a href="https://alidns.com/" target="_blank" rel="noopener noreffer ">阿里云 DNS</a>.</p>
+<h3 id="申请证书">申请证书</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 安装 acme.sh</span>
+</span></span><span class="line"><span class="cl">sudo apt install -y openssl cron socat curl
+</span></span><span class="line"><span class="cl">curl https://get.acme.sh <span class="p">|</span> sh
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 注册邮箱</span>
+</span></span><span class="line"><span class="cl">sudo ~/.acme.sh/acme.sh --register-account -m my_email --force
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 申请证书</span>
+</span></span><span class="line"><span class="cl">sudo ~/.acme.sh/acme.sh --issue -d your.domain --standalone -k ec-256 --force
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 安装证书和密钥到 v2ray 目录下</span>
+</span></span><span class="line"><span class="cl">sudo ~/.acme.sh/acme.sh --installcert -d your.domain --fullchainpath /etc/v2ray/v2ray.crt --keypath /etc/v2ray/v2ray.key --ecc --force
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>注意事项: 由于 acme 申请或更新证书需要访问 80 端口</p>
+<ol>
+<li>虚拟机需要开放 80 端口的访问权限.</li>
+<li>nginx 默认 http 服务会占用 80 端口, 需要在 <code>/etc/nginx/sites-enabled/default</code> 下修改默认端口为其他端口</li>
+<li>重启 nginx 服务: <code>sudo systemctl reload nginx</code>, <code>sudo systemctl restart nginx</code></li>
+<li>如果同一个域名更换了虚拟机 ip 地址, 需要先刷新虚拟机的 dns 缓存, 不然证书下载时会出问题. 刷新方法: <code>sudo resolvectl flush-caches</code></li>
+</ol>
+<h3 id="更新证书">更新证书</h3>
+<p>由于每过三个月证书会自动失效, 所以需要及时更新</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 更新证书</span>
+</span></span><span class="line"><span class="cl">sudo ~/.acme.sh/acme.sh --renew -d your.domain --ecc --force
+</span></span><span class="line"><span class="cl"><span class="c1"># 安装证书到 v2ray 目录下</span>
+</span></span><span class="line"><span class="cl">sudo ~/.acme.sh/acme.sh --installcert -d your.domain --fullchainpath /etc/v2ray/v2ray.crt --keypath /etc/v2ray/v2ray.key --ecc --force
+</span></span><span class="line"><span class="cl"><span class="c1"># 检查证书到期时间</span>
+</span></span><span class="line"><span class="cl">openssl x509 -in /path/to/your.crt -noout -enddate
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>完成后可以通过 <a href="https://www.ssllabs.com/ssltest/" target="_blank" rel="noopener noreffer ">SSL Server Test</a> 来检查证书</p>
+<p>最后, 注册 crontab 来自动更新:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 注册 crontab 自动更新</span>
+</span></span><span class="line"><span class="cl">sudo ~/.acme.sh/acme.sh --cron --force
+</span></span><span class="line"><span class="cl"><span class="c1"># 检查 crontab</span>
+</span></span><span class="line"><span class="cl">crontab -l
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>也可以手动更新:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo ~/.acme.sh/acme.sh --renew -d your.domain --force
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="配置-nginx-web-server">配置 nginx web server</h2>
+<p>在 <code>/etc/nginx/conf.d</code> 目录下创建一个文件 <code>Default.conf</code> 作为默认配置.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">server {
+</span></span><span class="line"><span class="cl">  listen 443 ssl;
+</span></span><span class="line"><span class="cl">  listen [::]:443 ssl;
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">  ssl_certificate       /etc/v2ray/v2ray.crt;
+</span></span><span class="line"><span class="cl">  ssl_certificate_key   /etc/v2ray/v2ray.key;
+</span></span><span class="line"><span class="cl">  ssl_session_timeout 1d;
+</span></span><span class="line"><span class="cl">  ssl_session_cache shared:MozSSL:10m;
+</span></span><span class="line"><span class="cl">  ssl_session_tickets off;
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">  ssl_protocols         TLSv1.1 TLSv1.2 TLSv1.3;
+</span></span><span class="line"><span class="cl">  ssl_ciphers           ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-CHACHA20-POLY1305:ECDHE-RSA-CHACHA20-POLY1305:DHE-RSA-AES128-GCM-SHA256:DHE-RSA-AES256-GCM-SHA384;
+</span></span><span class="line"><span class="cl">  ssl_prefer_server_ciphers off;
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">  server_name           your.domain;
+</span></span><span class="line"><span class="cl">    location /ray { # 与 V2Ray 配置中的 path 保持一致
+</span></span><span class="line"><span class="cl">      if ($http_upgrade != &#34;websocket&#34;) { # WebSocket协商失败时返回404
+</span></span><span class="line"><span class="cl">          return 404;
+</span></span><span class="line"><span class="cl">      }
+</span></span><span class="line"><span class="cl">      proxy_redirect off;
+</span></span><span class="line"><span class="cl">      proxy_pass http://127.0.0.1:12345; # 反向代理转发给 localhost: 12345 端口
+</span></span><span class="line"><span class="cl">      proxy_http_version 1.1;
+</span></span><span class="line"><span class="cl">      proxy_set_header Upgrade $http_upgrade;
+</span></span><span class="line"><span class="cl">      proxy_set_header Connection &#34;upgrade&#34;;
+</span></span><span class="line"><span class="cl">      proxy_set_header Host $host;
+</span></span><span class="line"><span class="cl">      # Show real IP in v2ray access.log
+</span></span><span class="line"><span class="cl">      proxy_set_header X-Real-IP $remote_addr;
+</span></span><span class="line"><span class="cl">      proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+</span></span><span class="line"><span class="cl">    }
+</span></span><span class="line"><span class="cl">}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>启动 nginx</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo systemctl start nginx
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="配置本地客户端">配置本地客户端</h2>
+<h3 id="v2ray-客户端">v2ray 客户端</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;inbounds&#34;</span><span class="p">:</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&#34;port&#34;</span><span class="p">:</span> <span class="mi">1080</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&#34;protocol&#34;</span><span class="p">:</span> <span class="s2">&#34;socks&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&#34;sniffing&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;enabled&#34;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;destOverride&#34;</span><span class="p">:</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">                    <span class="s2">&#34;http&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                    <span class="s2">&#34;tls&#34;</span>
+</span></span><span class="line"><span class="cl">                <span class="p">]</span>
+</span></span><span class="line"><span class="cl">            <span class="p">},</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&#34;settings&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;auth&#34;</span><span class="p">:</span> <span class="s2">&#34;noauth&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;udp&#34;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;ip&#34;</span><span class="p">:</span> <span class="s2">&#34;127.0.0.1&#34;</span>
+</span></span><span class="line"><span class="cl">            <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">],</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;outbounds&#34;</span><span class="p">:</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&#34;protocol&#34;</span><span class="p">:</span> <span class="s2">&#34;vmess&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&#34;settings&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;vnext&#34;</span><span class="p">:</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">                    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                        <span class="nt">&#34;address&#34;</span><span class="p">:</span> <span class="s2">&#34;your.domain&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                        <span class="nt">&#34;port&#34;</span><span class="p">:</span> <span class="mi">443</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                        <span class="nt">&#34;users&#34;</span><span class="p">:</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">                            <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                                <span class="nt">&#34;id&#34;</span><span class="p">:</span> <span class="s2">&#34;guid&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                                <span class="nt">&#34;alterId&#34;</span><span class="p">:</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl">                            <span class="p">}</span>
+</span></span><span class="line"><span class="cl">                        <span class="p">]</span>
+</span></span><span class="line"><span class="cl">                    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">                <span class="p">]</span>
+</span></span><span class="line"><span class="cl">            <span class="p">},</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&#34;streamSettings&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;network&#34;</span><span class="p">:</span> <span class="s2">&#34;ws&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;security&#34;</span><span class="p">:</span> <span class="s2">&#34;tls&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;wsSettings&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                    <span class="nt">&#34;path&#34;</span><span class="p">:</span> <span class="s2">&#34;/ray&#34;</span>
+</span></span><span class="line"><span class="cl">                <span class="p">},</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;tlsSettings&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                   <span class="nt">&#34;serverName&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                   <span class="nt">&#34;allowInsecure&#34;</span><span class="p">:</span> <span class="kc">false</span>
+</span></span><span class="line"><span class="cl">                <span class="p">}</span>
+</span></span><span class="line"><span class="cl">            <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>直接配置 outbounds 发送给你注册好的域名即可, 本地就和其他方法一样暴露 socks5 1080 端口给其他应用, 例如 chrome.</p>
+<h3 id="clashx-客户端">ClashX 客户端</h3>
+<p>不过 ClashX 删库跑路了, 目前还没找到替代品, 凑合用呗.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl">- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;v2ray-tls-ws&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l">vmess</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">server</span><span class="p">:</span><span class="w"> </span><span class="l">your.domain</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="m">443</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">uuid</span><span class="p">:</span><span class="w"> </span><span class="l">guid</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">alterId</span><span class="p">:</span><span class="w"> </span><span class="m">0</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">cipher</span><span class="p">:</span><span class="w"> </span><span class="l">auto</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="c"># udp: true</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">tls</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="c"># skip-cert-verify: true</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="c"># servername: example.com # priority over wss host</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">network</span><span class="p">:</span><span class="w"> </span><span class="l">ws</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">ws-opts</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l">/ray</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">headers</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">Host</span><span class="p">:</span><span class="w"> </span><span class="l">your.domain</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="c">#   max-early-data: 2048</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="c">#   early-data-header-name: Sec-WebSocket-Protocol</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h1 id="ref">Ref</h1>
+<ol>
+<li><a href="https://cyfeng.science/2020/03/22/advanced-v2ray-with-wss/" target="_blank" rel="noopener noreffer ">V2Ray进阶指南：WSS组合配置(WebSocket + TLS + Nginx + CDN)</a></li>
+<li><a href="https://toutyrater.github.io/advanced/tls.html" target="_blank" rel="noopener noreffer ">https://toutyrater.github.io/advanced/tls.html</a></li>
+<li><a href="https://v2xtls.org/v2ray%e9%ab%98%e7%ba%a7%e6%8a%80%e5%b7%a7%ef%bc%9a%e6%b5%81%e9%87%8f%e4%bc%aa%e8%a3%85/" target="_blank" rel="noopener noreffer ">V2Ray高级技巧：流量伪装</a></li>
+<li><a href="https://www.wenjinyu.me/a-simple-instructions-for-how-to-deploy-v2ray-with-tls-and-ws-mode/" target="_blank" rel="noopener noreffer ">使用TLS+WS方式的V2Ray简单搭建说明：一个目前较为稳定的科学上网方式</a></li>
+</ol></div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2024-06-08</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/2024-06-10-v2ray-tls-ws/index.md" target="_blank">Read Markdown</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://shawnau.github.io/2024-06-10-v2ray-tls-ws/" data-title="使用 v2ray 部署 TLS Web Service"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://shawnau.github.io/2024-06-10-v2ray-tls-ws/"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="https://shawnau.github.io/2024-06-10-v2ray-tls-ws/" data-title="使用 v2ray 部署 TLS Web Service"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="https://shawnau.github.io/2024-06-10-v2ray-tls-ws/" data-title="使用 v2ray 部署 TLS Web Service"><i data-svg-src="/lib/simple-icons/icons/line.min.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="https://shawnau.github.io/2024-06-10-v2ray-tls-ws/" data-title="使用 v2ray 部署 TLS Web Service"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/2023-02-14-refresh/" class="prev" rel="prev" title="图床迁移和旧文章恢复!"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>图床迁移和旧文章恢复!</a></div>
+</div>
+<div id="comments"><div id="disqus_thread" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://disqus.com/?ref_noscript">Disqus</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.102.2">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2016 - 2024</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">xiaoxuan</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/cookieconsent/cookieconsent.min.css"><script type="text/javascript" src="https://xxuan-cc.disqus.com/embed.js" defer></script><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/mhchem.min.js"></script><script type="text/javascript" src="/lib/cookieconsent/cookieconsent.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{},"cookieconsent":{"content":{"dismiss":"Got it!","link":"Learn more","message":"This website uses Cookies to improve your experience."},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":50,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

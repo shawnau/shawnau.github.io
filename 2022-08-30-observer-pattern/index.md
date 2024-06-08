@@ -128,6 +128,6 @@ Bob received [Breaking News!] from New York Times at 8/30/2022 3:37:14 PM.
 ```
 
 ### Reference
-[Observer Design Pattern | Microsoft Docs](https://docs.microsoft.com/en-us/dotnet/standard/events/observer-design-pattern)
-[How to: Raise and Consume Events | Microsoft Docs](https://docs.microsoft.com/en-us/dotnet/standard/events/how-to-raise-and-consume-events)
+ - [Observer Design Pattern | Microsoft Docs](https://docs.microsoft.com/en-us/dotnet/standard/events/observer-design-pattern)
+ - [How to: Raise and Consume Events | Microsoft Docs](https://docs.microsoft.com/en-us/dotnet/standard/events/how-to-raise-and-consume-events)
 
